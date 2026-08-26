@@ -46,8 +46,8 @@ Read the post and fill exactly one JSON record. Rules:
 - snow_condition: none | patchy | continuous | deep. "Snow free" is none. Isolated patches or fields you can avoid or shortly cross are patchy. Unbroken snow travel is continuous. Deep is continuous plus explicit depth or serious postholing/navigation.
 - traction_used: what the author actually used or clearly states was needed: none | microspikes | crampons | ice_axe | spikes_and_axe. Carrying unused gear is none.
 - crossing_condition: the most serious stream crossing described: dry | low | knee_high | thigh_high | dangerous. "Waist deep", linked arms, or real fear at a ford is dangerous.
-- exposure_comfort: how the steep/snow travel felt to the author: relaxed | cautious | sketchy | terrifying.
-- reporter_register: thru_hiker (PCT/JMT thru-hiker voice: trail names, NOBO/SOBO, mileage), experienced (long history, technical vocabulary, calm command of terrain), first_timer (self-identified new, emotional language about normal terrain), else unknown.
+- exposure_comfort: how the steep or snowy travel felt to the author: relaxed | cautious | sketchy | terrifying. If the author describes snow or steep travel and sounds untroubled ("no big deal", "pleasant", easy tone), that is relaxed. Hedged care ("take it slow", turned back, glad to have gear) is cautious. Use null only when the post says nothing about how the travel felt.
+- reporter_register: judge ONLY from explicit markers, not tone. thru_hiker: trail names, NOBO/SOBO, resupply/mileage talk, thru-hike context. experienced: explicit history ("forty years in this range", "second big snow year") or technical mountaineering vocabulary in use (front pointing, self belay). first_timer: self-identified as new ("my first pass", "first long trail", never used an axe). Everything else, including calm competent tone with no markers, is unknown.
 - quote_span: one short verbatim quote from the post that best supports the snow or crossing claim.
 
 Output only the JSON record."""
@@ -78,8 +78,13 @@ class Budget:
             )
 
 
+# Bumping this invalidates every cached extraction: the cache key must change
+# whenever the prompt or schema changes, or stale reads linger forever.
+PROMPT_VERSION = "v2"
+
+
 def post_hash(text: str) -> str:
-    return hashlib.sha256(text.encode()).hexdigest()
+    return hashlib.sha256(f"{PROMPT_VERSION}:{text}".encode()).hexdigest()
 
 
 def build_user_prompt(post: dict[str, Any], problems: list[str] | None = None) -> str:
