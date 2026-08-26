@@ -16,6 +16,10 @@ target-version = "py312"
 select = ["E", "F", "W", "I", "UP", "B", "ANN"]
 ignore = ["ANN401"]
 
+[tool.ruff.lint.per-file-ignores]
+# The extraction prompt reads best as long natural-language lines.
+"extraction/extractor.py" = ["E501"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
