@@ -1,0 +1,864 @@
+{
+ "passes": [
+  {
+   "slug": "kearsarge",
+   "name": "Kearsarge Pass",
+   "elevation_ft": 11709,
+   "lat": 36.7728,
+   "lon": -118.3736,
+   "aliases": [
+    "kearsarge",
+    "kearsage",
+    "kersarge",
+    "kearsarge pass",
+    "onion valley pass"
+   ],
+   "creek": "Independence Creek / Bubbs Creek",
+   "aspect_note": "north side holds snow late; east approach from Onion Valley",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.367383,
+       36.774863
+      ],
+      [
+       -118.371025,
+       36.77778
+      ],
+      [
+       -118.376175,
+       36.77778
+      ],
+      [
+       -118.379817,
+       36.774863
+      ],
+      [
+       -118.379817,
+       36.770737
+      ],
+      [
+       -118.376175,
+       36.76782
+      ],
+      [
+       -118.371025,
+       36.76782
+      ],
+      [
+       -118.367383,
+       36.770737
+      ],
+      [
+       -118.367383,
+       36.774863
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "bishop",
+   "name": "Bishop Pass",
+   "elevation_ft": 11972,
+   "lat": 37.1049,
+   "lon": -118.557,
+   "aliases": [
+    "bishop",
+    "bishop pass",
+    "south lake pass"
+   ],
+   "creek": "South Fork Bishop Creek",
+   "aspect_note": "long north-facing ramp above Bishop Lake holds snow",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.550756,
+       37.106963
+      ],
+      [
+       -118.554414,
+       37.10988
+      ],
+      [
+       -118.559586,
+       37.10988
+      ],
+      [
+       -118.563244,
+       37.106963
+      ],
+      [
+       -118.563244,
+       37.102837
+      ],
+      [
+       -118.559586,
+       37.09992
+      ],
+      [
+       -118.554414,
+       37.09992
+      ],
+      [
+       -118.550756,
+       37.102837
+      ],
+      [
+       -118.550756,
+       37.106963
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "piute",
+   "name": "Piute Pass",
+   "elevation_ft": 11423,
+   "lat": 37.2262,
+   "lon": -118.6812,
+   "aliases": [
+    "piute",
+    "piute pass",
+    "paiute pass",
+    "paiute"
+   ],
+   "creek": "North Fork Bishop Creek / Piute Creek",
+   "aspect_note": "gentle grade, melts early relative to neighbors",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.674946,
+       37.228263
+      ],
+      [
+       -118.67861,
+       37.23118
+      ],
+      [
+       -118.68379,
+       37.23118
+      ],
+      [
+       -118.687454,
+       37.228263
+      ],
+      [
+       -118.687454,
+       37.224137
+      ],
+      [
+       -118.68379,
+       37.22122
+      ],
+      [
+       -118.67861,
+       37.22122
+      ],
+      [
+       -118.674946,
+       37.224137
+      ],
+      [
+       -118.674946,
+       37.228263
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "mono",
+   "name": "Mono Pass",
+   "elevation_ft": 12060,
+   "lat": 37.3743,
+   "lon": -118.7817,
+   "aliases": [
+    "mono",
+    "mono pass",
+    "mono pass (rock creek)"
+   ],
+   "creek": "Rock Creek",
+   "aspect_note": "the Rock Creek Mono Pass, not the Bloody Canyon one",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.775434,
+       37.376363
+      ],
+      [
+       -118.779104,
+       37.37928
+      ],
+      [
+       -118.784296,
+       37.37928
+      ],
+      [
+       -118.787966,
+       37.376363
+      ],
+      [
+       -118.787966,
+       37.372237
+      ],
+      [
+       -118.784296,
+       37.36932
+      ],
+      [
+       -118.779104,
+       37.36932
+      ],
+      [
+       -118.775434,
+       37.372237
+      ],
+      [
+       -118.775434,
+       37.376363
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "duck",
+   "name": "Duck Pass",
+   "elevation_ft": 10797,
+   "lat": 37.5432,
+   "lon": -118.945,
+   "aliases": [
+    "duck",
+    "duck pass",
+    "duck lake pass"
+   ],
+   "creek": "Mammoth Creek / Duck Creek",
+   "aspect_note": "lowest of the set, first to open most years",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.93872,
+       37.545263
+      ],
+      [
+       -118.942399,
+       37.54818
+      ],
+      [
+       -118.947601,
+       37.54818
+      ],
+      [
+       -118.95128,
+       37.545263
+      ],
+      [
+       -118.95128,
+       37.541137
+      ],
+      [
+       -118.947601,
+       37.53822
+      ],
+      [
+       -118.942399,
+       37.53822
+      ],
+      [
+       -118.93872,
+       37.541137
+      ],
+      [
+       -118.93872,
+       37.545263
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "taboose",
+   "name": "Taboose Pass",
+   "elevation_ft": 11417,
+   "lat": 37.0058,
+   "lon": -118.4266,
+   "aliases": [
+    "taboose",
+    "taboose pass"
+   ],
+   "creek": "Taboose Creek",
+   "aspect_note": "brutal east approach, snow lingers in the upper bowl",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.420364,
+       37.007863
+      ],
+      [
+       -118.424017,
+       37.01078
+      ],
+      [
+       -118.429183,
+       37.01078
+      ],
+      [
+       -118.432836,
+       37.007863
+      ],
+      [
+       -118.432836,
+       37.003737
+      ],
+      [
+       -118.429183,
+       37.00082
+      ],
+      [
+       -118.424017,
+       37.00082
+      ],
+      [
+       -118.420364,
+       37.003737
+      ],
+      [
+       -118.420364,
+       37.007863
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "sawmill",
+   "name": "Sawmill Pass",
+   "elevation_ft": 11347,
+   "lat": 36.9297,
+   "lon": -118.3891,
+   "aliases": [
+    "sawmill",
+    "sawmill pass"
+   ],
+   "creek": "Sawmill Creek",
+   "aspect_note": "dry east side, snow mostly on the west ramp",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.382871,
+       36.931763
+      ],
+      [
+       -118.38652,
+       36.93468
+      ],
+      [
+       -118.39168,
+       36.93468
+      ],
+      [
+       -118.395329,
+       36.931763
+      ],
+      [
+       -118.395329,
+       36.927637
+      ],
+      [
+       -118.39168,
+       36.92472
+      ],
+      [
+       -118.38652,
+       36.92472
+      ],
+      [
+       -118.382871,
+       36.927637
+      ],
+      [
+       -118.382871,
+       36.931763
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "baxter",
+   "name": "Baxter Pass",
+   "elevation_ft": 12290,
+   "lat": 36.8757,
+   "lon": -118.362,
+   "aliases": [
+    "baxter",
+    "baxter pass"
+   ],
+   "creek": "North Fork Oak Creek",
+   "aspect_note": "high, rarely traveled, reports are sparse",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.355775,
+       36.877763
+      ],
+      [
+       -118.359422,
+       36.88068
+      ],
+      [
+       -118.364578,
+       36.88068
+      ],
+      [
+       -118.368225,
+       36.877763
+      ],
+      [
+       -118.368225,
+       36.873637
+      ],
+      [
+       -118.364578,
+       36.87072
+      ],
+      [
+       -118.359422,
+       36.87072
+      ],
+      [
+       -118.355775,
+       36.873637
+      ],
+      [
+       -118.355775,
+       36.877763
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "shepherd",
+   "name": "Shepherd Pass",
+   "elevation_ft": 12050,
+   "lat": 36.6931,
+   "lon": -118.3572,
+   "aliases": [
+    "shepherd",
+    "shepherd pass",
+    "shepherds pass",
+    "shepherd's pass"
+   ],
+   "creek": "Shepherd Creek / Symmes Creek",
+   "aspect_note": "notorious north-facing headwall chute, ice axe terrain into July",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.35099,
+       36.695163
+      ],
+      [
+       -118.354628,
+       36.69808
+      ],
+      [
+       -118.359772,
+       36.69808
+      ],
+      [
+       -118.36341,
+       36.695163
+      ],
+      [
+       -118.36341,
+       36.691037
+      ],
+      [
+       -118.359772,
+       36.68812
+      ],
+      [
+       -118.354628,
+       36.68812
+      ],
+      [
+       -118.35099,
+       36.691037
+      ],
+      [
+       -118.35099,
+       36.695163
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "glen",
+   "name": "Glen Pass",
+   "elevation_ft": 11926,
+   "lat": 36.7854,
+   "lon": -118.4166,
+   "aliases": [
+    "glen",
+    "glen pass",
+    "glenn pass",
+    "the pass after rae lakes",
+    "pass after rae lakes"
+   ],
+   "creek": "Bubbs Creek / Woods Creek",
+   "aspect_note": "steep north-side switchbacks hold a snowfield deep into season",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.410382,
+       36.787463
+      ],
+      [
+       -118.414025,
+       36.79038
+      ],
+      [
+       -118.419175,
+       36.79038
+      ],
+      [
+       -118.422818,
+       36.787463
+      ],
+      [
+       -118.422818,
+       36.783337
+      ],
+      [
+       -118.419175,
+       36.78042
+      ],
+      [
+       -118.414025,
+       36.78042
+      ],
+      [
+       -118.410382,
+       36.783337
+      ],
+      [
+       -118.410382,
+       36.787463
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "muir",
+   "name": "Muir Pass",
+   "elevation_ft": 11955,
+   "lat": 37.1119,
+   "lon": -118.6712,
+   "aliases": [
+    "muir",
+    "muir pass",
+    "the hut pass",
+    "muir hut"
+   ],
+   "creek": "Evolution Creek / Middle Fork Kings",
+   "aspect_note": "miles of gentle snow basin on both sides, slow but not steep",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.664956,
+       37.113963
+      ],
+      [
+       -118.668614,
+       37.11688
+      ],
+      [
+       -118.673786,
+       37.11688
+      ],
+      [
+       -118.677444,
+       37.113963
+      ],
+      [
+       -118.677444,
+       37.109837
+      ],
+      [
+       -118.673786,
+       37.10692
+      ],
+      [
+       -118.668614,
+       37.10692
+      ],
+      [
+       -118.664956,
+       37.109837
+      ],
+      [
+       -118.664956,
+       37.113963
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "mather",
+   "name": "Mather Pass",
+   "elevation_ft": 12100,
+   "lat": 37.0479,
+   "lon": -118.5084,
+   "aliases": [
+    "mather",
+    "mather pass",
+    "the golden staircase pass"
+   ],
+   "creek": "Palisade Creek / South Fork Kings",
+   "aspect_note": "steep south-side snow ramp early season",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.502161,
+       37.049963
+      ],
+      [
+       -118.505816,
+       37.05288
+      ],
+      [
+       -118.510984,
+       37.05288
+      ],
+      [
+       -118.514639,
+       37.049963
+      ],
+      [
+       -118.514639,
+       37.045837
+      ],
+      [
+       -118.510984,
+       37.04292
+      ],
+      [
+       -118.505816,
+       37.04292
+      ],
+      [
+       -118.502161,
+       37.045837
+      ],
+      [
+       -118.502161,
+       37.049963
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "pinchot",
+   "name": "Pinchot Pass",
+   "elevation_ft": 12130,
+   "lat": 36.9394,
+   "lon": -118.4139,
+   "aliases": [
+    "pinchot",
+    "pinchot pass"
+   ],
+   "creek": "Woods Creek / South Fork Kings",
+   "aspect_note": "broad and moderate, crossings below matter more than the pass",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.40767,
+       36.941463
+      ],
+      [
+       -118.411319,
+       36.94438
+      ],
+      [
+       -118.416481,
+       36.94438
+      ],
+      [
+       -118.42013,
+       36.941463
+      ],
+      [
+       -118.42013,
+       36.937337
+      ],
+      [
+       -118.416481,
+       36.93442
+      ],
+      [
+       -118.411319,
+       36.93442
+      ],
+      [
+       -118.40767,
+       36.937337
+      ],
+      [
+       -118.40767,
+       36.941463
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "forester",
+   "name": "Forester Pass",
+   "elevation_ft": 13153,
+   "lat": 36.6935,
+   "lon": -118.3735,
+   "aliases": [
+    "forester",
+    "forester pass",
+    "forrester pass",
+    "forrester"
+   ],
+   "creek": "Tyndall Creek / Bubbs Creek",
+   "aspect_note": "highest point on the PCT, the north-side chute is the crux",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.36729,
+       36.695563
+      ],
+      [
+       -118.370928,
+       36.69848
+      ],
+      [
+       -118.376072,
+       36.69848
+      ],
+      [
+       -118.37971,
+       36.695563
+      ],
+      [
+       -118.37971,
+       36.691437
+      ],
+      [
+       -118.376072,
+       36.68852
+      ],
+      [
+       -118.370928,
+       36.68852
+      ],
+      [
+       -118.36729,
+       36.691437
+      ],
+      [
+       -118.36729,
+       36.695563
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "donohue",
+   "name": "Donohue Pass",
+   "elevation_ft": 11056,
+   "lat": 37.7607,
+   "lon": -119.2477,
+   "aliases": [
+    "donohue",
+    "donohue pass",
+    "donahue pass",
+    "donahue"
+   ],
+   "creek": "Rush Creek / Lyell Fork",
+   "aspect_note": "Yosemite boundary, broad snow flats on the Lyell side",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -119.241401,
+       37.762763
+      ],
+      [
+       -119.245091,
+       37.76568
+      ],
+      [
+       -119.250309,
+       37.76568
+      ],
+      [
+       -119.253999,
+       37.762763
+      ],
+      [
+       -119.253999,
+       37.758637
+      ],
+      [
+       -119.250309,
+       37.75572
+      ],
+      [
+       -119.245091,
+       37.75572
+      ],
+      [
+       -119.241401,
+       37.758637
+      ],
+      [
+       -119.241401,
+       37.762763
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}
