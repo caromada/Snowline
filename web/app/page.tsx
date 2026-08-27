@@ -23,13 +23,32 @@ export default function Home() {
       .then((r) => r.json())
       .then((d: PassIndex) => {
         setIndex(d);
+        const params = new URLSearchParams(window.location.search);
+        const wantDate = params.get("date");
+        const wantPass = params.get("pass");
         // Open on the heart of the 2023 melt: the season's most interesting week.
-        setEvalDate(d.dates.includes("2023-06-15") ? "2023-06-15" : d.dates[0]);
+        setEvalDate(
+          wantDate && d.dates.includes(wantDate)
+            ? wantDate
+            : d.dates.includes("2023-06-15")
+              ? "2023-06-15"
+              : d.dates[0],
+        );
+        if (wantPass && d.passes.some((p) => p.slug === wantPass)) setSelected(wantPass);
       })
       .catch(() => {});
   }, []);
 
   const onSelect = useCallback((slug: string) => setSelected(slug), []);
+
+  useEffect(() => {
+    if (!evalDate) return;
+    const url = new URL(window.location.href);
+    if (selected) url.searchParams.set("pass", selected);
+    else url.searchParams.delete("pass");
+    url.searchParams.set("date", evalDate);
+    window.history.replaceState(null, "", url);
+  }, [selected, evalDate]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

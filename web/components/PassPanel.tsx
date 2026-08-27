@@ -93,28 +93,31 @@ export default function PassPanel({
   evalDate: string;
   onClose: () => void;
 }) {
-  const [detail, setDetail] = useState<PassDetail | null>(null);
+  const [fetched, setFetched] = useState<{ slug: string; data: PassDetail } | null>(null);
   const [saved, setSaved] = useState<string[]>([]);
   const ledgerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Hydration-safe localStorage read: the server render can't know it.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSaved(loadSaved());
   }, []);
 
   useEffect(() => {
     if (!slug) return;
-    setDetail(null);
     let cancelled = false;
     fetch(`data/pass/${slug}.json`)
       .then((r) => r.json())
-      .then((d) => {
-        if (!cancelled) setDetail(d);
+      .then((data: PassDetail) => {
+        if (!cancelled) setFetched({ slug, data });
       })
       .catch(() => {});
     return () => {
       cancelled = true;
     };
   }, [slug]);
+
+  const detail = fetched && fetched.slug === slug ? fetched.data : null;
 
   const toggleSaved = () => {
     if (!slug) return;

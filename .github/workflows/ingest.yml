@@ -1,0 +1,37 @@
+name: daily-ingest
+
+on:
+  schedule:
+    # 14:00 UTC = early morning in the Sierra, after the overnight sensor writes.
+    - cron: "0 14 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Ingest trailing week of sensor data
+        run: |
+          python -m scripts.backfill "$(date -u -d '8 days ago' +%F)" "$(date -u +%F)"
+      - name: Extract any new forum posts
+        if: env.ANTHROPIC_API_KEY != ''
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LLM_BUDGET_USD: "1.00"
+        run: python -m scripts.extract_corpus --engine api
+      - name: Fuse and export
+        run: python pipeline.py
+      - name: Commit refreshed data
+        run: |
+          git config user.name "sierra-pass-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data web/public/data
+          git diff --cached --quiet || git commit -m "Daily ingest $(date -u +%F)"
+          git push

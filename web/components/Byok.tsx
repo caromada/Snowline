@@ -12,6 +12,8 @@ export default function Byok({ detail, evalDate }: { detail: PassDetail; evalDat
   const [draft, setDraft] = useState("");
 
   useEffect(() => {
+    // Hydration-safe localStorage read: the server render can't know it.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setKey(getStoredKey());
   }, []);
 

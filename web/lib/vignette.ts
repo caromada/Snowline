@@ -38,7 +38,7 @@ export function ridgeProfile(slug: string): number[] {
       y = saddleY + (rightPeak - saddleY) * smooth(t);
       y -= Math.sin(t * Math.PI) * 4;
     }
-    const jitter = ((hashCode(slug + x) % 3) - 1) * 0.6;
+    const jitter = ((hashCode(slug + (x >> 2)) % 3) - 1) * 0.7;
     profile.push(Math.max(2, Math.min(CREEK_TOP - 3, Math.round(y + jitter))));
   }
   return profile;
@@ -81,24 +81,24 @@ export function drawVignette(
   const profile = ridgeProfile(slug);
   // Terrain assembles bottom-up.
   const rise = Math.round((1 - terrainPhase) * VIGNETTE_H);
-  const snowlineY = Math.round(
-    SKY_ROWS + (CREEK_TOP - SKY_ROWS) * Math.max(0, Math.min(1, params.snowline_frac)) - 6,
-  );
+  // The snowline sits low on the slope when cover is high: full cover puts
+  // it at the creek, bare ground pushes it above the summits.
+  const cover = Math.max(0, Math.min(1, params.snow_cover));
+  const snowlineY = Math.round(4 + (CREEK_TOP - 4) * (1 - cover));
   for (let x = 0; x < VIGNETTE_W; x++) {
     const top = profile[x] + rise;
     for (let y = Math.max(0, top); y < VIGNETTE_H; y++) {
-      const shadow = x > 0 && profile[x - 1] < profile[x];
-      ctx.fillStyle = shadow ? palette.moss : palette.fern;
-      if (y > CREEK_TOP + rise) ctx.fillStyle = palette.moss;
+      // Fern slopes over a moss valley floor, one moss shadow row under
+      // the ridge line so the crest stays crisp.
+      ctx.fillStyle =
+        y >= CREEK_TOP + rise ? palette.moss : y === top ? palette.moss : palette.fern;
       ctx.fillRect(x, y, 1, 1);
     }
-    // Snow paints above the snowline once terrain has landed.
-    if (snowPhase > 0 && params.snow_cover > 0.02 && snowlineY > profile[x]) {
-      const bottom = top + Math.max(0, Math.round((snowlineY - top) * snowPhase));
+    if (snowPhase > 0 && cover > 0.02) {
+      const bottom = top + Math.max(0, Math.round((snowlineY + rise - top) * snowPhase));
       for (let y = Math.max(0, top); y < Math.min(bottom, VIGNETTE_H); y++) {
-        // Dither the snow edge so it reads hand-placed, not filled.
-        const nearEdge = y > bottom - 3;
-        if (nearEdge && hashCode(slug + x + ":" + y) % 3 === 0) continue;
+        // Dither only the last edge row so the snowline reads hand-placed.
+        if (y >= bottom - 1 && hashCode(slug + x + ":" + y) % 2 === 0) continue;
         ctx.fillStyle = palette.granite;
         ctx.fillRect(x, y, 1, 1);
       }

@@ -67,6 +67,23 @@ canvas.pixel {
   image-rendering: pixelated;
 }
 
+.pass-label {
+  transition: opacity 150ms linear;
+}
+
+[data-zoom="far"] .pass-label:not(.selected) {
+  opacity: 0;
+}
+
+[data-zoom="far"] .pass-marker:hover .pass-label {
+  opacity: 1;
+}
+
+[data-zoom="far"] .pass-label.selected,
+[data-zoom="near"] .pass-label {
+  opacity: 1;
+}
+
 /* Panel slides in from the right; becomes a bottom sheet on mobile. */
 .pass-panel {
   position: absolute;

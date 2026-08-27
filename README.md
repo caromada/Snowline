@@ -1,0 +1,69 @@
+# Sierra Pass Report
+
+![demo](docs/demo.gif)
+
+Live demo: deploy `web/` to Vercel or any static host and this line gets a link.
+
+Every Eastern Sierra backpacker asks the same question from May to August: can I get over the pass this weekend, and do I need an ice axe? The honest answer is scattered across SNOTEL telemetry, CDEC snow pillows, USGS stream gauges, satellite snow cover, and thousands of forum posts written by people with wildly different risk tolerances. Sierra Pass Report fuses all four streams into a per-pass status with a confidence grade that admits what it does not know, and every sentence in the panel traces back to the sensor curve or the exact forum quote it came from.
+
+## Architecture
+
+```
+gazetteer/         15 passes: polygons, aliases ("the pass after Rae Lakes" -> Glen)
+ingest/
+  snotel.py        NRCS AWDB REST, daily SWE and depth
+  cdec.py          California's CDEC snow sensors (the network that actually covers this crest)
+  usgs.py          NWIS daily discharge + 15-minute diurnal melt pulse
+  satellite.py     NDSI sampling over pass polygons + the modeled demo generator
+  forums.py        scrapers plus the curated demo corpus
+extraction/        Claude reads trip reports into a null-heavy JSON schema,
+                   resolves entities, calibrates reporter bias by register
+fusion/            pure Python: reliability priors x recency decay -> status,
+                   confidence from evidence density and agreement, conflicts surfaced
+store/ + db/       raw-first storage; SQLite locally, Postgres+PostGIS DDL for production
+pipeline.py        orchestrates everything into web/public/data/*.json
+web/               Next.js + MapLibre, forest palette, pixel evidence glyphs,
+                   the 96x32 data-generated pass vignette
+```
+
+Data flow is raw-first: every fetch lands in `raw_fetches` exactly as received before any parsing, so the whole pipeline can be reprocessed from disk. Every observation row carries provenance back to its raw fetch, station, or post.
+
+The two-tier model: everything above works with zero configuration because the LLM extractions ship in the repo, cached by post content hash. Add an Anthropic API key (env var for the pipeline, or the in-app field which stores it only in your browser) and the live features light up: paste any trip report and watch it become structured evidence, and ask a pass questions answered strictly from its evidence ledger.
+
+## Extraction accuracy
+
+EVAL_NUMBERS_PLACEHOLDER
+
+## What was hard
+
+**SNOTEL does not cover the southern Sierra.** The brief said SNOTEL, and SNOTEL proper links exactly one station to one of the fifteen passes. California runs its own network (CDEC); Charlotte Lake sits 1.2 km from Glen Pass at 10,400 ft. So CDEC became the primary snow stream, discovered from a candidate list against live station metadata because CDEC has no JSON station index, only an HTML page to parse. The messiest data in the mountains starts with the station directory.
+
+**The diurnal melt pulse lives in a different API than the flow data.** Most Eastern Sierra gauges publish only daily means, and the melt pulse (afternoon discharge swinging 30 to 50 percent above the morning) is only visible in 15-minute instantaneous values, which most local gauges do not serve. The pipeline takes the swing where it exists and degrades to daily means where it does not, which is exactly the kind of partial evidence the fusion layer was built to admit.
+
+**Reporter bias is a real modeling problem.** A PCT thru-hiker's "fine" and a first-timer's "terrifying" can describe the same snowfield. The extractor infers each reporter's register from explicit markers only (trail names, "forty years in this range", "my first pass"), and the calibration layer remaps their adjectives onto one severity scale before fusion: first-timer terror is damped, thru-hiker understatement is boosted. The first eval round taught the model and the labels to agree on what "experienced" even means: tone is not evidence, markers are.
+
+**Honesty had to be designed in, not bolted on.** Demo satellite observations are derived from the sensor melt curve (NSIDC needs authenticated downloads a public repo cannot assume), so every such row says `satellite:modeled` in its provenance and the UI labels it modeled. Where streams disagree, the panel says so in an alpenglow callout instead of averaging the disagreement away, and disagreement costs confidence points.
+
+## Setup
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"
+.venv/bin/pytest                          # unit tests
+.venv/bin/python -m scripts.backfill      # refresh sensor data (live APIs, no key)
+.venv/bin/python pipeline.py              # fuse and export for the web app
+cd web && npm install && npm run dev      # http://localhost:3000
+```
+
+Optional LLM work (extraction of new posts, eval):
+
+```bash
+cp .env.example .env                      # add ANTHROPIC_API_KEY
+.venv/bin/python -m scripts.extract_corpus --engine api
+.venv/bin/python -m eval.run_eval
+```
+
+The GitHub Actions cron (`.github/workflows/ingest.yml`) refreshes sensor data daily and re-exports; the API key secret is optional there too.
+
+Passes covered: Kearsarge, Bishop, Piute, Mono, Duck, Taboose, Sawmill, Baxter, Shepherd, Glen, Muir, Mather, Pinchot, Forester, Donohue.
+
+Not a safety product. Conditions change by the hour up there; read the primary sources this thing links you to, and make your own call at the base of the chute.

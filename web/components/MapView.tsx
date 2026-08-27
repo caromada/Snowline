@@ -3,6 +3,10 @@
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { useEffect, useRef } from "react";
+
+// Bundlers resolve MapLibre's worker inconsistently; serving it as a plain
+// static file sidesteps all of that.
+maplibregl.setWorkerUrl("maplibre-gl-worker.mjs");
 import { drawSprite, tent as tentSprite } from "@/lib/pixel";
 import { palette, statusColor } from "@/lib/theme";
 import type { PassIndexEntry } from "@/lib/types";
@@ -48,6 +52,7 @@ function markerElement(
   const s = p.statuses[evalDate];
   const color = statusColor[s?.status ?? "unknown"] ?? palette.sage;
   const el = document.createElement("div");
+  el.className = "pass-marker";
   el.style.cssText = "display:flex;flex-direction:column;align-items:center;cursor:pointer;";
   el.setAttribute("role", "button");
   el.setAttribute("aria-label", `${p.name}: ${s?.status_label ?? "unknown"}`);
@@ -106,7 +111,7 @@ function markerElement(
 
   const label = document.createElement("div");
   label.textContent = p.name.replace(/ Pass$/, "");
-  label.className = "display";
+  label.className = `display pass-label${selected ? " selected" : ""}`;
   label.style.cssText =
     `font-size:10px;letter-spacing:0.14em;color:${selected ? palette.alpenglow : palette.granite};` +
     `text-shadow:0 1px 3px ${palette.deepPine},0 0 6px ${palette.deepPine};margin-top:-2px;` +
@@ -144,8 +149,48 @@ export default function MapView({
       attributionControl: { compact: true },
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-right");
+    // Below this zoom the southern passes sit label-on-label; keep only the
+    // selected name until the viewer leans in.
+    const syncZoom = () => {
+      containerRef.current?.setAttribute(
+        "data-zoom",
+        map.getZoom() < 8.6 ? "far" : "near",
+      );
+    };
+    map.on("zoom", syncZoom);
+    map.on("load", syncZoom);
+    // Guard against initializing while the container is still being laid
+    // out: track its real size, and refit until the user takes over.
+    let userMoved = false;
+    map.on("dragstart", () => {
+      userMoved = true;
+    });
+    map.on("wheel", () => {
+      userMoved = true;
+    });
+    const refit = () => {
+      if (userMoved) return;
+      map.resize();
+      map.fitBounds(
+        [
+          [-119.55, 36.5],
+          [-118.05, 37.95],
+        ],
+        { padding: 40, duration: 0 },
+      );
+    };
+    const ro = new ResizeObserver(refit);
+    ro.observe(containerRef.current);
+    map.on("load", refit);
+    map.once("idle", refit);
     mapRef.current = map;
+    (window as unknown as { __map?: maplibregl.Map }).__map = map;
+    map.on("error", (e) => {
+      (window as unknown as { __maperr?: string[] }).__maperr ??= [];
+      (window as unknown as { __maperr?: string[] }).__maperr?.push(String(e.error));
+    });
     return () => {
+      ro.disconnect();
       map.remove();
       mapRef.current = null;
     };
