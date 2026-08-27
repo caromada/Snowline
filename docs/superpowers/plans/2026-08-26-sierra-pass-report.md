@@ -39,49 +39,49 @@ README.md  LICENSE  .env.example
 ## Tasks
 
 ### Task 1: Scaffold + config + gazetteer
-- [ ] pyproject.toml with ruff config; config.py (EXTRACTION_MODEL="claude-haiku-4-5", ESCALATION_MODEL="claude-sonnet-5", LLM_BUDGET_USD env, paths)
-- [ ] gazetteer/passes.json: 15 passes (Kearsarge, Bishop, Piute, Mono, Duck, Taboose, Sawmill, Baxter, Shepherd, Glen, Muir, Mather, Pinchot, Forester, Donohue) with real coords/elevations, small polygons, aliases
-- [ ] tests/test_gazetteer.py: resolve "Glen", "the pass after Rae Lakes" alias table, fuzzy "Kersarge"; run pytest; commit
+- [x] pyproject.toml with ruff config; config.py (EXTRACTION_MODEL="claude-haiku-4-5", ESCALATION_MODEL="claude-sonnet-5", LLM_BUDGET_USD env, paths)
+- [x] gazetteer/passes.json: 15 passes (Kearsarge, Bishop, Piute, Mono, Duck, Taboose, Sawmill, Baxter, Shepherd, Glen, Muir, Mather, Pinchot, Forester, Donohue) with real coords/elevations, small polygons, aliases
+- [x] tests/test_gazetteer.py: resolve "Glen", "the pass after Rae Lakes" alias table, fuzzy "Kersarge"; run pytest; commit
 
 ### Task 2: Store + DDL
-- [ ] db/schema.sql (Postgres+PostGIS: raw_fetches, observations with geometry+provenance, extractions, fused_status)
-- [ ] store/sqlite_store.py mirroring it (geometry as GeoJSON text); round-trip test; commit
+- [x] db/schema.sql (Postgres+PostGIS: raw_fetches, observations with geometry+provenance, extractions, fused_status)
+- [x] store/sqlite_store.py mirroring it (geometry as GeoJSON text); round-trip test; commit
 
 ### Task 3: Ingest sensors (live APIs, 2023 backfill)
-- [ ] ingest/http.py (timeout, 1 retry, cache fallback into data/cache/); test with local file:// style stub
-- [ ] ingest/snotel.py: AWDB REST v1 stations near crest + daily SWE/depth; store raw JSON then parse to observations
-- [ ] ingest/usgs.py: NWIS IV discharge for linked sites, compute diurnal swing per day; raw-first
-- [ ] Run real backfill for May-Jul 2023 + latest week; verify row counts; commit (data committed as demo dataset)
+- [x] ingest/http.py (timeout, 1 retry, cache fallback into data/cache/); test with local file:// style stub
+- [x] ingest/snotel.py: AWDB REST v1 stations near crest + daily SWE/depth; store raw JSON then parse to observations
+- [x] ingest/usgs.py: NWIS IV discharge for linked sites, compute diurnal swing per day; raw-first
+- [x] Run real backfill for May-Jul 2023 + latest week; verify row counts; commit (data committed as demo dataset)
 
 ### Task 4: Satellite
-- [ ] ingest/satellite.py: point-in-polygon (pure python ray cast), NDSI>0.4 -> snow, cloud fraction handling; modeled-demo generator from SNOTEL curve + elevation lapse, provenance satellite:modeled, with cloud gaps
-- [ ] tests for geometry + cloud masking; commit
+- [x] ingest/satellite.py: point-in-polygon (pure python ray cast), NDSI>0.4 -> snow, cloud fraction handling; modeled-demo generator from SNOTEL curve + elevation lapse, provenance satellite:modeled, with cloud gaps
+- [x] tests for geometry + cloud masking; commit
 
 ### Task 5: Extraction
-- [ ] extraction/schema.py: fields location, date_observed, snow_condition, traction_used, crossing_condition, exposure_comfort, reporter_register, quote_span, all nullable; validator
-- [ ] extraction/extractor.py: engine=api (per LLM conventions: one config constant, structured output, validate, retry once, escalate to sonnet + log, batch for bulk, prompt-cache marked system prompt, token log, budget abort) / engine=cli shim via `claude -p`; cache by sha256(post text)
-- [ ] ingest/forums.py: scraper stubs with raw-first + curated corpus (~40 posts, provenance corpus:curated)
-- [ ] extraction/resolve.py + extraction/calibrate.py with tests
-- [ ] Run extraction over corpus via CLI shim, commit cached extractions
-- [ ] eval/labeled.jsonl (30 posts hand-labeled) + eval/run_eval.py; run; record number; commit
+- [x] extraction/schema.py: fields location, date_observed, snow_condition, traction_used, crossing_condition, exposure_comfort, reporter_register, quote_span, all nullable; validator
+- [x] extraction/extractor.py: engine=api (per LLM conventions: one config constant, structured output, validate, retry once, escalate to sonnet + log, batch for bulk, prompt-cache marked system prompt, token log, budget abort) / engine=cli shim via `claude -p`; cache by sha256(post text)
+- [x] ingest/forums.py: scraper stubs with raw-first + curated corpus (~40 posts, provenance corpus:curated)
+- [x] extraction/resolve.py + extraction/calibrate.py with tests
+- [x] Run extraction over corpus via CLI shim, commit cached extractions
+- [x] eval/labeled.jsonl (30 posts hand-labeled) + eval/run_eval.py; run; record number; commit
 
 ### Task 6: Fusion
-- [ ] fusion/fusion.py pure module: reliability priors, recency half-lives, register calibration applied, status thresholds, confidence from density+agreement+staleness, explicit conflict strings
-- [ ] tests: synthetic sets (all-agree high conf, sensor/human conflict surfaces conflict string, sparse -> low conf, stale -> decay, empty -> unknown); commit
+- [x] fusion/fusion.py pure module: reliability priors, recency half-lives, register calibration applied, status thresholds, confidence from density+agreement+staleness, explicit conflict strings
+- [x] tests: synthetic sets (all-agree high conf, sensor/human conflict surfaces conflict string, sparse -> low conf, stale -> decay, empty -> unknown); commit
 
 ### Task 7: Pipeline export
-- [ ] pipeline.py: ingest -> extract -> fuse for each week of 2023 season + latest; writes web/public/data/passes.json + pass/<slug>.json (status, confidence breakdown, ledger with raw curves/quotes, vignette params); commit exported demo data
+- [x] pipeline.py: ingest -> extract -> fuse for each week of 2023 season + latest; writes web/public/data/passes.json + pass/<slug>.json (status, confidence breakdown, ledger with raw curves/quotes, vignette params); commit exported demo data
 
 ### Task 8: Frontend
-- [ ] npx create-next-app web (TS strict, app router); theme tokens in web/lib/theme.ts; fonts via next/font (Space Grotesk, Source Serif 4, JetBrains Mono)
-- [ ] Map: MapLibre + AWS terrain-tiles hillshade recolored to forest palette, pass markers, contour ring select (600ms draw), two drifting pixel clouds
-- [ ] Panel: 96x32 canvas vignette generated from data (assembles 350ms), prose summary with per-sentence source tap-through, evidence ledger with 16x16 pixel glyphs, expand 150ms, shimmer on new
-- [ ] Pixel layer: palette-indexed sprite arrays drawn to canvas, whole-pixel motion, campfire loader, tent saved-passes (localStorage)
-- [ ] Season scrubber for 2023 demo weeks; reduced-motion handling; mobile responsive
-- [ ] BYOK: key field (localStorage), paste-a-report live extraction, ask-this-pass grounded Q&A, direct browser calls
-- [ ] Build clean (`npm run build`), visual check via browser, commit
+- [x] npx create-next-app web (TS strict, app router); theme tokens in web/lib/theme.ts; fonts via next/font (Space Grotesk, Source Serif 4, JetBrains Mono)
+- [x] Map: MapLibre + AWS terrain-tiles hillshade recolored to forest palette, pass markers, contour ring select (600ms draw), two drifting pixel clouds
+- [x] Panel: 96x32 canvas vignette generated from data (assembles 350ms), prose summary with per-sentence source tap-through, evidence ledger with 16x16 pixel glyphs, expand 150ms, shimmer on new
+- [x] Pixel layer: palette-indexed sprite arrays drawn to canvas, whole-pixel motion, campfire loader, tent saved-passes (localStorage)
+- [x] Season scrubber for 2023 demo weeks; reduced-motion handling; mobile responsive
+- [x] BYOK: key field (localStorage), paste-a-report live extraction, ask-this-pass grounded Q&A, direct browser calls
+- [x] Build clean (`npm run build`), visual check via browser, commit
 
 ### Task 9: Ship
-- [ ] .github/workflows/ingest.yml daily cron; .env.example; LICENSE (MIT)
-- [ ] README per style rules: demo GIF placeholder + live link spot, what it does, architecture, What was hard, eval number, setup last, no em dashes
-- [ ] Final ruff + pytest + npm build; commit
+- [x] .github/workflows/ingest.yml daily cron; .env.example; LICENSE (MIT)
+- [x] README per style rules: demo GIF placeholder + live link spot, what it does, architecture, What was hard, eval number, setup last, no em dashes
+- [x] Final ruff + pytest + npm build; commit
