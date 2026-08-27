@@ -1,21 +1,23 @@
 # Only web/ deploys to Vercel. The Python pipeline stays home; without this,
 # Vercel sees pyproject.toml and tries to deploy the repo as a Python app.
-pyproject.toml
-*.py
-ingest/
-extraction/
-fusion/
-gazetteer/
-store/
-eval/
-scripts/
-tests/
-db/
-data/
-docs/
-.github/
-.claude/
-.venv/
-web/node_modules/
-web/.next/
-web/out/
+# Patterns are anchored with a leading slash: unanchored ones match at any
+# depth and would strip web/public/data out of the build.
+/pyproject.toml
+/*.py
+/ingest/
+/extraction/
+/fusion/
+/gazetteer/
+/store/
+/eval/
+/scripts/
+/tests/
+/db/
+/data/
+/docs/
+/.github/
+/.claude/
+/.venv/
+/web/node_modules/
+/web/.next/
+/web/out/
