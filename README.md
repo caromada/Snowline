@@ -2,7 +2,7 @@
 
 ![demo](docs/demo.gif)
 
-Live demo: deploy `web/` to Vercel or any static host and this line gets a link.
+Live demo: [snowline-me-599cefb9.vercel.app](https://snowline-me-599cefb9.vercel.app/?pass=glen&date=2023-06-15)
 
 Every Eastern Sierra backpacker asks the same question from May to August: can I get over the pass this weekend, and do I need an ice axe? The honest answer is scattered across SNOTEL telemetry, CDEC snow pillows, USGS stream gauges, satellite snow cover, and thousands of forum posts written by people with wildly different risk tolerances. Sierra Pass Report fuses all four streams into a per-pass status with a confidence grade that admits what it does not know, and every sentence in the panel traces back to the sensor curve or the exact forum quote it came from.
 
