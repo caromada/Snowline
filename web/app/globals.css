@@ -67,19 +67,17 @@ canvas.pixel {
   image-rendering: pixelated;
 }
 
+/* Three zoom bands keep 508 names legible: far shows only the selected
+   label, mid adds the featured passes, near names everything. Hover always
+   reveals. */
 .pass-label {
   transition: opacity 150ms linear;
-}
-
-[data-zoom="far"] .pass-label:not(.selected) {
   opacity: 0;
 }
 
-[data-zoom="far"] .pass-marker:hover .pass-label {
-  opacity: 1;
-}
-
-[data-zoom="far"] .pass-label.selected,
+.pass-label.selected,
+.pass-marker:hover .pass-label,
+[data-zoom="mid"] .pass-label:not(.osm),
 [data-zoom="near"] .pass-label {
   opacity: 1;
 }
@@ -160,5 +158,29 @@ canvas.pixel {
   }
   .ledger-entry-body {
     transition: none;
+  }
+}
+
+/* Featured markers trade their dot for the pixel condition badge up close. */
+.pass-marker .marker-badge {
+  display: none;
+}
+[data-zoom="mid"] .pass-marker .marker-badge,
+[data-zoom="near"] .pass-marker .marker-badge {
+  display: block;
+}
+[data-zoom="mid"] .pass-marker .marker-dot:has(+ .marker-badge),
+[data-zoom="near"] .pass-marker .marker-dot:has(+ .marker-badge) {
+  display: none;
+}
+.pass-label.osm {
+  font-size: 8px;
+}
+@media (max-width: 640px) {
+  .map-legend {
+    display: none;
+  }
+  .pass-search {
+    width: 170px !important;
   }
 }

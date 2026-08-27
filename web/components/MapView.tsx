@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 // Bundlers resolve MapLibre's worker inconsistently; serving it as a plain
 // static file sidesteps all of that.
 maplibregl.setWorkerUrl("maplibre-gl-worker.mjs");
-import { drawSprite, tent as tentSprite } from "@/lib/pixel";
+import { drawSprite, glyphByStatus, tent as tentSprite } from "@/lib/pixel";
 import { palette, statusColor } from "@/lib/theme";
 import type { PassIndexEntry } from "@/lib/types";
 import { loadSaved } from "./PassPanel";
@@ -62,10 +62,26 @@ function markerElement(
   dotWrap.style.cssText = "position:relative;width:34px;height:34px;";
   const dot = document.createElement("div");
   const size = selected ? 12 : p.tier === "osm" ? 7 : 10;
+  dot.className = "marker-dot";
   dot.style.cssText = `position:absolute;left:50%;top:50%;width:${size}px;height:${size}px;` +
     `transform:translate(-50%,-50%);background:${color};` +
     `box-shadow:0 0 0 2px ${palette.deepPine};`;
   dotWrap.appendChild(dot);
+
+  if (p.tier !== "osm") {
+    // Leaned in, the featured passes wear their condition badge: pine,
+    // snowy pine, ice axe, crossed poles. Pixel-snapped, whole pixels only.
+    const badge = document.createElement("canvas");
+    badge.width = 16;
+    badge.height = 16;
+    badge.className = "pixel marker-badge";
+    badge.style.cssText =
+      "position:absolute;left:50%;top:50%;margin-left:-8px;margin-top:-8px;" +
+      `filter:drop-shadow(0 1px 0 ${palette.deepPine});`;
+    const bctx = badge.getContext("2d");
+    if (bctx) drawSprite(bctx, glyphByStatus[s?.status ?? "unknown"], 0, 0, 1);
+    dotWrap.appendChild(badge);
+  }
 
   if (selected) {
     // The contour ring draws itself in like a pen stroke, 600ms.
@@ -154,8 +170,9 @@ export default function MapView({
     // Below this zoom the southern passes sit label-on-label; keep only the
     // selected name until the viewer leans in.
     const syncZoom = () => {
-      const near = map.getZoom() >= 8.6;
-      containerRef.current?.setAttribute("data-zoom", near ? "near" : "far");
+      const z = map.getZoom();
+      const band = z >= 10.8 ? "near" : z >= 8.6 ? "mid" : "far";
+      containerRef.current?.setAttribute("data-zoom", band);
     };
     map.on("zoom", syncZoom);
     map.on("load", syncZoom);
@@ -196,6 +213,20 @@ export default function MapView({
       mapRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !selected) return;
+    const p = passes.find((x) => x.slug === selected);
+    if (!p) return;
+    if (!map.getBounds().contains([p.lon, p.lat]) || map.getZoom() < 7.5) {
+      map.easeTo({
+        center: [p.lon, p.lat],
+        zoom: Math.max(map.getZoom(), 9),
+        duration: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 700,
+      });
+    }
+  }, [selected, passes]);
 
   useEffect(() => {
     const handler = () => setSavedVersion((v) => v + 1);

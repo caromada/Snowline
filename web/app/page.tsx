@@ -3,7 +3,9 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 import Campfire from "@/components/Campfire";
+import MapLegend from "@/components/MapLegend";
 import PassPanel from "@/components/PassPanel";
+import PassSearch from "@/components/PassSearch";
 import SeasonScrubber from "@/components/SeasonScrubber";
 import type { PassIndex } from "@/lib/types";
 
@@ -89,6 +91,10 @@ export default function Home() {
           sensors + satellite + people who were just there
         </p>
       </header>
+      <div style={{ position: "absolute", top: 62, left: 16, zIndex: 30 }}>
+        <PassSearch passes={index.passes} onSelect={onSelect} />
+      </div>
+      <MapLegend />
       <SeasonScrubber dates={index.dates} value={evalDate} onChange={setEvalDate} />
       <PassPanel slug={selected} evalDate={evalDate} onClose={() => setSelected(null)} />
     </main>
