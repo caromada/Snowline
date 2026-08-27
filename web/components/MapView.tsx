@@ -159,6 +159,7 @@ export default function MapView({
     };
     map.on("zoom", syncZoom);
     map.on("load", syncZoom);
+    syncZoom();
     // Guard against initializing while the container is still being laid
     // out: track its real size, and refit until the user takes over.
     let userMoved = false;
