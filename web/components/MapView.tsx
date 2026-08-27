@@ -111,9 +111,10 @@ function markerElement(
 
   const label = document.createElement("div");
   label.textContent = p.name.replace(/ Pass$/, "");
-  label.className = `display pass-label${selected ? " selected" : ""}`;
+  label.className = `display pass-label${selected ? " selected" : ""}${p.tier === "osm" ? " osm" : ""}`;
   label.style.cssText =
-    `font-size:10px;letter-spacing:0.14em;color:${selected ? palette.alpenglow : palette.granite};` +
+    `font-size:${p.tier === "osm" ? 8 : 10}px;letter-spacing:0.14em;` +
+    `color:${selected ? palette.alpenglow : p.tier === "osm" ? palette.sage : palette.granite};` +
     `text-shadow:0 1px 3px ${palette.deepPine},0 0 6px ${palette.deepPine};margin-top:-2px;` +
     "user-select:none;";
   el.appendChild(dotWrap);
@@ -135,9 +136,6 @@ export default function MapView({
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const markersRef = useRef<maplibregl.Marker[]>([]);
-  // 500+ OSM passes only materialize as markers once the viewer leans in;
-  // at range scale the featured set carries the map.
-  const [nearZoom, setNearZoom] = useState(false);
   const [savedVersion, setSavedVersion] = useState(0);
 
   useEffect(() => {
@@ -158,7 +156,6 @@ export default function MapView({
     const syncZoom = () => {
       const near = map.getZoom() >= 8.6;
       containerRef.current?.setAttribute("data-zoom", near ? "near" : "far");
-      setNearZoom(near);
     };
     map.on("zoom", syncZoom);
     map.on("load", syncZoom);
@@ -210,11 +207,7 @@ export default function MapView({
     if (!map) return;
     markersRef.current.forEach((m) => m.remove());
     const savedSet = new Set(loadSaved());
-    const visible = passes.filter(
-      (p) =>
-        nearZoom || p.tier === "featured" || p.slug === selected || savedSet.has(p.slug),
-    );
-    markersRef.current = visible.map((p) => {
+    markersRef.current = passes.map((p) => {
       const el = markerElement(p, evalDate, p.slug === selected, savedSet.has(p.slug));
       const activate = (e: Event) => {
         e.stopPropagation();
@@ -228,7 +221,7 @@ export default function MapView({
         .setLngLat([p.lon, p.lat])
         .addTo(map);
     });
-  }, [passes, evalDate, selected, onSelect, nearZoom, savedVersion]);
+  }, [passes, evalDate, selected, onSelect, savedVersion]);
 
   return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} aria-label="Map" />;
 }
