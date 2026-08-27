@@ -92,9 +92,31 @@ def link_stations(stations: list[dict[str, Any]]) -> dict[str, list[dict[str, An
     return links
 
 
+def pass_links(store: Store) -> dict[str, list[dict[str, Any]]]:
+    """slug -> linked stations with provenance keys, for read-time joins."""
+    return {
+        slug: [
+            {
+                "provenance": f"cdec:{s['station_id']}",
+                "name": s["name"],
+                "elevation_ft": s["elevation_ft"],
+                "distance_km": s["distance_km"],
+            }
+            for s in linked
+        ]
+        for slug, linked in link_stations(discover_stations(store)).items()
+    }
+
+
 def ingest_daily(store: Store, begin: str, end: str) -> int:
+    """One observation row per station per day, keyed "@cdec:ID".
+
+    Stations are stored once, not copied per pass: with hundreds of passes
+    the old fan-out multiplied every series by every nearby pass.
+    """
     links = link_stations(discover_stations(store))
-    station_ids = sorted({s["station_id"] for linked in links.values() for s in linked})
+    stations = {s["station_id"]: s for linked in links.values() for s in linked}
+    station_ids = sorted(stations)
     count = 0
     for sensor_num, metric in SENSORS.items():
         params = {
@@ -132,20 +154,18 @@ def ingest_daily(store: Store, begin: str, end: str) -> int:
             parts = date.split("-")
             date = f"{parts[0]}-{int(parts[1]):02d}-{int(parts[2]):02d}"
             values.setdefault(r["stationId"], {})[date] = v
-        for slug, linked in links.items():
-            for st in linked:
-                for date, v in values.get(st["station_id"], {}).items():
-                    store.add_observation(
-                        slug, "cdec", metric, date, v, "in",
-                        f"cdec:{st['station_id']}", raw_id,
-                        {"type": "Point", "coordinates": [st["lon"], st["lat"]]},
-                        {
-                            "station_name": st["name"],
-                            "station_elevation_ft": st["elevation_ft"],
-                            "distance_km": st["distance_km"],
-                        },
-                    )
-                    count += 1
+        for sid, st in stations.items():
+            for date, v in values.get(sid, {}).items():
+                store.add_observation(
+                    f"@cdec:{sid}", "cdec", metric, date, v, "in",
+                    f"cdec:{sid}", raw_id,
+                    {"type": "Point", "coordinates": [st["lon"], st["lat"]]},
+                    {
+                        "station_name": st["name"],
+                        "station_elevation_ft": st["elevation_ft"],
+                    },
+                )
+                count += 1
     log.info("cdec: %d observations from %d stations", count, len(station_ids))
     return count
 

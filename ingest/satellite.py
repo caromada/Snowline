@@ -76,19 +76,30 @@ def modeled_cover_frac(swe_in: float, pass_elev_ft: float, station_elev_ft: floa
 
 
 def ingest_modeled(store: Store, begin: str, end: str) -> int:
-    """Demo observations on the revisit cycle, derived from sensor SWE."""
+    """Demo observations on the revisit cycle, derived from sensor SWE.
+
+    Sensor rows are stored once per station; each pass reads its nearest
+    linked snow station's curve here.
+    """
+    from ingest.cdec import pass_links
+
+    links = pass_links(store)
     count = 0
     for p in load_passes():
+        linked = links.get(p["slug"], [])
+        if not linked:
+            continue
+        nearest = linked[0]
         swe_rows = [
             r
-            for r in store.observations(p["slug"], stream="cdec", start=begin, end=end)
+            for r in store.observations(
+                f"@{nearest['provenance']}", stream="cdec", start=begin, end=end
+            )
             if r["metric"] == "swe_in"
         ]
         if not swe_rows:
             continue
-        # Nearest station only: smallest distance_km in meta.
-        nearest_prov = min(swe_rows, key=lambda r: r["meta"].get("distance_km", 1e9))["provenance"]
-        curve = {r["observed_date"]: r for r in swe_rows if r["provenance"] == nearest_prov}
+        curve = {r["observed_date"]: r for r in swe_rows}
         dates = sorted(curve)
         for i, date in enumerate(dates):
             if i % REVISIT_DAYS != 0:

@@ -1,0 +1,3715 @@
+{
+"bbox": "35.4,-120.8,39.8,-117.8",
+"nodes": [
+{
+"osm_id": 86282200,
+"name": "Sonora Pass",
+"lat": 38.3279273,
+"lon": -119.6371813,
+"elevation_ft": 9643
+},
+{
+"osm_id": 86296007,
+"name": "Ebbetts Pass",
+"lat": 38.544309,
+"lon": -119.811909,
+"elevation_ft": 8732
+},
+{
+"osm_id": 87274998,
+"name": "Monument Pass",
+"lat": 38.918317,
+"lon": -119.890412,
+"elevation_ft": 8812
+},
+{
+"osm_id": 87372030,
+"name": "Echo Summit",
+"lat": 38.8129619,
+"lon": -120.030392,
+"elevation_ft": 7377
+},
+{
+"osm_id": 87380085,
+"name": "Cherry Gap",
+"lat": 36.7778017,
+"lon": -118.9599355,
+"elevation_ft": 6814
+},
+{
+"osm_id": 87414473,
+"name": "Luther Pass",
+"lat": 38.7875998,
+"lon": -119.945605,
+"elevation_ft": 7736
+},
+{
+"osm_id": 87427518,
+"name": "Johnson Pass",
+"lat": 38.8237527,
+"lon": -120.0320328,
+"elevation_ft": 7377
+},
+{
+"osm_id": 87489873,
+"name": "Soaproot Saddle",
+"lat": 37.0279271,
+"lon": -119.254571,
+"elevation_ft": 3894
+},
+{
+"osm_id": 87759883,
+"name": "Devils Gate",
+"lat": 37.1424368,
+"lon": -118.1222226,
+"elevation_ft": 6230
+},
+{
+"osm_id": 88304984,
+"name": "North Pass",
+"lat": 37.0341807,
+"lon": -117.974748,
+"elevation_ft": 7300
+},
+{
+"osm_id": 88352322,
+"name": "Westgard Pass",
+"lat": 37.300744,
+"lon": -118.154108,
+"elevation_ft": 7323
+},
+{
+"osm_id": 89006868,
+"name": "Granite Creek Saddle",
+"lat": 37.557287,
+"lon": -119.76343,
+"elevation_ft": 5823
+},
+{
+"osm_id": 89036298,
+"name": "Black Mountain Saddle",
+"lat": 35.7440229,
+"lon": -118.5383177,
+"elevation_ft": 6237
+},
+{
+"osm_id": 89223087,
+"name": "Battalion Pass",
+"lat": 37.5063843,
+"lon": -119.6980072,
+"elevation_ft": 5671
+},
+{
+"osm_id": 89471958,
+"name": "Conway Summit",
+"lat": 38.0876541,
+"lon": -119.182169,
+"elevation_ft": 8143
+},
+{
+"osm_id": 89737487,
+"name": "Devil's Gate Pass",
+"lat": 38.3484875,
+"lon": -119.361986,
+"elevation_ft": 7520
+},
+{
+"osm_id": 94002741,
+"name": "Tobias Pass",
+"lat": 35.857919,
+"lon": -118.5764399,
+"elevation_ft": 7554
+},
+{
+"osm_id": 94014681,
+"name": "Cinnamon Gap",
+"lat": 36.407725,
+"lon": -118.828176,
+"elevation_ft": 4327
+},
+{
+"osm_id": 94547376,
+"name": "Bull Run Pass",
+"lat": 35.8391227,
+"lon": -118.5767779,
+"elevation_ft": 7546
+},
+{
+"osm_id": 94571287,
+"name": "Parker Pass",
+"lat": 35.955566,
+"lon": -118.62957,
+"elevation_ft": 6447
+},
+{
+"osm_id": 94855816,
+"name": "Payton Saddle",
+"lat": 38.34415,
+"lon": -120.057693,
+"elevation_ft": 7415
+},
+{
+"osm_id": 94873859,
+"name": "Jawbone Pass",
+"lat": 38.036623,
+"lon": -119.940726,
+"elevation_ft": 6299
+},
+{
+"osm_id": 137601316,
+"name": "Emigrant Pass",
+"lat": 37.92012,
+"lon": -117.875375,
+"elevation_ft": 6054
+},
+{
+"osm_id": 139401756,
+"name": "Gallagher Pass",
+"lat": 39.0633716,
+"lon": -119.28159,
+"elevation_ft": 5082
+},
+{
+"osm_id": 139461599,
+"name": "Cedar Sumit",
+"lat": 38.521078,
+"lon": -117.808505,
+"elevation_ft": 7261
+},
+{
+"osm_id": 139690532,
+"name": "Rhyolite Pass",
+"lat": 38.65396,
+"lon": -118.240346,
+"elevation_ft": 6956
+},
+{
+"osm_id": 280080974,
+"name": "Panther Gap",
+"lat": 36.584419,
+"lon": -118.705464,
+"elevation_ft": 8484
+},
+{
+"osm_id": 358802553,
+"name": "Pacific Grade Summit",
+"lat": 38.5165764,
+"lon": -119.909348,
+"elevation_ft": 8084
+},
+{
+"osm_id": 359214962,
+"name": "Beckwourth Pass",
+"lat": 39.790741,
+"lon": -120.1084021,
+"elevation_ft": 5220
+},
+{
+"osm_id": 370361637,
+"name": "Mono Pass",
+"lat": 37.4254943,
+"lon": -118.772644,
+"elevation_ft": 12073
+},
+{
+"osm_id": 440603109,
+"name": "Armstrong Pass",
+"lat": 38.8320997,
+"lon": -119.912161,
+"elevation_ft": 8723
+},
+{
+"osm_id": 443534038,
+"name": "Lion Lake Pass",
+"lat": 36.5935511,
+"lon": -118.538647,
+"elevation_ft": 11621
+},
+{
+"osm_id": 443534284,
+"name": "Colby Pass",
+"lat": 36.6184772,
+"lon": -118.500962,
+"elevation_ft": 11991
+},
+{
+"osm_id": 443534806,
+"name": "Triple Divide Pass",
+"lat": 36.5960963,
+"lon": -118.525059,
+"elevation_ft": 12221
+},
+{
+"osm_id": 451145130,
+"name": "Carson Pass",
+"lat": 38.6942607,
+"lon": -119.988638,
+"elevation_ft": 8573
+},
+{
+"osm_id": 502849356,
+"name": "Mosquito Pass",
+"lat": 38.8779082,
+"lon": -120.161155,
+"elevation_ft": 8428
+},
+{
+"osm_id": 539319936,
+"name": "Parker Pass",
+"lat": 37.8379124,
+"lon": -119.20588,
+"elevation_ft": 11102
+},
+{
+"osm_id": 539328227,
+"name": "Gem Pass",
+"lat": 37.7749487,
+"lon": -119.1593966,
+"elevation_ft": 10509
+},
+{
+"osm_id": 539448572,
+"name": "Emigrant Pass",
+"lat": 38.1988353,
+"lon": -119.629722,
+"elevation_ft": 9829
+},
+{
+"osm_id": 564072289,
+"name": "Bishop Pass",
+"lat": 37.1151032,
+"lon": -118.5449598,
+"elevation_ft": 11972
+},
+{
+"osm_id": 621651572,
+"name": "Mulkey Pass",
+"lat": 36.4297163,
+"lon": -118.1656475,
+"elevation_ft": 10394
+},
+{
+"osm_id": 621776881,
+"name": "Haeckel Col",
+"lat": 37.1538852,
+"lon": -118.666585,
+"elevation_ft": 12700
+},
+{
+"osm_id": 621777103,
+"name": "Lamarck Col",
+"lat": 37.1904775,
+"lon": -118.6675152,
+"elevation_ft": 12887
+},
+{
+"osm_id": 621777553,
+"name": "Echo Col",
+"lat": 37.1376097,
+"lon": -118.643684,
+"elevation_ft": 12402
+},
+{
+"osm_id": 621780387,
+"name": "McGee Pass",
+"lat": 37.5011156,
+"lon": -118.860549,
+"elevation_ft": 11877
+},
+{
+"osm_id": 621780973,
+"name": "Bunny Pass",
+"lat": 37.5350765,
+"lon": -118.904779,
+"elevation_ft": 11646
+},
+{
+"osm_id": 621780991,
+"name": "Ram Pass",
+"lat": 37.5453444,
+"lon": -118.913252,
+"elevation_ft": 11377
+},
+{
+"osm_id": 621784842,
+"name": "Deadman Pass",
+"lat": 37.689587,
+"lon": -119.0716541,
+"elevation_ft": 9990
+},
+{
+"osm_id": 621785225,
+"name": "Royce Pass",
+"lat": 37.3301344,
+"lon": -118.76109,
+"elevation_ft": 11768
+},
+{
+"osm_id": 760463638,
+"name": "Kaweah Gap",
+"lat": 36.5573459,
+"lon": -118.550934,
+"elevation_ft": 10689
+},
+{
+"osm_id": 762008590,
+"name": "Duck Pass",
+"lat": 37.5587385,
+"lon": -118.9626364,
+"elevation_ft": 10801
+},
+{
+"osm_id": 762010312,
+"name": "Italy Pass",
+"lat": 37.3521965,
+"lon": -118.784249,
+"elevation_ft": 12408
+},
+{
+"osm_id": 778930722,
+"name": "Vernon Pass",
+"lat": 37.7064558,
+"lon": -119.26102,
+"elevation_ft": 12188
+},
+{
+"osm_id": 842918931,
+"name": "Cathedral Pass",
+"lat": 37.834629,
+"lon": -119.415516,
+"elevation_ft": 9708
+},
+{
+"osm_id": 853860601,
+"name": "Mammoth Pass",
+"lat": 37.6085541,
+"lon": -119.033796,
+"elevation_ft": 9383
+},
+{
+"osm_id": 914280214,
+"name": "Agnew Pass",
+"lat": 37.7338951,
+"lon": -119.143936,
+"elevation_ft": 9905
+},
+{
+"osm_id": 927654718,
+"name": "Styx Pass",
+"lat": 38.0923539,
+"lon": -119.809913,
+"elevation_ft": 7678
+},
+{
+"osm_id": 944865244,
+"name": "Guyot Pass",
+"lat": 36.5184022,
+"lon": -118.3491684,
+"elevation_ft": 10926
+},
+{
+"osm_id": 965855635,
+"name": "Glen Pass",
+"lat": 36.7896283,
+"lon": -118.4120517,
+"elevation_ft": 11926
+},
+{
+"osm_id": 965872770,
+"name": "Muir Pass",
+"lat": 37.1119983,
+"lon": -118.670505,
+"elevation_ft": 11955
+},
+{
+"osm_id": 966548985,
+"name": "Selden Pass",
+"lat": 37.2899492,
+"lon": -118.872925,
+"elevation_ft": 10886
+},
+{
+"osm_id": 966585435,
+"name": "Donohue Pass",
+"lat": 37.761024,
+"lon": -119.248667,
+"elevation_ft": 11066
+},
+{
+"osm_id": 966591752,
+"name": "Silver Pass",
+"lat": 37.4677083,
+"lon": -118.923131,
+"elevation_ft": 10745
+},
+{
+"osm_id": 968380506,
+"name": "Benson Pass",
+"lat": 38.015205,
+"lon": -119.46091,
+"elevation_ft": 10141
+},
+{
+"osm_id": 968381887,
+"name": "Seavey Pass",
+"lat": 38.044465,
+"lon": -119.522503,
+"elevation_ft": 9121
+},
+{
+"osm_id": 968491721,
+"name": "Dorothy Lake Pass",
+"lat": 38.1802017,
+"lon": -119.58157,
+"elevation_ft": 9596
+},
+{
+"osm_id": 1301519380,
+"name": "Windy Gap",
+"lat": 36.0442672,
+"lon": -118.5872626,
+"elevation_ft": 7556
+},
+{
+"osm_id": 1311156409,
+"name": "Little Baldy Saddle",
+"lat": 36.6195384,
+"lon": -118.8093522,
+"elevation_ft": 7350
+},
+{
+"osm_id": 1343514102,
+"name": "Cottonwood Pass",
+"lat": 36.4538197,
+"lon": -118.215345,
+"elevation_ft": 11129
+},
+{
+"osm_id": 1343514110,
+"name": "Shepherd Pass",
+"lat": 36.672187,
+"lon": -118.345716,
+"elevation_ft": 12028
+},
+{
+"osm_id": 1343514115,
+"name": "Pine Creek Pass",
+"lat": 37.3174555,
+"lon": -118.73601,
+"elevation_ft": 11132
+},
+{
+"osm_id": 1343514120,
+"name": "Sawmill Pass",
+"lat": 36.8827632,
+"lon": -118.3646243,
+"elevation_ft": 11309
+},
+{
+"osm_id": 1343514123,
+"name": "New Army Pass",
+"lat": 36.4904112,
+"lon": -118.240752,
+"elevation_ft": 12178
+},
+{
+"osm_id": 1343514125,
+"name": "Junction Pass",
+"lat": 36.6954995,
+"lon": -118.360029,
+"elevation_ft": 13077
+},
+{
+"osm_id": 1343514127,
+"name": "Rock Island Pass",
+"lat": 38.0988641,
+"lon": -119.463897,
+"elevation_ft": 10157
+},
+{
+"osm_id": 1343514137,
+"name": "Southfork Pass",
+"lat": 37.0675897,
+"lon": -118.452578,
+"elevation_ft": 12490
+},
+{
+"osm_id": 1343514148,
+"name": "Hopkins Pass",
+"lat": 37.4800452,
+"lon": -118.84487,
+"elevation_ft": 11440
+},
+{
+"osm_id": 1343514149,
+"name": "Tioga Pass",
+"lat": 37.9109049,
+"lon": -119.257884,
+"elevation_ft": 9943
+},
+{
+"osm_id": 1343514151,
+"name": "Old Army Pass",
+"lat": 36.4966245,
+"lon": -118.2388245,
+"elevation_ft": 12021
+},
+{
+"osm_id": 1343514174,
+"name": "Whitney Pass",
+"lat": 36.5554954,
+"lon": -118.280899,
+"elevation_ft": 13291
+},
+{
+"osm_id": 1343514189,
+"name": "Vacation Pass",
+"lat": 36.6131764,
+"lon": -118.3012551,
+"elevation_ft": 12659
+},
+{
+"osm_id": 1343514204,
+"name": "Island Pass",
+"lat": 37.7370986,
+"lon": -119.194728,
+"elevation_ft": 10233
+},
+{
+"osm_id": 1343514208,
+"name": "Baxter Pass",
+"lat": 36.8352782,
+"lon": -118.376033,
+"elevation_ft": 12283
+},
+{
+"osm_id": 1424880118,
+"name": "The Niche",
+"lat": 37.5729332,
+"lon": -119.266451,
+"elevation_ft": 7956
+},
+{
+"osm_id": 1431630006,
+"name": "Strawberry Pass",
+"lat": 38.7281981,
+"lon": -120.0715569,
+"elevation_ft": 8609
+},
+{
+"osm_id": 1444820807,
+"name": "Ten Lakes Pass",
+"lat": 37.9024088,
+"lon": -119.5370447,
+"elevation_ft": 9670
+},
+{
+"osm_id": 1527888921,
+"name": "Chuck Pass",
+"lat": 37.0082824,
+"lon": -118.8585869,
+"elevation_ft": 9636
+},
+{
+"osm_id": 1527889862,
+"name": "Crown Pass",
+"lat": 37.0417485,
+"lon": -118.856893,
+"elevation_ft": 10187
+},
+{
+"osm_id": 1528520047,
+"name": "Deer Cove Saddle",
+"lat": 36.8259816,
+"lon": -118.7223387,
+"elevation_ft": 6548
+},
+{
+"osm_id": 1528520915,
+"name": "Happy Gap",
+"lat": 36.851314,
+"lon": -118.7523123,
+"elevation_ft": 9304
+},
+{
+"osm_id": 1528521665,
+"name": "Kennedy Pass",
+"lat": 36.8762836,
+"lon": -118.660351,
+"elevation_ft": 10810
+},
+{
+"osm_id": 1528521699,
+"name": "Granite Pass",
+"lat": 36.8782239,
+"lon": -118.6108299,
+"elevation_ft": 10679
+},
+{
+"osm_id": 1744855840,
+"name": "Vogelsang Pass",
+"lat": 37.7796286,
+"lon": -119.340892,
+"elevation_ft": 10679
+},
+{
+"osm_id": 1744874918,
+"name": "Koip Peak Pass",
+"lat": 37.8145136,
+"lon": -119.1926211,
+"elevation_ft": 12280
+},
+{
+"osm_id": 1744921256,
+"name": "Mono Pass",
+"lat": 37.8555917,
+"lon": -119.2166398,
+"elevation_ft": 10600
+},
+{
+"osm_id": 1745082937,
+"name": "Summit Pass",
+"lat": 38.0522128,
+"lon": -119.3217543,
+"elevation_ft": 10250
+},
+{
+"osm_id": 1745084798,
+"name": "Virginia Pass",
+"lat": 38.0653935,
+"lon": -119.334026,
+"elevation_ft": 10531
+},
+{
+"osm_id": 1745088093,
+"name": "Burro Pass",
+"lat": 38.0901263,
+"lon": -119.394943,
+"elevation_ft": 10672
+},
+{
+"osm_id": 1745100970,
+"name": "Buckeye Pass",
+"lat": 38.1300036,
+"lon": -119.479215,
+"elevation_ft": 9573
+},
+{
+"osm_id": 1745106335,
+"name": "Bond Pass",
+"lat": 38.1738183,
+"lon": -119.610631,
+"elevation_ft": 9715
+},
+{
+"osm_id": 1755686389,
+"name": "Buena Vista Pass",
+"lat": 37.600249,
+"lon": -119.50971,
+"elevation_ft": 9336
+},
+{
+"osm_id": 1755688165,
+"name": "Merced Pass",
+"lat": 37.6165354,
+"lon": -119.443089,
+"elevation_ft": 9321
+},
+{
+"osm_id": 1755689074,
+"name": "Post Peak Pass",
+"lat": 37.6307466,
+"lon": -119.328343,
+"elevation_ft": 10741
+},
+{
+"osm_id": 1755691015,
+"name": "Isberg Pass",
+"lat": 37.6445635,
+"lon": -119.326535,
+"elevation_ft": 10528
+},
+{
+"osm_id": 1755691870,
+"name": "Red Peak Pass",
+"lat": 37.6504887,
+"lon": -119.4045348,
+"elevation_ft": 11158
+},
+{
+"osm_id": 1755694105,
+"name": "Badger Pass",
+"lat": 37.6660887,
+"lon": -119.6540783,
+"elevation_ft": 7477
+},
+{
+"osm_id": 1836157467,
+"name": "Virginia Lakes Pass",
+"lat": 38.041733,
+"lon": -119.2953383,
+"elevation_ft": 11127
+},
+{
+"osm_id": 1866455287,
+"name": "Piute Pass",
+"lat": 37.2387814,
+"lon": -118.684247,
+"elevation_ft": 11417
+},
+{
+"osm_id": 1931827770,
+"name": "Brown Bear Pass",
+"lat": 38.2132807,
+"lon": -119.6652539,
+"elevation_ft": 9747
+},
+{
+"osm_id": 1970886239,
+"name": "Freel Pass",
+"lat": 38.8632532,
+"lon": -119.9103696,
+"elevation_ft": 9719
+},
+{
+"osm_id": 2130151489,
+"name": "Goodale Pass",
+"lat": 37.4636776,
+"lon": -118.940552,
+"elevation_ft": 11001
+},
+{
+"osm_id": 2323835530,
+"name": "Phipps Pass",
+"lat": 38.95794,
+"lon": -120.143372,
+"elevation_ft": 8810
+},
+{
+"osm_id": 2379806080,
+"name": "Franklin Pass",
+"lat": 36.4138958,
+"lon": -118.544014,
+"elevation_ft": 11716
+},
+{
+"osm_id": 2382073727,
+"name": "Glacier Pass",
+"lat": 36.4642467,
+"lon": -118.567698,
+"elevation_ft": 11329
+},
+{
+"osm_id": 2382075187,
+"name": "Sawtooth Pass",
+"lat": 36.4606526,
+"lon": -118.5616162,
+"elevation_ft": 11699
+},
+{
+"osm_id": 2428406471,
+"name": "Chiquito Pass",
+"lat": 37.5387543,
+"lon": -119.4414389,
+"elevation_ft": 8061
+},
+{
+"osm_id": 2469038252,
+"name": "Capinero Saddle",
+"lat": 35.8572573,
+"lon": -118.6325162,
+"elevation_ft": 4501
+},
+{
+"osm_id": 2469279893,
+"name": "Dead Mule Saddle",
+"lat": 35.9165552,
+"lon": -118.6560219,
+"elevation_ft": 4938
+},
+{
+"osm_id": 2475344789,
+"name": "Fernandez Pass",
+"lat": 37.5866368,
+"lon": -119.3852125,
+"elevation_ft": 10180
+},
+{
+"osm_id": 2758524270,
+"name": "Cold Springs Saddle",
+"lat": 35.9355507,
+"lon": -118.6488296,
+"elevation_ft": 5778
+},
+{
+"osm_id": 2789634569,
+"name": "Ski Mountaineer's Pass",
+"lat": 36.6926358,
+"lon": -118.36931,
+"elevation_ft": 13179
+},
+{
+"osm_id": 2789654040,
+"name": "Lucy's Foot Pass",
+"lat": 36.6966329,
+"lon": -118.4230215,
+"elevation_ft": 12415
+},
+{
+"osm_id": 2839024777,
+"name": "Harrison Pass",
+"lat": 36.6996204,
+"lon": -118.4041075,
+"elevation_ft": 12719
+},
+{
+"osm_id": 2839026836,
+"name": "Gardiner Pass",
+"lat": 36.7992152,
+"lon": -118.480985,
+"elevation_ft": 11267
+},
+{
+"osm_id": 2926988149,
+"name": "Boggy's Pass",
+"lat": 36.1786559,
+"lon": -118.2670116,
+"elevation_ft": 8968
+},
+{
+"osm_id": 3015744717,
+"name": "Crabtree Pass",
+"lat": 36.5488446,
+"lon": -118.281221,
+"elevation_ft": 12595
+},
+{
+"osm_id": 3041781194,
+"name": "Heaven's Gate",
+"lat": 39.1491867,
+"lon": -120.3316658,
+"elevation_ft": 8101
+},
+{
+"osm_id": 3054890702,
+"name": "Timber Gap",
+"lat": 36.4689259,
+"lon": -118.59939,
+"elevation_ft": 9511
+},
+{
+"osm_id": 3072790675,
+"name": "Historic Donner Summit",
+"lat": 39.3168082,
+"lon": -120.3259294,
+"elevation_ft": 7136
+},
+{
+"osm_id": 3083070747,
+"name": "Castle Pass",
+"lat": 39.3586542,
+"lon": -120.3649238,
+"elevation_ft": 7881
+},
+{
+"osm_id": 3084743723,
+"name": "Euer Saddle",
+"lat": 39.3412956,
+"lon": -120.337134,
+"elevation_ft": 7206
+},
+{
+"osm_id": 3194476279,
+"name": "Daggett Summit",
+"lat": 38.9768906,
+"lon": -119.8881434,
+"elevation_ft": 7333
+},
+{
+"osm_id": 3624192963,
+"name": "Marvin Pass",
+"lat": 36.7309138,
+"lon": -118.734665,
+"elevation_ft": 9096
+},
+{
+"osm_id": 3635688063,
+"name": "JO Pass",
+"lat": 36.6757658,
+"lon": -118.7445332,
+"elevation_ft": 9417
+},
+{
+"osm_id": 3635688064,
+"name": "Poop Out Pass",
+"lat": 36.6879768,
+"lon": -118.7859213,
+"elevation_ft": 9118
+},
+{
+"osm_id": 3650092267,
+"name": "Haiwee Pass",
+"lat": 36.1350261,
+"lon": -118.0718314,
+"elevation_ft": 8192
+},
+{
+"osm_id": 3661750090,
+"name": "Lundy Pass",
+"lat": 37.9906572,
+"lon": -119.287323,
+"elevation_ft": 10374
+},
+{
+"osm_id": 3719470749,
+"name": "Tuolumne Pass",
+"lat": 37.8043099,
+"lon": -119.340875,
+"elevation_ft": 9993
+},
+{
+"osm_id": 3766588195,
+"name": "Coyote Pass",
+"lat": 36.3350239,
+"lon": -118.485255,
+"elevation_ft": 10144
+},
+{
+"osm_id": 3766698650,
+"name": "Elizabeth Pass",
+"lat": 36.5992877,
+"lon": -118.5763969,
+"elevation_ft": 11371
+},
+{
+"osm_id": 3767982428,
+"name": "Monitor Pass",
+"lat": 38.6754064,
+"lon": -119.62146,
+"elevation_ft": 8314
+},
+{
+"osm_id": 3786986756,
+"name": "Farewell Gap",
+"lat": 36.3996177,
+"lon": -118.571508,
+"elevation_ft": 10640
+},
+{
+"osm_id": 3787127724,
+"name": "Little Joe's Pass",
+"lat": 36.6982941,
+"lon": -118.427237,
+"elevation_ft": 12613
+},
+{
+"osm_id": 3839838151,
+"name": "Siberian Pass",
+"lat": 36.4692153,
+"lon": -118.271892,
+"elevation_ft": 10935
+},
+{
+"osm_id": 3842011748,
+"name": "Kaiser Pass",
+"lat": 37.2914053,
+"lon": -119.1022011,
+"elevation_ft": 9177
+},
+{
+"osm_id": 3847881841,
+"name": "Potter Pass",
+"lat": 37.2872009,
+"lon": -119.1405873,
+"elevation_ft": 8971
+},
+{
+"osm_id": 3938022882,
+"name": "Packsaddle Pass",
+"lat": 38.7602209,
+"lon": -120.1778342,
+"elevation_ft": 7157
+},
+{
+"osm_id": 4025171327,
+"name": "Chepo Saddle",
+"lat": 37.3490673,
+"lon": -119.5899546,
+"elevation_ft": 3678
+},
+{
+"osm_id": 4041540297,
+"name": "Barker Pass",
+"lat": 39.0770217,
+"lon": -120.234721,
+"elevation_ft": 7680
+},
+{
+"osm_id": 4146753398,
+"name": "Goat Saddle",
+"lat": 36.8007812,
+"lon": -119.0890729,
+"elevation_ft": 3549
+},
+{
+"osm_id": 4346610684,
+"name": "Knapsack Pass",
+"lat": 37.0837038,
+"lon": -118.5435642,
+"elevation_ft": 11726
+},
+{
+"osm_id": 4349221494,
+"name": "Taboose Pass",
+"lat": 36.9847536,
+"lon": -118.4140673,
+"elevation_ft": 11414
+},
+{
+"osm_id": 4515968092,
+"name": "Deadman Summit",
+"lat": 37.770954,
+"lon": -119.008177,
+"elevation_ft": 8035
+},
+{
+"osm_id": 4515968093,
+"name": "Sherwin Summit",
+"lat": 37.5515844,
+"lon": -118.641821,
+"elevation_ft": 6427
+},
+{
+"osm_id": 5033911696,
+"name": "Wolf Creek Pass",
+"lat": 38.4981375,
+"lon": -119.7700243,
+"elevation_ft": 8448
+},
+{
+"osm_id": 5118782944,
+"name": "Hell for Sure Pass",
+"lat": 37.1459111,
+"lon": -118.798002,
+"elevation_ft": 11286
+},
+{
+"osm_id": 5177557404,
+"name": "Cartridge Pass",
+"lat": 36.9756064,
+"lon": -118.48726,
+"elevation_ft": 11821
+},
+{
+"osm_id": 5221939836,
+"name": "The Notch",
+"lat": 36.5795537,
+"lon": -118.2935867,
+"elevation_ft": 14147
+},
+{
+"osm_id": 5714108389,
+"name": "Eagle Scout Pass",
+"lat": 36.5431911,
+"lon": -118.560397,
+"elevation_ft": 11621
+},
+{
+"osm_id": 5736196342,
+"name": "Trail Pass",
+"lat": 36.4271285,
+"lon": -118.1763412,
+"elevation_ft": 10492
+},
+{
+"osm_id": 5739597821,
+"name": "Trail Crest",
+"lat": 36.5593438,
+"lon": -118.291579,
+"elevation_ft": 13645
+},
+{
+"osm_id": 5828610675,
+"name": "North Pass",
+"lat": 39.2459685,
+"lon": -120.2023479,
+"elevation_ft": 7123
+},
+{
+"osm_id": 5868916805,
+"name": "Echo Pass",
+"lat": 37.8341041,
+"lon": -119.4007742,
+"elevation_ft": 10778
+},
+{
+"osm_id": 6211984975,
+"name": "Donner Summit",
+"lat": 39.3415556,
+"lon": -120.3399113,
+"elevation_ft": 7227
+},
+{
+"osm_id": 6211984976,
+"name": "Donner Summit",
+"lat": 39.3423384,
+"lon": -120.3395279,
+"elevation_ft": 7239
+},
+{
+"osm_id": 6227696612,
+"name": "Mather Pass",
+"lat": 37.0313318,
+"lon": -118.4601069,
+"elevation_ft": 12082
+},
+{
+"osm_id": 6227696613,
+"name": "Pinchot Pass",
+"lat": 36.9361623,
+"lon": -118.4125642,
+"elevation_ft": 12105
+},
+{
+"osm_id": 6227696619,
+"name": "Forester Pass",
+"lat": 36.6944667,
+"lon": -118.373593,
+"elevation_ft": 13153
+},
+{
+"osm_id": 6418532155,
+"name": "Teaford Saddle",
+"lat": 37.2878544,
+"lon": -119.5820001,
+"elevation_ft": 3828
+},
+{
+"osm_id": 6435991250,
+"name": "Morrison Col",
+"lat": 37.5627369,
+"lon": -118.8528796,
+"elevation_ft": 10906
+},
+{
+"osm_id": 6638273107,
+"name": "Trail Canyon Saddle",
+"lat": 37.8629132,
+"lon": -118.3460576,
+"elevation_ft": 10805
+},
+{
+"osm_id": 6819057544,
+"name": "Rockbound Pass",
+"lat": 38.902417,
+"lon": -120.1982135,
+"elevation_ft": 8550
+},
+{
+"osm_id": 7089710421,
+"name": "Olancha Pass",
+"lat": 36.2119603,
+"lon": -118.104658,
+"elevation_ft": 9196
+},
+{
+"osm_id": 7170530059,
+"name": "Skinny Ridge Saddle",
+"lat": 39.1708974,
+"lon": -119.6832916,
+"elevation_ft": 4820
+},
+{
+"osm_id": 7207007412,
+"name": "Silliman Pass",
+"lat": 36.6624434,
+"lon": -118.706853,
+"elevation_ft": 10174
+},
+{
+"osm_id": 7461093391,
+"name": "Hudson Pass",
+"lat": 38.8710412,
+"lon": -119.227021,
+"elevation_ft": 5530
+},
+{
+"osm_id": 7799578904,
+"name": "University Pass",
+"lat": 36.7418766,
+"lon": -118.352638,
+"elevation_ft": 12651
+},
+{
+"osm_id": 7799582490,
+"name": "Dragon Pass",
+"lat": 36.7877278,
+"lon": -118.3766296,
+"elevation_ft": 12559
+},
+{
+"osm_id": 7855018453,
+"name": "Horse Creek Pass",
+"lat": 38.0885444,
+"lon": -119.371745,
+"elevation_ft": 10705
+},
+{
+"osm_id": 7855042400,
+"name": "Mule Pass",
+"lat": 38.0998792,
+"lon": -119.4402601,
+"elevation_ft": 10478
+},
+{
+"osm_id": 7881210998,
+"name": "Morgan Pass",
+"lat": 37.3913515,
+"lon": -118.751027,
+"elevation_ft": 11112
+},
+{
+"osm_id": 7898768297,
+"name": "Longley Pass",
+"lat": 36.6912722,
+"lon": -118.4795442,
+"elevation_ft": 12457
+},
+{
+"osm_id": 7900152216,
+"name": "Whale Pass",
+"lat": 36.6106361,
+"lon": -118.5317946,
+"elevation_ft": 11365
+},
+{
+"osm_id": 7903095438,
+"name": "Cleaver Notch",
+"lat": 38.1089207,
+"lon": -119.3909701,
+"elevation_ft": 10930
+},
+{
+"osm_id": 7909276800,
+"name": "Copper Mine Pass",
+"lat": 36.5978311,
+"lon": -118.553105,
+"elevation_ft": 12300
+},
+{
+"osm_id": 7914274033,
+"name": "Cahoon Gap",
+"lat": 36.6439061,
+"lon": -118.7370587,
+"elevation_ft": 8658
+},
+{
+"osm_id": 7914409922,
+"name": "Shotgun Pass",
+"lat": 36.3900377,
+"lon": -118.5372071,
+"elevation_ft": 11464
+},
+{
+"osm_id": 7917828182,
+"name": "Gabbot Pass",
+"lat": 37.3796552,
+"lon": -118.791775,
+"elevation_ft": 12270
+},
+{
+"osm_id": 7929571493,
+"name": "Pants Pass",
+"lat": 36.5735263,
+"lon": -118.527631,
+"elevation_ft": 12001
+},
+{
+"osm_id": 7931604253,
+"name": "Arc Pass",
+"lat": 36.5518403,
+"lon": -118.2709699,
+"elevation_ft": 12927
+},
+{
+"osm_id": 7931816853,
+"name": "Potluck Pass",
+"lat": 37.079507,
+"lon": -118.508201,
+"elevation_ft": 12133
+},
+{
+"osm_id": 7931873047,
+"name": "Alpine Col",
+"lat": 37.214848,
+"lon": -118.694958,
+"elevation_ft": 12343
+},
+{
+"osm_id": 7931873048,
+"name": "The Keyhole",
+"lat": 37.2150691,
+"lon": -118.6883189,
+"elevation_ft": 12484
+},
+{
+"osm_id": 7932316585,
+"name": "Anchorite Pass",
+"lat": 38.196104,
+"lon": -118.6902695,
+"elevation_ft": 7592
+},
+{
+"osm_id": 7934751331,
+"name": "Silver Fox Pass",
+"lat": 37.4580611,
+"lon": -118.97365,
+"elevation_ft": 10702
+},
+{
+"osm_id": 7934894588,
+"name": "Kanawyer Gap",
+"lat": 36.7273042,
+"lon": -118.7165397,
+"elevation_ft": 9615
+},
+{
+"osm_id": 7935225678,
+"name": "Saint Marys Pass",
+"lat": 38.3480681,
+"lon": -119.655361,
+"elevation_ft": 10125
+},
+{
+"osm_id": 7940807377,
+"name": "Jigsaw Pass",
+"lat": 37.1202242,
+"lon": -118.53445,
+"elevation_ft": 12654
+},
+{
+"osm_id": 7940807378,
+"name": "Contact Pass",
+"lat": 37.1092709,
+"lon": -118.4858434,
+"elevation_ft": 11752
+},
+{
+"osm_id": 7942758119,
+"name": "Ericsson Pass",
+"lat": 36.6995576,
+"lon": -118.4087851,
+"elevation_ft": 12600
+},
+{
+"osm_id": 7942758120,
+"name": "Pterodactyl Pass",
+"lat": 36.6044696,
+"lon": -118.608033,
+"elevation_ft": 10899
+},
+{
+"osm_id": 7942758121,
+"name": "Horn Col",
+"lat": 36.6061146,
+"lon": -118.582077,
+"elevation_ft": 11319
+},
+{
+"osm_id": 7942758122,
+"name": "Brewer Pass",
+"lat": 36.7032037,
+"lon": -118.480092,
+"elevation_ft": 12641
+},
+{
+"osm_id": 7942758123,
+"name": "Sheep Pass",
+"lat": 36.6169992,
+"lon": -118.3031671,
+"elevation_ft": 12696
+},
+{
+"osm_id": 7942758124,
+"name": "Rockwell Pass",
+"lat": 36.6469018,
+"lon": -118.365497,
+"elevation_ft": 12060
+},
+{
+"osm_id": 7942758153,
+"name": "Diaz Pass",
+"lat": 36.5195589,
+"lon": -118.2348226,
+"elevation_ft": 13261
+},
+{
+"osm_id": 7942758154,
+"name": "Tuttle Pass",
+"lat": 36.5270922,
+"lon": -118.25101,
+"elevation_ft": 12822
+},
+{
+"osm_id": 7942773345,
+"name": "Whitney-Russell Pass",
+"lat": 36.5832211,
+"lon": -118.289379,
+"elevation_ft": 13121
+},
+{
+"osm_id": 7942773346,
+"name": "Russell-Carillon Pass",
+"lat": 36.5916548,
+"lon": -118.2812519,
+"elevation_ft": 13289
+},
+{
+"osm_id": 7942773347,
+"name": "Tyndall Col",
+"lat": 36.6493464,
+"lon": -118.329598,
+"elevation_ft": 13031
+},
+{
+"osm_id": 7942773349,
+"name": "Thunder Pass",
+"lat": 36.6680794,
+"lon": -118.4718799,
+"elevation_ft": 12747
+},
+{
+"osm_id": 7942773350,
+"name": "MacLeod Pass",
+"lat": 36.6673909,
+"lon": -118.4754311,
+"elevation_ft": 13081
+},
+{
+"osm_id": 7942773351,
+"name": "Midway Col",
+"lat": 36.6385045,
+"lon": -118.483939,
+"elevation_ft": 12884
+},
+{
+"osm_id": 7942773352,
+"name": "Milestone Pass",
+"lat": 36.6336457,
+"lon": -118.4822103,
+"elevation_ft": 12965
+},
+{
+"osm_id": 7942773354,
+"name": "Deerhorn Saddle",
+"lat": 36.7088301,
+"lon": -118.4039641,
+"elevation_ft": 12622
+},
+{
+"osm_id": 7942892050,
+"name": "Marion Pass",
+"lat": 36.9599914,
+"lon": -118.513877,
+"elevation_ft": 12064
+},
+{
+"osm_id": 7942892051,
+"name": "Explorer Pass",
+"lat": 36.9175585,
+"lon": -118.45548,
+"elevation_ft": 12251
+},
+{
+"osm_id": 7942892052,
+"name": "Arrow Pass",
+"lat": 36.9244719,
+"lon": -118.4789277,
+"elevation_ft": 11667
+},
+{
+"osm_id": 7942892053,
+"name": "Harrington Pass",
+"lat": 36.8765525,
+"lon": -118.729049,
+"elevation_ft": 10719
+},
+{
+"osm_id": 7948147734,
+"name": "Lilley Pass",
+"lat": 36.7892763,
+"lon": -118.356796,
+"elevation_ft": 12011
+},
+{
+"osm_id": 7951660529,
+"name": "Snow-Tongue Pass",
+"lat": 37.2216595,
+"lon": -118.722231,
+"elevation_ft": 12001
+},
+{
+"osm_id": 7951660530,
+"name": "Red Pass",
+"lat": 36.9651479,
+"lon": -118.5274365,
+"elevation_ft": 11575
+},
+{
+"osm_id": 7951660531,
+"name": "White Pass",
+"lat": 36.9621421,
+"lon": -118.5344009,
+"elevation_ft": 11703
+},
+{
+"osm_id": 7951660532,
+"name": "Gray Pass",
+"lat": 36.965075,
+"lon": -118.5625915,
+"elevation_ft": 10764
+},
+{
+"osm_id": 7951660533,
+"name": "Frozen Lake Pass",
+"lat": 37.0060913,
+"lon": -118.4825598,
+"elevation_ft": 12342
+},
+{
+"osm_id": 7951660534,
+"name": "Dumbbell Pass",
+"lat": 36.9973431,
+"lon": -118.514907,
+"elevation_ft": 11722
+},
+{
+"osm_id": 7951660535,
+"name": "King Col",
+"lat": 36.8355065,
+"lon": -118.4644775,
+"elevation_ft": 11672
+},
+{
+"osm_id": 7952267862,
+"name": "White Fork Saddle",
+"lat": 36.910651,
+"lon": -118.448512,
+"elevation_ft": 11837
+},
+{
+"osm_id": 7952267863,
+"name": "White Fork Pass",
+"lat": 36.92715,
+"lon": -118.448023,
+"elevation_ft": 12297
+},
+{
+"osm_id": 7952456586,
+"name": "Mantle Pass",
+"lat": 37.022713,
+"lon": -118.750036,
+"elevation_ft": 10949
+},
+{
+"osm_id": 7952456587,
+"name": "Finger Col",
+"lat": 37.0354708,
+"lon": -118.7328876,
+"elevation_ft": 11576
+},
+{
+"osm_id": 7952456588,
+"name": "Blue Canyon Pass",
+"lat": 37.0297635,
+"lon": -118.7221465,
+"elevation_ft": 11493
+},
+{
+"osm_id": 7952456589,
+"name": "Reinstein Pass",
+"lat": 37.0815463,
+"lon": -118.734676,
+"elevation_ft": 11893
+},
+{
+"osm_id": 7952456590,
+"name": "Valor Pass",
+"lat": 37.0848842,
+"lon": -118.739986,
+"elevation_ft": 11788
+},
+{
+"osm_id": 7952456591,
+"name": "Confusion Pass",
+"lat": 37.1000919,
+"lon": -118.7618586,
+"elevation_ft": 11401
+},
+{
+"osm_id": 7952456592,
+"name": "Gunsight Pass",
+"lat": 37.1014845,
+"lon": -118.765897,
+"elevation_ft": 11650
+},
+{
+"osm_id": 7952456593,
+"name": "Hutton Pass",
+"lat": 37.1253568,
+"lon": -118.794978,
+"elevation_ft": 11480
+},
+{
+"osm_id": 7952475855,
+"name": "Black Giant Pass",
+"lat": 37.1012321,
+"lon": -118.658287,
+"elevation_ft": 12198
+},
+{
+"osm_id": 7952475856,
+"name": "Wanda Pass",
+"lat": 37.1084496,
+"lon": -118.691117,
+"elevation_ft": 12457
+},
+{
+"osm_id": 7952833618,
+"name": "Mungoat Pass",
+"lat": 36.8724286,
+"lon": -118.5782605,
+"elevation_ft": 11657
+},
+{
+"osm_id": 7955924565,
+"name": "Tunemah Pass",
+"lat": 36.9785741,
+"lon": -118.6653343,
+"elevation_ft": 10696
+},
+{
+"osm_id": 7956020121,
+"name": "Blackcap Pass",
+"lat": 37.0763228,
+"lon": -118.785874,
+"elevation_ft": 11181
+},
+{
+"osm_id": 7958609935,
+"name": "Scepter Pass",
+"lat": 37.0469441,
+"lon": -118.834272,
+"elevation_ft": 10003
+},
+{
+"osm_id": 7958609937,
+"name": "Coyote Pass",
+"lat": 36.9806,
+"lon": -118.7638826,
+"elevation_ft": 10066
+},
+{
+"osm_id": 7958748709,
+"name": "Libby Pass",
+"lat": 37.0219913,
+"lon": -118.704571,
+"elevation_ft": 11729
+},
+{
+"osm_id": 7958748710,
+"name": "Alpine Pass",
+"lat": 37.0127695,
+"lon": -118.702522,
+"elevation_ft": 11181
+},
+{
+"osm_id": 7958748711,
+"name": "Dykeman Pass",
+"lat": 37.0003206,
+"lon": -118.715804,
+"elevation_ft": 11070
+},
+{
+"osm_id": 7958748712,
+"name": "Thunderbolt Col",
+"lat": 37.0956196,
+"lon": -118.524702,
+"elevation_ft": 12361
+},
+{
+"osm_id": 7965147935,
+"name": "Gilbert Pass",
+"lat": 37.4307206,
+"lon": -117.938799,
+"elevation_ft": 6385
+},
+{
+"osm_id": 7965816330,
+"name": "North Glacier Pass",
+"lat": 37.7014366,
+"lon": -119.206209,
+"elevation_ft": 11191
+},
+{
+"osm_id": 7982740930,
+"name": "Sixty Lakes Col",
+"lat": 36.8036084,
+"lon": -118.4417325,
+"elevation_ft": 11714
+},
+{
+"osm_id": 7989284648,
+"name": "Dore Pass",
+"lat": 37.9845279,
+"lon": -119.261097,
+"elevation_ft": 11289
+},
+{
+"osm_id": 8023095855,
+"name": "Seven Gables Pass",
+"lat": 37.3043035,
+"lon": -118.821376,
+"elevation_ft": 12083
+},
+{
+"osm_id": 8023126893,
+"name": "Ruskie Pass",
+"lat": 37.3025284,
+"lon": -118.799768,
+"elevation_ft": 12073
+},
+{
+"osm_id": 8023126894,
+"name": "Stough Pass",
+"lat": 37.2996437,
+"lon": -118.807933,
+"elevation_ft": 11929
+},
+{
+"osm_id": 8023126895,
+"name": "Granite Park Pass",
+"lat": 37.3321448,
+"lon": -118.768419,
+"elevation_ft": 11886
+},
+{
+"osm_id": 8023126896,
+"name": "Feather Pass",
+"lat": 37.3213098,
+"lon": -118.781915,
+"elevation_ft": 12359
+},
+{
+"osm_id": 8023126897,
+"name": "Granite Bear Pass",
+"lat": 37.3371224,
+"lon": -118.781004,
+"elevation_ft": 12402
+},
+{
+"osm_id": 8059866107,
+"name": "Blue Lake Pass",
+"lat": 37.6851682,
+"lon": -119.290714,
+"elevation_ft": 11240
+},
+{
+"osm_id": 8073606034,
+"name": "Sunrise Pass",
+"lat": 39.0969294,
+"lon": -119.488408,
+"elevation_ft": 7089
+},
+{
+"osm_id": 8104713863,
+"name": "Geiger Gap",
+"lat": 39.4764015,
+"lon": -118.0747676,
+"elevation_ft": 5289
+},
+{
+"osm_id": 8164782941,
+"name": "Montgomery Pass",
+"lat": 37.9741979,
+"lon": -118.3259118,
+"elevation_ft": 7169
+},
+{
+"osm_id": 8181200215,
+"name": "Hot Springs Pass",
+"lat": 37.1975184,
+"lon": -118.9954734,
+"elevation_ft": 9505
+},
+{
+"osm_id": 8284671933,
+"name": "Rockhouse Saddle",
+"lat": 35.8891909,
+"lon": -118.2287532,
+"elevation_ft": 7335
+},
+{
+"osm_id": 8292282000,
+"name": "Petrified Summit",
+"lat": 38.6242873,
+"lon": -118.0876285,
+"elevation_ft": 6129
+},
+{
+"osm_id": 8392300576,
+"name": "Wallace Col",
+"lat": 37.1431884,
+"lon": -118.654735,
+"elevation_ft": 12900
+},
+{
+"osm_id": 8392300577,
+"name": "Fiske Col",
+"lat": 37.1327538,
+"lon": -118.670475,
+"elevation_ft": 12625
+},
+{
+"osm_id": 8392300578,
+"name": "Nietzsche Col",
+"lat": 37.1082442,
+"lon": -118.679755,
+"elevation_ft": 12493
+},
+{
+"osm_id": 8392300579,
+"name": "Charybdis Col",
+"lat": 37.0888277,
+"lon": -118.661527,
+"elevation_ft": 12001
+},
+{
+"osm_id": 8392300580,
+"name": "Rambaud Pass",
+"lat": 37.0393354,
+"lon": -118.623118,
+"elevation_ft": 11578
+},
+{
+"osm_id": 8392300581,
+"name": "Isosceles Pass",
+"lat": 37.0921996,
+"lon": -118.538532,
+"elevation_ft": 12100
+},
+{
+"osm_id": 8392300582,
+"name": "Cataract Creek Pass",
+"lat": 37.0221027,
+"lon": -118.516323,
+"elevation_ft": 11558
+},
+{
+"osm_id": 8392300583,
+"name": "Vennacher Col",
+"lat": 36.9959635,
+"lon": -118.4727853,
+"elevation_ft": 12419
+},
+{
+"osm_id": 8392300584,
+"name": "Scimitar Pass",
+"lat": 37.0851261,
+"lon": -118.491159,
+"elevation_ft": 13219
+},
+{
+"osm_id": 8392300585,
+"name": "Agassiz Col",
+"lat": 37.1073533,
+"lon": -118.5305138,
+"elevation_ft": 13097
+},
+{
+"osm_id": 8392300586,
+"name": "Chimney Pass",
+"lat": 37.0723247,
+"lon": -118.4933426,
+"elevation_ft": 12420
+},
+{
+"osm_id": 8392300587,
+"name": "Cirque Pass",
+"lat": 37.0711343,
+"lon": -118.4999523,
+"elevation_ft": 12079
+},
+{
+"osm_id": 8392377594,
+"name": "Recess Pass",
+"lat": 37.38724,
+"lon": -118.86207,
+"elevation_ft": 11986
+},
+{
+"osm_id": 8392377595,
+"name": "Hilgard Pass",
+"lat": 37.368486,
+"lon": -118.820893,
+"elevation_ft": 12500
+},
+{
+"osm_id": 8392377596,
+"name": "Puppet Pass",
+"lat": 37.2784751,
+"lon": -118.724205,
+"elevation_ft": 11785
+},
+{
+"osm_id": 8395352206,
+"name": "Talus Pass",
+"lat": 36.6510077,
+"lon": -118.498798,
+"elevation_ft": 11499
+},
+{
+"osm_id": 8395371627,
+"name": "Glacier Ridge Pass",
+"lat": 36.63268,
+"lon": -118.560741,
+"elevation_ft": 11823
+},
+{
+"osm_id": 8395419373,
+"name": "Cinder Col",
+"lat": 36.6996167,
+"lon": -118.491277,
+"elevation_ft": 12060
+},
+{
+"osm_id": 8395419374,
+"name": "Sphinx Pass",
+"lat": 36.7108159,
+"lon": -118.504092,
+"elevation_ft": 12060
+},
+{
+"osm_id": 8395452570,
+"name": "Colosseum Col",
+"lat": 36.9045815,
+"lon": -118.381311,
+"elevation_ft": 11558
+},
+{
+"osm_id": 8397313477,
+"name": "Stanton Pass",
+"lat": 38.0609323,
+"lon": -119.3595028,
+"elevation_ft": 11180
+},
+{
+"osm_id": 8397313478,
+"name": "Ice Lake Pass",
+"lat": 38.1104933,
+"lon": -119.424916,
+"elevation_ft": 10098
+},
+{
+"osm_id": 8397395092,
+"name": "Sky Pilot Col",
+"lat": 38.0041521,
+"lon": -119.310053,
+"elevation_ft": 11627
+},
+{
+"osm_id": 8397395093,
+"name": "Don't Be A Smart Pass",
+"lat": 37.9884007,
+"lon": -119.324687,
+"elevation_ft": 11201
+},
+{
+"osm_id": 8397419667,
+"name": "Whitebark Pass",
+"lat": 37.696445,
+"lon": -119.17694,
+"elevation_ft": 10541
+},
+{
+"osm_id": 8397419668,
+"name": "Deadhorse Pass",
+"lat": 37.6516546,
+"lon": -119.151626,
+"elevation_ft": 9800
+},
+{
+"osm_id": 8397419669,
+"name": "Nancy Pass",
+"lat": 37.6400885,
+"lon": -119.14293,
+"elevation_ft": 10180
+},
+{
+"osm_id": 8397459339,
+"name": "Walton Col",
+"lat": 37.4679524,
+"lon": -118.887927,
+"elevation_ft": 11729
+},
+{
+"osm_id": 8397459340,
+"name": "Grinnell Col",
+"lat": 37.4716736,
+"lon": -118.847061,
+"elevation_ft": 11617
+},
+{
+"osm_id": 8397459368,
+"name": "Pace Col",
+"lat": 37.4797624,
+"lon": -118.865611,
+"elevation_ft": 11601
+},
+{
+"osm_id": 8397459369,
+"name": "Bighorn Pass",
+"lat": 37.4659598,
+"lon": -118.865576,
+"elevation_ft": 11250
+},
+{
+"osm_id": 8397459370,
+"name": "Rohn Pass",
+"lat": 37.4741982,
+"lon": -118.879693,
+"elevation_ft": 11260
+},
+{
+"osm_id": 8397459371,
+"name": "Shout-of-Relief Pass",
+"lat": 37.473236,
+"lon": -118.873148,
+"elevation_ft": 11427
+},
+{
+"osm_id": 8397491856,
+"name": "North Dragon Pass",
+"lat": 36.7997064,
+"lon": -118.374083,
+"elevation_ft": 11926
+},
+{
+"osm_id": 8397712867,
+"name": "Armstrong Col",
+"lat": 36.9205585,
+"lon": -118.372782,
+"elevation_ft": 11821
+},
+{
+"osm_id": 8406287165,
+"name": "Rae Col",
+"lat": 36.7995518,
+"lon": -118.414823,
+"elevation_ft": 11713
+},
+{
+"osm_id": 8406287166,
+"name": "Basin Notch",
+"lat": 36.8256896,
+"lon": -118.4183264,
+"elevation_ft": 10752
+},
+{
+"osm_id": 8409119259,
+"name": "Lucifer's Saddle West",
+"lat": 37.1197387,
+"lon": -118.813448,
+"elevation_ft": 11021
+},
+{
+"osm_id": 8409119260,
+"name": "Lucifer's Saddle East",
+"lat": 37.1177239,
+"lon": -118.8110018,
+"elevation_ft": 11127
+},
+{
+"osm_id": 8429287015,
+"name": "Black Rock Pass",
+"lat": 36.4858471,
+"lon": -118.552092,
+"elevation_ft": 11696
+},
+{
+"osm_id": 8507634704,
+"name": "Beck Lakes Pass",
+"lat": 37.6429261,
+"lon": -119.168647,
+"elevation_ft": 10801
+},
+{
+"osm_id": 8558707149,
+"name": "Bird Spring Pass",
+"lat": 35.5531347,
+"lon": -118.1329005,
+"elevation_ft": 5365
+},
+{
+"osm_id": 8558707164,
+"name": "Walker Pass",
+"lat": 35.6629057,
+"lon": -118.0268386,
+"elevation_ft": 5249
+},
+{
+"osm_id": 8576292619,
+"name": "Windy Gap",
+"lat": 36.330166,
+"lon": -118.603152,
+"elevation_ft": 9701
+},
+{
+"osm_id": 8584450997,
+"name": "Ritter Pass",
+"lat": 37.6732741,
+"lon": -119.192304,
+"elevation_ft": 11099
+},
+{
+"osm_id": 8626436538,
+"name": "Symmes Saddle",
+"lat": 36.710059,
+"lon": -118.2981741,
+"elevation_ft": 9073
+},
+{
+"osm_id": 8676735411,
+"name": "Volcanic Pass",
+"lat": 37.6779912,
+"lon": -119.1508158,
+"elevation_ft": 10581
+},
+{
+"osm_id": 8676752922,
+"name": "McDonald Pass",
+"lat": 37.6497561,
+"lon": -119.1884314,
+"elevation_ft": 10656
+},
+{
+"osm_id": 8676752928,
+"name": "South Notch",
+"lat": 37.6556681,
+"lon": -119.171115,
+"elevation_ft": 11266
+},
+{
+"osm_id": 8676752938,
+"name": "North Notch",
+"lat": 37.6650258,
+"lon": -119.1807658,
+"elevation_ft": 11427
+},
+{
+"osm_id": 8676752942,
+"name": "The Gap",
+"lat": 37.6681447,
+"lon": -119.1838503,
+"elevation_ft": 11125
+},
+{
+"osm_id": 8676791694,
+"name": "Garnet Pass",
+"lat": 37.7064363,
+"lon": -119.184064,
+"elevation_ft": 10138
+},
+{
+"osm_id": 8694059606,
+"name": "Thompson Pass",
+"lat": 37.1966711,
+"lon": -118.9463282,
+"elevation_ft": 10212
+},
+{
+"osm_id": 8694412401,
+"name": "Mosquito Pass",
+"lat": 37.185775,
+"lon": -118.853507,
+"elevation_ft": 10488
+},
+{
+"osm_id": 8699656194,
+"name": "Kaweah Pass",
+"lat": 36.5319014,
+"lon": -118.4746892,
+"elevation_ft": 12320
+},
+{
+"osm_id": 8699785794,
+"name": "Amphitheater Pass",
+"lat": 37.0184234,
+"lon": -118.4853418,
+"elevation_ft": 12220
+},
+{
+"osm_id": 8706646616,
+"name": "Saddle Camp Pass",
+"lat": 36.3002889,
+"lon": -118.3750677,
+"elevation_ft": 8714
+},
+{
+"osm_id": 8706689217,
+"name": "West Stringer Saddle",
+"lat": 36.3134653,
+"lon": -118.322153,
+"elevation_ft": 10180
+},
+{
+"osm_id": 8706689220,
+"name": "Right Stringer Pass",
+"lat": 36.3238215,
+"lon": -118.349618,
+"elevation_ft": 9482
+},
+{
+"osm_id": 8712481431,
+"name": "Tar Gap",
+"lat": 36.4236479,
+"lon": -118.6434603,
+"elevation_ft": 10006
+},
+{
+"osm_id": 8722562056,
+"name": "Steelhead Pass",
+"lat": 37.28972,
+"lon": -118.7061,
+"elevation_ft": 12083
+},
+{
+"osm_id": 8722611723,
+"name": "Tablelands Pass",
+"lat": 36.6231583,
+"lon": -118.6115879,
+"elevation_ft": 11266
+},
+{
+"osm_id": 8722747868,
+"name": "Corridor Pass",
+"lat": 37.5061143,
+"lon": -118.8526068,
+"elevation_ft": 11083
+},
+{
+"osm_id": 8722748259,
+"name": "Crazy Pass",
+"lat": 37.30396,
+"lon": -118.89642,
+"elevation_ft": 11539
+},
+{
+"osm_id": 8722810321,
+"name": "Crocker Col",
+"lat": 37.4807,
+"lon": -118.82421,
+"elevation_ft": 11959
+},
+{
+"osm_id": 8722840540,
+"name": "Crystal Pass",
+"lat": 36.44511,
+"lon": -118.55631,
+"elevation_ft": 11430
+},
+{
+"osm_id": 8722901797,
+"name": "Dancing Bear Pass",
+"lat": 37.34087,
+"lon": -118.7989,
+"elevation_ft": 12119
+},
+{
+"osm_id": 8722962196,
+"name": "Pilot Pass",
+"lat": 37.2741254,
+"lon": -118.7500788,
+"elevation_ft": 11558
+},
+{
+"osm_id": 8723000317,
+"name": "Davis Lake Pass",
+"lat": 37.12263,
+"lon": -118.7028,
+"elevation_ft": 11660
+},
+{
+"osm_id": 8723052624,
+"name": "Gemini Pass",
+"lat": 37.50862,
+"lon": -118.87719,
+"elevation_ft": 12041
+},
+{
+"osm_id": 8725791226,
+"name": "Gimme Pass",
+"lat": 36.89309,
+"lon": -118.69222,
+"elevation_ft": 10440
+},
+{
+"osm_id": 8725811288,
+"name": "Gould Pass",
+"lat": 36.78457,
+"lon": -118.37904,
+"elevation_ft": 12795
+},
+{
+"osm_id": 8725819644,
+"name": "Goat Crest Saddle",
+"lat": 36.8862446,
+"lon": -118.586829,
+"elevation_ft": 11450
+},
+{
+"osm_id": 8725908064,
+"name": "Graveyard Pass",
+"lat": 37.45591,
+"lon": -118.98329,
+"elevation_ft": 10860
+},
+{
+"osm_id": 8725946086,
+"name": "Grouse Lake Pass",
+"lat": 36.8663412,
+"lon": -118.5920179,
+"elevation_ft": 11034
+},
+{
+"osm_id": 8726030252,
+"name": "Kuna Crest Saddle",
+"lat": 37.82063,
+"lon": -119.23402,
+"elevation_ft": 11801
+},
+{
+"osm_id": 8726070191,
+"name": "La Salle Col",
+"lat": 37.31023,
+"lon": -118.7946,
+"elevation_ft": 11991
+},
+{
+"osm_id": 8726334037,
+"name": "Redwood Saddle",
+"lat": 36.7071684,
+"lon": -118.9206612,
+"elevation_ft": 6237
+},
+{
+"osm_id": 8726371731,
+"name": "McCabe Pass",
+"lat": 37.99963,
+"lon": -119.31119,
+"elevation_ft": 11201
+},
+{
+"osm_id": 8726376467,
+"name": "Lost Lakes Pass",
+"lat": 37.79203,
+"lon": -119.21212,
+"elevation_ft": 11450
+},
+{
+"osm_id": 8726409390,
+"name": "Pika Pass",
+"lat": 37.55305,
+"lon": -118.93893,
+"elevation_ft": 11581
+},
+{
+"osm_id": 8726547139,
+"name": "Royce-Merriam Saddle",
+"lat": 37.31239,
+"lon": -118.76857,
+"elevation_ft": 12208
+},
+{
+"osm_id": 8726577967,
+"name": "Star Col",
+"lat": 37.2809,
+"lon": -118.71815,
+"elevation_ft": 11939
+},
+{
+"osm_id": 8729770670,
+"name": "Avalanche Pass",
+"lat": 36.74827,
+"lon": -118.55978,
+"elevation_ft": 10020
+},
+{
+"osm_id": 8740464125,
+"name": "Sirretta Pass",
+"lat": 35.9268448,
+"lon": -118.325074,
+"elevation_ft": 9560
+},
+{
+"osm_id": 8746365883,
+"name": "Fir Camp Saddle",
+"lat": 35.829694,
+"lon": -118.5906208,
+"elevation_ft": 6939
+},
+{
+"osm_id": 8746373537,
+"name": "Sycamore Gap",
+"lat": 35.8930353,
+"lon": -118.723138,
+"elevation_ft": 2369
+},
+{
+"osm_id": 8746373548,
+"name": "Cain Spring Gap",
+"lat": 35.9196385,
+"lon": -118.7428727,
+"elevation_ft": 2904
+},
+{
+"osm_id": 8746373549,
+"name": "Skunk Spring Saddle",
+"lat": 35.9343943,
+"lon": -118.7173111,
+"elevation_ft": 3796
+},
+{
+"osm_id": 8750987484,
+"name": "Grizzly Pass",
+"lat": 37.5053172,
+"lon": -119.4937527,
+"elevation_ft": 8401
+},
+{
+"osm_id": 8769560420,
+"name": "Live Oak Pass",
+"lat": 36.5709514,
+"lon": -118.952681,
+"elevation_ft": 4085
+},
+{
+"osm_id": 8769560430,
+"name": "Shepherd Saddle",
+"lat": 36.502832,
+"lon": -118.8691628,
+"elevation_ft": 3012
+},
+{
+"osm_id": 8815125953,
+"name": "Little Shuteye Pass",
+"lat": 37.3788879,
+"lon": -119.4373083,
+"elevation_ft": 7044
+},
+{
+"osm_id": 8821321627,
+"name": "Shuteye Pass",
+"lat": 37.339852,
+"lon": -119.4123477,
+"elevation_ft": 7349
+},
+{
+"osm_id": 8830508068,
+"name": "Pretty Pass",
+"lat": 37.5288361,
+"lon": -118.9020105,
+"elevation_ft": 11893
+},
+{
+"osm_id": 8830519389,
+"name": "Bloody-Laurel Col",
+"lat": 37.5752888,
+"lon": -118.8951295,
+"elevation_ft": 10779
+},
+{
+"osm_id": 8830519390,
+"name": "Bloody Lake Pass",
+"lat": 37.5551838,
+"lon": -118.9138652,
+"elevation_ft": 11313
+},
+{
+"osm_id": 8863785542,
+"name": "Wheeler Pass",
+"lat": 38.6142285,
+"lon": -118.845586,
+"elevation_ft": 7654
+},
+{
+"osm_id": 8917611577,
+"name": "Tower Pass",
+"lat": 38.1541822,
+"lon": -119.554223,
+"elevation_ft": 10118
+},
+{
+"osm_id": 8917618592,
+"name": "Kirkland Pass",
+"lat": 38.1665699,
+"lon": -119.5023036,
+"elevation_ft": 9918
+},
+{
+"osm_id": 8922791926,
+"name": "Crater Pass",
+"lat": 36.9318095,
+"lon": -118.4231138,
+"elevation_ft": 12216
+},
+{
+"osm_id": 8999172289,
+"name": "White Deer Saddle",
+"lat": 36.843547,
+"lon": -119.1484125,
+"elevation_ft": 3563
+},
+{
+"osm_id": 9108050722,
+"name": "Burton Pass",
+"lat": 36.7542404,
+"lon": -118.8514972,
+"elevation_ft": 7680
+},
+{
+"osm_id": 9142195221,
+"name": "Windy Gap",
+"lat": 37.21466,
+"lon": -119.0046358,
+"elevation_ft": 9826
+},
+{
+"osm_id": 9165009526,
+"name": "Old Bones Pass",
+"lat": 37.7008232,
+"lon": -119.267664,
+"elevation_ft": 11581
+},
+{
+"osm_id": 9165009527,
+"name": "Russell Pass",
+"lat": 37.7465172,
+"lon": -119.2889285,
+"elevation_ft": 12260
+},
+{
+"osm_id": 9165009528,
+"name": "Lyell-Maclure Col",
+"lat": 37.7414958,
+"lon": -119.2761049,
+"elevation_ft": 12434
+},
+{
+"osm_id": 9165009529,
+"name": "Clinch Pass",
+"lat": 37.7219107,
+"lon": -119.232578,
+"elevation_ft": 11504
+},
+{
+"osm_id": 9165009530,
+"name": "Sluggo Pass",
+"lat": 37.7216285,
+"lon": -119.2887569,
+"elevation_ft": 11535
+},
+{
+"osm_id": 9165009531,
+"name": "Lyell Col",
+"lat": 37.7374222,
+"lon": -119.2672711,
+"elevation_ft": 12469
+},
+{
+"osm_id": 9165009532,
+"name": "Rodgers Pass",
+"lat": 37.7299808,
+"lon": -119.2598856,
+"elevation_ft": 12287
+},
+{
+"osm_id": 9165331266,
+"name": "Lion Rock Pass East",
+"lat": 36.5816596,
+"lon": -118.533243,
+"elevation_ft": 11768
+},
+{
+"osm_id": 9165331268,
+"name": "Lion Rock Pass West",
+"lat": 36.5820386,
+"lon": -118.5379529,
+"elevation_ft": 11864
+},
+{
+"osm_id": 9174550048,
+"name": "Nettle Pass",
+"lat": 37.66505,
+"lon": -119.20405,
+"elevation_ft": 10594
+},
+{
+"osm_id": 9174550049,
+"name": "Snow Pass",
+"lat": 37.6378584,
+"lon": -119.3923491,
+"elevation_ft": 11212
+},
+{
+"osm_id": 9196982520,
+"name": "Cox Col",
+"lat": 37.370349,
+"lon": -118.769905,
+"elevation_ft": 13061
+},
+{
+"osm_id": 9196982521,
+"name": "North Col",
+"lat": 37.37153,
+"lon": -118.77081,
+"elevation_ft": 13118
+},
+{
+"osm_id": 9200003778,
+"name": "Cathewood Saddle",
+"lat": 37.6427052,
+"lon": -119.7687113,
+"elevation_ft": 5141
+},
+{
+"osm_id": 9231451868,
+"name": "Forgotten Pass",
+"lat": 36.6926086,
+"lon": -117.9602918,
+"elevation_ft": 9410
+},
+{
+"osm_id": 9245175166,
+"name": "Saddle Pass",
+"lat": 37.4394118,
+"lon": -119.0423691,
+"elevation_ft": 10955
+},
+{
+"osm_id": 9421140980,
+"name": "Badger Gap",
+"lat": 35.5465787,
+"lon": -118.69174,
+"elevation_ft": 4272
+},
+{
+"osm_id": 9472118840,
+"name": "Verplank Saddle",
+"lat": 36.8369477,
+"lon": -119.0369189,
+"elevation_ft": 2945
+},
+{
+"osm_id": 9543350028,
+"name": "Roundtree Saddle",
+"lat": 37.5092876,
+"lon": -119.7605753,
+"elevation_ft": 5532
+},
+{
+"osm_id": 9622295079,
+"name": "Thunder Ridge",
+"lat": 36.6666267,
+"lon": -118.4867445,
+"elevation_ft": 12008
+},
+{
+"osm_id": 9646014362,
+"name": "Coyote Lakes Pass",
+"lat": 36.311036,
+"lon": -118.4573284,
+"elevation_ft": 10535
+},
+{
+"osm_id": 9724898738,
+"name": "Eagle Pass",
+"lat": 38.2486498,
+"lon": -119.8275724,
+"elevation_ft": 9006
+},
+{
+"osm_id": 9762209413,
+"name": "Ursula Pass",
+"lat": 37.3352448,
+"lon": -118.82139,
+"elevation_ft": 11778
+},
+{
+"osm_id": 9762223620,
+"name": "White Bear Pass",
+"lat": 37.3401455,
+"lon": -118.8016653,
+"elevation_ft": 11850
+},
+{
+"osm_id": 9870554338,
+"name": "Piute Pass",
+"lat": 38.2410326,
+"lon": -119.5104414,
+"elevation_ft": 10013
+},
+{
+"osm_id": 9929902992,
+"name": "Twin Peaks Pass",
+"lat": 38.0689399,
+"lon": -119.3598944,
+"elevation_ft": 11500
+},
+{
+"osm_id": 9931953761,
+"name": "Hawks Head Notch",
+"lat": 38.1079185,
+"lon": -119.3977082,
+"elevation_ft": 11397
+},
+{
+"osm_id": 9931953762,
+"name": "Glacier Col",
+"lat": 38.1050256,
+"lon": -119.3960613,
+"elevation_ft": 11585
+},
+{
+"osm_id": 9931953763,
+"name": "Col de Doodad",
+"lat": 38.099474,
+"lon": -119.3903549,
+"elevation_ft": 11447
+},
+{
+"osm_id": 9931953764,
+"name": "Polemonium Pass",
+"lat": 38.0979858,
+"lon": -119.3879235,
+"elevation_ft": 11601
+},
+{
+"osm_id": 9931953765,
+"name": "Matterhorn Pass",
+"lat": 38.0850119,
+"lon": -119.3794799,
+"elevation_ft": 11338
+},
+{
+"osm_id": 9968447054,
+"name": "Sharktooth Lake Pass",
+"lat": 37.4999005,
+"lon": -119.035697,
+"elevation_ft": 10381
+},
+{
+"osm_id": 9979006339,
+"name": "Birch Creek Pass",
+"lat": 37.066289,
+"lon": -118.4444511,
+"elevation_ft": 12828
+},
+{
+"osm_id": 9979006340,
+"name": "Lane Pass",
+"lat": 37.0536188,
+"lon": -118.4361094,
+"elevation_ft": 13094
+},
+{
+"osm_id": 9983811866,
+"name": "University Shoulder",
+"lat": 36.7498541,
+"lon": -118.3737588,
+"elevation_ft": 12139
+},
+{
+"osm_id": 9983811867,
+"name": "Picket Creek Pass",
+"lat": 36.5638582,
+"lon": -118.4623575,
+"elevation_ft": 10886
+},
+{
+"osm_id": 9983811868,
+"name": "Pyra-Queen Col",
+"lat": 36.5492588,
+"lon": -118.5081461,
+"elevation_ft": 12816
+},
+{
+"osm_id": 10049466831,
+"name": "King Col West",
+"lat": 36.836945,
+"lon": -118.4834653,
+"elevation_ft": 11126
+},
+{
+"osm_id": 10049466832,
+"name": "King Col Central",
+"lat": 36.8350157,
+"lon": -118.4715414,
+"elevation_ft": 11137
+},
+{
+"osm_id": 10156906942,
+"name": "Donner Pass",
+"lat": 39.3159785,
+"lon": -120.321572,
+"elevation_ft": 7057
+},
+{
+"osm_id": 10156957195,
+"name": "Greenhorn Summit",
+"lat": 35.7388109,
+"lon": -118.5563371,
+"elevation_ft": 6099
+},
+{
+"osm_id": 10157003169,
+"name": "Henness Pass",
+"lat": 39.5024035,
+"lon": -120.4395287,
+"elevation_ft": 6916
+},
+{
+"osm_id": 10157100869,
+"name": "Polonio Pass",
+"lat": 35.7237102,
+"lon": -120.193317,
+"elevation_ft": 1407
+},
+{
+"osm_id": 10157171548,
+"name": "Sherman Pass",
+"lat": 35.9906939,
+"lon": -118.3658864,
+"elevation_ft": 9199
+},
+{
+"osm_id": 10157234309,
+"name": "Mount Rose Summit",
+"lat": 39.3132192,
+"lon": -119.8970553,
+"elevation_ft": 8911
+},
+{
+"osm_id": 10157272116,
+"name": "Spooner Summit",
+"lat": 39.1040264,
+"lon": -119.8979654,
+"elevation_ft": 7146
+},
+{
+"osm_id": 10157692128,
+"name": "Hell Hole",
+"lat": 37.7527163,
+"lon": -119.2901006,
+"elevation_ft": 12178
+},
+{
+"osm_id": 10195967273,
+"name": "Wildflower Pass",
+"lat": 36.5705202,
+"lon": -118.4960562,
+"elevation_ft": 11877
+},
+{
+"osm_id": 10205442186,
+"name": "Wilts Col",
+"lat": 37.834041,
+"lon": -119.3993164,
+"elevation_ft": 10794
+},
+{
+"osm_id": 10215141312,
+"name": "Adams Gap",
+"lat": 36.5414197,
+"lon": -119.0614075,
+"elevation_ft": 2146
+},
+{
+"osm_id": 10292397113,
+"name": "Grasshopper Pass",
+"lat": 36.8613013,
+"lon": -118.3698709,
+"elevation_ft": 12529
+},
+{
+"osm_id": 10292477556,
+"name": "Kearsarge Pass",
+"lat": 36.7731354,
+"lon": -118.3766147,
+"elevation_ft": 11709
+},
+{
+"osm_id": 10293928259,
+"name": "Marie Pass",
+"lat": 37.7276537,
+"lon": -119.2392862,
+"elevation_ft": 11984
+},
+{
+"osm_id": 10293928260,
+"name": "Rockbound Saddle",
+"lat": 37.6778256,
+"lon": -119.2820835,
+"elevation_ft": 10675
+},
+{
+"osm_id": 10293928261,
+"name": "Foerster Ridge Pass",
+"lat": 37.694537,
+"lon": -119.2908919,
+"elevation_ft": 11283
+},
+{
+"osm_id": 10293928262,
+"name": "Three-D Divide",
+"lat": 37.6248732,
+"lon": -119.3700197,
+"elevation_ft": 10780
+},
+{
+"osm_id": 10293928263,
+"name": "Walton Ridge",
+"lat": 37.6301436,
+"lon": -119.3612891,
+"elevation_ft": 10854
+},
+{
+"osm_id": 10293928264,
+"name": "Merced Peak Ridge",
+"lat": 37.6308998,
+"lon": -119.392553,
+"elevation_ft": 11086
+},
+{
+"osm_id": 10293928265,
+"name": "Ritter-Banner Saddle",
+"lat": 37.6932063,
+"lon": -119.1977495,
+"elevation_ft": 12025
+},
+{
+"osm_id": 10293995528,
+"name": "Peppermint Pass",
+"lat": 37.3712933,
+"lon": -118.7624833,
+"elevation_ft": 12397
+},
+{
+"osm_id": 10293995529,
+"name": "Treasure Saddle",
+"lat": 37.3882057,
+"lon": -118.7790138,
+"elevation_ft": 12594
+},
+{
+"osm_id": 10293995530,
+"name": "Third-Fourth Divide",
+"lat": 37.410153,
+"lon": -118.7986851,
+"elevation_ft": 11978
+},
+{
+"osm_id": 10293995531,
+"name": "Half-Moon Pass",
+"lat": 37.4513029,
+"lon": -118.7618852,
+"elevation_ft": 11503
+},
+{
+"osm_id": 10293995532,
+"name": "Huntington Col",
+"lat": 37.4729976,
+"lon": -118.7827903,
+"elevation_ft": 11865
+},
+{
+"osm_id": 10293995533,
+"name": "Stanford Col",
+"lat": 37.4869841,
+"lon": -118.8094032,
+"elevation_ft": 11595
+},
+{
+"osm_id": 10293995534,
+"name": "Warrior Ridge",
+"lat": 37.4699791,
+"lon": -118.9044982,
+"elevation_ft": 11574
+},
+{
+"osm_id": 10293995535,
+"name": "Carter Col",
+"lat": 37.5125513,
+"lon": -118.8814312,
+"elevation_ft": 12164
+},
+{
+"osm_id": 10293995536,
+"name": "Bard Pass",
+"lat": 37.5146619,
+"lon": -118.8859534,
+"elevation_ft": 12044
+},
+{
+"osm_id": 10293995537,
+"name": "Franklin Col",
+"lat": 37.5271281,
+"lon": -118.9082909,
+"elevation_ft": 11811
+},
+{
+"osm_id": 10293995538,
+"name": "Deer Pass",
+"lat": 37.5586141,
+"lon": -118.9755017,
+"elevation_ft": 11247
+},
+{
+"osm_id": 10294202741,
+"name": "Goddard Creek Pass",
+"lat": 37.0935347,
+"lon": -118.7166953,
+"elevation_ft": 12356
+},
+{
+"osm_id": 10294202742,
+"name": "Goddard Col",
+"lat": 37.0965427,
+"lon": -118.7174356,
+"elevation_ft": 12287
+},
+{
+"osm_id": 10294202743,
+"name": "Fleming Pass",
+"lat": 37.1646386,
+"lon": -118.8562989,
+"elevation_ft": 10589
+},
+{
+"osm_id": 10294202744,
+"name": "Martha-Davis Pass",
+"lat": 37.1186136,
+"lon": -118.727595,
+"elevation_ft": 11896
+},
+{
+"osm_id": 10294202745,
+"name": "McGee Lakes Pass South",
+"lat": 37.1339941,
+"lon": -118.7047434,
+"elevation_ft": 11839
+},
+{
+"osm_id": 10294202746,
+"name": "McGee Lakes Pass North",
+"lat": 37.1476696,
+"lon": -118.6997652,
+"elevation_ft": 11580
+},
+{
+"osm_id": 10294202747,
+"name": "Davis-McGee Pass",
+"lat": 37.1329211,
+"lon": -118.7148298,
+"elevation_ft": 11758
+},
+{
+"osm_id": 10294202748,
+"name": "Packsaddle Pass",
+"lat": 37.2238871,
+"lon": -118.7563974,
+"elevation_ft": 12447
+},
+{
+"osm_id": 10294202749,
+"name": "Lobe Pass",
+"lat": 37.2333737,
+"lon": -118.7692344,
+"elevation_ft": 12367
+},
+{
+"osm_id": 10294202751,
+"name": "By The Numbers Pass",
+"lat": 37.2309947,
+"lon": -118.7850916,
+"elevation_ft": 11730
+},
+{
+"osm_id": 10294202752,
+"name": "Sharp Note Pass",
+"lat": 37.2829483,
+"lon": -118.851192,
+"elevation_ft": 11217
+},
+{
+"osm_id": 10294202753,
+"name": "Gemini Lake Pass",
+"lat": 37.2999595,
+"lon": -118.8131905,
+"elevation_ft": 12050
+},
+{
+"osm_id": 10294202754,
+"name": "Merriam Pass",
+"lat": 37.2998571,
+"lon": -118.8019467,
+"elevation_ft": 12022
+},
+{
+"osm_id": 10294363941,
+"name": "Discovery Pass",
+"lat": 36.5578172,
+"lon": -118.2874131,
+"elevation_ft": 13573
+},
+{
+"osm_id": 10294363942,
+"name": "Bilko Pass",
+"lat": 36.4694106,
+"lon": -118.5406619,
+"elevation_ft": 11487
+},
+{
+"osm_id": 10294363943,
+"name": "Cyclamen Lake Pass",
+"lat": 36.4741687,
+"lon": -118.5471368,
+"elevation_ft": 11128
+},
+{
+"osm_id": 10294363944,
+"name": "Pinnacle Pass",
+"lat": 36.5740173,
+"lon": -118.2729426,
+"elevation_ft": 12313
+},
+{
+"osm_id": 10294363945,
+"name": "Cleaver Col",
+"lat": 36.5944189,
+"lon": -118.2768171,
+"elevation_ft": 13096
+},
+{
+"osm_id": 10294363948,
+"name": "Gardiner Pass East",
+"lat": 36.8084102,
+"lon": -118.4623516,
+"elevation_ft": 12013
+},
+{
+"osm_id": 10294363949,
+"name": "Pete's Col",
+"lat": 36.9678655,
+"lon": -118.4965727,
+"elevation_ft": 11571
+},
+{
+"osm_id": 10294363950,
+"name": "Red Lake Pass",
+"lat": 37.0267164,
+"lon": -118.4218884,
+"elevation_ft": 12997
+},
+{
+"osm_id": 10294363951,
+"name": "Bolton Brown's Shoulder",
+"lat": 37.0474215,
+"lon": -118.4464051,
+"elevation_ft": 13233
+},
+{
+"osm_id": 10294363952,
+"name": "Goode Pass",
+"lat": 37.1177752,
+"lon": -118.5678595,
+"elevation_ft": 12704
+},
+{
+"osm_id": 10294363953,
+"name": "Hurd Col",
+"lat": 37.1321209,
+"lon": -118.5686803,
+"elevation_ft": 11738
+},
+{
+"osm_id": 10294363954,
+"name": "Treasure Col",
+"lat": 37.1319541,
+"lon": -118.5889524,
+"elevation_ft": 12231
+},
+{
+"osm_id": 10294363955,
+"name": "Fair Trade Pass",
+"lat": 37.0307388,
+"lon": -118.4776931,
+"elevation_ft": 12484
+},
+{
+"osm_id": 10294363957,
+"name": "Cirque Ridge",
+"lat": 36.9453903,
+"lon": -118.5265455,
+"elevation_ft": 11947
+},
+{
+"osm_id": 10294363958,
+"name": "Cirque Crest Crossing",
+"lat": 36.94476,
+"lon": -118.5343104,
+"elevation_ft": 11977
+},
+{
+"osm_id": 10294363959,
+"name": "Glacier Saddle",
+"lat": 36.8991078,
+"lon": -118.5688949,
+"elevation_ft": 11248
+},
+{
+"osm_id": 10303933539,
+"name": "North Peak Pass",
+"lat": 37.9787118,
+"lon": -119.3167859,
+"elevation_ft": 11755
+},
+{
+"osm_id": 10303933540,
+"name": "Conness Pass",
+"lat": 37.9733479,
+"lon": -119.2989493,
+"elevation_ft": 11187
+},
+{
+"osm_id": 10303933541,
+"name": "Mine Shaft Pass",
+"lat": 37.932675,
+"lon": -119.2778403,
+"elevation_ft": 11168
+},
+{
+"osm_id": 10305160356,
+"name": "Sakai Col",
+"lat": 36.5860877,
+"lon": -118.2884646,
+"elevation_ft": 12996
+},
+{
+"osm_id": 10305160357,
+"name": "Green Pass",
+"lat": 36.5462596,
+"lon": -118.2614091,
+"elevation_ft": 13409
+},
+{
+"osm_id": 10305160358,
+"name": "Richins Pass",
+"lat": 36.5522024,
+"lon": -118.2652581,
+"elevation_ft": 13572
+},
+{
+"osm_id": 10307668952,
+"name": "Quartz Pass",
+"lat": 37.108056,
+"lon": -118.8128579,
+"elevation_ft": 10935
+},
+{
+"osm_id": 10307668953,
+"name": "Black Diamond Pass",
+"lat": 36.813412,
+"lon": -118.383463,
+"elevation_ft": 12531
+},
+{
+"osm_id": 10307668954,
+"name": "Rixford Pass",
+"lat": 36.7825312,
+"lon": -118.3905602,
+"elevation_ft": 12402
+},
+{
+"osm_id": 10308928469,
+"name": "Spire Pass",
+"lat": 37.3662946,
+"lon": -118.7593317,
+"elevation_ft": 12419
+},
+{
+"osm_id": 10310192025,
+"name": "State Peak Ridge",
+"lat": 36.9372408,
+"lon": -118.5414927,
+"elevation_ft": 12168
+},
+{
+"osm_id": 10310192026,
+"name": "Stenzel Pass",
+"lat": 36.910473,
+"lon": -118.5520346,
+"elevation_ft": 11387
+},
+{
+"osm_id": 10548416502,
+"name": "Fischer Pass",
+"lat": 37.1147039,
+"lon": -118.5238284,
+"elevation_ft": 12578
+},
+{
+"osm_id": 10548416503,
+"name": "Hinman Col",
+"lat": 37.1153284,
+"lon": -118.5310703,
+"elevation_ft": 12953
+},
+{
+"osm_id": 10548416504,
+"name": "Winchell Col",
+"lat": 37.1012963,
+"lon": -118.5243112,
+"elevation_ft": 13044
+},
+{
+"osm_id": 10548416507,
+"name": "Glacier Notch",
+"lat": 37.1011381,
+"lon": -118.5017455,
+"elevation_ft": 13769
+},
+{
+"osm_id": 10548416508,
+"name": "The U Notch",
+"lat": 37.0934533,
+"lon": -118.5125322,
+"elevation_ft": 13894
+},
+{
+"osm_id": 10548425892,
+"name": "B-24 Pass",
+"lat": 37.0889732,
+"lon": -118.6291158,
+"elevation_ft": 11694
+},
+{
+"osm_id": 10548425893,
+"name": "Ladder Pass",
+"lat": 37.0865426,
+"lon": -118.63065,
+"elevation_ft": 11784
+},
+{
+"osm_id": 10548425894,
+"name": "Henry Col",
+"lat": 37.0586447,
+"lon": -118.6201465,
+"elevation_ft": 11647
+},
+{
+"osm_id": 10905144650,
+"name": "Adventurer Pass",
+"lat": 37.0323598,
+"lon": -118.5487925,
+"elevation_ft": 10654
+},
+{
+"osm_id": 10905144651,
+"name": "Observation Peak Pass",
+"lat": 37.0222226,
+"lon": -118.5266927,
+"elevation_ft": 11718
+},
+{
+"osm_id": 10914334192,
+"name": "Darwin Col",
+"lat": 37.1724741,
+"lon": -118.6677075,
+"elevation_ft": 12867
+},
+{
+"osm_id": 10982830773,
+"name": "The Right Pass",
+"lat": 36.6089524,
+"lon": -118.6654276,
+"elevation_ft": 9711
+},
+{
+"osm_id": 10984193393,
+"name": "Anne Margaret Pass",
+"lat": 37.4622064,
+"lon": -119.0095899,
+"elevation_ft": 11099
+},
+{
+"osm_id": 11089316022,
+"name": "Bear Pass",
+"lat": 37.0127448,
+"lon": -118.5391945,
+"elevation_ft": 11417
+},
+{
+"osm_id": 11107991942,
+"name": "Black Divide Crossing",
+"lat": 37.094901,
+"lon": -118.6418974,
+"elevation_ft": 12756
+},
+{
+"osm_id": 11156434248,
+"name": "Keating Pass",
+"lat": 37.129108,
+"lon": -118.633948,
+"elevation_ft": 12280
+},
+{
+"osm_id": 11156434249,
+"name": "Powell-Thompson Col",
+"lat": 37.1405862,
+"lon": -118.6214823,
+"elevation_ft": 12720
+},
+{
+"osm_id": 11156434250,
+"name": "Sorenson Col",
+"lat": 37.1430771,
+"lon": -118.6250281,
+"elevation_ft": 12838
+},
+{
+"osm_id": 11239609424,
+"name": "Milly's Foot Pass",
+"lat": 36.6858705,
+"lon": -118.4300665,
+"elevation_ft": 12282
+},
+{
+"osm_id": 11239667110,
+"name": "Amelia Earhart Pass (West)",
+"lat": 37.7726374,
+"lon": -119.294336,
+"elevation_ft": 11614
+},
+{
+"osm_id": 11239667111,
+"name": "Amelia Earhart Pass (East)",
+"lat": 37.77432,
+"lon": -119.292851,
+"elevation_ft": 11631
+},
+{
+"osm_id": 11239702810,
+"name": "Tilden's Stubbly Pass",
+"lat": 38.0947008,
+"lon": -119.5941499,
+"elevation_ft": 9524
+},
+{
+"osm_id": 11286231687,
+"name": "Happy Gap",
+"lat": 36.723699,
+"lon": -118.9909351,
+"elevation_ft": 5588
+},
+{
+"osm_id": 11338149868,
+"name": "Andy's Foot Pass",
+"lat": 36.6976887,
+"lon": -118.3934596,
+"elevation_ft": 13692
+},
+{
+"osm_id": 11359566376,
+"name": "Tombstone Pass",
+"lat": 37.2656003,
+"lon": -118.9257145,
+"elevation_ft": 9879
+},
+{
+"osm_id": 11518387840,
+"name": "Haeckel-Wallace Col",
+"lat": 37.1475945,
+"lon": -118.6587278,
+"elevation_ft": 13032
+},
+{
+"osm_id": 11610917203,
+"name": "Ionian Pass",
+"lat": 37.0953449,
+"lon": -118.6497863,
+"elevation_ft": 12621
+},
+{
+"osm_id": 11610995402,
+"name": "Emerald Pass",
+"lat": 37.1643722,
+"lon": -118.7501285,
+"elevation_ft": 11368
+},
+{
+"osm_id": 11623668784,
+"name": "Soldier Pass",
+"lat": 37.3484773,
+"lon": -117.9719021,
+"elevation_ft": 5505
+},
+{
+"osm_id": 11646893387,
+"name": "Lucky Boy Pass",
+"lat": 38.4212636,
+"lon": -118.7681454,
+"elevation_ft": 8003
+},
+{
+"osm_id": 12008931496,
+"name": "North Meadow Pass",
+"lat": 36.0209802,
+"lon": -118.4023283,
+"elevation_ft": 9106
+},
+{
+"osm_id": 12090607094,
+"name": "Rafferty Pass",
+"lat": 37.8219232,
+"lon": -119.3521079,
+"elevation_ft": 10513
+},
+{
+"osm_id": 12092469143,
+"name": "Sharktooth Ridge Crossing",
+"lat": 37.4793436,
+"lon": -119.0256008,
+"elevation_ft": 11473
+},
+{
+"osm_id": 12092519350,
+"name": "Hawksbeak Pass",
+"lat": 38.1425681,
+"lon": -119.5052446,
+"elevation_ft": 10095
+},
+{
+"osm_id": 12093908236,
+"name": "Featherlite Pass",
+"lat": 37.3168768,
+"lon": -118.7897158,
+"elevation_ft": 12205
+},
+{
+"osm_id": 12125614602,
+"name": "Darwin-Schober Col",
+"lat": 37.185628,
+"lon": -118.6658176,
+"elevation_ft": 12795
+},
+{
+"osm_id": 12186922310,
+"name": "Feather Lake Pass",
+"lat": 37.4378357,
+"lon": -118.9310036,
+"elevation_ft": 10728
+},
+{
+"osm_id": 12186950643,
+"name": "Starbolator Pass",
+"lat": 37.4852514,
+"lon": -119.0206618,
+"elevation_ft": 10863
+},
+{
+"osm_id": 12620073672,
+"name": "Jack Wright Pass",
+"lat": 38.7577042,
+"lon": -119.4278392,
+"elevation_ft": 5486
+},
+{
+"osm_id": 12623955888,
+"name": "Frog Lake Notch",
+"lat": 39.3718126,
+"lon": -120.3281739,
+"elevation_ft": 8026
+},
+{
+"osm_id": 12697571340,
+"name": "Contact Pass",
+"lat": 39.3525348,
+"lon": -119.8998392,
+"elevation_ft": 9157
+},
+{
+"osm_id": 12873340629,
+"name": "Lawson Pass",
+"lat": 36.5651034,
+"lon": -118.5078679,
+"elevation_ft": 12330
+},
+{
+"osm_id": 13040013313,
+"name": "Lemonade Pass",
+"lat": 37.6902773,
+"lon": -119.4091572,
+"elevation_ft": 10449
+},
+{
+"osm_id": 13040013314,
+"name": "Sue Pass",
+"lat": 37.6748706,
+"lon": -119.3980126,
+"elevation_ft": 10301
+},
+{
+"osm_id": 13085262701,
+"name": "Keyes Peak Pass",
+"lat": 38.1423769,
+"lon": -119.5836014,
+"elevation_ft": 10169
+},
+{
+"osm_id": 13085262702,
+"name": "Tower Peak Pass",
+"lat": 38.1353171,
+"lon": -119.5524596,
+"elevation_ft": 10611
+},
+{
+"osm_id": 13085262703,
+"name": "Shelf Pass",
+"lat": 38.1294994,
+"lon": -119.5256737,
+"elevation_ft": 10760
+},
+{
+"osm_id": 13085262704,
+"name": "Willow Pass",
+"lat": 38.1229901,
+"lon": -119.4964939,
+"elevation_ft": 10085
+},
+{
+"osm_id": 13085262705,
+"name": "Rock Island Lake Pass",
+"lat": 38.0880899,
+"lon": -119.4698328,
+"elevation_ft": 10130
+},
+{
+"osm_id": 13208968707,
+"name": "Burro Lake Pass",
+"lat": 38.03692,
+"lon": -119.28582,
+"elevation_ft": 11352
+}
+]
+}

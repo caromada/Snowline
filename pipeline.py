@@ -67,11 +67,26 @@ def _curve(obs: list[dict[str, Any]], metric: str, provenance: str | None = None
         for o in obs
         if o["metric"] == metric and (provenance is None or o["provenance"] == provenance)
     ]
-    # One point per date per provenance, latest wins.
+    # One point per date per provenance, latest wins; then group per station
+    # as [date, value] pairs thinned to every third day. Sparklines need no
+    # more, and the compact form keeps 500 exports honest in size.
     seen: dict[tuple[str, str], dict] = {}
     for p in points:
         seen[(p["date"], p["provenance"])] = p
-    return sorted(seen.values(), key=lambda p: str(p["date"]))
+    by_prov: dict[str, list[list]] = {}
+    for p in sorted(seen.values(), key=lambda p: str(p["date"])):
+        by_prov.setdefault(p["provenance"], []).append(
+            [p["date"], round(float(p["value"]), 1)]
+        )
+    return [
+        {
+            "provenance": prov,
+            "points": [
+                pt for i, pt in enumerate(pts) if i % 3 == 0 or i == len(pts) - 1
+            ],
+        }
+        for prov, pts in by_prov.items()
+    ]
 
 
 def _vignette_params(result: dict[str, Any], pass_info: dict[str, Any]) -> dict[str, Any]:
@@ -113,31 +128,68 @@ def export(store: Store | None = None) -> None:
 
     reports_by_pass = _reports_by_pass(store)
 
+    # Sensor rows are stored once per station; passes join to them through
+    # the link tables at read time, annotated with their own distance.
+    from ingest import cdec as cdec_mod
+    from ingest import snotel as snotel_mod
+    from ingest import usgs as usgs_mod
+
+    links_by_stream = {
+        "cdec": cdec_mod.pass_links(store),
+        "snotel": snotel_mod.pass_links(store),
+        "usgs": usgs_mod.pass_links(store),
+    }
+    station_cache: dict[str, list[dict[str, Any]]] = {}
+
+    def station_rows(stream: str, link: dict[str, Any]) -> list[dict[str, Any]]:
+        key = f"@{link['provenance']}"
+        if key not in station_cache:
+            station_cache[key] = store.observations(key, stream=stream)
+        return [
+            {**o, "meta": {**o["meta"], "distance_km": link["distance_km"]}}
+            for o in station_cache[key]
+        ]
+
     passes_out: list[dict[str, Any]] = []
     (WEB_DATA_DIR / "pass").mkdir(parents=True, exist_ok=True)
 
     for p in load_passes():
         slug = p["slug"]
-        sensor_obs = [
+        snow_rows = [
             o
-            for o in store.observations(slug)
-            if o["stream"] in ("cdec", "snotel") and o["metric"] == "swe_in"
+            for stream in ("cdec", "snotel")
+            for link in links_by_stream[stream].get(slug, [])
+            for o in station_rows(stream, link)
         ]
-        depth_obs = [
-            o
-            for o in store.observations(slug)
-            if o["stream"] in ("cdec", "snotel") and o["metric"] == "snow_depth_in"
-        ]
+        sensor_obs = [o for o in snow_rows if o["metric"] == "swe_in"]
         satellite_obs = [o for o in store.observations(slug, stream="satellite")]
-        gauge_obs = [o for o in store.observations(slug, stream="usgs")]
+        gauge_obs = [
+            o
+            for link in links_by_stream["usgs"].get(slug, [])
+            for o in station_rows("usgs", link)
+        ]
         reports = reports_by_pass.get(slug, [])
 
         statuses: dict[str, Any] = {}
         for d in dates:
             result = fuse(p, d, sensor_obs, satellite_obs, gauge_obs, reports)
             result["vignette"] = _vignette_params(result, p)
+            # The scored per-report breakdown embeds full post texts; the
+            # ledger carries those once, so strip them from every date.
+            if result["components"].get("reports"):
+                result["components"]["reports"] = {
+                    k: v
+                    for k, v in result["components"]["reports"].items()
+                    if k != "reports"
+                }
             store.put_fused(slug, d, result)
-            statuses[d] = result
+            statuses[d] = {
+                k: result[k]
+                for k in (
+                    "pass_slug", "eval_date", "status", "status_label", "severity",
+                    "confidence", "confidence_score", "conflicts", "facts", "vignette",
+                )
+            }
 
         ledger = _ledger(sensor_obs, satellite_obs, gauge_obs, reports)
         detail = {
@@ -148,9 +200,7 @@ def export(store: Store | None = None) -> None:
             "ledger": ledger,
             "curves": {
                 "swe_in": _curve(sensor_obs, "swe_in"),
-                "snow_depth_in": _curve(depth_obs, "snow_depth_in"),
                 "discharge_cfs": _curve(gauge_obs, "discharge_cfs"),
-                "diurnal_swing_pct": _curve(gauge_obs, "diurnal_swing_pct"),
                 "snow_cover_frac": _curve(satellite_obs, "snow_cover_frac"),
             },
         }
@@ -160,14 +210,13 @@ def export(store: Store | None = None) -> None:
             {
                 **{
                     k: p[k]
-                    for k in ("slug", "name", "elevation_ft", "lat", "lon", "polygon", "aliases")
+                    for k in ("slug", "name", "elevation_ft", "lat", "lon", "aliases", "tier")
                 },
                 "statuses": {
                     d: {
                         "status": s["status"],
                         "status_label": s["status_label"],
                         "confidence": s["confidence"],
-                        "vignette": s["vignette"],
                     }
                     for d, s in statuses.items()
                 },
@@ -217,7 +266,7 @@ def _ledger(
         rows = [o for o in obs if o["metric"] == metric]
         by_week: dict[str, dict[str, Any]] = {}
         for o in rows:
-            week = f"{o['observed_date'][:7]}-w{(int(o['observed_date'][8:10]) - 1) // 7}"
+            week = f"{o['observed_date'][:7]}-w{(int(o['observed_date'][8:10]) - 1) // 14}"
             key = f"{week}:{o['provenance']}"
             prev = by_week.get(key)
             if prev is None or o["observed_date"] > prev["observed_date"]:
@@ -263,7 +312,14 @@ def _ledger(
             }
         )
     entries.sort(key=lambda e: str(e["date"]), reverse=True)
-    return entries
+    # Reports always ride along; sensor checkpoints cap so four seasons of
+    # weekly rows don't swamp the payload.
+    reports_all = [e for e in entries if e["source"] == "report"]
+    sensors_capped = [e for e in entries if e["source"] != "report"][:150]
+    merged = sorted(
+        reports_all + sensors_capped, key=lambda e: str(e["date"]), reverse=True
+    )
+    return merged
 
 
 if __name__ == "__main__":

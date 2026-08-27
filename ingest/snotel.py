@@ -62,10 +62,27 @@ def link_stations(stations: list[dict[str, Any]]) -> dict[str, list[dict[str, An
     return links
 
 
+def pass_links(store: Store) -> dict[str, list[dict[str, Any]]]:
+    """slug -> linked stations with provenance keys, for read-time joins."""
+    return {
+        slug: [
+            {
+                "provenance": f"snotel:{s['stationTriplet']}",
+                "name": s["name"],
+                "elevation_ft": s.get("elevation"),
+                "distance_km": s["distance_km"],
+            }
+            for s in linked
+        ]
+        for slug, linked in link_stations(discover_stations(store)).items()
+    }
+
+
 def ingest_daily(store: Store, begin: str, end: str) -> int:
-    """Fetch daily SWE/depth for all linked stations and store observations."""
+    """Daily SWE/depth, one row per station per day, keyed "@snotel:TRIPLET"."""
     links = link_stations(discover_stations(store))
-    triplets = sorted({s["stationTriplet"] for linked in links.values() for s in linked})
+    stations = {s["stationTriplet"]: s for linked in links.values() for s in linked}
+    triplets = sorted(stations)
     if not triplets:
         log.warning("no SNOTEL stations in range of any pass")
         return 0
@@ -87,36 +104,34 @@ def ingest_daily(store: Store, begin: str, end: str) -> int:
         series[entry["stationTriplet"]] = entry.get("data", [])
 
     count = 0
-    for slug, linked in links.items():
-        for st in linked:
-            for element in series.get(st["stationTriplet"], []):
-                code = element.get("stationElement", {}).get("elementCode")
-                metric = METRIC_BY_ELEMENT.get(code)
-                if not metric:
+    for triplet, st in stations.items():
+        for element in series.get(triplet, []):
+            code = element.get("stationElement", {}).get("elementCode")
+            metric = METRIC_BY_ELEMENT.get(code)
+            if not metric:
+                continue
+            for v in element.get("values", []):
+                if v.get("value") is None:
                     continue
-                for v in element.get("values", []):
-                    if v.get("value") is None:
-                        continue
-                    store.add_observation(
-                        pass_slug=slug,
-                        stream="snotel",
-                        metric=metric,
-                        observed_date=v["date"],
-                        value=float(v["value"]),
-                        unit="in",
-                        provenance=f"snotel:{st['stationTriplet']}",
-                        raw_fetch_id=raw_id,
-                        geom={
-                            "type": "Point",
-                            "coordinates": [st["longitude"], st["latitude"]],
-                        },
-                        meta={
-                            "station_name": st["name"],
-                            "station_elevation_ft": st.get("elevation"),
-                            "distance_km": st["distance_km"],
-                        },
-                    )
-                    count += 1
+                store.add_observation(
+                    pass_slug=f"@snotel:{triplet}",
+                    stream="snotel",
+                    metric=metric,
+                    observed_date=v["date"],
+                    value=float(v["value"]),
+                    unit="in",
+                    provenance=f"snotel:{triplet}",
+                    raw_fetch_id=raw_id,
+                    geom={
+                        "type": "Point",
+                        "coordinates": [st["longitude"], st["latitude"]],
+                    },
+                    meta={
+                        "station_name": st["name"],
+                        "station_elevation_ft": st.get("elevation"),
+                    },
+                )
+                count += 1
     log.info("snotel: %d observations from %d stations", count, len(triplets))
     return count
 

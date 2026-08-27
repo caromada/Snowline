@@ -30,12 +30,13 @@ def load_passes() -> list[dict[str, Any]]:
 
 @lru_cache(maxsize=1)
 def _alias_index() -> dict[str, str]:
+    # First wins: featured passes come first in passes.json, so their
+    # aliases beat any OSM entry that shares a name fragment.
     index: dict[str, str] = {}
     for p in load_passes():
-        index[_norm(p["name"])] = p["slug"]
-        index[_norm(p["slug"])] = p["slug"]
-        for alias in p["aliases"]:
-            index[_norm(alias)] = p["slug"]
+        for key in (_norm(p["name"]), _norm(p["slug"]), *(_norm(a) for a in p["aliases"])):
+            if key and key not in index:
+                index[key] = p["slug"]
     return index
 
 

@@ -1,15 +1,24 @@
-"""Build gazetteer/passes.json: 15 Sierra passes with polygons and aliases.
+"""Build gazetteer/passes.json: the whole Sierra.
 
-Coordinates are approximate saddle locations (within ~1 km). Polygons are
-octagonal buffers around the saddle, sized to cover the approach bowls that
-satellite sampling cares about.
+Two tiers merge here:
+- featured: the hand-curated High Sierra passes with aliases, creek names,
+  and aspect notes (coordinates approximate saddle locations, within ~1 km)
+- osm: every other named mountain pass and saddle in the range, pulled from
+  OpenStreetMap (gazetteer/osm_passes.json, via scripts.fetch_osm_passes)
+
+Polygons are octagonal buffers around the saddle, sized to cover the
+approach bowls that satellite sampling cares about. Featured entries win
+alias collisions and absorb OSM duplicates by proximity.
 """
 
 from __future__ import annotations
 
 import json
 import math
+import re
 from pathlib import Path
+
+from ingest.geo import haversine_km
 
 PASSES: list[dict] = [
     {
@@ -365,9 +374,65 @@ def octagon(lat: float, lon: float, radius_m: float) -> list[list[float]]:
     return ring
 
 
+DUPLICATE_KM = 1.5
+
+
+def _slugify(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+def load_osm_nodes(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    return json.loads(path.read_text())["nodes"]
+
+
+def merge_osm(featured: list[dict], osm_nodes: list[dict]) -> list[dict]:
+    """OSM entries that are not duplicates of a featured pass, slug-deduped."""
+    merged: list[dict] = []
+    taken = {p["slug"] for p in featured}
+    names = {p["name"].lower() for p in featured}
+    for node in sorted(osm_nodes, key=lambda n: n["name"]):
+        if node["elevation_ft"] is None:
+            continue
+        if node["name"].lower() in names:
+            continue
+        if any(
+            haversine_km(node["lat"], node["lon"], p["lat"], p["lon"]) < DUPLICATE_KM
+            for p in featured
+        ):
+            continue
+        slug = _slugify(node["name"])
+        if slug in taken:
+            slug = f"{slug}-{node['osm_id']}"
+        taken.add(slug)
+        aliases = [node["name"].lower()]
+        short = re.sub(r"\s+(pass|saddle|gap|col)$", "", node["name"].lower())
+        if short != node["name"].lower():
+            aliases.append(short)
+        merged.append(
+            {
+                "slug": slug,
+                "name": node["name"],
+                "elevation_ft": node["elevation_ft"],
+                "lat": round(node["lat"], 6),
+                "lon": round(node["lon"], 6),
+                "aliases": aliases,
+                "creek": "",
+                "aspect_note": "",
+                "tier": "osm",
+                "osm_id": node["osm_id"],
+            }
+        )
+    return merged
+
+
 def main() -> None:
+    root = Path(__file__).resolve().parent.parent / "gazetteer"
+    featured = [{**p, "tier": "featured"} for p in PASSES]
+    entries = featured + merge_osm(featured, load_osm_nodes(root / "osm_passes.json"))
     features = []
-    for p in PASSES:
+    for p in entries:
         features.append(
             {
                 **p,
@@ -377,10 +442,11 @@ def main() -> None:
                 },
             }
         )
-    out = Path(__file__).resolve().parent.parent / "gazetteer" / "passes.json"
+    out = root / "passes.json"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"passes": features}, indent=1) + "\n")
-    print(f"wrote {out} ({len(features)} passes)")
+    out.write_text(json.dumps({"passes": features}, indent=0) + "\n")
+    tiers = sum(1 for f in features if f["tier"] == "featured")
+    print(f"wrote {out} ({len(features)} passes, {tiers} featured)")
 
 
 if __name__ == "__main__":

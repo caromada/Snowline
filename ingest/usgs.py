@@ -21,7 +21,7 @@ log = logging.getLogger(__name__)
 NWIS_SITE_URL = "https://waterservices.usgs.gov/nwis/site/"
 NWIS_DV_URL = "https://waterservices.usgs.gov/nwis/dv/"
 NWIS_IV_URL = "https://waterservices.usgs.gov/nwis/iv/"
-BBOX = "-119.500000,36.400000,-118.200000,38.100000"
+BBOX = "-120.800000,35.400000,-117.800000,39.800000"
 MAX_SITE_KM = 30.0
 MAX_SITES_PER_PASS = 2
 # Skip conveyance infrastructure; we want creeks, not ditches.
@@ -84,9 +84,26 @@ def link_sites(sites: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
     return links
 
 
+def pass_links(store: Store) -> dict[str, list[dict[str, Any]]]:
+    """slug -> linked gauges with provenance keys, for read-time joins."""
+    return {
+        slug: [
+            {
+                "provenance": f"usgs:{s['site_no']}",
+                "name": s["name"],
+                "distance_km": s["distance_km"],
+            }
+            for s in linked
+        ]
+        for slug, linked in link_sites(discover_sites(store)).items()
+    }
+
+
 def ingest_daily(store: Store, begin: str, end: str) -> int:
+    """Daily discharge, one row per gauge per day, keyed "@usgs:SITE"."""
     links = link_sites(discover_sites(store))
-    site_nos = sorted({s["site_no"] for linked in links.values() for s in linked})
+    sites = {s["site_no"]: s for linked in links.values() for s in linked}
+    site_nos = sorted(sites)
     if not site_nos:
         log.warning("no USGS sites in range of any pass")
         return 0
@@ -120,24 +137,23 @@ def ingest_daily(store: Store, begin: str, end: str) -> int:
                 daily.setdefault(site_no, {}).setdefault(date, {})[stat] = float(v["value"])
 
     count = 0
-    for slug, linked in links.items():
-        for site in linked:
-            for date, stats in daily.get(site["site_no"], {}).items():
-                geom = {"type": "Point", "coordinates": [site["lon"], site["lat"]]}
-                meta = {"site_name": site["name"], "distance_km": site["distance_km"]}
-                if "mean" in stats:
-                    store.add_observation(
-                        slug, "usgs", "discharge_cfs", date, stats["mean"], "cfs",
-                        f"usgs:{site['site_no']}", raw_id, geom, meta,
-                    )
-                    count += 1
-                if "max" in stats and "min" in stats and stats.get("mean", 0) > 0:
-                    swing = (stats["max"] - stats["min"]) / stats["mean"] * 100.0
-                    store.add_observation(
-                        slug, "usgs", "diurnal_swing_pct", date, round(swing, 1), "%",
-                        f"usgs:{site['site_no']}", raw_id, geom, meta,
-                    )
-                    count += 1
+    for site_no, site in sites.items():
+        for date, stats in daily.get(site_no, {}).items():
+            geom = {"type": "Point", "coordinates": [site["lon"], site["lat"]]}
+            meta = {"site_name": site["name"]}
+            if "mean" in stats:
+                store.add_observation(
+                    f"@usgs:{site_no}", "usgs", "discharge_cfs", date, stats["mean"], "cfs",
+                    f"usgs:{site_no}", raw_id, geom, meta,
+                )
+                count += 1
+            if "max" in stats and "min" in stats and stats.get("mean", 0) > 0:
+                swing = (stats["max"] - stats["min"]) / stats["mean"] * 100.0
+                store.add_observation(
+                    f"@usgs:{site_no}", "usgs", "diurnal_swing_pct", date, round(swing, 1), "%",
+                    f"usgs:{site_no}", raw_id, geom, meta,
+                )
+                count += 1
     log.info("usgs: %d observations from %d sites", count, len(site_nos))
     return count
 
@@ -153,11 +169,15 @@ def ingest_diurnal(store: Store, begin: str, end: str) -> int:
     import hashlib
 
     from config import RAW_DIR
+    from gazetteer import load_passes
 
+    # The 15-minute pulls are heavy, so only featured passes' nearest gauges
+    # get the melt-pulse treatment; every pass still gets daily discharge.
+    featured = {p["slug"] for p in load_passes() if p.get("tier", "featured") == "featured"}
     links = link_sites(discover_sites(store))
     nearest: dict[str, dict[str, Any]] = {}
-    for linked in links.values():
-        if linked:
+    for slug, linked in links.items():
+        if slug in featured and linked:
             site = linked[0]
             nearest[site["site_no"]] = site
     count = 0
@@ -200,23 +220,19 @@ def ingest_diurnal(store: Store, begin: str, end: str) -> int:
                     if val < 0:
                         continue
                     daily.setdefault(v["dateTime"][:10], []).append(val)
-        for slug, linked in links.items():
-            if not linked or linked[0]["site_no"] != site_no:
+        for date, vals in sorted(daily.items()):
+            if len(vals) < 24:
                 continue
-            for date, vals in sorted(daily.items()):
-                if len(vals) < 24:
-                    continue
-                mean = sum(vals) / len(vals)
-                if mean <= 0:
-                    continue
-                swing = (max(vals) - min(vals)) / mean * 100.0
-                store.add_observation(
-                    slug, "usgs", "diurnal_swing_pct", date, round(swing, 1), "%",
-                    f"usgs:{site_no}", raw_id,
-                    {"type": "Point", "coordinates": [site["lon"], site["lat"]]},
-                    {"site_name": site["name"], "distance_km": site["distance_km"],
-                     "readings": len(vals)},
-                )
-                count += 1
+            mean = sum(vals) / len(vals)
+            if mean <= 0:
+                continue
+            swing = (max(vals) - min(vals)) / mean * 100.0
+            store.add_observation(
+                f"@usgs:{site_no}", "usgs", "diurnal_swing_pct", date, round(swing, 1), "%",
+                f"usgs:{site_no}", raw_id,
+                {"type": "Point", "coordinates": [site["lon"], site["lat"]]},
+                {"site_name": site["name"], "readings": len(vals)},
+            )
+            count += 1
     log.info("usgs iv: %d diurnal swing observations from %d sites", count, len(nearest))
     return count

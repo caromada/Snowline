@@ -429,7 +429,7 @@ def _facts(
         facts.append(
             {
                 "text": (
-                    f"{pass_info.get('creek', 'The creek')} gauge reads "
+                    f"{pass_info.get('creek') or 'The nearest creek'} gauge reads "
                     f"{round(crossing['flow_cfs'])} cfs{trend}.{melt}"
                 ),
                 "stream": "gauge",

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { glyphBySource } from "@/lib/pixel";
-import type { CurvePoint, LedgerEntry } from "@/lib/types";
+import type { CurvePoint, CurveSeries, LedgerEntry } from "@/lib/types";
 import PixelGlyph from "./PixelGlyph";
 import Sparkline from "./Sparkline";
 
@@ -18,16 +18,17 @@ function Entry({
   isNew,
 }: {
   entry: LedgerEntry;
-  curves: Record<string, CurvePoint[]>;
+  curves: Record<string, CurveSeries[]>;
   isNew: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const d = entry.detail;
   const curveSpec = CURVE_BY_SOURCE[entry.source];
-  const curve = curveSpec
-    ? (curves[curveSpec.key] ?? []).filter(
-        (p) => !d.provenance || p.provenance === d.provenance,
-      )
+  const series = curveSpec ? (curves[curveSpec.key] ?? []) : [];
+  const match =
+    series.find((s) => s.provenance === d.provenance) ?? series[0];
+  const curve: CurvePoint[] = match
+    ? match.points.map(([date, value]) => ({ date, value }))
     : [];
 
   return (
@@ -166,7 +167,7 @@ export default function EvidenceLedger({
   evalDate,
 }: {
   ledger: LedgerEntry[];
-  curves: Record<string, CurvePoint[]>;
+  curves: Record<string, CurveSeries[]>;
   evalDate: string;
 }) {
   // The register shows what existed by the selected date, newest first.

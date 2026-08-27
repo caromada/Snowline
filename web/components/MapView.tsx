@@ -2,7 +2,7 @@
 
 import * as maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Bundlers resolve MapLibre's worker inconsistently; serving it as a plain
 // static file sidesteps all of that.
@@ -61,7 +61,7 @@ function markerElement(
   const dotWrap = document.createElement("div");
   dotWrap.style.cssText = "position:relative;width:34px;height:34px;";
   const dot = document.createElement("div");
-  const size = selected ? 12 : 10;
+  const size = selected ? 12 : p.tier === "osm" ? 7 : 10;
   dot.style.cssText = `position:absolute;left:50%;top:50%;width:${size}px;height:${size}px;` +
     `transform:translate(-50%,-50%);background:${color};` +
     `box-shadow:0 0 0 2px ${palette.deepPine};`;
@@ -135,6 +135,10 @@ export default function MapView({
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const markersRef = useRef<maplibregl.Marker[]>([]);
+  // 500+ OSM passes only materialize as markers once the viewer leans in;
+  // at range scale the featured set carries the map.
+  const [nearZoom, setNearZoom] = useState(false);
+  const [savedVersion, setSavedVersion] = useState(0);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -142,8 +146,8 @@ export default function MapView({
       container: containerRef.current,
       style: MAP_STYLE,
       bounds: [
-        [-119.55, 36.5],
-        [-118.05, 37.95],
+        [-120.6, 35.8],
+        [-118.0, 39.5],
       ],
       fitBoundsOptions: { padding: 40 },
       attributionControl: { compact: true },
@@ -152,10 +156,9 @@ export default function MapView({
     // Below this zoom the southern passes sit label-on-label; keep only the
     // selected name until the viewer leans in.
     const syncZoom = () => {
-      containerRef.current?.setAttribute(
-        "data-zoom",
-        map.getZoom() < 8.6 ? "far" : "near",
-      );
+      const near = map.getZoom() >= 8.6;
+      containerRef.current?.setAttribute("data-zoom", near ? "near" : "far");
+      setNearZoom(near);
     };
     map.on("zoom", syncZoom);
     map.on("load", syncZoom);
@@ -173,8 +176,8 @@ export default function MapView({
       map.resize();
       map.fitBounds(
         [
-          [-119.55, 36.5],
-          [-118.05, 37.95],
+          [-120.6, 35.8],
+          [-118.0, 39.5],
         ],
         { padding: 40, duration: 0 },
       );
@@ -197,11 +200,21 @@ export default function MapView({
   }, []);
 
   useEffect(() => {
+    const handler = () => setSavedVersion((v) => v + 1);
+    window.addEventListener("sierra-saved-changed", handler);
+    return () => window.removeEventListener("sierra-saved-changed", handler);
+  }, []);
+
+  useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
     markersRef.current.forEach((m) => m.remove());
     const savedSet = new Set(loadSaved());
-    markersRef.current = passes.map((p) => {
+    const visible = passes.filter(
+      (p) =>
+        nearZoom || p.tier === "featured" || p.slug === selected || savedSet.has(p.slug),
+    );
+    markersRef.current = visible.map((p) => {
       const el = markerElement(p, evalDate, p.slug === selected, savedSet.has(p.slug));
       const activate = (e: Event) => {
         e.stopPropagation();
@@ -215,29 +228,7 @@ export default function MapView({
         .setLngLat([p.lon, p.lat])
         .addTo(map);
     });
-  }, [passes, evalDate, selected, onSelect]);
-
-  // Re-render markers when saved passes change (the tent badges).
-  useEffect(() => {
-    const handler = () => {
-      const map = mapRef.current;
-      if (!map) return;
-      markersRef.current.forEach((m) => m.remove());
-      const savedSet = new Set(loadSaved());
-      markersRef.current = passes.map((p) => {
-        const el = markerElement(p, evalDate, p.slug === selected, savedSet.has(p.slug));
-        el.addEventListener("click", (e) => {
-          e.stopPropagation();
-          onSelect(p.slug);
-        });
-        return new maplibregl.Marker({ element: el, anchor: "center" })
-          .setLngLat([p.lon, p.lat])
-          .addTo(map);
-      });
-    };
-    window.addEventListener("sierra-saved-changed", handler);
-    return () => window.removeEventListener("sierra-saved-changed", handler);
-  }, [passes, evalDate, selected, onSelect]);
+  }, [passes, evalDate, selected, onSelect, nearZoom, savedVersion]);
 
   return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} aria-label="Map" />;
 }

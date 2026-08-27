@@ -3,12 +3,15 @@ from gazetteer import get_pass, load_passes, resolve
 
 def test_all_passes_have_polygons() -> None:
     passes = load_passes()
-    assert len(passes) == 33
+    assert len(passes) >= 500
+    assert sum(1 for p in passes if p["tier"] == "featured") == 33
+    slugs = [p["slug"] for p in passes]
+    assert len(slugs) == len(set(slugs))
     for p in passes:
         ring = p["polygon"]["coordinates"][0]
         assert ring[0] == ring[-1]
         assert len(ring) == 9
-        assert p["elevation_ft"] > 10000
+        assert isinstance(p["elevation_ft"], int)
 
 
 def test_exact_and_alias_resolution() -> None:

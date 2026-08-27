@@ -18,7 +18,6 @@ export interface PassStatusSummary {
   status: Status;
   status_label: string;
   confidence: "high" | "moderate" | "low";
-  vignette: VignetteParams;
 }
 
 export interface PassIndexEntry {
@@ -28,7 +27,7 @@ export interface PassIndexEntry {
   lat: number;
   lon: number;
   aliases: string[];
-  polygon: { type: "Polygon"; coordinates: number[][][] };
+  tier: "featured" | "osm";
   statuses: Record<string, PassStatusSummary>;
 }
 
@@ -89,12 +88,12 @@ export interface FusedStatus {
   conflicts: string[];
   facts: Fact[];
   vignette: VignetteParams;
-  components: {
+  components?: {
     sensor: { swe_in: number; age_days: number; trend_in_per_day: number | null } | null;
     satellite: { cover_frac: number; age_days: number; modeled: boolean } | null;
     reports: { n_reports: number; severity: number; age_days: number } | null;
   };
-  crossing: {
+  crossing?: {
     worst_reported: string | null;
     flow_cfs: number | null;
     flow_trend: string | null;
@@ -106,7 +105,11 @@ export interface FusedStatus {
 export interface CurvePoint {
   date: string;
   value: number;
+}
+
+export interface CurveSeries {
   provenance: string;
+  points: [string, number][];
 }
 
 export interface PassDetail {
@@ -123,5 +126,5 @@ export interface PassDetail {
   dates: string[];
   statuses: Record<string, FusedStatus>;
   ledger: LedgerEntry[];
-  curves: Record<string, CurvePoint[]>;
+  curves: Record<string, CurveSeries[]>;
 }
