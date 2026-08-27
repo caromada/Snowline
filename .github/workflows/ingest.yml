@@ -17,21 +17,22 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
-      - name: Ingest trailing week of sensor data
-        run: |
-          python -m scripts.backfill "$(date -u -d '8 days ago' +%F)" "$(date -u +%F)"
+      # The SQLite store is not committed; every run rebuilds it from the
+      # live APIs (all melt seasons 2023 through today).
+      - name: Ingest sensor data
+        run: python -m scripts.backfill
       - name: Extract any new forum posts
-        if: env.ANTHROPIC_API_KEY != ''
+        if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LLM_BUDGET_USD: "1.00"
         run: python -m scripts.extract_corpus --engine api
       - name: Fuse and export
         run: python pipeline.py
-      - name: Commit refreshed data
+      - name: Commit refreshed exports
         run: |
           git config user.name "sierra-pass-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data web/public/data
+          git add web/public/data data/extractions
           git diff --cached --quiet || git commit -m "Daily ingest $(date -u +%F)"
           git push

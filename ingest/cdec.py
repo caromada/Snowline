@@ -32,6 +32,8 @@ DATA_URL = "https://cdec.water.ca.gov/dynamicapp/req/JSONDataServlet"
 CANDIDATE_STATIONS = [
     "CRL", "BSH", "UBC", "BGP", "SWM", "BCB", "MHP", "GEM", "AGP",
     "DAN", "TUM", "VLC", "STL", "TNY", "SLI", "VRG",
+    # Southern Sierra (Kern, Kaweah, Mineral King, Cottonwood country).
+    "FRW", "CBP", "WTM", "PSC", "QUA", "CBT", "MTM", "BIP",
 ]
 MAX_STATION_KM = 45.0
 MAX_STATIONS_PER_PASS = 3

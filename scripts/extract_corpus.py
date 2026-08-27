@@ -13,7 +13,7 @@ import argparse
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from config import DB_PATH
+from config import DB_PATH, EXTRACTIONS_CACHE
 from extraction.extractor import Budget, post_hash, run_extraction
 from ingest.forums import load_corpus
 from store import Store
@@ -29,6 +29,7 @@ def main() -> None:
     args = parser.parse_args()
 
     store = Store(DB_PATH)
+    store.load_extractions(EXTRACTIONS_CACHE)
     budget = Budget()
     posts = load_corpus()
     pending = [p for p in posts if store.get_extraction(post_hash(p["text"])) is None]
@@ -56,7 +57,8 @@ def main() -> None:
                 t_out,
             )
             print(f"done {post['id']} ({model_used})")
-    print(f"complete: {len(pending) - failures} extracted, {failures} failed")
+    dumped = store.dump_extractions(EXTRACTIONS_CACHE)
+    print(f"complete: {len(pending) - failures} extracted, {failures} failed, {dumped} cached")
 
 
 if __name__ == "__main__":

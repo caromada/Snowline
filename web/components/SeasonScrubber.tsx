@@ -27,7 +27,7 @@ export default function SeasonScrubber({
       }}
     >
       <label className="display" htmlFor="season" style={{ fontSize: 10, color: "var(--sage)" }}>
-        Season · {isToday ? "today" : "melt 2023"}
+        Season · {isToday ? "today" : `melt ${value.slice(0, 4)}`}
       </label>
       <input
         id="season"

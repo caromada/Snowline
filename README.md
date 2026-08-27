@@ -79,6 +79,8 @@ cp .env.example .env                      # add ANTHROPIC_API_KEY
 
 The GitHub Actions cron (`.github/workflows/ingest.yml`) refreshes sensor data daily and re-exports; the API key secret is optional there too.
 
-Passes covered: Kearsarge, Bishop, Piute, Mono, Duck, Taboose, Sawmill, Baxter, Shepherd, Glen, Muir, Mather, Pinchot, Forester, Donohue.
+33 passes covered, Cottonwood to Vogelsang: the JMT/PCT chain (Forester, Glen, Pinchot, Mather, Muir, Selden, Silver, Donohue and friends), the eastside escape routes (Kearsarge, Bishop, Piute, Taboose, Sawmill, Baxter, Shepherd, Mono, Duck), the southern country (Trail Crest, New Army, Cottonwood, Colby, Franklin, Sawtooth, Kaweah Gap, Elizabeth, Granite), the cross-country classics (Lamarck Col, Italy, Pine Creek, Hell For Sure, McGee), and the Yosemite high country (Parker, Vogelsang).
+
+The data window runs from the 2023 monster snow year through today: every melt season is ingested in full, and the daily cron rebuilds the store from the live APIs each morning, re-fuses, and redeploys, so "today" on the scrubber is always the mountain as the sensors currently see it. The SQLite store itself stays out of git because it is reproducible from the APIs; the LLM extraction cache (`data/extractions/cache.jsonl`) is the one paid-for artifact and ships committed.
 
 Not a safety product. Conditions change by the hour up there; read the primary sources this thing links you to, and make your own call at the base of the chute.

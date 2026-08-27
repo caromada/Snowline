@@ -859,6 +859,1025 @@
      ]
     ]
    }
+  },
+  {
+   "slug": "cottonwood",
+   "name": "Cottonwood Pass",
+   "elevation_ft": 11160,
+   "lat": 36.4432,
+   "lon": -118.2237,
+   "aliases": [
+    "cottonwood",
+    "cottonwood pass",
+    "horseshoe meadows pass"
+   ],
+   "creek": "Cottonwood Creek",
+   "aspect_note": "gentle grade from Horseshoe Meadows, one of the first to open",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.21751,
+       36.445263
+      ],
+      [
+       -118.221136,
+       36.44818
+      ],
+      [
+       -118.226264,
+       36.44818
+      ],
+      [
+       -118.22989,
+       36.445263
+      ],
+      [
+       -118.22989,
+       36.441137
+      ],
+      [
+       -118.226264,
+       36.43822
+      ],
+      [
+       -118.221136,
+       36.43822
+      ],
+      [
+       -118.21751,
+       36.441137
+      ],
+      [
+       -118.21751,
+       36.445263
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "new-army",
+   "name": "New Army Pass",
+   "elevation_ft": 12315,
+   "lat": 36.457,
+   "lon": -118.223,
+   "aliases": [
+    "new army",
+    "new army pass",
+    "army pass"
+   ],
+   "creek": "Cottonwood Creek / Rock Creek (south)",
+   "aspect_note": "north-facing switchbacks ice over early and late in season",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.216809,
+       36.459063
+      ],
+      [
+       -118.220436,
+       36.46198
+      ],
+      [
+       -118.225564,
+       36.46198
+      ],
+      [
+       -118.229191,
+       36.459063
+      ],
+      [
+       -118.229191,
+       36.454937
+      ],
+      [
+       -118.225564,
+       36.45202
+      ],
+      [
+       -118.220436,
+       36.45202
+      ],
+      [
+       -118.216809,
+       36.454937
+      ],
+      [
+       -118.216809,
+       36.459063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "trail-crest",
+   "name": "Trail Crest",
+   "elevation_ft": 13645,
+   "lat": 36.5622,
+   "lon": -118.2932,
+   "aliases": [
+    "trail crest",
+    "whitney trail crest",
+    "the crest on whitney"
+   ],
+   "creek": "Lone Pine Creek",
+   "aspect_note": "the ninety-nine switchbacks and their cables hold ice into July",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.287,
+       36.564263
+      ],
+      [
+       -118.290632,
+       36.56718
+      ],
+      [
+       -118.295768,
+       36.56718
+      ],
+      [
+       -118.2994,
+       36.564263
+      ],
+      [
+       -118.2994,
+       36.560137
+      ],
+      [
+       -118.295768,
+       36.55722
+      ],
+      [
+       -118.290632,
+       36.55722
+      ],
+      [
+       -118.287,
+       36.560137
+      ],
+      [
+       -118.287,
+       36.564263
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "colby",
+   "name": "Colby Pass",
+   "elevation_ft": 12000,
+   "lat": 36.5728,
+   "lon": -118.444,
+   "aliases": [
+    "colby",
+    "colby pass"
+   ],
+   "creek": "Kern-Kaweah River",
+   "aspect_note": "remote Kaweah headwaters, reports are rare",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.4378,
+       36.574863
+      ],
+      [
+       -118.441432,
+       36.57778
+      ],
+      [
+       -118.446568,
+       36.57778
+      ],
+      [
+       -118.4502,
+       36.574863
+      ],
+      [
+       -118.4502,
+       36.570737
+      ],
+      [
+       -118.446568,
+       36.56782
+      ],
+      [
+       -118.441432,
+       36.56782
+      ],
+      [
+       -118.4378,
+       36.570737
+      ],
+      [
+       -118.4378,
+       36.574863
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "franklin",
+   "name": "Franklin Pass",
+   "elevation_ft": 11760,
+   "lat": 36.4166,
+   "lon": -118.553,
+   "aliases": [
+    "franklin",
+    "franklin pass"
+   ],
+   "creek": "Franklin Creek / Rattlesnake Creek",
+   "aspect_note": "sandy south side melts early, north side holds",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.546812,
+       36.418663
+      ],
+      [
+       -118.550437,
+       36.42158
+      ],
+      [
+       -118.555563,
+       36.42158
+      ],
+      [
+       -118.559188,
+       36.418663
+      ],
+      [
+       -118.559188,
+       36.414537
+      ],
+      [
+       -118.555563,
+       36.41162
+      ],
+      [
+       -118.550437,
+       36.41162
+      ],
+      [
+       -118.546812,
+       36.414537
+      ],
+      [
+       -118.546812,
+       36.418663
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "sawtooth",
+   "name": "Sawtooth Pass",
+   "elevation_ft": 11630,
+   "lat": 36.4528,
+   "lon": -118.5561,
+   "aliases": [
+    "sawtooth",
+    "sawtooth pass",
+    "glacier pass"
+   ],
+   "creek": "Monarch Creek",
+   "aspect_note": "loose and steep out of Mineral King, miserable in snow",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.549909,
+       36.454863
+      ],
+      [
+       -118.553536,
+       36.45778
+      ],
+      [
+       -118.558664,
+       36.45778
+      ],
+      [
+       -118.562291,
+       36.454863
+      ],
+      [
+       -118.562291,
+       36.450737
+      ],
+      [
+       -118.558664,
+       36.44782
+      ],
+      [
+       -118.553536,
+       36.44782
+      ],
+      [
+       -118.549909,
+       36.450737
+      ],
+      [
+       -118.549909,
+       36.454863
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "kaweah-gap",
+   "name": "Kaweah Gap",
+   "elevation_ft": 10700,
+   "lat": 36.554,
+   "lon": -118.548,
+   "aliases": [
+    "kaweah gap",
+    "kaweah",
+    "hamilton lakes gap"
+   ],
+   "creek": "Hamilton Creek / Big Arroyo",
+   "aspect_note": "the High Sierra Trail crux, cirque holds snow above Precipice Lake",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.541801,
+       36.556063
+      ],
+      [
+       -118.545432,
+       36.55898
+      ],
+      [
+       -118.550568,
+       36.55898
+      ],
+      [
+       -118.554199,
+       36.556063
+      ],
+      [
+       -118.554199,
+       36.551937
+      ],
+      [
+       -118.550568,
+       36.54902
+      ],
+      [
+       -118.545432,
+       36.54902
+      ],
+      [
+       -118.541801,
+       36.551937
+      ],
+      [
+       -118.541801,
+       36.556063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "elizabeth",
+   "name": "Elizabeth Pass",
+   "elevation_ft": 11375,
+   "lat": 36.6222,
+   "lon": -118.6222,
+   "aliases": [
+    "elizabeth",
+    "elizabeth pass"
+   ],
+   "creek": "Lone Pine Creek (Kings) / Deadman Canyon",
+   "aspect_note": "steep snowfinger on the Deadman Canyon side lingers",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.615996,
+       36.624263
+      ],
+      [
+       -118.61963,
+       36.62718
+      ],
+      [
+       -118.62477,
+       36.62718
+      ],
+      [
+       -118.628404,
+       36.624263
+      ],
+      [
+       -118.628404,
+       36.620137
+      ],
+      [
+       -118.62477,
+       36.61722
+      ],
+      [
+       -118.61963,
+       36.61722
+      ],
+      [
+       -118.615996,
+       36.620137
+      ],
+      [
+       -118.615996,
+       36.624263
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "granite",
+   "name": "Granite Pass",
+   "elevation_ft": 10673,
+   "lat": 36.914,
+   "lon": -118.545,
+   "aliases": [
+    "granite",
+    "granite pass"
+   ],
+   "creek": "Dougherty Creek / Copper Creek",
+   "aspect_note": "long dry climb out of Cedar Grove, snow only up top",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.538772,
+       36.916063
+      ],
+      [
+       -118.54242,
+       36.91898
+      ],
+      [
+       -118.54758,
+       36.91898
+      ],
+      [
+       -118.551228,
+       36.916063
+      ],
+      [
+       -118.551228,
+       36.911937
+      ],
+      [
+       -118.54758,
+       36.90902
+      ],
+      [
+       -118.54242,
+       36.90902
+      ],
+      [
+       -118.538772,
+       36.911937
+      ],
+      [
+       -118.538772,
+       36.916063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "hell-for-sure",
+   "name": "Hell For Sure Pass",
+   "elevation_ft": 11297,
+   "lat": 37.047,
+   "lon": -118.815,
+   "aliases": [
+    "hell for sure",
+    "hell for sure pass",
+    "hell-for-sure"
+   ],
+   "creek": "Fleming Creek / Goddard Canyon",
+   "aspect_note": "Red Mountain Basin approach, better than the name suggests",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.808761,
+       37.049063
+      ],
+      [
+       -118.812416,
+       37.05198
+      ],
+      [
+       -118.817584,
+       37.05198
+      ],
+      [
+       -118.821239,
+       37.049063
+      ],
+      [
+       -118.821239,
+       37.044937
+      ],
+      [
+       -118.817584,
+       37.04202
+      ],
+      [
+       -118.812416,
+       37.04202
+      ],
+      [
+       -118.808761,
+       37.044937
+      ],
+      [
+       -118.808761,
+       37.049063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "lamarck-col",
+   "name": "Lamarck Col",
+   "elevation_ft": 12880,
+   "lat": 37.1728,
+   "lon": -118.662,
+   "aliases": [
+    "lamarck",
+    "lamarck col",
+    "the col"
+   ],
+   "creek": "North Fork Bishop Creek / Darwin Canyon",
+   "aspect_note": "cross-country over the crest into Darwin Canyon, permanent snowfield on the east",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.655751,
+       37.174863
+      ],
+      [
+       -118.659411,
+       37.17778
+      ],
+      [
+       -118.664589,
+       37.17778
+      ],
+      [
+       -118.668249,
+       37.174863
+      ],
+      [
+       -118.668249,
+       37.170737
+      ],
+      [
+       -118.664589,
+       37.16782
+      ],
+      [
+       -118.659411,
+       37.16782
+      ],
+      [
+       -118.655751,
+       37.170737
+      ],
+      [
+       -118.655751,
+       37.174863
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "pine-creek",
+   "name": "Pine Creek Pass",
+   "elevation_ft": 11120,
+   "lat": 37.323,
+   "lon": -118.738,
+   "aliases": [
+    "pine creek",
+    "pine creek pass"
+   ],
+   "creek": "Pine Creek / French Canyon",
+   "aspect_note": "tungsten mine road start, gentle pass into French Canyon",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.731738,
+       37.325063
+      ],
+      [
+       -118.735406,
+       37.32798
+      ],
+      [
+       -118.740594,
+       37.32798
+      ],
+      [
+       -118.744262,
+       37.325063
+      ],
+      [
+       -118.744262,
+       37.320937
+      ],
+      [
+       -118.740594,
+       37.31802
+      ],
+      [
+       -118.735406,
+       37.31802
+      ],
+      [
+       -118.731738,
+       37.320937
+      ],
+      [
+       -118.731738,
+       37.325063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "italy",
+   "name": "Italy Pass",
+   "elevation_ft": 12350,
+   "lat": 37.364,
+   "lon": -118.783,
+   "aliases": [
+    "italy",
+    "italy pass",
+    "lake italy pass"
+   ],
+   "creek": "Pine Creek / Hilgard Branch",
+   "aspect_note": "talus cross-country over the crest to Lake Italy",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.776735,
+       37.366063
+      ],
+      [
+       -118.780405,
+       37.36898
+      ],
+      [
+       -118.785595,
+       37.36898
+      ],
+      [
+       -118.789265,
+       37.366063
+      ],
+      [
+       -118.789265,
+       37.361937
+      ],
+      [
+       -118.785595,
+       37.35902
+      ],
+      [
+       -118.780405,
+       37.35902
+      ],
+      [
+       -118.776735,
+       37.361937
+      ],
+      [
+       -118.776735,
+       37.366063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "selden",
+   "name": "Selden Pass",
+   "elevation_ft": 10910,
+   "lat": 37.3066,
+   "lon": -118.8652,
+   "aliases": [
+    "selden",
+    "selden pass",
+    "seldon",
+    "seldon pass"
+   ],
+   "creek": "Bear Creek / Sallie Keyes",
+   "aspect_note": "mellow JMT pass, crossings below matter more than the top",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.85894,
+       37.308663
+      ],
+      [
+       -118.862607,
+       37.31158
+      ],
+      [
+       -118.867793,
+       37.31158
+      ],
+      [
+       -118.87146,
+       37.308663
+      ],
+      [
+       -118.87146,
+       37.304537
+      ],
+      [
+       -118.867793,
+       37.30162
+      ],
+      [
+       -118.862607,
+       37.30162
+      ],
+      [
+       -118.85894,
+       37.304537
+      ],
+      [
+       -118.85894,
+       37.308663
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "silver",
+   "name": "Silver Pass",
+   "elevation_ft": 10895,
+   "lat": 37.468,
+   "lon": -118.923,
+   "aliases": [
+    "silver",
+    "silver pass"
+   ],
+   "creek": "Silver Pass Creek / Fish Creek",
+   "aspect_note": "the north-side creek crossing under the pass is the sting",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.916726,
+       37.470063
+      ],
+      [
+       -118.920401,
+       37.47298
+      ],
+      [
+       -118.925599,
+       37.47298
+      ],
+      [
+       -118.929274,
+       37.470063
+      ],
+      [
+       -118.929274,
+       37.465937
+      ],
+      [
+       -118.925599,
+       37.46302
+      ],
+      [
+       -118.920401,
+       37.46302
+      ],
+      [
+       -118.916726,
+       37.465937
+      ],
+      [
+       -118.916726,
+       37.470063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "mcgee",
+   "name": "McGee Pass",
+   "elevation_ft": 11895,
+   "lat": 37.512,
+   "lon": -118.851,
+   "aliases": [
+    "mcgee",
+    "mcgee pass",
+    "mc gee pass"
+   ],
+   "creek": "McGee Creek / Fish Creek",
+   "aspect_note": "red slate country, long approach up McGee Creek",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -118.844722,
+       37.514063
+      ],
+      [
+       -118.8484,
+       37.51698
+      ],
+      [
+       -118.8536,
+       37.51698
+      ],
+      [
+       -118.857278,
+       37.514063
+      ],
+      [
+       -118.857278,
+       37.509937
+      ],
+      [
+       -118.8536,
+       37.50702
+      ],
+      [
+       -118.8484,
+       37.50702
+      ],
+      [
+       -118.844722,
+       37.509937
+      ],
+      [
+       -118.844722,
+       37.514063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "parker",
+   "name": "Parker Pass",
+   "elevation_ft": 11100,
+   "lat": 37.839,
+   "lon": -119.199,
+   "aliases": [
+    "parker",
+    "parker pass"
+   ],
+   "creek": "Parker Pass Creek / Rush Creek",
+   "aspect_note": "broad alpine plateau south of Tioga, gentle travel",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -119.192695,
+       37.841063
+      ],
+      [
+       -119.196388,
+       37.84398
+      ],
+      [
+       -119.201612,
+       37.84398
+      ],
+      [
+       -119.205305,
+       37.841063
+      ],
+      [
+       -119.205305,
+       37.836937
+      ],
+      [
+       -119.201612,
+       37.83402
+      ],
+      [
+       -119.196388,
+       37.83402
+      ],
+      [
+       -119.192695,
+       37.836937
+      ],
+      [
+       -119.192695,
+       37.841063
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "slug": "vogelsang",
+   "name": "Vogelsang Pass",
+   "elevation_ft": 10700,
+   "lat": 37.791,
+   "lon": -119.342,
+   "aliases": [
+    "vogelsang",
+    "vogelsang pass"
+   ],
+   "creek": "Fletcher Creek / Lewis Creek",
+   "aspect_note": "Yosemite high country, opens earlier than the crest passes",
+   "polygon": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -119.335699,
+       37.793063
+      ],
+      [
+       -119.33939,
+       37.79598
+      ],
+      [
+       -119.34461,
+       37.79598
+      ],
+      [
+       -119.348301,
+       37.793063
+      ],
+      [
+       -119.348301,
+       37.788937
+      ],
+      [
+       -119.34461,
+       37.78602
+      ],
+      [
+       -119.33939,
+       37.78602
+      ],
+      [
+       -119.335699,
+       37.788937
+      ],
+      [
+       -119.335699,
+       37.793063
+      ]
+     ]
+    ]
+   }
   }
  ]
 }

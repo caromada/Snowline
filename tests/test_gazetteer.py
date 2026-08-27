@@ -1,9 +1,9 @@
 from gazetteer import get_pass, load_passes, resolve
 
 
-def test_fifteen_passes_with_polygons() -> None:
+def test_all_passes_have_polygons() -> None:
     passes = load_passes()
-    assert len(passes) == 15
+    assert len(passes) == 33
     for p in passes:
         ring = p["polygon"]["coordinates"][0]
         assert ring[0] == ring[-1]

@@ -13,6 +13,7 @@ DATA_DIR = ROOT / "data"
 RAW_DIR = DATA_DIR / "raw"
 CACHE_DIR = DATA_DIR / "cache"
 EXTRACTIONS_DIR = DATA_DIR / "extractions"
+EXTRACTIONS_CACHE = EXTRACTIONS_DIR / "cache.jsonl"
 DB_PATH = DATA_DIR / "sierra.sqlite"
 WEB_DATA_DIR = ROOT / "web" / "public" / "data"
 

@@ -10,3 +10,6 @@ node_modules/
 data/cache/
 *.sqlite-journal
 web/out/
+.vercel
+data/sierra.sqlite
+data/raw/

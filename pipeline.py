@@ -15,7 +15,7 @@ import logging
 from datetime import UTC, datetime
 from typing import Any
 
-from config import DB_PATH, WEB_DATA_DIR
+from config import DB_PATH, EXTRACTIONS_CACHE, WEB_DATA_DIR
 from extraction.extractor import post_hash
 from extraction.resolve import resolve_post
 from fusion import fuse
@@ -25,15 +25,19 @@ from store import Store
 
 log = logging.getLogger(__name__)
 
-DEMO_DATES = [
-    "2023-05-01",
-    "2023-05-15",
-    "2023-06-01",
-    "2023-06-15",
-    "2023-07-01",
-    "2023-07-15",
-    "2023-08-01",
-]
+FIRST_SEASON_YEAR = 2023
+SEASON_CHECKPOINTS = ["05-01", "05-15", "06-01", "06-15", "07-01", "07-15", "08-01"]
+
+
+def eval_dates(today: str) -> list[str]:
+    """Scrubber checkpoints: every melt season from 2023 on, plus today."""
+    dates = [
+        f"{year}-{ck}"
+        for year in range(FIRST_SEASON_YEAR, int(today[:4]) + 1)
+        for ck in SEASON_CHECKPOINTS
+        if f"{year}-{ck}" < today
+    ]
+    return [*dates, today]
 
 
 def _reports_by_pass(store: Store) -> dict[str, list[dict[str, Any]]]:
@@ -92,7 +96,21 @@ def _vignette_params(result: dict[str, Any], pass_info: dict[str, Any]) -> dict[
 def export(store: Store | None = None) -> None:
     store = store or Store(DB_PATH)
     today = datetime.now(UTC).date().isoformat()
-    dates = [*DEMO_DATES, today]
+    dates = eval_dates(today)
+
+    # The DB is rebuilt from live APIs and never committed; the paid-for
+    # extraction cache rides in git as JSONL and rehydrates here.
+    loaded = store.load_extractions(EXTRACTIONS_CACHE)
+    if loaded:
+        log.info("hydrated %d cached extractions", loaded)
+
+    # Modeled satellite cover is derived deterministically from the sensor
+    # curves, so regenerate it wholesale each run; stale rows never linger.
+    from ingest.satellite import ingest_modeled
+
+    store.clear_observations("satellite")
+    ingest_modeled(store, f"{FIRST_SEASON_YEAR}-04-01", today)
+
     reports_by_pass = _reports_by_pass(store)
 
     passes_out: list[dict[str, Any]] = []

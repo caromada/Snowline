@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 import Campfire from "@/components/Campfire";
-import Clouds from "@/components/Clouds";
 import PassPanel from "@/components/PassPanel";
 import SeasonScrubber from "@/components/SeasonScrubber";
 import type { PassIndex } from "@/lib/types";
@@ -74,7 +73,6 @@ export default function Home() {
         selected={selected}
         onSelect={onSelect}
       />
-      <Clouds />
       <header
         style={{
           position: "absolute",

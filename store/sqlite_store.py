@@ -144,6 +144,15 @@ class Store:
         self.conn.execute("DELETE FROM observations WHERE stream=?", (stream,))
         self.conn.commit()
 
+    def delete_observations(self, stream: str, start: str, end: str) -> int:
+        """Remove a stream's rows in a date window so re-ingest is idempotent."""
+        cur = self.conn.execute(
+            "DELETE FROM observations WHERE stream=? AND observed_date>=? AND observed_date<=?",
+            (stream, start, end),
+        )
+        self.conn.commit()
+        return cur.rowcount
+
     # -- extractions -------------------------------------------------------
     def put_extraction(
         self,
@@ -180,6 +189,46 @@ class Store:
         d["post_meta"] = json.loads(d["post_meta"])
         d["extraction"] = json.loads(d["extraction"])
         return d
+
+    def dump_extractions(self, path: Path) -> int:
+        """Write the extraction cache to JSONL so it survives without the DB.
+
+        The SQLite file is reproducible from live APIs and stays out of git;
+        the paid-for LLM extractions are the one thing worth committing.
+        """
+        rows = self.conn.execute("SELECT * FROM extractions ORDER BY post_hash").fetchall()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("w") as f:
+            for r in rows:
+                f.write(json.dumps(dict(r)) + "\n")
+        return len(rows)
+
+    def load_extractions(self, path: Path) -> int:
+        """Hydrate the extraction cache from the committed JSONL."""
+        if not path.exists():
+            return 0
+        count = 0
+        for line in path.read_text().splitlines():
+            if not line.strip():
+                continue
+            d = json.loads(line)
+            self.conn.execute(
+                "INSERT OR IGNORE INTO extractions "
+                "(post_hash, post_meta, extraction, model, tokens_in, tokens_out, created_at) "
+                "VALUES (?,?,?,?,?,?,?)",
+                (
+                    d["post_hash"],
+                    d["post_meta"],
+                    d["extraction"],
+                    d["model"],
+                    d["tokens_in"],
+                    d["tokens_out"],
+                    d["created_at"],
+                ),
+            )
+            count += 1
+        self.conn.commit()
+        return count
 
     # -- fused -------------------------------------------------------------
     def put_fused(self, pass_slug: str, eval_date: str, result: dict[str, Any]) -> None:
