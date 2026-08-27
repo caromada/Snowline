@@ -32,7 +32,22 @@ The two-tier model: everything above works with zero configuration because the L
 
 ## Extraction accuracy
 
-EVAL_NUMBERS_PLACEHOLDER
+One honest number beats ten features: field-level accuracy of `claude-haiku-4-5` extraction against 30 held-out hand-labeled posts (`eval/labeled.jsonl`, scored by `eval/run_eval.py`):
+
+```
+location             100.0%   (scored by resolved gazetteer slug)
+date_observed         96.7%
+snow_condition        90.0%
+traction_used         83.3%
+crossing_condition    93.3%
+exposure_comfort      70.0%
+reporter_register     66.7%
+quote_span           100.0%   (verbatim-substring check)
+
+overall               87.5%
+```
+
+The first eval round scored 82.9%. The misses were concentrated in `reporter_register`: the model inferred "experienced" from competent tone while the labels demanded explicit markers. One prompt revision aligned the annotation guideline with the model (markers only, tone is not evidence) and the cache key gained a prompt-version salt so the stale extractions could not linger. One iteration, then stop; tuning further against 30 posts would just be memorizing them. The two fields still under 75% are the two genuinely subjective ones, which is worth knowing before trusting any single report.
 
 ## What was hard
 

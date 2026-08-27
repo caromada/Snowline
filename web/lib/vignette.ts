@@ -84,7 +84,7 @@ export function drawVignette(
   // The snowline sits low on the slope when cover is high: full cover puts
   // it at the creek, bare ground pushes it above the summits.
   const cover = Math.max(0, Math.min(1, params.snow_cover));
-  const snowlineY = Math.round(4 + (CREEK_TOP - 4) * (1 - cover));
+  const snowlineY = Math.round(4 + (CREEK_TOP - 4) * cover);
   for (let x = 0; x < VIGNETTE_W; x++) {
     const top = profile[x] + rise;
     for (let y = Math.max(0, top); y < VIGNETTE_H; y++) {
