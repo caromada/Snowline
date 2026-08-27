@@ -22,11 +22,15 @@ jobs:
       - name: Ingest sensor data
         run: python -m scripts.backfill
       - name: Extract any new forum posts
-        if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LLM_BUDGET_USD: "1.00"
-        run: python -m scripts.extract_corpus --engine api
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "no API key configured; skipping extraction"
+          else
+            python -m scripts.extract_corpus --engine api
+          fi
       - name: Fuse and export
         run: python pipeline.py
       - name: Commit refreshed exports
