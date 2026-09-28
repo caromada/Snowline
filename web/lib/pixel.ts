@@ -137,7 +137,7 @@ export const pineSnow: Sprite = [
   "................",
 ];
 
-// Ice axe: traction advised.
+// Ice axe: snow likely.
 export const iceAxe: Sprite = [
   "................",
   "..gggggggg......",
@@ -157,7 +157,7 @@ export const iceAxe: Sprite = [
   "................",
 ];
 
-// Crossed poles: not recommended, turn around.
+// Crossed poles: deep snow or hazards reported.
 export const crossedPoles: Sprite = [
   "................",
   ".aa..........aa.",

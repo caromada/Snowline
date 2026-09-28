@@ -44,11 +44,13 @@ TRACTION_SEVERITY = {
 CROSSING_ORDER = ["dry", "low", "knee_high", "thigh_high", "dangerous"]
 
 STATUSES = ["open", "snow_caution", "traction_advised", "not_recommended"]
+# Labels describe conditions and never give instructions: the app informs a
+# decision, it does not make one.
 STATUS_LABEL = {
-    "open": "Open",
-    "snow_caution": "Snow, use caution",
-    "traction_advised": "Traction advised",
-    "not_recommended": "Not recommended",
+    "open": "Likely snow-free",
+    "snow_caution": "Patchy snow",
+    "traction_advised": "Snow likely",
+    "not_recommended": "Deep snow or hazards",
     "unknown": "Unknown",
 }
 
@@ -684,9 +686,9 @@ def _facts(
 
 def _severity_word(severity: float) -> str:
     if severity < 0.5:
-        return "easy going"
+        return "little or no snow"
     if severity < 1.25:
-        return "some snow, manageable"
+        return "patchy snow"
     if severity < 2.1:
-        return "real snow travel, bring traction"
-    return "serious conditions"
+        return "continuous snow"
+    return "deep snow or serious hazards"

@@ -5,10 +5,10 @@ import { statusColor } from "@/lib/theme";
 import PixelGlyph from "./PixelGlyph";
 
 const ITEMS: { status: string; label: string }[] = [
-  { status: "open", label: "open" },
-  { status: "snow_caution", label: "snow, caution" },
-  { status: "traction_advised", label: "traction advised" },
-  { status: "not_recommended", label: "not recommended" },
+  { status: "open", label: "likely snow-free" },
+  { status: "snow_caution", label: "patchy snow" },
+  { status: "traction_advised", label: "snow likely" },
+  { status: "not_recommended", label: "deep snow or hazards" },
   { status: "unknown", label: "no data" },
 ];
 
