@@ -176,3 +176,105 @@ def test_active_melt_flag_from_diurnal_swing() -> None:
     result = fuse(PASS, DATE, [], [], gauge(500, "2023-06-14", swing=50), [report()])
     assert result["crossing"]["active_melt"] is True
     assert any("cross early" in f["text"].lower() for f in result["facts"])
+
+
+AASGARD = {"slug": "aasgard", "name": "Aasgard Pass", "elevation_ft": 7841, "creek": ""}
+
+
+def station_at(swe: float, elev_ft: float, station: str, km: float = 8.0) -> dict[str, Any]:
+    return {
+        "metric": "swe_in",
+        "observed_date": "2023-06-14",
+        "value": swe,
+        "provenance": station,
+        "meta": {"distance_km": km, "station_elevation_ft": elev_ft, "station_name": station},
+    }
+
+
+def test_melted_out_sensor_far_below_the_pass_is_blind() -> None:
+    # Two low SNOTELs have melted out 3,500 ft below a high pass: that says
+    # the snowline is above them, not that the pass is clear. One reading
+    # cannot date the melt-out, so no snowline can be inferred either.
+    obs = [station_at(0.0, 4270, "snotel:blewett"), station_at(0.0, 3370, "snotel:fish")]
+    r = fuse(AASGARD, DATE, obs, [], [], [])
+    assert r["status"] == "unknown"
+    assert r["confidence"] == "low"
+    text = " ".join(f["text"] for f in r["facts"])
+    assert "below" in text and "4,270" in text
+
+
+def test_snow_at_a_lower_sensor_still_counts() -> None:
+    # Snow lingering at 4,300 ft means more of it higher up.
+    r = fuse(AASGARD, DATE, [station_at(18.0, 4300, "snotel:low")], [], [], [])
+    assert r["status"] in ("traction_advised", "not_recommended")
+
+
+def test_melted_out_sensor_above_the_pass_is_evidence_of_clear() -> None:
+    r = fuse(AASGARD, DATE, [station_at(0.0, 8200, "snotel:high")], [], [], [])
+    assert r["status"] == "open"
+
+
+def season(
+    elev_ft: float, melt_out: str, eval_date: str, station: str = "snotel:blewett"
+) -> list[dict[str, Any]]:
+    """Daily readings from April 1: 12 in of SWE until melt-out, zero after."""
+    from datetime import date, timedelta
+
+    rows = []
+    d = date(int(eval_date[:4]), 4, 1)
+    end = date.fromisoformat(eval_date)
+    while d <= end:
+        swe = 12.0 if d.isoformat() < melt_out else 0.0
+        rows.append(
+            {
+                "metric": "swe_in",
+                "observed_date": d.isoformat(),
+                "value": swe,
+                "provenance": station,
+                "id": d.toordinal(),
+                "meta": {"distance_km": 8.0, "station_elevation_ft": elev_ft,
+                         "station_name": "Blewett Pass"},
+            }
+        )
+        d += timedelta(days=1)
+    return rows
+
+
+def test_recent_melt_out_far_below_implies_snow_at_the_pass() -> None:
+    # Melted out at 4,240 ft on May 1; by mid-June the snowline has only
+    # climbed to about 6,000 ft, still well under a 7,841 ft pass.
+    r = fuse(AASGARD, DATE, season(4240, "2023-05-01", DATE), [], [], [])
+    assert r["status"] in ("snow_caution", "traction_advised")
+    assert r["confidence"] == "low"
+    text = " ".join(f["text"] for f in r["facts"])
+    assert "snowline" in text and "estimate" in text
+
+
+def test_long_ago_melt_out_implies_clear_by_late_season() -> None:
+    late = "2023-09-28"
+    r = fuse(AASGARD, late, season(4240, "2023-05-01", late), [], [], [])
+    assert r["status"] == "open"
+    assert r["confidence"] == "low"
+
+
+BISHOP = {"slug": "bishop", "name": "Bishop Pass", "elevation_ft": 11972, "creek": ""}
+
+
+def quiet_pillow(eval_date: str) -> list[dict[str, Any]]:
+    """A CDEC pillow at 11,200 ft: snow until May 20, zeros to May 30, then silence."""
+    rows = season(11200, "2026-05-21", "2026-05-30", station="cdec:BSH")
+    for r in rows:
+        r["meta"]["station_name"] = "Bishop Pass"
+    return rows
+
+
+def test_pillow_that_went_quiet_after_melt_out_still_informs() -> None:
+    r = fuse(BISHOP, "2026-09-28", quiet_pillow("2026-09-28"), [], [], [])
+    assert r["status"] == "open"
+    assert r["confidence"] == "low"
+    assert "quiet" in " ".join(f["text"] for f in r["facts"])
+
+
+def test_quiet_pillow_says_nothing_once_fall_storms_can_arrive() -> None:
+    r = fuse(BISHOP, "2026-11-20", quiet_pillow("2026-11-20"), [], [], [])
+    assert r["status"] == "unknown"

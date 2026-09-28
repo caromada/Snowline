@@ -22,6 +22,7 @@ import hashlib
 import logging
 from typing import Any
 
+from fusion.fusion import BLIND_GAP_FT, MELTED_OUT_SWE_IN
 from gazetteer import load_passes
 from ingest.geo import point_in_ring
 from store import Store
@@ -78,25 +79,30 @@ def modeled_cover_frac(swe_in: float, pass_elev_ft: float, station_elev_ft: floa
 def ingest_modeled(store: Store, begin: str, end: str) -> int:
     """Demo observations on the revisit cycle, derived from sensor SWE.
 
-    Sensor rows are stored once per station; each pass reads its nearest
-    linked snow station's curve here.
+    Sensor rows are stored once per station; each pass reads the curve of
+    its nearest snow station from either network (CDEC in California,
+    SNOTEL everywhere), so Oregon and Washington passes are covered too.
     """
-    from ingest.cdec import pass_links
+    from ingest import cdec, snotel
 
-    links = pass_links(store)
+    links: dict[str, list[tuple[str, dict]]] = {}
+    for stream, module in (("cdec", cdec), ("snotel", snotel)):
+        for slug, linked in module.pass_links(store).items():
+            links.setdefault(slug, []).extend((stream, link) for link in linked)
     count = 0
     for p in load_passes():
-        linked = links.get(p["slug"], [])
-        if not linked:
-            continue
-        nearest = linked[0]
-        swe_rows = [
-            r
-            for r in store.observations(
-                f"@{nearest['provenance']}", stream="cdec", start=begin, end=end
-            )
-            if r["metric"] == "swe_in"
-        ]
+        ranked = sorted(links.get(p["slug"], []), key=lambda sl: sl[1]["distance_km"])
+        swe_rows: list[dict] = []
+        for stream, link in ranked:
+            swe_rows = [
+                r
+                for r in store.observations(
+                    f"@{link['provenance']}", stream=stream, start=begin, end=end
+                )
+                if r["metric"] == "swe_in"
+            ]
+            if swe_rows:
+                break
         if not swe_rows:
             continue
         curve = {r["observed_date"]: r for r in swe_rows}
@@ -108,6 +114,10 @@ def ingest_modeled(store: Store, begin: str, end: str) -> int:
                 continue
             row = curve[date]
             elev = row["meta"].get("station_elevation_ft") or p["elevation_ft"]
+            if p["elevation_ft"] - elev > BLIND_GAP_FT and row["value"] < MELTED_OUT_SWE_IN:
+                # A melted-out station far below the pass cannot stand in for
+                # a scene of it; emitting 0% cover here would be a fabrication.
+                continue
             frac = modeled_cover_frac(row["value"], p["elevation_ft"], elev)
             store.add_observation(
                 p["slug"], "satellite", "snow_cover_frac", date, frac, "frac",

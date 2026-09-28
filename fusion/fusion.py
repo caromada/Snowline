@@ -53,6 +53,36 @@ STATUS_LABEL = {
 }
 
 ACTIVE_MELT_SWING_PCT = 35.0
+
+# Snow evidence is asymmetric in elevation. A sensor below the pass that
+# still holds snow says the pass holds more. A sensor below the pass that has
+# melted out only says the snowline is somewhere above it, so once the pass
+# sits this far above a melted-out sensor, that sensor is blind to it. The
+# Sierra's pillows sit near pass height; Cascade SNOTELs often sit 3,000 ft
+# under the high passes, which is where this matters.
+BLIND_GAP_FT = 1500.0
+MELTED_OUT_SWE_IN = 0.5
+# Among sensors that can see the pass, closer in elevation counts for more.
+ELEVATION_WEIGHT_SCALE_FT = 3000.0
+
+# When every sensor is blind, the melt-out date still carries information:
+# the day a sensor melts out, the snowline is at its elevation, and through
+# the season it keeps climbing. Sierra melt-out runs roughly 7,000 ft in
+# early May to 11,000 ft in early July (about 65 ft a day); the Cascades are
+# slower. 40 ft a day is the conservative choice: a slower climb predicts
+# snow up high for longer. It is an estimate, weighted and labeled as one.
+SNOWLINE_RISE_FT_PER_DAY = 40.0
+SNOWLINE_MARGIN_FT = 500.0
+SNOWLINE_WEIGHT_FRAC = 0.45
+MIN_ZERO_RUN_DAYS = 7
+SEASON_GAP_DAYS = 20
+# CDEC pillows stop reporting once they melt out, so "melted out, then
+# silent" is itself melt-out evidence, but only until fall storms can
+# arrive: a silent pillow cannot report new snow.
+QUIET_EVIDENCE_UNTIL_MMDD = "10-15"
+# Past the highest terrain in the lower 48 (Whitney, 14,505 ft) a snowline
+# number means nothing; say "above everything" instead.
+SNOWLINE_CEILING_FT = 14500.0
 CONFLICT_THRESHOLD = 1.0
 
 
@@ -74,10 +104,9 @@ def _severity_to_status(severity: float) -> str:
     return "not_recommended"
 
 
-def _sensor_component(
+def _latest_per_station(
     sensor_obs: list[dict[str, Any]], eval_date: str
-) -> dict[str, Any] | None:
-    """Latest SWE per station within window, distance-weighted."""
+) -> dict[str, dict[str, Any]]:
     latest: dict[str, dict[str, Any]] = {}
     for o in sensor_obs:
         if o["metric"] != "swe_in":
@@ -88,6 +117,149 @@ def _sensor_component(
         prev = latest.get(o["provenance"])
         if prev is None or o["observed_date"] > prev["observed_date"]:
             latest[o["provenance"]] = o
+    return latest
+
+
+def _elevation_gap(o: dict[str, Any], pass_elev_ft: float | None) -> float | None:
+    """How far the pass sits above this station, in feet (negative: below)."""
+    station_elev = (o.get("meta") or {}).get("station_elevation_ft")
+    if pass_elev_ft is None or station_elev is None:
+        return None
+    return float(pass_elev_ft) - float(station_elev)
+
+
+def _is_blind(o: dict[str, Any], pass_elev_ft: float | None) -> bool:
+    gap = _elevation_gap(o, pass_elev_ft)
+    return gap is not None and gap > BLIND_GAP_FT and float(o["value"]) < MELTED_OUT_SWE_IN
+
+
+def _blind_sensors(
+    sensor_obs: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None
+) -> dict[str, Any] | None:
+    """Melted-out stations too far below the pass to say anything about it."""
+    blind = [o for o in _latest_per_station(sensor_obs, eval_date).values()
+             if _is_blind(o, pass_elev_ft)]
+    if not blind:
+        return None
+    blind.sort(key=lambda o: -float(o["meta"]["station_elevation_ft"]))
+    return {
+        "stations": [
+            {
+                "provenance": o["provenance"],
+                "name": o["meta"].get("station_name") or o["provenance"],
+                "elevation_ft": round(float(o["meta"]["station_elevation_ft"])),
+            }
+            for o in blind
+        ],
+        "min_gap_ft": round(min(_elevation_gap(o, pass_elev_ft) or 0.0 for o in blind)),
+        "refs": [o.get("id") for o in blind],
+    }
+
+
+def _melt_out_date(series: list[dict[str, Any]]) -> tuple[str, bool] | None:
+    """Start of the current melted-out run, and whether the melt was observed.
+
+    `series` is one station's readings up to the eval date, oldest first.
+    Walking back stops at a data gap (the off-season between ingest windows),
+    so a run never spans two seasons. With no snow seen before the run, the
+    run's start is only an upper bound on the melt-out date, which errs
+    toward a lower snowline, the cautious side; it needs a week of data.
+    """
+    run_start: str | None = None
+    prev: str | None = None
+    for o in reversed(series):
+        d = o["observed_date"]
+        if prev is not None and _age_days(prev, d) > SEASON_GAP_DAYS:
+            break
+        if float(o["value"]) >= MELTED_OUT_SWE_IN:
+            return (run_start, True) if run_start else None
+        run_start = d
+        prev = d
+    if not (run_start and series):
+        return None
+    if _age_days(series[-1]["observed_date"], run_start) >= MIN_ZERO_RUN_DAYS:
+        return run_start, False
+    return None
+
+
+def _snowline_estimate(
+    sensor_obs: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None
+) -> dict[str, Any] | None:
+    """Snowline inferred from melt-out dates, or None.
+
+    Two kinds of station qualify: ones reporting now but blind to the pass
+    (melted out far below it), and ones that melted out and then went quiet
+    earlier this season.
+    """
+    if pass_elev_ft is None:
+        return None
+    by_station: dict[str, list[dict[str, Any]]] = {}
+    for o in sensor_obs:
+        if (
+            o["metric"] == "swe_in"
+            and o["observed_date"] <= eval_date
+            and o["observed_date"][:4] == eval_date[:4]
+            and (o.get("meta") or {}).get("station_elevation_ft") is not None
+        ):
+            by_station.setdefault(o["provenance"], []).append(o)
+    best: dict[str, Any] | None = None
+    for prov, series in by_station.items():
+        series.sort(key=lambda o: o["observed_date"])
+        last = series[-1]
+        quiet = _age_days(eval_date, last["observed_date"]) > MAX_AGE_DAYS["sensor"]
+        if quiet:
+            still_snowy = float(last["value"]) >= MELTED_OUT_SWE_IN
+            if still_snowy or eval_date[5:] > QUIET_EVIDENCE_UNTIL_MMDD:
+                continue
+        elif not _is_blind(last, pass_elev_ft):
+            continue
+        melt = _melt_out_date(series)
+        if melt is None:
+            continue
+        melt_date, observed = melt
+        days = _age_days(eval_date, melt_date)
+        elev = float(last["meta"]["station_elevation_ft"])
+        est = elev + SNOWLINE_RISE_FT_PER_DAY * days
+        if best is None or est > best["snowline_ft"]:
+            best = {
+                "snowline_ft": est,
+                "station": last["meta"].get("station_name") or prov,
+                "station_elevation_ft": round(elev),
+                "melt_out": melt_date,
+                "melt_observed": observed,
+                "quiet_since": last["observed_date"] if quiet else None,
+                "days": days,
+                "refs": [last.get("id")],
+            }
+    if best is None:
+        return None
+    gap = float(pass_elev_ft) - best["snowline_ft"]
+    if gap <= -SNOWLINE_MARGIN_FT:
+        severity = 0.0
+    elif gap <= 0:
+        severity = 0.5
+    else:
+        severity = min(2.0, 0.5 + gap / 1000.0)
+    best["snowline_ft"] = round(min(best["snowline_ft"], SNOWLINE_CEILING_FT), -2)
+    best["severity"] = round(severity, 2)
+    # No recency decay: the information is the melt-out date, not the age of
+    # the last reading. The low weight and confidence carry the uncertainty.
+    best["weight"] = PRIOR["sensor"] * SNOWLINE_WEIGHT_FRAC
+    return best
+
+
+def _sensor_component(
+    sensor_obs: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None = None
+) -> dict[str, Any] | None:
+    """Latest SWE per station within window, weighted by distance and elevation.
+
+    Stations blind to the pass (see BLIND_GAP_FT) are left out entirely.
+    """
+    latest = {
+        prov: o
+        for prov, o in _latest_per_station(sensor_obs, eval_date).items()
+        if not _is_blind(o, pass_elev_ft)
+    }
     if not latest:
         return None
     wsum = vsum = 0.0
@@ -95,6 +267,9 @@ def _sensor_component(
     for o in latest.values():
         dist = float(o.get("meta", {}).get("distance_km") or 20.0)
         w = 1.0 / (1.0 + dist / 10.0)
+        gap = _elevation_gap(o, pass_elev_ft)
+        if gap is not None:
+            w *= 1.0 / (1.0 + abs(gap) / ELEVATION_WEIGHT_SCALE_FT)
         wsum += w
         vsum += w * float(o["value"])
         if freshest is None or o["observed_date"] > freshest:
@@ -105,7 +280,7 @@ def _sensor_component(
     trend = None
     per_station_first: dict[str, dict[str, Any]] = {}
     for o in sensor_obs:
-        if o["metric"] != "swe_in":
+        if o["metric"] != "swe_in" or o["provenance"] not in latest:
             continue
         if 0 <= _age_days(eval_date, o["observed_date"]) <= MAX_AGE_DAYS["sensor"]:
             prev = per_station_first.get(o["provenance"])
@@ -263,12 +438,23 @@ def fuse(
     reports: list[dict[str, Any]],
 ) -> dict[str, Any]:
     """Fuse all evidence for one pass on one date."""
-    sensor = _sensor_component(sensor_obs, eval_date)
+    sensor = _sensor_component(sensor_obs, eval_date, pass_info.get("elevation_ft"))
+    blind = _blind_sensors(sensor_obs, eval_date, pass_info.get("elevation_ft"))
+    snowline = (
+        _snowline_estimate(sensor_obs, eval_date, pass_info.get("elevation_ft"))
+        if sensor is None
+        else None
+    )
     satellite = _satellite_component(satellite_obs, eval_date)
     human = _report_component(reports, eval_date)
     crossing = _crossing_component(reports, gauge_obs, eval_date)
 
-    components = {"sensor": sensor, "satellite": satellite, "reports": human}
+    components = {
+        "sensor": sensor,
+        "snowline": snowline,
+        "satellite": satellite,
+        "reports": human,
+    }
     present = {k: c for k, c in components.items() if c is not None}
 
     if not present:
@@ -283,7 +469,9 @@ def fuse(
             "components": components,
             "crossing": crossing,
             "conflicts": [],
-            "facts": [
+            "facts": [_blind_fact(pass_info, blind)]
+            if blind
+            else [
                 {
                     "text": "No recent evidence for this pass in any stream.",
                     "stream": "none",
@@ -305,7 +493,12 @@ def fuse(
 
     # Conflicts: streams that disagree by more than a full severity level.
     conflicts: list[str] = []
-    names = {"sensor": "Sensors", "satellite": "Satellite", "reports": "Parties on the ground"}
+    names = {
+        "sensor": "Sensors",
+        "snowline": "The snowline estimate",
+        "satellite": "Satellite",
+        "reports": "Parties on the ground",
+    }
     keys = list(present)
     for i, a in enumerate(keys):
         for b in keys[i + 1 :]:
@@ -321,6 +514,8 @@ def fuse(
     score = 0.0
     if sensor:
         score += 2.0 if sensor["age_days"] <= 2 else (1.0 if sensor["age_days"] <= 7 else 0.5)
+    if snowline:
+        score += 0.5  # an inference, not an observation of the pass
     if satellite:
         score += 1.5 if satellite["age_days"] <= 4 else 0.75
     if human:
@@ -352,7 +547,53 @@ def fuse(
         "components": components,
         "crossing": crossing,
         "conflicts": conflicts,
-        "facts": _facts(pass_info, sensor, satellite, human, crossing),
+        "facts": _facts(pass_info, sensor, satellite, human, crossing)
+        + ([_snowline_fact(snowline)] if snowline else [])
+        + ([_blind_fact(pass_info, blind)] if blind and not snowline else []),
+    }
+
+
+def _snowline_fact(sl: dict[str, Any]) -> dict[str, Any]:
+    when = "on" if sl["melt_observed"] else "by"
+    quiet_since = sl.get("quiet_since")
+    if not quiet_since:
+        quiet = ""
+    elif quiet_since <= sl["melt_out"]:
+        quiet = " and stopped reporting"
+    else:
+        quiet = f" and has been quiet since {quiet_since}"
+    level = (
+        "above the highest terrain"
+        if sl["snowline_ft"] >= SNOWLINE_CEILING_FT
+        else f"near {sl['snowline_ft']:,.0f} ft"
+    )
+    head = (
+        f"{sl['station']} ({sl['station_elevation_ft']:,} ft) melted out {when} "
+        f"{sl['melt_out']}{quiet}; at a typical {SNOWLINE_RISE_FT_PER_DAY:.0f} ft a day "
+        f"that puts the snowline estimate {level}"
+    )
+    if sl["severity"] == 0.0:
+        where = "" if sl["snowline_ft"] >= SNOWLINE_CEILING_FT else ", above the pass"
+        tail = f"{where}: likely melted out, though no sensor sees it directly."
+    elif sl["severity"] <= 0.5:
+        tail = ", close to the pass: expect lingering patches."
+    else:
+        tail = ", still below the pass: expect snow up high."
+    return {"text": head + tail, "stream": "sensor", "refs": sl["refs"]}
+
+
+def _blind_fact(pass_info: dict[str, Any], blind: dict[str, Any]) -> dict[str, Any]:
+    names = ", ".join(
+        f"{st['name']} ({st['elevation_ft']:,} ft)" for st in blind["stations"][:3]
+    )
+    return {
+        "text": (
+            f"Snow sensors nearby have melted out, but {names} sit at least "
+            f"{blind['min_gap_ft']:,} ft below the pass: they cannot tell whether "
+            f"it still holds snow."
+        ),
+        "stream": "sensor",
+        "refs": blind["refs"],
     }
 
 
