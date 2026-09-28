@@ -184,3 +184,79 @@ canvas.pixel {
     width: 170px !important;
   }
 }
+
+/* Map tools: locate-me and 3D relief, stacked above the zoom buttons. */
+.map-tools {
+  position: absolute;
+  right: 10px;
+  bottom: calc(132px + env(safe-area-inset-bottom, 0px));
+  z-index: 20;
+  display: grid;
+  gap: 6px;
+}
+.map-tools button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--granite);
+  background: color-mix(in srgb, var(--moss) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--granite) 24%, transparent);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.map-tools button[aria-pressed="true"] {
+  color: var(--alpenglow);
+  border-color: var(--alpenglow);
+}
+.map-tools button:disabled {
+  opacity: 0.5;
+}
+
+/* You are here: snowmelt blue, the only round thing on the map. */
+.you-are-here {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--snowmelt);
+  box-shadow: 0 0 0 3px var(--deep-pine), 0 0 0 5px color-mix(in srgb, var(--snowmelt) 40%, transparent);
+}
+
+/* With a pass open, the map controls step out from under the panel: to its
+   left on desktop, above the bottom sheet on phones. */
+main:has(.pass-panel.open) .map-tools {
+  right: calc(min(430px, 100%) + 10px);
+}
+main:has(.pass-panel.open) .maplibregl-ctrl-bottom-right {
+  right: min(430px, 100%);
+}
+@media (max-width: 640px) {
+  /* The bottom sheet leaves a thin strip of map; the controls wait for it
+     to close rather than crowd the strip. */
+  main:has(.pass-panel.open) .map-tools,
+  main:has(.pass-panel.open) .maplibregl-ctrl-bottom-right {
+    display: none;
+  }
+}
+
+/* Bottom-left stack: scrubber, legend above it. On phones the attribution
+   wraps to two lines, so the stack rises to clear it and the legend yields
+   to the map. */
+.season-scrubber {
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+}
+.map-legend {
+  display: grid;
+  bottom: calc(118px + env(safe-area-inset-bottom, 0px));
+}
+@media (max-width: 640px) {
+  .map-legend {
+    display: none;
+  }
+  .season-scrubber {
+    bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+  }
+  .map-tools {
+    bottom: calc(150px + env(safe-area-inset-bottom, 0px));
+  }
+}

@@ -8,40 +8,46 @@ import { useEffect, useRef, useState } from "react";
 // static file sidesteps all of that.
 maplibregl.setWorkerUrl("maplibre-gl-worker.mjs");
 import { drawSprite, glyphByStatus, tent as tentSprite } from "@/lib/pixel";
+import mlcontour from "maplibre-contour";
+import { buildMapStyle, TERRAIN_TILES } from "@/lib/mapStyle";
 import { palette, statusColor } from "@/lib/theme";
 import type { PassIndexEntry } from "@/lib/types";
 import { loadSaved } from "./PassPanel";
 
-// Terrain-tinted basemap: AWS open terrain tiles hillshaded into the forest
-// palette. No API key, no tile vendor account.
-const MAP_STYLE: maplibregl.StyleSpecification = {
-  version: 8,
-  sources: {
-    terrain: {
-      type: "raster-dem",
-      encoding: "terrarium",
-      tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"],
-      tileSize: 256,
-      maxzoom: 13,
-      attribution:
-        "Terrain: <a href='https://registry.opendata.aws/terrain-tiles/'>AWS Open Data</a>",
-    },
+// One DEM source feeds the contour generator; isolines are computed in a
+// web worker from the same terrain tiles the hillshade uses.
+const demSource = new mlcontour.DemSource({
+  url: TERRAIN_TILES,
+  encoding: "terrarium",
+  maxzoom: 13,
+  // Dev-mode React Refresh instrumentation breaks the stringified worker; the
+  // production bundle runs isolines off the main thread.
+  worker: process.env.NODE_ENV === "production",
+  cacheSize: 100,
+  timeoutMs: 10_000,
+});
+demSource.setupMaplibre(maplibregl);
+
+const CONTOUR_TILES = demSource.contourProtocolUrl({
+  multiplier: 3.28084,
+  // zoom: [minor, index] interval in feet, USGS-quad style up close.
+  thresholds: {
+    9: [500, 2000],
+    11: [200, 1000],
+    12: [100, 500],
+    13: [80, 400],
+    14: [40, 200],
   },
-  layers: [
-    { id: "ground", type: "background", paint: { "background-color": palette.deepPine } },
-    {
-      id: "hillshade",
-      type: "hillshade",
-      source: "terrain",
-      paint: {
-        "hillshade-shadow-color": "#08110c",
-        "hillshade-highlight-color": "#59806844",
-        "hillshade-accent-color": palette.moss,
-        "hillshade-exaggeration": 0.7,
-      },
-    },
-  ],
-};
+  contourLayer: "contours",
+  elevationKey: "ele",
+  levelKey: "level",
+});
+
+// The whole West Coast: Cascades to the San Jacintos.
+export const WEST_COAST_BOUNDS: [[number, number], [number, number]] = [
+  [-124.8, 32.5],
+  [-116.0, 49.0],
+];
 
 function markerElement(
   p: PassIndexEntry,
@@ -138,31 +144,190 @@ function markerElement(
   return el;
 }
 
+const PASS_SOURCE = "passes";
+const STATUS_KEYS = ["open", "snow_caution", "traction_advised", "not_recommended", "unknown"];
+
+/** Pixel-square pass icon: a status-colored square in a deep pine keyline. */
+function squareIcon(
+  hex: string,
+  core: number,
+  ring: number,
+): { width: number; height: number; data: Uint8Array } {
+  const size = core + ring * 2;
+  const data = new Uint8Array(size * size * 4);
+  const rgb = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const [cr, cg, cb] = rgb(hex);
+  const [kr, kg, kb] = rgb(palette.deepPine);
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const inCore = x >= ring && x < size - ring && y >= ring && y < size - ring;
+      const i = (y * size + x) * 4;
+      data.set(inCore ? [cr, cg, cb, 255] : [kr, kg, kb, 255], i);
+    }
+  }
+  return { width: size, height: size, data };
+}
+
+function passCollection(
+  passes: PassIndexEntry[],
+  evalDate: string,
+  asHtml: Set<string>,
+): GeoJSON.FeatureCollection<GeoJSON.Point> {
+  return {
+    type: "FeatureCollection",
+    features: passes
+      .filter((p) => !asHtml.has(p.slug))
+      .map((p) => ({
+        type: "Feature",
+        geometry: { type: "Point", coordinates: [p.lon, p.lat] },
+        properties: {
+          slug: p.slug,
+          label: p.name.replace(/ Pass$/, "").toUpperCase(),
+          status: p.statuses[evalDate]?.status ?? "unknown",
+        },
+      })),
+  };
+}
+
+function addPassLayer(map: maplibregl.Map, onPick: (slug: string) => void): void {
+  // Two drawn sizes rather than one scaled icon: fractional icon scaling
+  // would smear the pixels.
+  for (const status of STATUS_KEYS) {
+    const color = statusColor[status] ?? palette.sage;
+    if (!map.hasImage(`pass-${status}`)) map.addImage(`pass-${status}`, squareIcon(color, 7, 2));
+    if (!map.hasImage(`pass-${status}-s`)) map.addImage(`pass-${status}-s`, squareIcon(color, 4, 1));
+  }
+  map.addSource(PASS_SOURCE, { type: "geojson", data: { type: "FeatureCollection", features: [] } });
+  map.addLayer({
+    id: "pass-squares",
+    type: "symbol",
+    source: PASS_SOURCE,
+    layout: {
+      // Zoom expressions must sit at the top of a layout property.
+      "icon-image": [
+        "step",
+        ["zoom"],
+        ["concat", "pass-", ["get", "status"], "-s"],
+        8,
+        ["concat", "pass-", ["get", "status"]],
+      ],
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+    },
+  });
+  map.addLayer({
+    id: "pass-names",
+    type: "symbol",
+    source: PASS_SOURCE,
+    minzoom: 10.8,
+    layout: {
+      "text-field": ["get", "label"],
+      "text-font": ["Space Grotesk"],
+      "text-size": 8,
+      "text-letter-spacing": 0.14,
+      "text-anchor": "top",
+      "text-offset": [0, 0.9],
+      "text-optional": true,
+    },
+    paint: {
+      "text-color": palette.sage,
+      "text-halo-color": palette.deepPine,
+      "text-halo-width": 1.4,
+    },
+  });
+  map.on("click", "pass-squares", (e) => {
+    const slug = e.features?.[0]?.properties?.slug;
+    if (typeof slug === "string") onPick(slug);
+  });
+  map.on("mouseenter", "pass-squares", () => (map.getCanvas().style.cursor = "pointer"));
+  map.on("mouseleave", "pass-squares", () => (map.getCanvas().style.cursor = ""));
+}
+
+export type Position = { lat: number; lon: number; accuracyM: number };
+
+function reducedMotion(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export default function MapView({
   passes,
   evalDate,
   selected,
   onSelect,
+  onLocate,
 }: {
   passes: PassIndexEntry[];
   evalDate: string;
   selected: string | null;
   onSelect: (slug: string) => void;
+  onLocate?: (pos: Position | null, error?: string) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const markersRef = useRef<maplibregl.Marker[]>([]);
+  const youRef = useRef<maplibregl.Marker | null>(null);
+  // Once the viewer or the app has framed something (a drag, a search, a
+  // deep link, locate-me), the startup fit-to-region stands down for good.
+  const framedRef = useRef(false);
   const [savedVersion, setSavedVersion] = useState(0);
+  const [layerReady, setLayerReady] = useState(false);
+  const onSelectRef = useRef(onSelect);
+  useEffect(() => {
+    onSelectRef.current = onSelect;
+  }, [onSelect]);
+  const [relief, setRelief] = useState(false);
+  const [locating, setLocating] = useState(false);
+
+  const toggleRelief = () => {
+    const map = mapRef.current;
+    if (!map) return;
+    const on = !relief;
+    // Real relief from the same DEM, lightly exaggerated so ridgelines read.
+    map.setTerrain(on ? { source: "relief", exaggeration: 1.4 } : null);
+    map.easeTo({ pitch: on ? 62 : 0, duration: reducedMotion() ? 0 : 700 });
+    setRelief(on);
+  };
+
+  const locate = () => {
+    const map = mapRef.current;
+    if (!map || !("geolocation" in navigator)) {
+      onLocate?.(null, "location is not available on this device");
+      return;
+    }
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (g) => {
+        setLocating(false);
+        const pos = { lat: g.coords.latitude, lon: g.coords.longitude, accuracyM: g.coords.accuracy };
+        if (!youRef.current) {
+          const el = document.createElement("div");
+          el.className = "you-are-here";
+          el.setAttribute("aria-label", "your location");
+          youRef.current = new maplibregl.Marker({ element: el });
+        }
+        youRef.current.setLngLat([pos.lon, pos.lat]).addTo(map);
+        framedRef.current = true;
+        map.easeTo({
+          center: [pos.lon, pos.lat],
+          zoom: Math.max(map.getZoom(), 10),
+          duration: reducedMotion() ? 0 : 900,
+        });
+        onLocate?.(pos);
+      },
+      (err) => {
+        setLocating(false);
+        onLocate?.(null, err.code === err.PERMISSION_DENIED ? "location permission denied" : "could not get a fix");
+      },
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 },
+    );
+  };
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: MAP_STYLE,
-      bounds: [
-        [-120.6, 35.8],
-        [-118.0, 39.5],
-      ],
+      style: buildMapStyle(window.location.origin, CONTOUR_TILES),
+      bounds: WEST_COAST_BOUNDS,
       fitBoundsOptions: { padding: 40 },
       attributionControl: { compact: true },
     });
@@ -179,27 +344,24 @@ export default function MapView({
     syncZoom();
     // Guard against initializing while the container is still being laid
     // out: track its real size, and refit until the user takes over.
-    let userMoved = false;
     map.on("dragstart", () => {
-      userMoved = true;
+      framedRef.current = true;
     });
     map.on("wheel", () => {
-      userMoved = true;
+      framedRef.current = true;
     });
     const refit = () => {
-      if (userMoved) return;
+      if (framedRef.current) return;
       map.resize();
-      map.fitBounds(
-        [
-          [-120.6, 35.8],
-          [-118.0, 39.5],
-        ],
-        { padding: 40, duration: 0 },
-      );
+      map.fitBounds(WEST_COAST_BOUNDS, { padding: 40, duration: 0 });
     };
     const ro = new ResizeObserver(refit);
     ro.observe(containerRef.current);
     map.on("load", refit);
+    map.on("load", () => {
+      addPassLayer(map, (slug) => onSelectRef.current(slug));
+      setLayerReady(true);
+    });
     map.once("idle", refit);
     mapRef.current = map;
     (window as unknown as { __map?: maplibregl.Map }).__map = map;
@@ -220,6 +382,7 @@ export default function MapView({
     const p = passes.find((x) => x.slug === selected);
     if (!p) return;
     if (!map.getBounds().contains([p.lon, p.lat]) || map.getZoom() < 7.5) {
+      framedRef.current = true;
       map.easeTo({
         center: [p.lon, p.lat],
         zoom: Math.max(map.getZoom(), 9),
@@ -239,7 +402,18 @@ export default function MapView({
     if (!map) return;
     markersRef.current.forEach((m) => m.remove());
     const savedSet = new Set(loadSaved());
-    markersRef.current = passes.map((p) => {
+    // 1,252 DOM markers reposition every frame (in 3D, with a terrain
+    // lookup each), which stutters on a phone. Only the passes that wear
+    // pixel badges or state (featured, selected, saved) stay HTML; the rest
+    // draw on the GPU as pixel squares in the same palette.
+    const asHtml = new Set(
+      passes
+        .filter((p) => p.tier === "featured" || p.slug === selected || savedSet.has(p.slug))
+        .map((p) => p.slug),
+    );
+    const src = layerReady ? (map.getSource(PASS_SOURCE) as maplibregl.GeoJSONSource) : undefined;
+    src?.setData(passCollection(passes, evalDate, asHtml));
+    markersRef.current = passes.filter((p) => asHtml.has(p.slug)).map((p) => {
       const el = markerElement(p, evalDate, p.slug === selected, savedSet.has(p.slug));
       const activate = (e: Event) => {
         e.stopPropagation();
@@ -253,7 +427,33 @@ export default function MapView({
         .setLngLat([p.lon, p.lat])
         .addTo(map);
     });
-  }, [passes, evalDate, selected, onSelect, savedVersion]);
+  }, [passes, evalDate, selected, onSelect, savedVersion, layerReady]);
 
-  return <div ref={containerRef} style={{ position: "absolute", inset: 0 }} aria-label="Map" />;
+  return (
+    <>
+      <div ref={containerRef} style={{ position: "absolute", inset: 0 }} aria-label="Map" />
+      <div className="map-tools" role="toolbar" aria-label="Map tools">
+        <button
+          onClick={locate}
+          aria-label="Show my location and the nearest passes"
+          title="where am I? nearest passes"
+          disabled={locating}
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+            <circle cx="9" cy="9" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            <circle cx="9" cy="9" r="1.8" fill="currentColor" />
+            <path d="M9 0v3M9 15v3M0 9h3M15 9h3" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
+        </button>
+        <button
+          onClick={toggleRelief}
+          aria-pressed={relief}
+          title={relief ? "flat map" : "3D terrain"}
+          className="mono"
+        >
+          {relief ? "2D" : "3D"}
+        </button>
+      </div>
+    </>
+  );
 }

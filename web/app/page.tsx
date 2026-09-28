@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 import Campfire from "@/components/Campfire";
 import MapLegend from "@/components/MapLegend";
+import type { Position } from "@/components/MapView";
+import NearbyPasses from "@/components/NearbyPasses";
 import PassPanel from "@/components/PassPanel";
 import PassSearch from "@/components/PassSearch";
 import SeasonScrubber from "@/components/SeasonScrubber";
@@ -18,6 +20,7 @@ export default function Home() {
   const [index, setIndex] = useState<PassIndex | null>(null);
   const [evalDate, setEvalDate] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  const [here, setHere] = useState<{ pos: Position | null; error: string | null } | null>(null);
 
   useEffect(() => {
     fetch("data/passes.json")
@@ -41,6 +44,10 @@ export default function Home() {
   }, []);
 
   const onSelect = useCallback((slug: string) => setSelected(slug), []);
+  const onLocate = useCallback(
+    (pos: Position | null, error?: string) => setHere({ pos, error: error ?? null }),
+    [],
+  );
 
   useEffect(() => {
     if (!evalDate) return;
@@ -74,6 +81,7 @@ export default function Home() {
         evalDate={evalDate}
         selected={selected}
         onSelect={onSelect}
+        onLocate={onLocate}
       />
       <header
         style={{
@@ -88,12 +96,22 @@ export default function Home() {
           Sierra Pass Report
         </h1>
         <p className="mono" style={{ color: "var(--sage)", marginTop: 2 }}>
-          sensors + satellite + people who were just there
+          Washington · Oregon · California
         </p>
       </header>
       <div style={{ position: "absolute", top: 62, left: 16, zIndex: 30 }}>
         <PassSearch passes={index.passes} onSelect={onSelect} />
       </div>
+      {here && (
+        <NearbyPasses
+          position={here.pos}
+          error={here.error}
+          passes={index.passes}
+          evalDate={evalDate}
+          onSelect={onSelect}
+          onClose={() => setHere(null)}
+        />
+      )}
       <MapLegend />
       <SeasonScrubber dates={index.dates} value={evalDate} onChange={setEvalDate} />
       <PassPanel slug={selected} evalDate={evalDate} onClose={() => setSelected(null)} />

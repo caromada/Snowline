@@ -1,5 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Source_Serif_4, Space_Grotesk } from "next/font/google";
+import ServiceWorker from "@/components/ServiceWorker";
+import { palette } from "@/lib/theme";
 import "./globals.css";
 
 const grotesk = Space_Grotesk({
@@ -23,13 +25,27 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Sierra Pass Report",
   description:
-    "Four evidence streams fused into per-pass Sierra conditions with honest confidence.",
+    "Mountain pass conditions for Washington, Oregon and California: sensors, satellite " +
+    "and trip reports fused with honest confidence.",
+  appleWebApp: { capable: true, title: "Pass Report", statusBarStyle: "black-translucent" },
+  icons: {
+    icon: [{ url: "icons/favicon-32.png", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "icons/apple-touch-icon.png", sizes: "180x180" }],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: palette.deepPine,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${grotesk.variable} ${serif.variable} ${mono.variable}`}>{children}</body>
+      <body className={`${grotesk.variable} ${serif.variable} ${mono.variable}`}>
+        {children}
+        <ServiceWorker />
+      </body>
     </html>
   );
 }

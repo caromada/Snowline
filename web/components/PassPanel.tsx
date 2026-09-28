@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { offlineSupported, removeOffline, saveForOffline } from "@/lib/offline";
 import { glyphByStatus, tent } from "@/lib/pixel";
 import type { Fact, PassDetail } from "@/lib/types";
 import Byok from "./Byok";
@@ -95,6 +96,7 @@ export default function PassPanel({
 }) {
   const [fetched, setFetched] = useState<{ slug: string; data: PassDetail } | null>(null);
   const [saved, setSaved] = useState<string[]>([]);
+  const [offline, setOffline] = useState<{ slug: string; text: string } | null>(null);
   const ledgerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -121,7 +123,8 @@ export default function PassPanel({
 
   const toggleSaved = () => {
     if (!slug) return;
-    const next = saved.includes(slug) ? saved.filter((s) => s !== slug) : [...saved, slug];
+    const removing = saved.includes(slug);
+    const next = removing ? saved.filter((s) => s !== slug) : [...saved, slug];
     setSaved(next);
     try {
       window.localStorage.setItem(SAVED_KEY, JSON.stringify(next));
@@ -129,6 +132,20 @@ export default function PassPanel({
     } catch {
       // storage may be unavailable; the toggle still works for this view
     }
+    if (!detail || !offlineSupported()) return;
+    const stations = Object.values(detail.stations ?? {}).flat();
+    if (removing) {
+      removeOffline(slug, stations).catch(() => {});
+      setOffline(null);
+      return;
+    }
+    const target = slug;
+    setOffline({ slug: target, text: "saving for offline…" });
+    saveForOffline(detail.pass, stations, (done, total) =>
+      setOffline({ slug: target, text: `saving for offline ${done}/${total}` }),
+    )
+      .then((n) => setOffline({ slug: target, text: `saved for offline · ${n} files` }))
+      .catch(() => setOffline({ slug: target, text: "offline save failed; try on wifi" }));
   };
 
   const status = detail?.statuses[evalDate];
@@ -147,13 +164,18 @@ export default function PassPanel({
               <div className="mono" style={{ color: "var(--sage)", marginTop: 2 }}>
                 {detail.pass.elevation_ft.toLocaleString()} ft · {evalDate}
               </div>
+              {offline && offline.slug === slug && (
+                <div className="mono" role="status" style={{ color: "var(--sage)", marginTop: 2 }}>
+                  {offline.text}
+                </div>
+              )}
             </div>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
               <button
                 onClick={toggleSaved}
                 className="glyph-hover"
                 aria-pressed={isSaved}
-                title={isSaved ? "remove from saved passes" : "save this pass"}
+                title={isSaved ? "remove from saved passes" : "save this pass for offline"}
                 style={{ opacity: isSaved ? 1 : 0.45 }}
               >
                 <PixelGlyph sprite={tent} scale={2} title="saved pass tent" />

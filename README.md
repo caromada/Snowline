@@ -4,12 +4,12 @@
 
 Live demo: [spr-me-599cefb9.vercel.app](https://spr-me-599cefb9.vercel.app/?pass=glen&date=2023-06-15)
 
-Every Eastern Sierra backpacker asks the same question from May to August: can I get over the pass this weekend, and do I need an ice axe? The honest answer is scattered across SNOTEL telemetry, CDEC snow pillows, USGS stream gauges, satellite snow cover, and thousands of forum posts written by people with wildly different risk tolerances. Sierra Pass Report fuses all four streams into a per-pass status with a confidence grade that admits what it does not know, and every sentence in the panel traces back to the sensor curve or the exact forum quote it came from.
+Every West Coast backpacker asks the same question from May to August: can I get over the pass this weekend, and do I need an ice axe? The honest answer is scattered across SNOTEL telemetry, CDEC snow pillows, USGS stream gauges, satellite snow cover, and thousands of forum posts written by people with wildly different risk tolerances. Sierra Pass Report fuses all four streams into a per-pass status for 1,252 passes across Washington, Oregon, and California, with a confidence grade that admits what it does not know, and every sentence in the panel traces back to the sensor curve or the exact forum quote it came from. It installs to a phone's home screen and keeps working with no signal.
 
 ## Architecture
 
 ```
-gazetteer/         508 Sierra passes: polygons, aliases ("the pass after Rae Lakes" -> Glen)
+gazetteer/         1,252 WA/OR/CA passes: polygons, aliases ("the pass after Rae Lakes" -> Glen)
 ingest/
   snotel.py        NRCS AWDB REST, daily SWE and depth
   cdec.py          California's CDEC snow sensors (the network that actually covers this crest)
@@ -29,6 +29,20 @@ web/               Next.js + MapLibre, forest palette, pixel evidence glyphs,
 Data flow is raw-first: every fetch lands in `raw_fetches` exactly as received before any parsing, so the whole pipeline can be reprocessed from disk. Every observation row carries provenance back to its raw fetch, station, or post.
 
 The two-tier model: everything above works with zero configuration because the LLM extractions ship in the repo, cached by post content hash. Add an Anthropic API key (env var for the pipeline, or the in-app field which stores it only in your browser) and the live features light up: paste any trip report and watch it become structured evidence, and ask a pass questions answered strictly from its evidence ledger.
+
+### Coverage
+
+1,252 named passes and saddles across Washington, Oregon, and California, pulled from OpenStreetMap by state boundary with elevations filled from the USGS point-elevation service. 68 of them are the hand-curated featured tier with aliases and notes: the Sierra JMT/PCT chain and its eastside escape routes, the southern Sierra, Yosemite and Tahoe, and in the Cascades the North Cascades (Cascade, Cutthroat, Harts, Hannegan, Whatcom), the Enchantments (Aasgard), Glacier Peak (Spider Gap, Buck Creek, Fire Creek), Rainier (Panhandle Gap, Chinook), the Goat Rocks (Cispus, Elk), Mount Hood (Lolo), the central Oregon Cascades (Santiam, McKenzie, Willamette) and the Wallowas (Glacier, Hawkins, Polaris). Snow comes from 196 SNOTEL stations in the three states plus Nevada and 23 CDEC pillows in California; flow comes from 418 USGS gauges.
+
+The data window runs from the 2023 monster snow year through today. The daily cron fetches the trailing window from the live APIs, re-fuses every pass, and redeploys, so "today" on the scrubber is always the mountain as the sensors currently see it. The SQLite store is reproducible from the APIs and stays out of git; the LLM extraction cache (`data/extractions/cache.jsonl`) is the one paid-for artifact and ships committed. Station curves export once per station under `data/station/` and load on demand, since neighboring passes share stations.
+
+### In the app
+
+- **Topographic basemap:** OpenFreeMap vector tiles (OpenStreetMap data, no key) for lakes, streams, trails, glaciers, wilderness boundaries and peaks with elevations, plus contour lines generated in the browser from the terrain tiles by `maplibre-contour`. Every color comes from the seven-value forest palette, and map labels use glyphs built from the spec typefaces (`web/public/glyphs`).
+- **3D relief:** one button tilts the map onto real terrain from the same elevation tiles.
+- **Nearest passes:** the locate button drops your position and lists the five closest passes with their current status and distance.
+- **Installable and offline:** a web app manifest and a service worker make it a home-screen app. Everything you view is cached for when the signal drops; saving a pass with the tent button pins its data, station curves, and the map tiles within 6 km at zooms 10 to 14, so the pass works at the trailhead.
+- **Find a pass:** search by name or alias across all 1,252 passes.
 
 ## Extraction accuracy
 
@@ -81,8 +95,5 @@ cp .env.example .env                      # add ANTHROPIC_API_KEY
 
 The GitHub Actions cron (`.github/workflows/ingest.yml`) refreshes sensor data daily and re-exports; the API key secret is optional there too.
 
-508 named passes and saddles covered, the whole Sierra from the southern Kern country to the Tahoe rim, pulled from OpenStreetMap with elevations filled from the USGS point-elevation service. 33 of them are the hand-curated featured tier with aliases, creek names, and aspect notes: the JMT/PCT chain (Forester, Glen, Pinchot, Mather, Muir, Selden, Silver, Donohue and friends), the eastside escape routes (Kearsarge, Bishop, Piute, Taboose, Sawmill, Baxter, Shepherd, Mono, Duck), the southern country (Trail Crest, New Army, Cottonwood, Colby, Franklin, Sawtooth, Kaweah Gap, Elizabeth, Granite), the cross-country classics (Lamarck Col, Italy, Pine Creek, Hell For Sure, McGee), and the Yosemite high country (Parker, Vogelsang).
-
-The data window runs from the 2023 monster snow year through today: every melt season is ingested in full, and the daily cron rebuilds the store from the live APIs each morning, re-fuses, and redeploys, so "today" on the scrubber is always the mountain as the sensors currently see it. The SQLite store itself stays out of git because it is reproducible from the APIs; the LLM extraction cache (`data/extractions/cache.jsonl`) is the one paid-for artifact and ships committed.
 
 Not a safety product. Conditions change by the hour up there; read the primary sources this thing links you to, and make your own call at the base of the chute.

@@ -18,10 +18,10 @@ export default function SeasonScrubber({
     .filter(({ year, i }) => i === 0 || year !== dates[i - 1].slice(0, 4));
   return (
     <div
+      className="season-scrubber"
       style={{
         position: "absolute",
         left: 16,
-        bottom: 16,
         zIndex: 20,
         background: "color-mix(in srgb, var(--moss) 88%, transparent)",
         border: "1px solid color-mix(in srgb, var(--granite) 20%, transparent)",

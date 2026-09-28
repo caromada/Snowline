@@ -51,7 +51,7 @@ export interface Extraction {
 export interface LedgerEntry {
   date: string;
   source: "report" | "sensor" | "satellite" | "gauge";
-  glyph: string;
+  glyph?: string;
   title: string;
   detail: {
     author?: string;
@@ -126,5 +126,13 @@ export interface PassDetail {
   dates: string[];
   statuses: Record<string, FusedStatus>;
   ledger: LedgerEntry[];
+  /** Inline per-pass curves (the modeled satellite cover). */
   curves: Record<string, CurveSeries[]>;
+  /** Shared station curves, by metric: provenance ids to load on demand. */
+  stations?: Record<string, string[]>;
+}
+
+export interface StationCurves {
+  provenance: string;
+  curves: Record<string, [string, number][]>;
 }

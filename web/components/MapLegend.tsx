@@ -21,12 +21,10 @@ export default function MapLegend() {
       style={{
         position: "absolute",
         left: 16,
-        bottom: 118,
         zIndex: 20,
         background: "color-mix(in srgb, var(--moss) 88%, transparent)",
         border: "1px solid color-mix(in srgb, var(--granite) 20%, transparent)",
         padding: "8px 12px",
-        display: "grid",
         rowGap: 4,
       }}
     >

@@ -1,10 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { stationFile } from "@/lib/offline";
 import { glyphBySource } from "@/lib/pixel";
-import type { CurvePoint, CurveSeries, LedgerEntry } from "@/lib/types";
+import type { CurvePoint, CurveSeries, LedgerEntry, StationCurves } from "@/lib/types";
 import PixelGlyph from "./PixelGlyph";
 import Sparkline from "./Sparkline";
+
+// Station curves are shared across passes, so each loads once per visit.
+const stationCache = new Map<string, Promise<StationCurves | null>>();
+
+function loadStation(provenance: string): Promise<StationCurves | null> {
+  let p = stationCache.get(provenance);
+  if (!p) {
+    p = fetch(stationFile(provenance))
+      .then((r) => (r.ok ? (r.json() as Promise<StationCurves>) : null))
+      .catch(() => null);
+    stationCache.set(provenance, p);
+  }
+  return p;
+}
 
 const CURVE_BY_SOURCE: Record<string, { key: string; unit: string }> = {
   sensor: { key: "swe_in", unit: "in SWE" },
@@ -22,14 +37,27 @@ function Entry({
   isNew: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const [station, setStation] = useState<StationCurves | null>(null);
   const d = entry.detail;
   const curveSpec = CURVE_BY_SOURCE[entry.source];
-  const series = curveSpec ? (curves[curveSpec.key] ?? []) : [];
-  const match =
-    series.find((s) => s.provenance === d.provenance) ?? series[0];
-  const curve: CurvePoint[] = match
-    ? match.points.map(([date, value]) => ({ date, value }))
-    : [];
+  const inline = curveSpec ? (curves[curveSpec.key] ?? []) : [];
+  const needsStation = open && !!curveSpec && inline.length === 0 && !!d.provenance;
+
+  useEffect(() => {
+    if (!needsStation || !d.provenance) return;
+    let live = true;
+    loadStation(d.provenance).then((s) => {
+      if (live) setStation(s);
+    });
+    return () => {
+      live = false;
+    };
+  }, [needsStation, d.provenance]);
+
+  const inlineMatch = inline.find((s) => s.provenance === d.provenance) ?? inline[0];
+  const points =
+    inlineMatch?.points ?? (curveSpec ? station?.curves[curveSpec.key] : undefined) ?? [];
+  const curve: CurvePoint[] = points.map(([date, value]) => ({ date, value }));
 
   return (
     <li
