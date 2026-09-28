@@ -11,7 +11,9 @@ import json
 import logging
 from typing import Any
 
+from config import DIRECTORY_TIMEOUT_S
 from gazetteer import load_passes
+from ingest.directory import station_directory
 from ingest.geo import haversine_km
 from ingest.http import fetch_json, fetch_text
 from store import Store
@@ -29,6 +31,11 @@ NAME_EXCLUDE = ("DITCH", "CONDUIT", "DIV DAM", "INTAKE", "FLUME", "CANAL", "PP N
 
 
 def discover_sites(store: Store) -> list[dict[str, Any]]:
+    """Active stream gauges in the Sierra bbox, via the snapshotted directory."""
+    return station_directory("usgs", lambda: _fetch_sites(store))
+
+
+def _fetch_sites(store: Store) -> list[dict[str, Any]]:
     params = {
         "format": "rdb",
         "bBox": BBOX,
@@ -36,7 +43,7 @@ def discover_sites(store: Store) -> list[dict[str, Any]]:
         "siteStatus": "active",
         "siteType": "ST",
     }
-    text, cached = fetch_text(NWIS_SITE_URL, params)
+    text, cached = fetch_text(NWIS_SITE_URL, params, timeout=DIRECTORY_TIMEOUT_S)
     if not cached:
         store.record_raw("usgs", f"{NWIS_SITE_URL}?bbox={BBOX}", text)
     sites: list[dict[str, Any]] = []

@@ -37,5 +37,14 @@ PRICE_PER_MTOK = {
 FETCH_TIMEOUT_S = 30
 FETCH_RETRY_BACKOFF_S = 2.0
 
+# Station directories (which gauges and snow sensors exist) change on the
+# scale of years, and the USGS site service can take minutes to answer. They
+# are snapshotted in git, refreshed weekly, and served from the snapshot
+# whenever the live directory is slow, down, or suspiciously short.
+STATIONS_DIR = DATA_DIR / "stations"
+DIRECTORY_TIMEOUT_S = 120
+DIRECTORY_MAX_AGE_DAYS = 7
+DIRECTORY_MIN_KEEP_FRAC = 0.9
+
 AWDB_BASE = "https://wcc.sc.egov.usda.gov/awdbRestApi/services/v1"
 NWIS_IV_BASE = "https://waterservices.usgs.gov/nwis/iv/"

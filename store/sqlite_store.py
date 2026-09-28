@@ -144,14 +144,47 @@ class Store:
         self.conn.execute("DELETE FROM observations WHERE stream=?", (stream,))
         self.conn.commit()
 
-    def delete_observations(self, stream: str, start: str, end: str) -> int:
-        """Remove a stream's rows in a date window so re-ingest is idempotent."""
+    def delete_observations(
+        self, stream: str, start: str, end: str, up_to_id: int | None = None
+    ) -> int:
+        """Remove a stream's rows in a date window so re-ingest is idempotent.
+
+        With up_to_id, only rows at or below that id go: the rows a fresh
+        ingest just appended survive while the ones they supersede are dropped.
+        """
+        sql = "DELETE FROM observations WHERE stream=? AND observed_date>=? AND observed_date<=?"
+        args: tuple[Any, ...] = (stream, start, end)
+        if up_to_id is not None:
+            sql += " AND id<=?"
+            args += (up_to_id,)
+        cur = self.conn.execute(sql, args)
+        self.conn.commit()
+        return cur.rowcount
+
+    def delete_observations_after(self, stream: str, after_id: int) -> int:
+        """Roll back a failed ingest: drop the stream's rows appended past a mark."""
         cur = self.conn.execute(
-            "DELETE FROM observations WHERE stream=? AND observed_date>=? AND observed_date<=?",
-            (stream, start, end),
+            "DELETE FROM observations WHERE stream=? AND id>?", (stream, after_id)
         )
         self.conn.commit()
         return cur.rowcount
+
+    def max_observation_id(self) -> int:
+        row = self.conn.execute("SELECT COALESCE(MAX(id), 0) FROM observations").fetchone()
+        return int(row[0])
+
+    def latest_observed_date(self, stream: str) -> str | None:
+        row = self.conn.execute(
+            "SELECT MAX(observed_date) FROM observations WHERE stream=?", (stream,)
+        ).fetchone()
+        return row[0] if row and row[0] else None
+
+    def has_observations_before(self, stream: str, date: str) -> bool:
+        row = self.conn.execute(
+            "SELECT 1 FROM observations WHERE stream=? AND observed_date<? LIMIT 1",
+            (stream, date),
+        ).fetchone()
+        return row is not None
 
     # -- extractions -------------------------------------------------------
     def put_extraction(

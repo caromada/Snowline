@@ -18,6 +18,7 @@ import re
 from typing import Any
 
 from gazetteer import load_passes
+from ingest.directory import station_directory
 from ingest.geo import haversine_km
 from ingest.http import fetch_text
 from store import Store
@@ -59,6 +60,11 @@ def _parse_sta_meta(html: str) -> dict[str, Any] | None:
 
 
 def discover_stations(store: Store) -> list[dict[str, Any]]:
+    """Candidate stations with parseable metadata, via the snapshotted directory."""
+    return station_directory("cdec", lambda: _fetch_stations(store))
+
+
+def _fetch_stations(store: Store) -> list[dict[str, Any]]:
     stations: list[dict[str, Any]] = []
     for sid in CANDIDATE_STATIONS:
         try:

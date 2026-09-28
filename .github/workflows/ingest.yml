@@ -6,21 +6,67 @@ on:
     - cron: "0 14 * * *"
   workflow_dispatch: {}
 
+concurrency:
+  group: daily-ingest
+  cancel-in-progress: false
+
 jobs:
   ingest:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - run: pip install requests
-      # The SQLite store is not committed; every run rebuilds it from the
-      # live APIs (all melt seasons 2023 through today).
+      - run: pip install "requests>=2.31" "urllib3>=2.3"
+
+      - name: Cache keys
+        id: keys
+        run: |
+          echo "month=$(date -u +%Y-%m)" >> "$GITHUB_OUTPUT"
+          echo "code=${{ hashFiles('gazetteer/passes.json', 'ingest/**', 'store/**', 'scripts/backfill.py') }}" >> "$GITHUB_OUTPUT"
+
+      # The HTTP cache is what "cached fallback" falls back to. Without it
+      # every run starts cold and one slow upstream kills the job.
+      - name: Restore HTTP cache
+        uses: actions/cache/restore@v6
+        with:
+          path: data/cache
+          key: http-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: http-v1-
+
+      # The store carries over between runs so a normal day only fetches the
+      # trailing window. It rebuilds from scratch monthly (picking up USGS
+      # provisional-data revisions) and whenever ingest code or passes change.
+      - name: Restore sensor store
+        uses: actions/cache/restore@v6
+        with:
+          path: data/sierra.sqlite
+          key: store-v1-${{ steps.keys.outputs.code }}-${{ steps.keys.outputs.month }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: store-v1-${{ steps.keys.outputs.code }}-${{ steps.keys.outputs.month }}-
+
+      - name: Prune stale HTTP cache
+        run: mkdir -p data/cache && find data/cache -type f -mtime +45 -delete
+
       - name: Ingest sensor data
-        run: python -m scripts.backfill
+        run: python -m scripts.backfill --daily
+
+      - name: Save HTTP cache
+        if: always()
+        uses: actions/cache/save@v6
+        with:
+          path: data/cache
+          key: http-v1-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Save sensor store
+        uses: actions/cache/save@v6
+        with:
+          path: data/sierra.sqlite
+          key: store-v1-${{ steps.keys.outputs.code }}-${{ steps.keys.outputs.month }}-${{ github.run_id }}-${{ github.run_attempt }}
+
       - name: Extract any new forum posts
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -37,6 +83,7 @@ jobs:
         run: |
           git config user.name "sierra-pass-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add web/public/data data/extractions
+          git add web/public/data data/extractions data/stations
           git diff --cached --quiet || git commit -m "Daily ingest $(date -u +%F)"
+          git pull --rebase --quiet
           git push

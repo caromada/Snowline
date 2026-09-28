@@ -14,6 +14,7 @@ from typing import Any
 
 from config import AWDB_BASE
 from gazetteer import load_passes
+from ingest.directory import station_directory
 from ingest.geo import haversine_km
 from ingest.http import fetch_json
 from store import Store
@@ -28,7 +29,11 @@ METRIC_BY_ELEMENT = {"WTEQ": "swe_in", "SNWD": "snow_depth_in"}
 
 
 def discover_stations(store: Store) -> list[dict[str, Any]]:
-    """All active CA/NV SNOTEL stations, raw-first."""
+    """All active CA/NV SNOTEL stations, via the snapshotted directory."""
+    return station_directory("snotel", lambda: _fetch_stations(store))
+
+
+def _fetch_stations(store: Store) -> list[dict[str, Any]]:
     stations: list[dict[str, Any]] = []
     for state in ("CA", "NV"):
         url = f"{AWDB_BASE}/stations"

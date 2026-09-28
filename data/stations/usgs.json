@@ -1,0 +1,1553 @@
+{
+"fetched_at": "2026-09-28T20:16:34+00:00",
+"stations": [
+{
+"lat": 37.75027778,
+"lon": -118.9394444,
+"name": "Deadman C A Big Springs Nr Crestview Ca",
+"site_no": "10265100"
+},
+{
+"lat": 37.17715504,
+"lon": -118.563165,
+"name": "Sf Bishop C Bl S Lk Nr Bishop Ca",
+"site_no": "10270800"
+},
+{
+"lat": 37.213822,
+"lon": -118.6103894,
+"name": "Mf Bishop C Bl Lk Sabrina Nr Bishop Ca",
+"site_no": "10270872"
+},
+{
+"lat": 38.0329787,
+"lon": -119.2165424,
+"name": "Mill C Bl Lundy Lk Nr Lee Vining Ca",
+"site_no": "10287069"
+},
+{
+"lat": 38.04214527,
+"lon": -119.1726516,
+"name": "Up Conway D Nr Lee Vining Ca",
+"site_no": "10287145"
+},
+{
+"lat": 38.0427008,
+"lon": -119.1726516,
+"name": "Lundy Pp Tailrace Nr Lee Vining Ca",
+"site_no": "10287195"
+},
+{
+"lat": 37.7510421,
+"lon": -119.1815348,
+"name": "Rush C Controlled Rel Bl Waugh Lk Nr June Lake Ca",
+"site_no": "10287262"
+},
+{
+"lat": 37.75132009,
+"lon": -119.1415343,
+"name": "Rush C Controlled Rel Bl Gem Lake Nr June Lake Ca",
+"site_no": "10287281"
+},
+{
+"lat": 37.76631976,
+"lon": -119.1223677,
+"name": "Rush C Pp Tailrace Nr June Lake Ca",
+"site_no": "10287300"
+},
+{
+"lat": 37.9643687,
+"lon": -119.2732103,
+"name": "Lee Vining C Bl Saddlebag Lk Nr Lee Vining Ca",
+"site_no": "10287655"
+},
+{
+"lat": 37.92798117,
+"lon": -119.2512636,
+"name": "Glacier C Bl Tioga Lk Nr Lee Vining Ca",
+"site_no": "10287720"
+},
+{
+"lat": 37.93603659,
+"lon": -119.2309854,
+"name": "Lee Vining C Bl Rhinedollar Dam Nr Lee Vining Ca",
+"site_no": "10287770"
+},
+{
+"lat": 38.19186474,
+"lon": -119.2101533,
+"name": "Virginia Ck Nr Bridgeport, Ca",
+"site_no": "10289000"
+},
+{
+"lat": 38.17380969,
+"lon": -119.2337656,
+"name": "Green Ck Nr Bridgeport, Ca",
+"site_no": "10289500"
+},
+{
+"lat": 38.17214225,
+"lon": -119.3246032,
+"name": "Robinson Ck At Twin Lks Outlet Nr Bridgeport, Ca",
+"site_no": "10290500"
+},
+{
+"lat": 38.23880787,
+"lon": -119.3259923,
+"name": "Buckeye Ck Nr Bridgeport, Ca",
+"site_no": "10291500"
+},
+{
+"lat": 38.3276958,
+"lon": -119.2148759,
+"name": "E Walker Rv Nr Bridgeport, Ca",
+"site_no": "10293000"
+},
+{
+"lat": 38.43603056,
+"lon": -119.0112,
+"name": "E Walker Rv Blw Confl Rough Ck Nr The Elbow, Nv",
+"site_no": "10293100"
+},
+{
+"lat": 38.548,
+"lon": -118.950061,
+"name": "E Walker Rv At Morgan Bridge Nr Wichman Cyn, Nv",
+"site_no": "10293200"
+},
+{
+"lat": 38.7185,
+"lon": -118.9795556,
+"name": "E Walker Rv At Ivy Ranch Brg Nr Mason, Nv",
+"site_no": "10293400"
+},
+{
+"lat": 38.8774,
+"lon": -119.1442806,
+"name": "E Walker Rv Nr Mason, Nv",
+"site_no": "10295000"
+},
+{
+"lat": 38.3796366,
+"lon": -119.4501649,
+"name": "W Walker Rv Blw L Walker Rv Nr Coleville, Ca",
+"site_no": "10296000"
+},
+{
+"lat": 38.51324495,
+"lon": -119.4498872,
+"name": "W Walker Rv Nr Coleville, Ca",
+"site_no": "10296500"
+},
+{
+"lat": 38.72806389,
+"lon": -119.427861,
+"name": "W Walker Rv At Hoye Brg Nr Wellington, Nv",
+"site_no": "10297500"
+},
+{
+"lat": 38.8096366,
+"lon": -119.227377,
+"name": "W Walker Rv Nr Hudson, Nv",
+"site_no": "10300000"
+},
+{
+"lat": 38.92125,
+"lon": -119.1915833,
+"name": "Walker Rv At Snyder Ln Nr Mason, Nv",
+"site_no": "10300600"
+},
+{
+"lat": 39.02041667,
+"lon": -119.1560556,
+"name": "Walker Rvr Blw Yerington Weir Nr Yerington, Nv",
+"site_no": "10301115"
+},
+{
+"lat": 39.12816667,
+"lon": -119.1166944,
+"name": "Walker Rv Blw Mason Vly Wma At Rr Xing Nr Wabuska",
+"site_no": "10301300"
+},
+{
+"lat": 39.1524611,
+"lon": -119.0988889,
+"name": "Walker Rv Nr Wabuska, Nv",
+"site_no": "10301500"
+},
+{
+"lat": 39.1032533,
+"lon": -118.929317,
+"name": "Walker Rv Abv Weber Res Nr Schurz, Nv",
+"site_no": "10301600"
+},
+{
+"lat": 39.033889,
+"lon": -118.861389,
+"name": "Walker Rv At Pt Site Blw Weber Res Nr Schurz, Nv",
+"site_no": "10301720"
+},
+{
+"lat": 39.01353135,
+"lon": -118.8609803,
+"name": "Walker Rv Abv Little Dam Nr Schurz, Nv",
+"site_no": "10301745"
+},
+{
+"lat": 38.94019785,
+"lon": -118.8037557,
+"name": "Walker Rv At Lateral 2-A Siphon Nr Schurz, Nv",
+"site_no": "10302002"
+},
+{
+"lat": 38.79103038,
+"lon": -118.727085,
+"name": "Walker Rv Nr Mouth At Walker Lake, Nv",
+"site_no": "10302025"
+},
+{
+"lat": 38.7146274,
+"lon": -119.7648985,
+"name": "E Fk Carson Rv Blw Markleeville Ck Nr Markleeville",
+"site_no": "10308200"
+},
+{
+"lat": 38.70128509,
+"lon": -119.6565398,
+"name": "Leviathan C Ab Mine Nr Markleeville Ca",
+"site_no": "10308783"
+},
+{
+"lat": 38.7033333,
+"lon": -119.6591667,
+"name": "Unnamed Trib 1 To Leviathan C At Leviathan Mine Ca",
+"site_no": "103087835"
+},
+{
+"lat": 38.7040628,
+"lon": -119.6587622,
+"name": "Leviathan Mine Adit Drain Nr Markleeville Ca",
+"site_no": "10308784"
+},
+{
+"lat": 38.7040628,
+"lon": -119.6587622,
+"name": "Leviathan Mine Pit Flow Nr Markleeville Ca",
+"site_no": "10308785"
+},
+{
+"lat": 38.7058333,
+"lon": -119.6566667,
+"name": "Leviathan Mine Pit Junction Box Nr Markleeville Ca",
+"site_no": "103087855"
+},
+{
+"lat": 38.70555556,
+"lon": -119.6622222,
+"name": "Unnamed Trib 2 To Leviathan C At Leviathan Mine Ca",
+"site_no": "103087865"
+},
+{
+"lat": 38.7108333,
+"lon": -119.6630556,
+"name": "4L C Nr Markleeville Ca",
+"site_no": "103087889"
+},
+{
+"lat": 38.71684034,
+"lon": -119.6601513,
+"name": "Leviathan C Ab Aspen C Nr Markleeville Ca",
+"site_no": "10308789"
+},
+{
+"lat": 38.7086111,
+"lon": -119.648611,
+"name": "Aspen C Abv Leviathan Mine Nr Markleeville Ca",
+"site_no": "103087891"
+},
+{
+"lat": 38.717222,
+"lon": -119.658333,
+"name": "Aspen C Ab Leviathan C Nr Markleeville Ca",
+"site_no": "103087898"
+},
+{
+"lat": 38.735729,
+"lon": -119.6454289,
+"name": "Leviathan C Ab Mountaineer C Nr Markleeville Ca",
+"site_no": "10308792"
+},
+{
+"lat": 38.735729,
+"lon": -119.6454289,
+"name": "Bryant C Bl Mountaineer C Nr Markleeville Ca",
+"site_no": "10308794"
+},
+{
+"lat": 38.84519444,
+"lon": -119.7060833,
+"name": "E Fk Carson Rv Nr Gardnerville, Nv",
+"site_no": "10309000"
+},
+{
+"lat": 38.88013889,
+"lon": -119.6918056,
+"name": "E Fk Carson Rv Nr Dresslerville, Nv",
+"site_no": "10309010"
+},
+{
+"lat": 38.87901944,
+"lon": -119.70271111,
+"name": "Indian Ck Abv Mouth Nr Gardnerville,Nv",
+"site_no": "10309035"
+},
+{
+"lat": 38.858944,
+"lon": -119.568583,
+"name": "Pine Nut Ck Nr Gardnerville, Nv",
+"site_no": "10309050"
+},
+{
+"lat": 38.76962765,
+"lon": -119.833789,
+"name": "W Fk Carson Rv At Woodfords, Ca",
+"site_no": "10310000"
+},
+{
+"lat": 38.9645,
+"lon": -119.8493194,
+"name": "Daggett Ck Nr Genoa, Nv",
+"site_no": "10310400"
+},
+{
+"lat": 39.012408,
+"lon": -119.8310126,
+"name": "Carson Rv Nr Genoa, Nv",
+"site_no": "10310407"
+},
+{
+"lat": 39.11324216,
+"lon": -119.7982365,
+"name": "Clear Ck Nr Carson City, Nv",
+"site_no": "10310500"
+},
+{
+"lat": 39.10768747,
+"lon": -119.7132334,
+"name": "Carson Rv Nr Carson City, Nv",
+"site_no": "10311000"
+},
+{
+"lat": 39.15379796,
+"lon": -119.8079599,
+"name": "Kings Cyn Ck Nr Carson City, Nv",
+"site_no": "10311100"
+},
+{
+"lat": 39.17629816,
+"lon": -119.805738,
+"name": "Ash Cyn Ck Nr Carson City, Nv",
+"site_no": "10311200"
+},
+{
+"lat": 39.165275,
+"lon": -119.722225,
+"name": "Eagle Valley Ck At Carson City, Nv",
+"site_no": "10311300"
+},
+{
+"lat": 39.18137778,
+"lon": -119.6948694,
+"name": "Carson Rv At Deer Run Rd Nr Carson City, Nv",
+"site_no": "10311400"
+},
+{
+"lat": 39.23779444,
+"lon": -119.5878583,
+"name": "Carson Rv At Dayton, Nv",
+"site_no": "10311700"
+},
+{
+"lat": 39.28091667,
+"lon": -119.5251389,
+"name": "Carson R Abv Sixmile Cyn Ck Blw Dayton, Nv",
+"site_no": "10311750"
+},
+{
+"lat": 39.29166667,
+"lon": -119.311111,
+"name": "Carson Rv Nr Fort Churchill, Nv",
+"site_no": "10312000"
+},
+{
+"lat": 39.4639361,
+"lon": -119.0462583,
+"name": "Carson Rv Blw Lahontan Reservoir Nr Fallon, Nv",
+"site_no": "10312150"
+},
+{
+"lat": 39.55880594,
+"lon": -118.7259842,
+"name": "Carson Rv At Tarzyn Rd Nr Fallon, Nv",
+"site_no": "10312275"
+},
+{
+"lat": 38.8485185,
+"lon": -120.0271275,
+"name": "Upper Truckee Rv At Hwy 50 Abv Meyers, Ca",
+"site_no": "103366092"
+},
+{
+"lat": 38.9224078,
+"lon": -119.9915706,
+"name": "Upper Truckee Rv At South Lake Tahoe, Ca",
+"site_no": "10336610"
+},
+{
+"lat": 39.05183077,
+"lon": -120.1185016,
+"name": "General C Nr Meeks Bay Ca",
+"site_no": "10336645"
+},
+{
+"lat": 39.107385,
+"lon": -120.1621147,
+"name": "Blackwood C Nr Tahoe City Ca",
+"site_no": "10336660"
+},
+{
+"lat": 39.14071738,
+"lon": -120.2121165,
+"name": "Ward C Bl Confluence Nr Tahoe City Ca",
+"site_no": "10336674"
+},
+{
+"lat": 39.13210688,
+"lon": -120.1576705,
+"name": "Ward C At Hwy 89 Nr Tahoe Pines Ca",
+"site_no": "10336676"
+},
+{
+"lat": 39.24046325,
+"lon": -119.9465774,
+"name": "Third Ck Nr Crystal Bay, Nv",
+"site_no": "10336698"
+},
+{
+"lat": 39.2401855,
+"lon": -119.9449106,
+"name": "Incline Ck Nr Crystal Bay, Nv",
+"site_no": "10336700"
+},
+{
+"lat": 39.17213045,
+"lon": -119.907963,
+"name": "Marlette Ck Nr Carson City, Nv",
+"site_no": "10336715"
+},
+{
+"lat": 39.08740806,
+"lon": -119.9399057,
+"name": "Glenbrook Ck At Glenbrook, Nv",
+"site_no": "10336730"
+},
+{
+"lat": 38.9199077,
+"lon": -119.9724036,
+"name": "Trout Ck Nr Tahoe Valley, Ca",
+"site_no": "10336780"
+},
+{
+"lat": 39.16627309,
+"lon": -120.1443373,
+"name": "Truckee R A Tahoe City Ca",
+"site_no": "10337500"
+},
+{
+"lat": 39.29627044,
+"lon": -120.2054519,
+"name": "Truckee R Nr Truckee Ca",
+"site_no": "10338000"
+},
+{
+"lat": 39.3235172,
+"lon": -120.2343654,
+"name": "Donner C A Donner Lk Nr Truckee Ca",
+"site_no": "10338500"
+},
+{
+"lat": 39.32099225,
+"lon": -120.2079523,
+"name": "Donner C At Hwy 89 Nr Truckee Ca",
+"site_no": "10338700"
+},
+{
+"lat": 39.35305556,
+"lon": -120.1194444,
+"name": "Truckee R Bl Martis C Nr Truckee Ca",
+"site_no": "10339410"
+},
+{
+"lat": 39.37324026,
+"lon": -120.131587,
+"name": "Prosser C Bl Prosser C Dam Nr Truckee Ca",
+"site_no": "10340500"
+},
+{
+"lat": 39.45654494,
+"lon": -120.287123,
+"name": "Independence C Nr Truckee Ca",
+"site_no": "10343000"
+},
+{
+"lat": 39.43154577,
+"lon": -120.2379547,
+"name": "Sagehen C Nr Truckee Ca",
+"site_no": "10343500"
+},
+{
+"lat": 39.4357137,
+"lon": -120.0843395,
+"name": "Little Truckee R Ab Boca Res Nr Truckee Ca",
+"site_no": "10344400"
+},
+{
+"lat": 39.38682549,
+"lon": -120.0954502,
+"name": "Little Truckee R Bl Boca Dam Nr Truckee Ca",
+"site_no": "10344500"
+},
+{
+"lat": 39.3851589,
+"lon": -120.0876722,
+"name": "Truckee R A Boca Bridge Nr Truckee Ca",
+"site_no": "10344505"
+},
+{
+"lat": 39.42793648,
+"lon": -120.0340602,
+"name": "Truckee R A Farad Ca",
+"site_no": "10346000"
+},
+{
+"lat": 39.5243537,
+"lon": -119.9954782,
+"name": "Dog Ck At Verdi, Nv",
+"site_no": "10347310"
+},
+{
+"lat": 39.50713218,
+"lon": -119.931864,
+"name": "Truckee Rv Nr Mogul, Nv",
+"site_no": "10347460"
+},
+{
+"lat": 39.4951111,
+"lon": -119.8945,
+"name": "Hunter Ck Nr Reno, Nv",
+"site_no": "10347600"
+},
+{
+"lat": 39.53018865,
+"lon": -119.7954684,
+"name": "Truckee Rv At Reno, Nv",
+"site_no": "10348000"
+},
+{
+"lat": 39.5258333,
+"lon": -119.7766389,
+"name": "Truckee Rv At Glendale Ave Nr Sparks, Nv",
+"site_no": "10348036"
+},
+{
+"lat": 39.51761667,
+"lon": -119.7416444,
+"name": "Truckee Rv Nr Sparks, Nv",
+"site_no": "10348200"
+},
+{
+"lat": 39.56879988,
+"lon": -119.7265766,
+"name": "N Truckee Drain At Spanish Springs Rd Nr Spark, Nv",
+"site_no": "10348245"
+},
+{
+"lat": 39.5315833,
+"lon": -119.7149722,
+"name": "N Truckee Drain Nr Big Fish Dr Nr Sparks, Nv",
+"site_no": "10348295"
+},
+{
+"lat": 39.20227778,
+"lon": -119.8710833,
+"name": "Franktown Ck Nr Carson City, Nv",
+"site_no": "10348460"
+},
+{
+"lat": 39.27406389,
+"lon": -119.8413528,
+"name": "Franktown Ck At Old Us 395 Nr Franktown, Nv",
+"site_no": "10348505"
+},
+{
+"lat": 39.29082778,
+"lon": -119.8309167,
+"name": "Ophir Ck Nr Steamboat, Nv",
+"site_no": "10348520"
+},
+{
+"lat": 39.3034222,
+"lon": -119.8281667,
+"name": "Davis Ck At Davis Ck Cmpgrd Rd Nr Washoe City, Nv",
+"site_no": "10348550"
+},
+{
+"lat": 39.31238889,
+"lon": -119.8232083,
+"name": "Winters Ck Blw Us Alt 395 Nr Washoe City, Nv",
+"site_no": "10348570"
+},
+{
+"lat": 39.3298333,
+"lon": -119.8019167,
+"name": "Steamboat Ck At Washoe Lk Dam At New Washoe City",
+"site_no": "10348801"
+},
+{
+"lat": 39.35435414,
+"lon": -119.8585225,
+"name": "Galena Ck At Galena Ck State Park, Nv",
+"site_no": "10348850"
+},
+{
+"lat": 39.3490833,
+"lon": -119.7900556,
+"name": "Galena Ck Blw Galena Ck Brdg At Pleasant Vly, Nv",
+"site_no": "10348995"
+},
+{
+"lat": 39.3771333,
+"lon": -119.7436583,
+"name": "Steamboat Ck At Steamboat, Nv",
+"site_no": "10349300"
+},
+{
+"lat": 39.385278,
+"lon": -119.834444,
+"name": "Whites Ck Nr Steamboat, Nv",
+"site_no": "10349700"
+},
+{
+"lat": 39.42413889,
+"lon": -119.7547778,
+"name": "Whites Ck At Old Virginia Rd Nr Reno, Nv",
+"site_no": "10349770"
+},
+{
+"lat": 39.46441667,
+"lon": -119.7286389,
+"name": "Whites Ck Abv Confl Steamboat Ck At Reno, Nv",
+"site_no": "10349790"
+},
+{
+"lat": 39.4657449,
+"lon": -119.7285199,
+"name": "Steamboat Ck At Short Ln At Reno, Nv",
+"site_no": "10349849"
+},
+{
+"lat": 39.5129672,
+"lon": -119.712409,
+"name": "Steamboat Ck At Cleanwater Way Nr Reno, Nv",
+"site_no": "10349980"
+},
+{
+"lat": 39.5204672,
+"lon": -119.7010198,
+"name": "Truckee Rv At Vista, Nv",
+"site_no": "10350000"
+},
+{
+"lat": 39.55657878,
+"lon": -119.5532362,
+"name": "Truckee Rv Nr Tracy, Nv",
+"site_no": "10350340"
+},
+{
+"lat": 39.565453,
+"lon": -119.486186,
+"name": "Truckee Rv At Clark, Nv",
+"site_no": "10350500"
+},
+{
+"lat": 39.58463448,
+"lon": -119.4412872,
+"name": "Truckee Rv Blw Derby Dam Nr Wadsworth, Nv",
+"site_no": "10351600"
+},
+{
+"lat": 39.63213447,
+"lon": -119.2832254,
+"name": "Truckee Rv At Wadsworth, Nv",
+"site_no": "10351650"
+},
+{
+"lat": 39.7773722,
+"lon": -119.3375222,
+"name": "Truckee Rv Nr Nixon, Nv",
+"site_no": "10351700"
+},
+{
+"lat": 35.408753,
+"lon": -120.567008,
+"name": "Salinas R Nr Santa Margarita Ca",
+"site_no": "11145500"
+},
+{
+"lat": 35.6285813,
+"lon": -120.6843373,
+"name": "Salinas R A Paso Robles Ca",
+"site_no": "11147500"
+},
+{
+"lat": 35.71719096,
+"lon": -120.6401683,
+"name": "Estrella R Nr Estrella Ca",
+"site_no": "11148500"
+},
+{
+"lat": 35.90550439,
+"lon": -118.467586,
+"name": "Kern R No 3 Cn Nr Kernville Ca",
+"site_no": "11185500"
+},
+{
+"lat": 35.94522615,
+"lon": -118.4775862,
+"name": "Kern R Nr Kernville (River Only) Ca",
+"site_no": "11186000"
+},
+{
+"lat": 35.7374672,
+"lon": -118.1736856,
+"name": "Sf Kern R Nr Onyx Ca",
+"site_no": "11189500"
+},
+{
+"lat": 35.52078857,
+"lon": -118.6770332,
+"name": "Kern R Nr Democrat Springs(River Only) Ca",
+"site_no": "11192500"
+},
+{
+"lat": 35.814583,
+"lon": -118.928319,
+"name": "White R Nr Ducor Ca",
+"site_no": "11199500"
+},
+{
+"lat": 35.9416243,
+"lon": -118.8228716,
+"name": "Deer C Nr Fountain Springs Ca",
+"site_no": "11200800"
+},
+{
+"lat": 36.0036722,
+"lon": -118.9643639,
+"name": "Deer C A Road 272 Bridge Nr Porterville Ca",
+"site_no": "11201095"
+},
+{
+"lat": 36.0482899,
+"lon": -118.6542574,
+"name": "Sf Tule R Nr Cholollo Campground Nr Porterville Ca",
+"site_no": "11203580"
+},
+{
+"lat": 36.02411648,
+"lon": -118.8134258,
+"name": "Sf Tule R Nr Reservation Bndry Nr Porterville Ca",
+"site_no": "11204100"
+},
+{
+"lat": 36.61166667,
+"lon": -118.7016667,
+"name": "Marble Fork Kaweah R Ab Horse C Nr Lodgepole Ca",
+"site_no": "11206820"
+},
+{
+"lat": 36.4513346,
+"lon": -118.7884306,
+"name": "Ef Kaweah R Nr Three Rivers Ca",
+"site_no": "11208730"
+},
+{
+"lat": 36.211,
+"lon": -119.568636,
+"name": "Cross C A Kansas Ave Nr Hanford Ca",
+"site_no": "11212260"
+},
+{
+"lat": 37.07633329,
+"lon": -118.9687234,
+"name": "Helms C Bl Courtright Dam Ca",
+"site_no": "11214600"
+},
+{
+"lat": 36.99383417,
+"lon": -118.9812225,
+"name": "Nf Kings R Nr Cliff Camp Ca",
+"site_no": "11215000"
+},
+{
+"lat": 36.3742611,
+"lon": -119.8872472,
+"name": "Nf Kings R A 24Th Ave Br Nr Lemoore Ca",
+"site_no": "11222975"
+},
+{
+"lat": 37.63194444,
+"lon": -119.0863889,
+"name": "Mf San Joaquin R Nr Mammoth Lakes Ca",
+"site_no": "11224000"
+},
+{
+"lat": 36.21466074,
+"lon": -120.4706956,
+"name": "Los Gatos C Ab Nunez Cyn Nr Coalinga Ca",
+"site_no": "11224500"
+},
+{
+"lat": 37.291331,
+"lon": -118.9573386,
+"name": "Sf San Joaquin R Ab Hooper C Nr Florence Lake Ca",
+"site_no": "11230070"
+},
+{
+"lat": 37.3096642,
+"lon": -118.9620614,
+"name": "Sf San Joaquin R Bl Hooper C Nr Florence Lake Ca",
+"site_no": "11230215"
+},
+{
+"lat": 37.3393863,
+"lon": -118.9734513,
+"name": "Bear C Nr Lake Thomas A Edison Ca",
+"site_no": "11230500"
+},
+{
+"lat": 37.361331,
+"lon": -118.992063,
+"name": "Mono C Bl Lk Thomas A Edison Ca",
+"site_no": "11231500"
+},
+{
+"lat": 37.3166111,
+"lon": -119.3295725,
+"name": "San Joaquin R Ab Shakeflat C Nr Big Creek Ca",
+"site_no": "11234760"
+},
+{
+"lat": 37.2213341,
+"lon": -119.2126217,
+"name": "Big C Bl Huntington Lk Ca",
+"site_no": "11237000"
+},
+{
+"lat": 37.19855659,
+"lon": -119.2137328,
+"name": "Pitman C Bl Tamarack C Ca",
+"site_no": "11237500"
+},
+{
+"lat": 37.16272389,
+"lon": -119.2542896,
+"name": "Mf Balsam C Bl Balsam Mdw Forebay Nr Big Creek Ca",
+"site_no": "11238270"
+},
+{
+"lat": 37.20772385,
+"lon": -119.3212376,
+"name": "Big C Nr Mouth Nr Big Creek Ca",
+"site_no": "11238500"
+},
+{
+"lat": 37.14466898,
+"lon": -119.3084588,
+"name": "Stevenson C A Shaver Lk Ca",
+"site_no": "11241500"
+},
+{
+"lat": 37.14439236,
+"lon": -119.454577,
+"name": "San Joaquin R Ab Willow C Nr Auberry Ca",
+"site_no": "11242000"
+},
+{
+"lat": 37.2874456,
+"lon": -119.5195827,
+"name": "Browns C Cn At Bass Lake Ca",
+"site_no": "11243300"
+},
+{
+"lat": 37.29388889,
+"lon": -119.5002778,
+"name": "Sf Willow C Nr Bass Lake Ca",
+"site_no": "11243405"
+},
+{
+"lat": 37.28883445,
+"lon": -119.530139,
+"name": "Nf Willow C Nr Bass Lake Ca",
+"site_no": "11244000"
+},
+{
+"lat": 37.24416667,
+"lon": -119.516111,
+"name": "Nf Willow C Bl Manzanita Lk Dam Nr North Fork Ca",
+"site_no": "11244050"
+},
+{
+"lat": 37.19166667,
+"lon": -119.4930556,
+"name": "Willow C Nr North Fork Ca",
+"site_no": "11245300"
+},
+{
+"lat": 37.1507812,
+"lon": -119.4604107,
+"name": "Willow C A Mouth Nr Auberry Ca",
+"site_no": "11246500"
+},
+{
+"lat": 37.1321706,
+"lon": -119.5315256,
+"name": "San Joaquin R Nr Auberry Ca",
+"site_no": "11246700"
+},
+{
+"lat": 37.0027273,
+"lon": -119.7068118,
+"name": "Madera Cn A Friant Ca",
+"site_no": "11249500"
+},
+{
+"lat": 36.9980051,
+"lon": -119.7040338,
+"name": "Friant-Kern Cn A Friant Ca",
+"site_no": "11250000"
+},
+{
+"lat": 36.99916667,
+"lon": -119.706111,
+"name": "San Joaquin R Release A Friant Dam Ca",
+"site_no": "11250110"
+},
+{
+"lat": 36.98439397,
+"lon": -119.7243124,
+"name": "San Joaquin R Bl Friant Ca",
+"site_no": "11251000"
+},
+{
+"lat": 36.87638889,
+"lon": -119.7930556,
+"name": "San Joaquin R Bl Hwy 41 Nr Pinedale Ca",
+"site_no": "11252275"
+},
+{
+"lat": 36.82194444,
+"lon": -120.0594444,
+"name": "San Joaquin R A Skaggs Br Nr Ripperdan Ca",
+"site_no": "11252975"
+},
+{
+"lat": 36.79916667,
+"lon": -120.163611,
+"name": "San Joaquin R A Gravelly Ford Cn Nr Kerman Ca",
+"site_no": "11253058"
+},
+{
+"lat": 36.40217399,
+"lon": -120.4334917,
+"name": "Cantua C Nr Cantua Creek Ca",
+"site_no": "11253310"
+},
+{
+"lat": 36.8105046,
+"lon": -120.3782256,
+"name": "San Joaquin R Nr Mendota Ca",
+"site_no": "11254000"
+},
+{
+"lat": 36.65245145,
+"lon": -120.6321186,
+"name": "Panoche C A I-5 Nr Silver Creek Ca",
+"site_no": "11255575"
+},
+{
+"lat": 37.73130354,
+"lon": -119.5590243,
+"name": "Merced R A Happy Isles Bridge Nr Yosemite Ca",
+"site_no": "11264500"
+},
+{
+"lat": 37.71627778,
+"lon": -119.6656667,
+"name": "Merced R A Pohono Bridge Nr Yosemite Ca",
+"site_no": "11266500"
+},
+{
+"lat": 37.5216029,
+"lon": -120.3324114,
+"name": "Merced R Bl Merced Falls Dam Nr Snell Ca",
+"site_no": "11270900"
+},
+{
+"lat": 37.45410365,
+"lon": -120.6088084,
+"name": "Merced R A Shaffer Bridge Nr Cressey Ca",
+"site_no": "11271290"
+},
+{
+"lat": 37.42490969,
+"lon": -120.6646985,
+"name": "Merced R Nr Alves Rd Nr Cressey Ca",
+"site_no": "11271360"
+},
+{
+"lat": 37.91657698,
+"lon": -119.6598627,
+"name": "Tuolumne R A Grand Cyn Of Tuolumne Ab Hetch Hetchy",
+"site_no": "11274790"
+},
+{
+"lat": 37.93740877,
+"lon": -119.7982,
+"name": "Tuolumne R Nr Hetch Hetchy Ca",
+"site_no": "11276500"
+},
+{
+"lat": 37.96768499,
+"lon": -119.91737025,
+"name": "Cherry C Bl Valley Dam Nr Hetch Hetchy Ca",
+"site_no": "11277300"
+},
+{
+"lat": 37.96907415,
+"lon": -119.8820916,
+"name": "Eleanor C Nr Hetch Hetchy Ca",
+"site_no": "11278000"
+},
+{
+"lat": 37.890186,
+"lon": -119.9698706,
+"name": "Cherry C Bl Dion R Holm Ph Nr Mather Ca",
+"site_no": "11278400"
+},
+{
+"lat": 37.8418518,
+"lon": -120.1848757,
+"name": "Big C Ab Whites Gulch Nr Groveland Ca",
+"site_no": "11284400"
+},
+{
+"lat": 37.67240817,
+"lon": -120.474881,
+"name": "Modesto Cn Nr La Grange Ca",
+"site_no": "11289000"
+},
+{
+"lat": 37.6657419,
+"lon": -120.4409912,
+"name": "Turlock Cn Nr La Grange Ca",
+"site_no": "11289500"
+},
+{
+"lat": 37.66629746,
+"lon": -120.4421023,
+"name": "Tuolumne R Bl Lagrange Dam Nr Lagrange Ca",
+"site_no": "11289650"
+},
+{
+"lat": 37.666321,
+"lon": -120.4421394,
+"name": "Combined Flow Tuolumne R + Modesto Cn + Turlock Cn",
+"site_no": "11289651"
+},
+{
+"lat": 37.71144167,
+"lon": -120.6098028,
+"name": "Dry C A Crabtree Rd Nr La Grange Ca",
+"site_no": "11289850"
+},
+{
+"lat": 38.247138,
+"lon": -120.03463,
+"name": "Mf Stanislaus R A Hells Half Acre Bridge Ca",
+"site_no": "11292700"
+},
+{
+"lat": 38.19325109,
+"lon": -120.0990762,
+"name": "Mf Stanislaus R Bl Beardsley Dam Ca",
+"site_no": "11292900"
+},
+{
+"lat": 38.4411111,
+"lon": -120.0027778,
+"name": "Nf Stanislaus R Bl Utica Res Nr Bear Valley Ca",
+"site_no": "11293372"
+},
+{
+"lat": 38.4708333,
+"lon": -120.005,
+"name": "Silver C Bl Lk Alpine Nr Bear Valley Ca",
+"site_no": "11293462"
+},
+{
+"lat": 38.4343564,
+"lon": -120.0187968,
+"name": "Nf Stanislaus R Bl Div D",
+"site_no": "11293600"
+},
+{
+"lat": 38.39241265,
+"lon": -119.9993515,
+"name": "New Spicer Mdw Dam Pp A Nsmd Nr B Mdw Ca",
+"site_no": "11293760"
+},
+{
+"lat": 38.2438067,
+"lon": -120.2910282,
+"name": "Nf Stanislaus R Nr Avery Ca",
+"site_no": "11294500"
+},
+{
+"lat": 38.19241898,
+"lon": -120.3549186,
+"name": "Utica Ca A Pressure Tap Nr Hathaway Pines Ca",
+"site_no": "11295240"
+},
+{
+"lat": 38.14242024,
+"lon": -120.3785296,
+"name": "Collierville Pp Nr Murphys Ca",
+"site_no": "11295250"
+},
+{
+"lat": 38.2326959,
+"lon": -120.293528,
+"name": "Nf Stanislaus R Bl Mckays Point Dam Nr Avery Ca",
+"site_no": "11295270"
+},
+{
+"lat": 38.19805556,
+"lon": -120.36,
+"name": "Mill C Bl Hunter Res A Hathaway Pines Ca",
+"site_no": "11295340"
+},
+{
+"lat": 38.09242097,
+"lon": -120.1687993,
+"name": "Sf Stanislaus R Nr Long Barn Ca",
+"site_no": "11298000"
+},
+{
+"lat": 38.15138889,
+"lon": -120.4402778,
+"name": "Angels C Bl Murphys Afterbay Nr Murphys Ca",
+"site_no": "11298650"
+},
+{
+"lat": 37.96103615,
+"lon": -120.6152035,
+"name": "Black C Nr Copperopolis Ca",
+"site_no": "11299600"
+},
+{
+"lat": 37.85437157,
+"lon": -120.6382594,
+"name": "S San Joaquin Cn Nr Knights Ferry Ca",
+"site_no": "11300500"
+},
+{
+"lat": 37.85881594,
+"lon": -120.6332592,
+"name": "Oakdale Cn Nr Knights Ferry Ca",
+"site_no": "11301000"
+},
+{
+"lat": 37.85159385,
+"lon": -120.6379816,
+"name": "Stanislaus R Bl Goodwin Dam Nr Knights Ferry Ca",
+"site_no": "11302000"
+},
+{
+"lat": 38.626297,
+"lon": -119.9371264,
+"name": "Up Blue Lk Outlet Nr Markleeville Ca",
+"site_no": "11313472"
+},
+{
+"lat": 38.606575,
+"lon": -119.9262929,
+"name": "Lo Blue Lk Outlet Nr Markleeville Ca",
+"site_no": "11313477"
+},
+{
+"lat": 38.6097222,
+"lon": -119.945,
+"name": "Meadow C Bl Twin Lk Nr Markleeville Ca",
+"site_no": "11313482"
+},
+{
+"lat": 38.59796445,
+"lon": -119.9787946,
+"name": "Meadow Lk Outlet Nr Markleeville Ca",
+"site_no": "11313485"
+},
+{
+"lat": 38.4957454,
+"lon": -120.2207489,
+"name": "Tiger C Ph Cond Bl Salt Springs Dam Ca",
+"site_no": "11314000"
+},
+{
+"lat": 38.4935232,
+"lon": -120.2210266,
+"name": "Nf Mokelumne R Bl Salt Springs Dam Ca",
+"site_no": "11314500"
+},
+{
+"lat": 38.5190783,
+"lon": -120.2126928,
+"name": "Cole C Nr Salt Springs Dam Ca",
+"site_no": "11315000"
+},
+{
+"lat": 38.5363004,
+"lon": -120.2576942,
+"name": "Bear R Bl Lo Bear R Dam Ca",
+"site_no": "11315900"
+},
+{
+"lat": 38.47694444,
+"lon": -120.4530556,
+"name": "Tiger C Bl Regulator Res Nr Pioneer Ca",
+"site_no": "11316605"
+},
+{
+"lat": 38.44018829,
+"lon": -120.504925,
+"name": "Nf Mokelumne R Bl Tiger C Res Nr West Pt Ca",
+"site_no": "11316670"
+},
+{
+"lat": 38.40324566,
+"lon": -120.4468676,
+"name": "Forest C Nr Wilseyville Ca",
+"site_no": "11316800"
+},
+{
+"lat": 38.3896344,
+"lon": -120.5265927,
+"name": "Mf Mokelumne R A West Point Ca",
+"site_no": "11317000"
+},
+{
+"lat": 38.36824625,
+"lon": -120.5454823,
+"name": "Sf Mokelumne R Nr West Point Ca",
+"site_no": "11318500"
+},
+{
+"lat": 38.3126926,
+"lon": -120.7202112,
+"name": "Mokelumne R Nr Mokelumne Hill Ca",
+"site_no": "11319500"
+},
+{
+"lat": 39.50990117,
+"lon": -120.5552124,
+"name": "M Yuba R Ctrl Rel Frm Jck.Mdw Res Nr Sierra Cty Ca",
+"site_no": "11407815"
+},
+{
+"lat": 39.46017837,
+"lon": -120.6113246,
+"name": "Milton-Bowman Tunnel Outlet Nr Graniteville Ca",
+"site_no": "11408000"
+},
+{
+"lat": 39.5218451,
+"lon": -120.583547,
+"name": "M Yuba R Bl Milton Dam Ca",
+"site_no": "11408550"
+},
+{
+"lat": 39.37990268,
+"lon": -120.4993742,
+"name": "Fordyce C Bl Fordyce Dam Nr Cisco Ca",
+"site_no": "11414100"
+},
+{
+"lat": 39.31740077,
+"lon": -120.6532675,
+"name": "Drum Cn A Tunnel Outlet Nr Emigrant Gap Ca",
+"site_no": "11414170"
+},
+{
+"lat": 39.31351176,
+"lon": -120.66299,
+"name": "S Yuba Cn Nr Emigrant Gap Ca",
+"site_no": "11414200"
+},
+{
+"lat": 39.3185118,
+"lon": -120.657712,
+"name": "S Yuba R A Langs Crossing Nr Emigrant Gap Ca",
+"site_no": "11414250"
+},
+{
+"lat": 39.35878967,
+"lon": -120.6368789,
+"name": "Rucker C Bl Blue Lk Nr Emigrant Gap Ca",
+"site_no": "11414265"
+},
+{
+"lat": 39.35628936,
+"lon": -120.6585463,
+"name": "Rucker C Bl Rucker Lk Nr Cisco Ca",
+"site_no": "11414280"
+},
+{
+"lat": 39.4001783,
+"lon": -120.6382687,
+"name": "Lake C Bl Feeley Lk Nr Graniteville Ca",
+"site_no": "11414350"
+},
+{
+"lat": 39.3990671,
+"lon": -120.642991,
+"name": "Lake C Bl Carr Lk Nr Graniteville Ca",
+"site_no": "11414360"
+},
+{
+"lat": 39.42101294,
+"lon": -120.5421545,
+"name": "Canyon C Bl French Lake Ca",
+"site_no": "11414410"
+},
+{
+"lat": 39.4646235,
+"lon": -120.5638229,
+"name": "Jackson C Bl Jackson Lk Ca",
+"site_no": "11414700"
+},
+{
+"lat": 39.342123,
+"lon": -120.6416009,
+"name": "Bowman Spaulding Cn A Jordan C Siphon Ca",
+"site_no": "11416100"
+},
+{
+"lat": 39.43962219,
+"lon": -120.661326,
+"name": "Canyon C Bl Bowman Lk Ca",
+"site_no": "11416500"
+},
+{
+"lat": 39.4301784,
+"lon": -120.6188242,
+"name": "Texas C Bl Rock Lk Nr Graniteville Ca",
+"site_no": "11416585"
+},
+{
+"lat": 39.4282339,
+"lon": -120.622991,
+"name": "Texas C Bl Lo Rock Lk Nr Graniteville Ca",
+"site_no": "11416610"
+},
+{
+"lat": 39.4212895,
+"lon": -120.6235464,
+"name": "Texas C Trib Bl Culbertson Lk Nr Granitvle Ca",
+"site_no": "11416620"
+},
+{
+"lat": 39.4160116,
+"lon": -120.632991,
+"name": "Lindsey C Bl M Lindsey Lk Nr Graniteville Ca",
+"site_no": "11416670"
+},
+{
+"lat": 39.41194444,
+"lon": -120.6483333,
+"name": "Lindsey C Bl Lo Lindsey Lk Nr Graniteville Ca",
+"site_no": "11416700"
+},
+{
+"lat": 39.30628935,
+"lon": -120.6791015,
+"name": "Bear R Nr Emigrant Gap Ca",
+"site_no": "11421710"
+},
+{
+"lat": 39.2543436,
+"lon": -120.7749374,
+"name": "Bear R Bl Drum Afterbay Nr Blue Canyon Ca",
+"site_no": "11421770"
+},
+{
+"lat": 39.2987899,
+"lon": -120.6429889,
+"name": "Lake Valley Cn Nr Emigrant Gap Ca",
+"site_no": "11426190"
+},
+{
+"lat": 39.25739995,
+"lon": -120.7335469,
+"name": "Canyon C Nr Blue Canyon Ca",
+"site_no": "11426195"
+},
+{
+"lat": 39.1096266,
+"lon": -120.4813127,
+"name": "Mf American R A French Meadows Ca",
+"site_no": "11427500"
+},
+{
+"lat": 39.0251806,
+"lon": -120.5954812,
+"name": "Mf American R Ab Mf Ph Nr Foresthill Ca",
+"site_no": "11427760"
+},
+{
+"lat": 39.02629158,
+"lon": -120.603537,
+"name": "Mf American R Bl Interbay Dam Nr Foresthill Ca",
+"site_no": "11427770"
+},
+{
+"lat": 39.05657207,
+"lon": -120.4079758,
+"name": "Rubicon R Bl Hell Hole Dam Ca",
+"site_no": "11428800"
+},
+{
+"lat": 38.94805556,
+"lon": -120.3888889,
+"name": "Sf Rubicon R Bl Robbs Pk Forebay Nr Kyburz Ca",
+"site_no": "11428995"
+},
+{
+"lat": 39.00546206,
+"lon": -120.3154712,
+"name": "Gerle C Bl Loon Lk Nr Meeks Bay Ca",
+"site_no": "11429500"
+},
+{
+"lat": 38.9660169,
+"lon": -120.3938075,
+"name": "Gerle C Low Flow Release Bl Gerle Res Nr Meeks Bay",
+"site_no": "114296005"
+},
+{
+"lat": 39.0060108,
+"lon": -120.7607633,
+"name": "Mf American R Nr Foresthill Ca",
+"site_no": "11433300"
+},
+{
+"lat": 38.81574095,
+"lon": -120.1171308,
+"name": "Pyramid C A Twin Bridges Ca",
+"site_no": "11435100"
+},
+{
+"lat": 38.67157545,
+"lon": -120.1229654,
+"name": "Silver Lk Outlet Nr Kirkwood Ca",
+"site_no": "11436000"
+},
+{
+"lat": 38.67888889,
+"lon": -120.1163889,
+"name": "Oyster C Nr Kirkwood Ca",
+"site_no": "11436510"
+},
+{
+"lat": 38.7085188,
+"lon": -120.0515736,
+"name": "Caples C Release Bl Caples Dam Nr Kirkwood Ca",
+"site_no": "11436999"
+},
+{
+"lat": 38.7643516,
+"lon": -120.320194,
+"name": "El Dorado Cn Nr Kyburz Ca",
+"site_no": "11439000"
+},
+{
+"lat": 38.76351814,
+"lon": -120.3285276,
+"name": "Sf American R Nr Kyburz(River Only) Ca",
+"site_no": "11439500"
+},
+{
+"lat": 38.764,
+"lon": -120.34,
+"name": "No Name C Nr Kyburz Ca",
+"site_no": "11439510"
+},
+{
+"lat": 38.7558333,
+"lon": -120.3733333,
+"name": "Alder C Nr White Hall (Creek Only) Ca",
+"site_no": "11439999"
+},
+{
+"lat": 38.765,
+"lon": -120.428,
+"name": "Bull C Nr Pacific Ca",
+"site_no": "11440480"
+},
+{
+"lat": 38.763,
+"lon": -120.471,
+"name": "Ogilby Canyon C Nr Pacific Ca",
+"site_no": "11440530"
+},
+{
+"lat": 38.76,
+"lon": -120.4883333,
+"name": "Esmeralda C A Pacific Ca",
+"site_no": "11440550"
+},
+{
+"lat": 38.81879517,
+"lon": -120.3651957,
+"name": "Sf Silver C Nr Ice House Ca",
+"site_no": "11441500"
+},
+{
+"lat": 38.85212708,
+"lon": -120.4571437,
+"name": "Silver C Bl Junction Dam Nr Pollock Pines Ca",
+"site_no": "11441800"
+},
+{
+"lat": 38.8112919,
+"lon": -120.623261,
+"name": "Brush C Bl Brush Creek Dam Nr Pollock Pines Ca",
+"site_no": "11442700"
+},
+{
+"lat": 38.7729583,
+"lon": -120.7015975,
+"name": "Sf American R Nr Camino Ca",
+"site_no": "11443500"
+}
+]
+}
