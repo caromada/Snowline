@@ -2,6 +2,7 @@
 // map tiles around it, pinned in a cache the service worker never trims.
 
 import { TERRAIN_TILES, VECTOR_TILEJSON } from "./mapStyle";
+import { dataUrl, MAP_PATH, passFile, stationFile } from "./paths";
 
 const OFFLINE_CACHE = "offline-passes";
 const RADIUS_KM = 6;
@@ -29,12 +30,8 @@ function fill(template: string, z: number, x: number, y: number): string {
   return template.replace("{z}", String(z)).replace("{x}", String(x)).replace("{y}", String(y));
 }
 
-export function stationFile(provenance: string): string {
-  return `data/station/${provenance.replace(/[^A-Za-z0-9_-]+/g, "_")}.json`;
-}
-
 function passUrls(slug: string, stations: string[]): string[] {
-  return ["./", "data/passes.json", `data/pass/${slug}.json`, ...stations.map(stationFile)];
+  return [MAP_PATH, dataUrl("passes.json"), passFile(slug), ...stations.map(stationFile)];
 }
 
 async function tileUrls(lat: number, lon: number): Promise<string[]> {
@@ -87,6 +84,6 @@ export async function saveForOffline(
 export async function removeOffline(slug: string, stations: string[]): Promise<void> {
   const cache = await caches.open(OFFLINE_CACHE);
   await Promise.all(
-    [`data/pass/${slug}.json`, ...stations.map(stationFile)].map((u) => cache.delete(u)),
+    [passFile(slug), ...stations.map(stationFile)].map((u) => cache.delete(u)),
   );
 }

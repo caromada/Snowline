@@ -153,7 +153,7 @@ export function buildMapStyle(origin: string, contourTiles: string): StyleSpecif
         type: "line",
         source: "osm",
         "source-layer": "boundary",
-        filter: ["<=", ["get", "admin_level"], 4],
+        filter: ["<=", ["coalesce", ["get", "admin_level"], 99], 4],
         paint: { "line-color": c.boundary, "line-width": 0.8, "line-dasharray": [4, 3] },
       },
       {
@@ -255,14 +255,20 @@ export function buildMapStyle(origin: string, contourTiles: string): StyleSpecif
         minzoom: 9,
         filter: ["has", "name"],
         layout: {
+          // Not every OSM peak carries an elevation; those get a name only.
           "text-field": [
-            "format",
+            "case",
+            ["has", "ele_ft"],
+            [
+              "format",
+              ["get", "name"],
+              {},
+              "\n",
+              {},
+              ["concat", ["number-format", ["get", "ele_ft"], {}], " ft"],
+              { "font-scale": 0.85 },
+            ],
             ["get", "name"],
-            {},
-            "\n",
-            {},
-            ["concat", ["number-format", ["get", "ele_ft"], {}], " ft"],
-            { "font-scale": 0.85 },
           ],
           "text-font": MONO,
           "text-size": 10,

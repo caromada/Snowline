@@ -7,7 +7,7 @@
 // - passes saved with the tent button: tiles and data pinned in their own
 //   cache (written by lib/offline.ts), never trimmed
 
-const VERSION = "v1";
+const VERSION = "v2";
 const SHELL = `shell-${VERSION}`;
 const DATA = `data-${VERSION}`;
 const TILES = `tiles-${VERSION}`;
@@ -23,11 +23,12 @@ self.addEventListener("install", (event) => {
       .open(SHELL)
       .then((c) =>
         c.addAll([
-          "./",
-          "manifest.webmanifest",
-          "maplibre-gl-worker.mjs",
-          "maplibre-gl-shared.mjs",
-          "icons/icon-192.png",
+          "/",
+          "/map/",
+          "/manifest.webmanifest",
+          "/maplibre-gl-worker.mjs",
+          "/maplibre-gl-shared.mjs",
+          "/icons/icon-192.png",
         ]),
       )
       .then(() => self.skipWaiting()),
@@ -110,7 +111,8 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
 
   if (request.mode === "navigate") {
-    event.respondWith(networkFirst(request, SHELL, "./"));
+    // Offline, any page falls back to the map: it is what you came for.
+    event.respondWith(networkFirst(request, SHELL, "/map/"));
     return;
   }
   if (TILE_HOSTS.includes(url.hostname)) {

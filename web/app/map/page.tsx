@@ -8,7 +8,10 @@ import type { Position } from "@/components/MapView";
 import NearbyPasses from "@/components/NearbyPasses";
 import PassPanel from "@/components/PassPanel";
 import PassSearch from "@/components/PassSearch";
+import SafetyNotice from "@/components/SafetyNotice";
 import SeasonScrubber from "@/components/SeasonScrubber";
+import { brand } from "@/lib/brand";
+import { dataUrl } from "@/lib/paths";
 import type { PassIndex } from "@/lib/types";
 
 const MapView = dynamic(() => import("@/components/MapView"), {
@@ -23,7 +26,7 @@ export default function Home() {
   const [here, setHere] = useState<{ pos: Position | null; error: string | null } | null>(null);
 
   useEffect(() => {
-    fetch("data/passes.json")
+    fetch(dataUrl("passes.json"))
       .then((r) => r.json())
       .then((d: PassIndex) => {
         setIndex(d);
@@ -68,14 +71,14 @@ export default function Home() {
 
   if (!index || !evalDate) {
     return (
-      <main style={{ display: "grid", placeItems: "center", height: "100vh" }}>
+      <main className="map-page" style={{ display: "grid", placeItems: "center", height: "100dvh" }}>
         <Campfire label="finding the trailhead" />
       </main>
     );
   }
 
   return (
-    <main style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
+    <main className="map-page" style={{ position: "relative", height: "100dvh", overflow: "hidden" }}>
       <MapView
         passes={index.passes}
         evalDate={evalDate}
@@ -93,10 +96,10 @@ export default function Home() {
         }}
       >
         <h1 className="display" style={{ fontSize: 17, color: "var(--granite)" }}>
-          Sierra Pass Report
+          {brand.name}
         </h1>
         <p className="mono" style={{ color: "var(--sage)", marginTop: 2 }}>
-          Washington · Oregon · California
+          {brand.region}
         </p>
       </header>
       <div style={{ position: "absolute", top: 62, left: 16, zIndex: 30 }}>
@@ -115,6 +118,7 @@ export default function Home() {
       <MapLegend />
       <SeasonScrubber dates={index.dates} value={evalDate} onChange={setEvalDate} />
       <PassPanel slug={selected} evalDate={evalDate} onClose={() => setSelected(null)} />
+      <SafetyNotice />
     </main>
   );
 }

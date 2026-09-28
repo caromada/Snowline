@@ -25,6 +25,7 @@ from ingest.forums import load_corpus
 from store import Store
 
 LABELS_PATH = Path(__file__).resolve().parent / "labeled.jsonl"
+RESULTS_PATH = Path(__file__).resolve().parent / "results.json"
 
 EXACT_FIELDS = [
     "date_observed",
@@ -83,6 +84,18 @@ def main() -> None:
         overall.extend(vals)
         print(f"  {field:20s} {acc:6.1%}")
     print(f"\n  {'overall (field-level)':20s} {sum(overall) / len(overall):6.1%}\n")
+    # Machine-readable copy: the website quotes these exact numbers.
+    RESULTS_PATH.write_text(
+        json.dumps(
+            {
+                "posts": n,
+                "overall": round(sum(overall) / len(overall), 4),
+                "fields": {f: round(sum(v) / len(v), 4) for f, v in per_field.items() if v},
+            },
+            indent=1,
+        )
+        + "\n"
+    )
 
 
 if __name__ == "__main__":

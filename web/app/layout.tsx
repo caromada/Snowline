@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Source_Serif_4, Space_Grotesk } from "next/font/google";
 import ServiceWorker from "@/components/ServiceWorker";
+import { brand } from "@/lib/brand";
 import { palette } from "@/lib/theme";
 import "./globals.css";
 
@@ -23,14 +24,14 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sierra Pass Report",
+  title: { default: brand.name, template: `%s · ${brand.name}` },
   description:
     "Mountain pass conditions for Washington, Oregon and California: sensors, satellite " +
     "and trip reports fused with honest confidence.",
   appleWebApp: { capable: true, title: "Pass Report", statusBarStyle: "black-translucent" },
   icons: {
-    icon: [{ url: "icons/favicon-32.png", sizes: "32x32", type: "image/png" }],
-    apple: [{ url: "icons/apple-touch-icon.png", sizes: "180x180" }],
+    icon: [{ url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 

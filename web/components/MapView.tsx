@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 // Bundlers resolve MapLibre's worker inconsistently; serving it as a plain
 // static file sidesteps all of that.
-maplibregl.setWorkerUrl("maplibre-gl-worker.mjs");
+maplibregl.setWorkerUrl("/maplibre-gl-worker.mjs");
 import { drawSprite, glyphByStatus, tent as tentSprite } from "@/lib/pixel";
 import mlcontour from "maplibre-contour";
 import { buildMapStyle, TERRAIN_TILES } from "@/lib/mapStyle";

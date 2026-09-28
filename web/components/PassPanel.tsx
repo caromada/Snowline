@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { offlineSupported, removeOffline, saveForOffline } from "@/lib/offline";
+import { passFile } from "@/lib/paths";
 import { glyphByStatus, tent } from "@/lib/pixel";
 import type { Fact, PassDetail } from "@/lib/types";
 import Byok from "./Byok";
@@ -20,7 +21,7 @@ export function loadSaved(): string[] {
   }
 }
 
-function ConfidenceDial({ level, score }: { level: string; score: number }) {
+export function ConfidenceDial({ level, score }: { level: string; score: number }) {
   // The one warm dial on the page: fill fraction by confidence grade.
   const frac = level === "high" ? 1 : level === "moderate" ? 0.6 : 0.28;
   const cells = 10;
@@ -108,7 +109,7 @@ export default function PassPanel({
   useEffect(() => {
     if (!slug) return;
     let cancelled = false;
-    fetch(`data/pass/${slug}.json`)
+    fetch(passFile(slug))
       .then((r) => r.json())
       .then((data: PassDetail) => {
         if (!cancelled) setFetched({ slug, data });

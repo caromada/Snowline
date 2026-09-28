@@ -13,3 +13,4 @@ web/out/
 .vercel
 data/sierra.sqlite
 data/raw/
+.claude/skills/

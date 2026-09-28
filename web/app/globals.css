@@ -22,9 +22,13 @@
 
 html,
 body {
-  height: 100%;
   background: var(--deep-pine);
   color: var(--granite);
+}
+
+/* The map is a full-screen instrument; only its page locks scrolling. */
+body:has(.map-page) {
+  height: 100%;
   overflow: hidden;
 }
 

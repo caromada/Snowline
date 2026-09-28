@@ -2,7 +2,7 @@
 
 ![demo](docs/demo.gif)
 
-Live demo: [spr-me-599cefb9.vercel.app](https://spr-me-599cefb9.vercel.app/?pass=glen&date=2023-06-15)
+Live: [spr-me-599cefb9.vercel.app](https://spr-me-599cefb9.vercel.app) (the map itself is at [/map/](https://spr-me-599cefb9.vercel.app/map/?pass=glen&date=2023-06-15))
 
 Every West Coast backpacker asks the same question from May to August: can I get over the pass this weekend, and do I need an ice axe? The honest answer is scattered across SNOTEL telemetry, CDEC snow pillows, USGS stream gauges, satellite snow cover, and thousands of forum posts written by people with wildly different risk tolerances. Sierra Pass Report fuses all four streams into a per-pass status for 1,252 passes across Washington, Oregon, and California, with a confidence grade that admits what it does not know, and every sentence in the panel traces back to the sensor curve or the exact forum quote it came from. It installs to a phone's home screen and keeps working with no signal.
 

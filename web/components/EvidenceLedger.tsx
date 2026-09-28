@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { stationFile } from "@/lib/offline";
+import { stationFile } from "@/lib/paths";
 import { glyphBySource } from "@/lib/pixel";
 import type { CurvePoint, CurveSeries, LedgerEntry, StationCurves } from "@/lib/types";
 import PixelGlyph from "./PixelGlyph";

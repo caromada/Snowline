@@ -254,8 +254,15 @@ def export(store: Store | None = None) -> None:
             if stale not in written:
                 stale.unlink()
 
-    index = {"generated_at": datetime.now(UTC).isoformat(timespec="seconds"),
-             "dates": dates, "passes": passes_out}
+    generated_at = datetime.now(UTC).isoformat(timespec="seconds")
+    (WEB_DATA_DIR / "landing.json").write_text(
+        json.dumps(
+            _landing(passes_out, dates, links_by_stream, generated_at),
+            separators=(",", ":"),
+        )
+    )
+
+    index = {"generated_at": generated_at, "dates": dates, "passes": passes_out}
     WEB_DATA_DIR.mkdir(parents=True, exist_ok=True)
     (WEB_DATA_DIR / "passes.json").write_text(json.dumps(index))
     log.info(
@@ -264,6 +271,79 @@ def export(store: Store | None = None) -> None:
         len(dates),
         len(station_curves),
     )
+
+
+LANDING_STATUS_KEYS = ["open", "snow_caution", "traction_advised", "not_recommended", "unknown"]
+
+
+def _landing(
+    passes_out: list[dict[str, Any]],
+    dates: list[str],
+    links_by_stream: dict[str, dict[str, list[dict[str, Any]]]],
+    generated_at: str,
+) -> dict[str, Any]:
+    """Compact data for the marketing page: ~1/20th of the full index.
+
+    Each pass is [lon, lat, featured, statuses], statuses one digit per date
+    (an index into status_keys), so the melt-out map can animate every pass
+    through every season from a single small file.
+    """
+    code = {k: str(i) for i, k in enumerate(LANDING_STATUS_KEYS)}
+    today = dates[-1]
+    stations = {
+        stream: len({link["provenance"] for links in by_pass.values() for link in links})
+        for stream, by_pass in links_by_stream.items()
+    }
+    featured_today = [
+        {
+            "slug": p["slug"],
+            "name": p["name"],
+            "elevation_ft": p["elevation_ft"],
+            "status": p["statuses"][today]["status"],
+            "status_label": p["statuses"][today]["status_label"],
+            "confidence": p["statuses"][today]["confidence"],
+        }
+        for p in passes_out
+        if p["tier"] == "featured"
+    ]
+    return {
+        "generated_at": generated_at,
+        "dates": dates,
+        "status_keys": LANDING_STATUS_KEYS,
+        "counts": {
+            "passes": len(passes_out),
+            "featured": len(featured_today),
+            "snow_stations": stations.get("snotel", 0) + stations.get("cdec", 0),
+            "stream_gauges": stations.get("usgs", 0),
+            "seasons": len({d[:4] for d in dates}),
+        },
+        "passes": [
+            [
+                round(p["lon"], 4),
+                round(p["lat"], 4),
+                1 if p["tier"] == "featured" else 0,
+                "".join(code.get(p["statuses"][d]["status"], "4") for d in dates),
+            ]
+            for p in passes_out
+        ],
+        "featured_today": featured_today,
+        "model": _model_facts(),
+    }
+
+
+def _model_facts() -> dict[str, Any]:
+    """The fusion model's real settings and measured accuracy, for the site."""
+    from fusion import fusion as f
+
+    eval_path = Path(__file__).resolve().parent / "eval" / "results.json"
+    return {
+        "priors": f.PRIOR,
+        "half_life_days": f.HALF_LIFE,
+        "max_age_days": f.MAX_AGE_DAYS,
+        "snowline_rise_ft_per_day": f.SNOWLINE_RISE_FT_PER_DAY,
+        "blind_gap_ft": f.BLIND_GAP_FT,
+        "eval": json.loads(eval_path.read_text()) if eval_path.exists() else None,
+    }
 
 
 LEDGER_WINDOW_DAYS = 30
