@@ -56,11 +56,11 @@ ACTIVE_MELT_SWING_PCT = 35.0
 
 # Snow evidence is asymmetric in elevation. A sensor below the pass that
 # still holds snow says the pass holds more. A sensor below the pass that has
-# melted out only says the snowline is somewhere above it, so once the pass
-# sits this far above a melted-out sensor, that sensor is blind to it. The
-# Sierra's pillows sit near pass height; Cascade SNOTELs often sit 3,000 ft
-# under the high passes, which is where this matters.
-BLIND_GAP_FT = 1500.0
+# melted out only says the snowline is somewhere above it, so it never votes
+# "clear" directly; it speaks through the snowline estimate below instead.
+# The tolerance covers sensors sited essentially at pass height. This bites
+# hardest in the Cascades, where SNOTELs often sit 3,000 ft under the passes.
+BLIND_GAP_FT = 300.0
 MELTED_OUT_SWE_IN = 0.5
 # Among sensors that can see the pass, closer in elevation counts for more.
 ELEVATION_WEIGHT_SCALE_FT = 3000.0
@@ -586,11 +586,13 @@ def _blind_fact(pass_info: dict[str, Any], blind: dict[str, Any]) -> dict[str, A
     names = ", ".join(
         f"{st['name']} ({st['elevation_ft']:,} ft)" for st in blind["stations"][:3]
     )
+    one = len(blind["stations"]) == 1
     return {
         "text": (
-            f"Snow sensors nearby have melted out, but {names} sit at least "
-            f"{blind['min_gap_ft']:,} ft below the pass: they cannot tell whether "
-            f"it still holds snow."
+            f"{'The nearest snow sensor has' if one else 'Snow sensors nearby have'} "
+            f"melted out, but {names} {'sits' if one else 'sit'} at least "
+            f"{blind['min_gap_ft']:,} ft below the pass: "
+            f"{'it cannot' if one else 'they cannot'} tell whether the pass still holds snow."
         ),
         "stream": "sensor",
         "refs": blind["refs"],

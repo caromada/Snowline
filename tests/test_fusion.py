@@ -278,3 +278,20 @@ def test_pillow_that_went_quiet_after_melt_out_still_informs() -> None:
 def test_quiet_pillow_says_nothing_once_fall_storms_can_arrive() -> None:
     r = fuse(BISHOP, "2026-11-20", quiet_pillow("2026-11-20"), [], [], [])
     assert r["status"] == "unknown"
+
+
+PANHANDLE = {"slug": "panhandle-gap", "name": "Panhandle Gap", "elevation_ft": 6719, "creek": ""}
+
+
+def test_modest_gap_melt_out_still_implies_lingering_snow() -> None:
+    # A sensor only 1,300 ft down melted out five weeks ago: the snowline has
+    # climbed about 1,400 ft since, to roughly the pass. Not a clean "open".
+    rows = season(5400, "2023-06-10", "2023-07-15", station="snotel:morse")
+    r = fuse(PANHANDLE, "2023-07-15", rows, [], [], [])
+    assert r["status"] != "open"
+
+
+def test_melted_out_sensor_just_below_the_pass_votes_through_the_snowline() -> None:
+    # 200 ft below and long bare: within tolerance, a direct "clear" vote.
+    rows = season(6519, "2023-05-01", "2023-07-15", station="snotel:near")
+    assert fuse(PANHANDLE, "2023-07-15", rows, [], [], [])["status"] == "open"
