@@ -1,0 +1,7571 @@
+{
+"fetched_at": "2026-09-28T21:22:40+00:00",
+"stations": [
+{
+"lat": 35.24500556,
+"lon": -115.2989889,
+"name": "Caruthers C Nr Ivanpah Ca",
+"site_no": "09423350"
+},
+{
+"lat": 33.7191361,
+"lon": -114.4975389,
+"name": "Colorado River Below Palo Verde Dam, Az-Ca",
+"site_no": "09429100"
+},
+{
+"lat": 33.53502644,
+"lon": -114.5605103,
+"name": "Pvid D-10-11-2 Spill Nr Blythe, Ca",
+"site_no": "09429160"
+},
+{
+"lat": 33.4918,
+"lon": -114.603611,
+"name": "Pvid D23 Spill Near Blythe, Ca",
+"site_no": "09429180"
+},
+{
+"lat": 32.8849361,
+"lon": -114.468111,
+"name": "Colorado River Above Imperial Dam, Az-Ca",
+"site_no": "09429490"
+},
+{
+"lat": 32.86758333,
+"lon": -114.472111,
+"name": "Colorado River Below Imperial Dam, Az-Ca",
+"site_no": "09429500"
+},
+{
+"lat": 32.8122666,
+"lon": -114.5149494,
+"name": "Colorado River Below Laguna Dam, Az-Ca",
+"site_no": "09429600"
+},
+{
+"lat": 32.737547,
+"lon": -114.7163443,
+"name": "Pilot Knob Powerplant And Wasteway Nr P.K., Ca",
+"site_no": "09527000"
+},
+{
+"lat": 32.7094932,
+"lon": -115.0254425,
+"name": "Brock Reservoir Inlet Near Calexico, Ca",
+"site_no": "09527630"
+},
+{
+"lat": 32.70575278,
+"lon": -115.0343306,
+"name": "Brock Reservoir Outlet Near Calexico, Ca",
+"site_no": "09527660"
+},
+{
+"lat": 32.7361472,
+"lon": -114.6221194,
+"name": "Reservation Main Drain No. 4 Near Yuma, Az",
+"site_no": "09530000"
+},
+{
+"lat": 32.74688889,
+"lon": -114.6940806,
+"name": "Drain 8-B Near Winterhaven, Ca",
+"site_no": "09530500"
+},
+{
+"lat": 35.88569444,
+"lon": -116.23425,
+"name": "Borehole Spg Channel Nr Tecopa Hot Spgs, Ca",
+"site_no": "10251290"
+},
+{
+"lat": 35.84944444,
+"lon": -116.2308333,
+"name": "Amargosa Rv At Tecopa, Ca",
+"site_no": "10251300"
+},
+{
+"lat": 35.79052778,
+"lon": -116.2076389,
+"name": "Amargosa Rv Abv China Ranch Wash Nr Tecopa, Ca",
+"site_no": "10251330"
+},
+{
+"lat": 35.80094444,
+"lon": -116.1944167,
+"name": "Willow Ck At China Ranch, Ca",
+"site_no": "10251335"
+},
+{
+"lat": 33.44698439,
+"lon": -115.8433229,
+"name": "Salt C Nr Mecca",
+"site_no": "10254050"
+},
+{
+"lat": 33.19893706,
+"lon": -115.5969252,
+"name": "Alamo R Nr Niland Ca",
+"site_no": "10254730"
+},
+{
+"lat": 32.665472,
+"lon": -115.501833,
+"name": "New R At International Boundary At Calexico Ca",
+"site_no": "10254970"
+},
+{
+"lat": 33.10477248,
+"lon": -115.664426,
+"name": "New R Nr Westmorland Ca",
+"site_no": "10255550"
+},
+{
+"lat": 33.27916667,
+"lon": -116.4305556,
+"name": "Borrego Palm C Nr Borrego Springs Ca",
+"site_no": "10255810"
+},
+{
+"lat": 33.9466806,
+"lon": -116.6408473,
+"name": "Whitewater R A White Water Ca",
+"site_no": "10256000"
+},
+{
+"lat": 33.87057878,
+"lon": -116.6811266,
+"name": "Snow C Nr White Water Ca",
+"site_no": "10256500"
+},
+{
+"lat": 33.8705722,
+"lon": -116.681127,
+"name": "Snow C And Div Combined Ca",
+"site_no": "10256501"
+},
+{
+"lat": 33.8705722,
+"lon": -116.681127,
+"name": "Snow C Div Nr White Water Ca",
+"site_no": "10256550"
+},
+{
+"lat": 33.86946114,
+"lon": -116.6716824,
+"name": "Falls C Div Nr White Water Ca",
+"site_no": "10257499"
+},
+{
+"lat": 33.86946776,
+"lon": -116.6716819,
+"name": "Falls C Nr White Water Ca",
+"site_no": "10257500"
+},
+{
+"lat": 33.86946114,
+"lon": -116.6716824,
+"name": "Combined Flow Falls C Nr White Water + Div Ca",
+"site_no": "10257501"
+},
+{
+"lat": 33.8989045,
+"lon": -116.6211256,
+"name": "Whitewater R A Windy Point Main Channel Ca",
+"site_no": "10257548"
+},
+{
+"lat": 33.8989045,
+"lon": -116.6211256,
+"name": "Whitewater R A Windy Point Overflow Channel Ca",
+"site_no": "10257549"
+},
+{
+"lat": 33.89891179,
+"lon": -116.6211254,
+"name": "Whitewater R A Windy Pt Nr White Water Ca",
+"site_no": "10257550"
+},
+{
+"lat": 33.84385,
+"lon": -116.6058083,
+"name": "Chino Cyn C Bl Tramway Nr Palm Springs Ca",
+"site_no": "10257720"
+},
+{
+"lat": 33.80502575,
+"lon": -116.5591784,
+"name": "Tahquitz C Nr Palm Springs Ca",
+"site_no": "10258000"
+},
+{
+"lat": 33.74502747,
+"lon": -116.535566,
+"name": "Palm Cyn C Nr Palm Springs Ca",
+"site_no": "10258500"
+},
+{
+"lat": 33.75277778,
+"lon": -116.5444444,
+"name": "Murray Cyn C Nr Palm Springs Ca",
+"site_no": "10258700"
+},
+{
+"lat": 33.76002698,
+"lon": -116.550011,
+"name": "Andreas C Nr Palm Springs Ca",
+"site_no": "10259000"
+},
+{
+"lat": 33.7972487,
+"lon": -116.481954,
+"name": "Palm Cyn Wash Nr Cathedral City Ca",
+"site_no": "10259050"
+},
+{
+"lat": 33.74947257,
+"lon": -116.4227854,
+"name": "Whitewater R A Rancho Mirage Ca",
+"site_no": "10259100"
+},
+{
+"lat": 33.63113647,
+"lon": -116.3922342,
+"name": "Deep C Nr Palm Desert Ca",
+"site_no": "10259200"
+},
+{
+"lat": 33.7372519,
+"lon": -116.2361137,
+"name": "Whitewater R A Indio Ca",
+"site_no": "10259300"
+},
+{
+"lat": 33.52475856,
+"lon": -116.0774964,
+"name": "Whitewater R Nr Mecca",
+"site_no": "10259540"
+},
+{
+"lat": 34.17194444,
+"lon": -116.5466667,
+"name": "Pipes Wash Nr Yucca Valley Ca",
+"site_no": "10260200"
+},
+{
+"lat": 34.34777778,
+"lon": -116.8458333,
+"name": "Cushenbury Canyon C Nr Lucerne Valley Ca",
+"site_no": "10260400"
+},
+{
+"lat": 34.34305858,
+"lon": -117.2264316,
+"name": "Deep C Nr Hesperia Ca",
+"site_no": "10260500"
+},
+{
+"lat": 34.28500486,
+"lon": -117.3719912,
+"name": "Wf Mojave R Ab Silverwood Lake Nr Hesperia Ca",
+"site_no": "10260550"
+},
+{
+"lat": 34.2702832,
+"lon": -117.292822,
+"name": "Ef Of Wf Mojave R Ab Silverwood Lk Nr Hesperia Ca",
+"site_no": "10260700"
+},
+{
+"lat": 34.33889196,
+"lon": -117.2578213,
+"name": "Wf Mojave R Ab Mojave R Forks Res Nr Hesperia Ca",
+"site_no": "10260950"
+},
+{
+"lat": 34.57304916,
+"lon": -117.3206018,
+"name": "Mojave R A Lo Narrows Nr Victorville Ca",
+"site_no": "10261500"
+},
+{
+"lat": 34.83551667,
+"lon": -117.1916778,
+"name": "Mojave R Nr Hodge Ca",
+"site_no": "10262000"
+},
+{
+"lat": 34.90693947,
+"lon": -117.0228129,
+"name": "Mojave R A Barstow Ca",
+"site_no": "10262500"
+},
+{
+"lat": 34.8696611,
+"lon": -116.8876583,
+"name": "Mojave R A Daggett Ca",
+"site_no": "10262700"
+},
+{
+"lat": 35.03720565,
+"lon": -116.3841887,
+"name": "Mojave R A Afton Ca",
+"site_no": "10263000"
+},
+{
+"lat": 34.42083115,
+"lon": -117.8395072,
+"name": "Big Rock C Nr Valyermo Ca",
+"site_no": "10263500"
+},
+{
+"lat": 37.75027778,
+"lon": -118.9394444,
+"name": "Deadman C A Big Springs Nr Crestview Ca",
+"site_no": "10265100"
+},
+{
+"lat": 37.17715504,
+"lon": -118.563165,
+"name": "Sf Bishop C Bl S Lk Nr Bishop Ca",
+"site_no": "10270800"
+},
+{
+"lat": 37.213822,
+"lon": -118.6103894,
+"name": "Mf Bishop C Bl Lk Sabrina Nr Bishop Ca",
+"site_no": "10270872"
+},
+{
+"lat": 38.0329787,
+"lon": -119.2165424,
+"name": "Mill C Bl Lundy Lk Nr Lee Vining Ca",
+"site_no": "10287069"
+},
+{
+"lat": 38.04214527,
+"lon": -119.1726516,
+"name": "Up Conway D Nr Lee Vining Ca",
+"site_no": "10287145"
+},
+{
+"lat": 38.0427008,
+"lon": -119.1726516,
+"name": "Lundy Pp Tailrace Nr Lee Vining Ca",
+"site_no": "10287195"
+},
+{
+"lat": 37.7510421,
+"lon": -119.1815348,
+"name": "Rush C Controlled Rel Bl Waugh Lk Nr June Lake Ca",
+"site_no": "10287262"
+},
+{
+"lat": 37.75132009,
+"lon": -119.1415343,
+"name": "Rush C Controlled Rel Bl Gem Lake Nr June Lake Ca",
+"site_no": "10287281"
+},
+{
+"lat": 37.76631976,
+"lon": -119.1223677,
+"name": "Rush C Pp Tailrace Nr June Lake Ca",
+"site_no": "10287300"
+},
+{
+"lat": 37.9643687,
+"lon": -119.2732103,
+"name": "Lee Vining C Bl Saddlebag Lk Nr Lee Vining Ca",
+"site_no": "10287655"
+},
+{
+"lat": 37.92798117,
+"lon": -119.2512636,
+"name": "Glacier C Bl Tioga Lk Nr Lee Vining Ca",
+"site_no": "10287720"
+},
+{
+"lat": 37.93603659,
+"lon": -119.2309854,
+"name": "Lee Vining C Bl Rhinedollar Dam Nr Lee Vining Ca",
+"site_no": "10287770"
+},
+{
+"lat": 38.19186474,
+"lon": -119.2101533,
+"name": "Virginia Ck Nr Bridgeport, Ca",
+"site_no": "10289000"
+},
+{
+"lat": 38.17380969,
+"lon": -119.2337656,
+"name": "Green Ck Nr Bridgeport, Ca",
+"site_no": "10289500"
+},
+{
+"lat": 38.17214225,
+"lon": -119.3246032,
+"name": "Robinson Ck At Twin Lks Outlet Nr Bridgeport, Ca",
+"site_no": "10290500"
+},
+{
+"lat": 38.23880787,
+"lon": -119.3259923,
+"name": "Buckeye Ck Nr Bridgeport, Ca",
+"site_no": "10291500"
+},
+{
+"lat": 38.3276958,
+"lon": -119.2148759,
+"name": "E Walker Rv Nr Bridgeport, Ca",
+"site_no": "10293000"
+},
+{
+"lat": 38.3796366,
+"lon": -119.4501649,
+"name": "W Walker Rv Blw L Walker Rv Nr Coleville, Ca",
+"site_no": "10296000"
+},
+{
+"lat": 38.51324495,
+"lon": -119.4498872,
+"name": "W Walker Rv Nr Coleville, Ca",
+"site_no": "10296500"
+},
+{
+"lat": 38.7146274,
+"lon": -119.7648985,
+"name": "E Fk Carson Rv Blw Markleeville Ck Nr Markleeville",
+"site_no": "10308200"
+},
+{
+"lat": 38.70128509,
+"lon": -119.6565398,
+"name": "Leviathan C Ab Mine Nr Markleeville Ca",
+"site_no": "10308783"
+},
+{
+"lat": 38.7033333,
+"lon": -119.6591667,
+"name": "Unnamed Trib 1 To Leviathan C At Leviathan Mine Ca",
+"site_no": "103087835"
+},
+{
+"lat": 38.7040628,
+"lon": -119.6587622,
+"name": "Leviathan Mine Adit Drain Nr Markleeville Ca",
+"site_no": "10308784"
+},
+{
+"lat": 38.7040628,
+"lon": -119.6587622,
+"name": "Leviathan Mine Pit Flow Nr Markleeville Ca",
+"site_no": "10308785"
+},
+{
+"lat": 38.7058333,
+"lon": -119.6566667,
+"name": "Leviathan Mine Pit Junction Box Nr Markleeville Ca",
+"site_no": "103087855"
+},
+{
+"lat": 38.70555556,
+"lon": -119.6622222,
+"name": "Unnamed Trib 2 To Leviathan C At Leviathan Mine Ca",
+"site_no": "103087865"
+},
+{
+"lat": 38.7108333,
+"lon": -119.6630556,
+"name": "4L C Nr Markleeville Ca",
+"site_no": "103087889"
+},
+{
+"lat": 38.71684034,
+"lon": -119.6601513,
+"name": "Leviathan C Ab Aspen C Nr Markleeville Ca",
+"site_no": "10308789"
+},
+{
+"lat": 38.7086111,
+"lon": -119.648611,
+"name": "Aspen C Abv Leviathan Mine Nr Markleeville Ca",
+"site_no": "103087891"
+},
+{
+"lat": 38.717222,
+"lon": -119.658333,
+"name": "Aspen C Ab Leviathan C Nr Markleeville Ca",
+"site_no": "103087898"
+},
+{
+"lat": 38.735729,
+"lon": -119.6454289,
+"name": "Leviathan C Ab Mountaineer C Nr Markleeville Ca",
+"site_no": "10308792"
+},
+{
+"lat": 38.735729,
+"lon": -119.6454289,
+"name": "Bryant C Bl Mountaineer C Nr Markleeville Ca",
+"site_no": "10308794"
+},
+{
+"lat": 38.76962765,
+"lon": -119.833789,
+"name": "W Fk Carson Rv At Woodfords, Ca",
+"site_no": "10310000"
+},
+{
+"lat": 38.8485185,
+"lon": -120.0271275,
+"name": "Upper Truckee Rv At Hwy 50 Abv Meyers, Ca",
+"site_no": "103366092"
+},
+{
+"lat": 38.9224078,
+"lon": -119.9915706,
+"name": "Upper Truckee Rv At South Lake Tahoe, Ca",
+"site_no": "10336610"
+},
+{
+"lat": 39.05183077,
+"lon": -120.1185016,
+"name": "General C Nr Meeks Bay Ca",
+"site_no": "10336645"
+},
+{
+"lat": 39.107385,
+"lon": -120.1621147,
+"name": "Blackwood C Nr Tahoe City Ca",
+"site_no": "10336660"
+},
+{
+"lat": 39.14071738,
+"lon": -120.2121165,
+"name": "Ward C Bl Confluence Nr Tahoe City Ca",
+"site_no": "10336674"
+},
+{
+"lat": 39.13210688,
+"lon": -120.1576705,
+"name": "Ward C At Hwy 89 Nr Tahoe Pines Ca",
+"site_no": "10336676"
+},
+{
+"lat": 38.9199077,
+"lon": -119.9724036,
+"name": "Trout Ck Nr Tahoe Valley, Ca",
+"site_no": "10336780"
+},
+{
+"lat": 39.16627309,
+"lon": -120.1443373,
+"name": "Truckee R A Tahoe City Ca",
+"site_no": "10337500"
+},
+{
+"lat": 39.29627044,
+"lon": -120.2054519,
+"name": "Truckee R Nr Truckee Ca",
+"site_no": "10338000"
+},
+{
+"lat": 39.3235172,
+"lon": -120.2343654,
+"name": "Donner C A Donner Lk Nr Truckee Ca",
+"site_no": "10338500"
+},
+{
+"lat": 39.32099225,
+"lon": -120.2079523,
+"name": "Donner C At Hwy 89 Nr Truckee Ca",
+"site_no": "10338700"
+},
+{
+"lat": 39.35305556,
+"lon": -120.1194444,
+"name": "Truckee R Bl Martis C Nr Truckee Ca",
+"site_no": "10339410"
+},
+{
+"lat": 39.37324026,
+"lon": -120.131587,
+"name": "Prosser C Bl Prosser C Dam Nr Truckee Ca",
+"site_no": "10340500"
+},
+{
+"lat": 39.45654494,
+"lon": -120.287123,
+"name": "Independence C Nr Truckee Ca",
+"site_no": "10343000"
+},
+{
+"lat": 39.43154577,
+"lon": -120.2379547,
+"name": "Sagehen C Nr Truckee Ca",
+"site_no": "10343500"
+},
+{
+"lat": 39.4357137,
+"lon": -120.0843395,
+"name": "Little Truckee R Ab Boca Res Nr Truckee Ca",
+"site_no": "10344400"
+},
+{
+"lat": 39.38682549,
+"lon": -120.0954502,
+"name": "Little Truckee R Bl Boca Dam Nr Truckee Ca",
+"site_no": "10344500"
+},
+{
+"lat": 39.3851589,
+"lon": -120.0876722,
+"name": "Truckee R A Boca Bridge Nr Truckee Ca",
+"site_no": "10344505"
+},
+{
+"lat": 39.42793648,
+"lon": -120.0340602,
+"name": "Truckee R A Farad Ca",
+"site_no": "10346000"
+},
+{
+"lat": 32.59116984,
+"lon": -116.5255548,
+"name": "Campo C Nr Campo Ca",
+"site_no": "11012500"
+},
+{
+"lat": 32.6375566,
+"lon": -116.8841893,
+"name": "Jamul C Nr Jamul Ca",
+"site_no": "11014000"
+},
+{
+"lat": 32.8347735,
+"lon": -116.6230596,
+"name": "Sweetwater R Nr Descanso Ca",
+"site_no": "11015000"
+},
+{
+"lat": 32.77416667,
+"lon": -116.8502778,
+"name": "Sweetwater R A Dehesa Ca",
+"site_no": "11016200"
+},
+{
+"lat": 32.83616156,
+"lon": -116.9003035,
+"name": "Los Coches C Nr Lakeside Ca",
+"site_no": "11022200"
+},
+{
+"lat": 32.8403262,
+"lon": -117.0258478,
+"name": "San Diego R A Mast Rd Nr Santee Ca",
+"site_no": "11022480"
+},
+{
+"lat": 32.778325,
+"lon": -117.06339722,
+"name": "Alvarado C Nr La Mesa Ca",
+"site_no": "11022830"
+},
+{
+"lat": 32.76504955,
+"lon": -117.1686285,
+"name": "San Diego R A Fashion Valley At San Diego Ca",
+"site_no": "11023000"
+},
+{
+"lat": 32.78952778,
+"lon": -117.18811111,
+"name": "Tecolote C Ab Footbridge Nr San Diego Ca",
+"site_no": "11023100"
+},
+{
+"lat": 32.9431013,
+"lon": -117.1216999,
+"name": "Los Penasquitos C Nr Poway Ca",
+"site_no": "11023340"
+},
+{
+"lat": 33.1069866,
+"lon": -116.866137,
+"name": "Santa Ysabel C Nr Ramona Ca",
+"site_no": "11025500"
+},
+{
+"lat": 33.11587469,
+"lon": -116.9530708,
+"name": "Guejito C Nr San Pasqual Ca",
+"site_no": "11027000"
+},
+{
+"lat": 33.0522655,
+"lon": -116.9455844,
+"name": "Santa Maria C Nr Ramona Ca",
+"site_no": "11028500"
+},
+{
+"lat": 33.21809135,
+"lon": -117.3603045,
+"name": "San Luis Rey R A Oceanside Ca",
+"site_no": "11042000"
+},
+{
+"lat": 33.459199,
+"lon": -116.9236289,
+"name": "Temecula C Nr Aguanga Ca",
+"site_no": "11042400"
+},
+{
+"lat": 33.46416667,
+"lon": -117.1238889,
+"name": "Pechanga C Nr Temecula Ca",
+"site_no": "11042631"
+},
+{
+"lat": 33.5555832,
+"lon": -117.2314156,
+"name": "Murrieta C Nr Murrieta Ca",
+"site_no": "11042700"
+},
+{
+"lat": 33.53224867,
+"lon": -117.1769771,
+"name": "Warm Springs C Nr Murrieta Ca",
+"site_no": "11042800"
+},
+{
+"lat": 33.52447338,
+"lon": -117.1647469,
+"name": "Santa Gertrudis C Nr Temecula Ca",
+"site_no": "11042900"
+},
+{
+"lat": 33.47975066,
+"lon": -117.1439203,
+"name": "Murrieta C A Temecula Ca",
+"site_no": "11043000"
+},
+{
+"lat": 33.4739175,
+"lon": -117.1422536,
+"name": "Santa Margarita R Nr Temecula Ca",
+"site_no": "11044000"
+},
+{
+"lat": 33.4075318,
+"lon": -117.2008578,
+"name": "Rainbow C Nr Fallbrook Ca",
+"site_no": "11044250"
+},
+{
+"lat": 33.41364246,
+"lon": -117.2411367,
+"name": "Santa Margarita R A Fpud Sump Nr Fallbrook Ca",
+"site_no": "11044300"
+},
+{
+"lat": 33.42447545,
+"lon": -117.2491926,
+"name": "Sandia C Nr Fallbrook Ca",
+"site_no": "11044350"
+},
+{
+"lat": 33.41975285,
+"lon": -117.3216944,
+"name": "De Luz C Nr De Luz Ca",
+"site_no": "11044800"
+},
+{
+"lat": 33.34697705,
+"lon": -117.3178047,
+"name": "Fallbrook C Nr Fallbrook Ca",
+"site_no": "11045300"
+},
+{
+"lat": 33.32503314,
+"lon": -117.3255824,
+"name": "Oneill Lake Outlet Ch Nr Fallbrook Ca",
+"site_no": "11045600"
+},
+{
+"lat": 33.3289219,
+"lon": -117.3272492,
+"name": "Oneill Lk Spill Ch Nr Fallbrook Ca",
+"site_no": "11045700"
+},
+{
+"lat": 33.3111436,
+"lon": -117.3472604,
+"name": "Santa Margarita R A Ysidora Ca",
+"site_no": "11046000"
+},
+{
+"lat": 33.4193333,
+"lon": -117.5370556,
+"name": "San Mateo C A San Mateo Rd Nr San Onofre Ca",
+"site_no": "11046325"
+},
+{
+"lat": 33.42641717,
+"lon": -117.5703242,
+"name": "Cristianitos C Ab San Mateo C Nr San Clemente Ca",
+"site_no": "11046360"
+},
+{
+"lat": 33.50252614,
+"lon": -117.6480925,
+"name": "San Juan C At La Novia St Br At San Juan Capis Ca",
+"site_no": "11046530"
+},
+{
+"lat": 33.49835946,
+"lon": -117.6658707,
+"name": "Arroyo Trabuco A San Juan Capistrano Ca",
+"site_no": "11047300"
+},
+{
+"lat": 33.6870833,
+"lon": -117.6954167,
+"name": "Agua Chinon Wash A Portola Springs Rd Nr Irvine Ca",
+"site_no": "11048175"
+},
+{
+"lat": 33.64502086,
+"lon": -117.861155,
+"name": "Bonita C A Irvine Ca",
+"site_no": "11048600"
+},
+{
+"lat": 34.11362248,
+"lon": -117.0964244,
+"name": "Sce Santa Ana R Cn Ab Pp3 Nr Mentone Ca",
+"site_no": "11049500"
+},
+{
+"lat": 34.10834489,
+"lon": -117.1005911,
+"name": "Santa Ana R Nr Mentone (River Only) Ca",
+"site_no": "11051499"
+},
+{
+"lat": 34.10834489,
+"lon": -117.1005911,
+"name": "Santa Ana R Nr Mentone Ca",
+"site_no": "11051500"
+},
+{
+"lat": 34.10834489,
+"lon": -117.1005911,
+"name": "Sar Supp Gage Nr Mentone Ca",
+"site_no": "11051502"
+},
+{
+"lat": 34.0777904,
+"lon": -117.0992014,
+"name": "Mill C Nr Mentone Ca",
+"site_no": "11055000"
+},
+{
+"lat": 34.11834458,
+"lon": -117.141704,
+"name": "Plunge C Nr East Highlands Ca",
+"site_no": "11055500"
+},
+{
+"lat": 34.14417935,
+"lon": -117.1891982,
+"name": "City C Water Co Cn Nr Highland Ca",
+"site_no": "11055700"
+},
+{
+"lat": 34.14390158,
+"lon": -117.1886426,
+"name": "City C Nr Highland Ca",
+"site_no": "11055800"
+},
+{
+"lat": 34.0614024,
+"lon": -117.2675419,
+"name": "San Timoteo C Nr Loma Linda Ca",
+"site_no": "11057500"
+},
+{
+"lat": 34.1791779,
+"lon": -117.2655894,
+"name": "E Twin C Nr Arrowhead Springs Ca",
+"site_no": "11058500"
+},
+{
+"lat": 34.1858333,
+"lon": -117.2722222,
+"name": "Waterman Canyon Creek Nr Arrowhead Springs Ca",
+"site_no": "11058600"
+},
+{
+"lat": 34.0650131,
+"lon": -117.3003208,
+"name": "Santa Ana R A E St Nr San Bernardino Ca",
+"site_no": "11059300"
+},
+{
+"lat": 34.07834596,
+"lon": -117.3003209,
+"name": "Warm C Nr San Bernardino Ca",
+"site_no": "11060400"
+},
+{
+"lat": 34.21184444,
+"lon": -117.4578667,
+"name": "Lytle C Nr Fontana Ca",
+"site_no": "11062000"
+},
+{
+"lat": 34.20278567,
+"lon": -117.4494936,
+"name": "Fontana Water Co Surface Div Weir 2 Nr Fontana Ca",
+"site_no": "11062399"
+},
+{
+"lat": 34.20306344,
+"lon": -117.4494936,
+"name": "Fontana Water Co Surface Div Nr Fontana Ca",
+"site_no": "11062400"
+},
+{
+"lat": 34.20306344,
+"lon": -117.4494936,
+"name": "Lytle C Surface Div Nr Fontana Ca",
+"site_no": "11062402"
+},
+{
+"lat": 34.2027871,
+"lon": -117.4492056,
+"name": "Fontana Ph Forebay Spillway Nr Fontana Ca",
+"site_no": "11062450"
+},
+{
+"lat": 34.1554722,
+"lon": -117.3975833,
+"name": "Lytle C Div To Fontana Ph Avm Nr Fontana Ca",
+"site_no": "11062700"
+},
+{
+"lat": 34.155565,
+"lon": -117.3956025,
+"name": "Fontana Water Co Spill Ch From Afterbay Nr Fontana",
+"site_no": "11062800"
+},
+{
+"lat": 34.2633392,
+"lon": -117.4669944,
+"name": "Cajon C Bl Lone Pine C Nr Keenbrook Ca",
+"site_no": "11063510"
+},
+{
+"lat": 34.20834338,
+"lon": -117.3314248,
+"name": "Devil Cyn C Nr San Bernardino Ca",
+"site_no": "11063680"
+},
+{
+"lat": 34.07890146,
+"lon": -117.3055989,
+"name": "Lytle C A Colton Ca",
+"site_no": "11065000"
+},
+{
+"lat": 33.9684722,
+"lon": -117.4482222,
+"name": "Santa Ana R A Mwd Crossing Ca",
+"site_no": "11066460"
+},
+{
+"lat": 33.73807629,
+"lon": -116.8339098,
+"name": "San Jacinto R Nr San Jacinto",
+"site_no": "11069500"
+},
+{
+"lat": 33.8214075,
+"lon": -116.973358,
+"name": "San Jacinto R Ab State Street Nr San Jacinto Ca",
+"site_no": "11070150"
+},
+{
+"lat": 33.83974065,
+"lon": -117.135866,
+"name": "San Jacinto R A Ramona Expressway Nr Lakeview Ca",
+"site_no": "11070210"
+},
+{
+"lat": 33.80113024,
+"lon": -117.2061469,
+"name": "Perris Valley Storm Dr A Nuevo Rd Nr Perris Ca",
+"site_no": "11070270"
+},
+{
+"lat": 33.74613375,
+"lon": -117.2316953,
+"name": "San Jacinto R Nr Sun City Ca",
+"site_no": "11070365"
+},
+{
+"lat": 33.69419084,
+"lon": -117.205583,
+"name": "Salt C A Murrieta Rd Nr Sun City Ca",
+"site_no": "11070465"
+},
+{
+"lat": 33.66418858,
+"lon": -117.293927,
+"name": "San Jacinto R Nr Elsinore Ca",
+"site_no": "11070500"
+},
+{
+"lat": 33.75444444,
+"lon": -117.4958056,
+"name": "Coldwater Canyon C Nr Corona Ca",
+"site_no": "11071760"
+},
+{
+"lat": 33.75027778,
+"lon": -117.4458333,
+"name": "Temescal C A Corona Lk Nr Corona Ca",
+"site_no": "11071900"
+},
+{
+"lat": 33.8891821,
+"lon": -117.5628274,
+"name": "Temescal C Ab Main St A Corona Ca",
+"site_no": "11072100"
+},
+{
+"lat": 34.01862319,
+"lon": -117.7306118,
+"name": "San Antonio C A Riverside Drive Nr Chino Ca",
+"site_no": "11073300"
+},
+{
+"lat": 34.00390144,
+"lon": -117.7270006,
+"name": "Chino C A Schaefer Avenue Nr Chino Ca",
+"site_no": "11073360"
+},
+{
+"lat": 34.17355556,
+"lon": -117.63183333,
+"name": "Cucamonga C Nr Upland Ca",
+"site_no": "11073470"
+},
+{
+"lat": 33.9827912,
+"lon": -117.5994966,
+"name": "Cucamonga C Nr Mira Loma Ca",
+"site_no": "11073495"
+},
+{
+"lat": 33.88334875,
+"lon": -117.6453296,
+"name": "Santa Ana R Bl Prado Dam Ca",
+"site_no": "11074000"
+},
+{
+"lat": 33.9133473,
+"lon": -117.8425461,
+"name": "Carbon C Bl Carbon Cyn Dam Ca",
+"site_no": "11075720"
+},
+{
+"lat": 33.70890966,
+"lon": -117.6355943,
+"name": "Santiago C A Modjeska Ca",
+"site_no": "11075800"
+},
+{
+"lat": 33.77029518,
+"lon": -117.8844902,
+"name": "Santiago C A Santa Ana Ca",
+"site_no": "11077500"
+},
+{
+"lat": 33.75112815,
+"lon": -117.9083906,
+"name": "Santa Ana R A Santa Ana Ca",
+"site_no": "11078000"
+},
+{
+"lat": 34.11223019,
+"lon": -117.9695092,
+"name": "San Gabriel R Bl Santa Fe Dam Nr Baldwin Pk Ca",
+"site_no": "11085000"
+},
+{
+"lat": 34.03417767,
+"lon": -118.0381225,
+"name": "San Gabriel R Ab Whittier Narrows Dam Ca",
+"site_no": "11087020"
+},
+{
+"lat": 33.8877918,
+"lon": -117.9264369,
+"name": "Brea C Bl Brea Dam Nr Fullerton Ca",
+"site_no": "11088500"
+},
+{
+"lat": 33.89584744,
+"lon": -117.8861582,
+"name": "Fullerton C Bl Fullerton Dam Nr Brea Ca",
+"site_no": "11089500"
+},
+{
+"lat": 34.16167247,
+"lon": -118.466749,
+"name": "Los Angeles R A Sepulveda Dam Ca",
+"site_no": "11092450"
+},
+{
+"lat": 34.25361395,
+"lon": -118.38897,
+"name": "Big Tujunga C Bl Hansen Dam Ca",
+"site_no": "11097000"
+},
+{
+"lat": 34.22222584,
+"lon": -118.177558,
+"name": "Arroyo Seco Nr Pasadena Ca",
+"site_no": "11098000"
+},
+{
+"lat": 34.05834368,
+"lon": -118.0717348,
+"name": "Rio Hondo Ab Whittier Narrows Dam Ca",
+"site_no": "11101250"
+},
+{
+"lat": 34.0166788,
+"lon": -118.0884018,
+"name": "Rio Hondo Bl Whittier Narrows Dam Ca",
+"site_no": "11102300"
+},
+{
+"lat": 34.403606,
+"lon": -118.739241,
+"name": "Santa Clara R Nr Piru Ca",
+"site_no": "11109000"
+},
+{
+"lat": 34.6660963,
+"lon": -118.8242608,
+"name": "Piru C Bl Buck C Nr Pyramid Lk Ca",
+"site_no": "11109375"
+},
+{
+"lat": 34.69192849,
+"lon": -118.7912038,
+"name": "Canada De Los Alamos Ab Pyramid Lk Ca",
+"site_no": "11109395"
+},
+{
+"lat": 34.5230473,
+"lon": -118.7570206,
+"name": "Piru Creek Above Lake Piru Ca",
+"site_no": "11109600"
+},
+{
+"lat": 34.46027116,
+"lon": -118.7520198,
+"name": "Piru Creek Below Santa Felicia Dam Ca",
+"site_no": "11109800"
+},
+{
+"lat": 34.5777657,
+"lon": -119.2573347,
+"name": "Sespe Creek Near Wheeler Springs Ca",
+"site_no": "11111500"
+},
+{
+"lat": 34.4416592,
+"lon": -118.9273019,
+"name": "Sespe C Nr Fillmore",
+"site_no": "11113000"
+},
+{
+"lat": 34.4133295,
+"lon": -119.0823272,
+"name": "Santa Paula C Nr Santa Paula",
+"site_no": "11113500"
+},
+{
+"lat": 34.35221417,
+"lon": -119.3084218,
+"name": "Ventura R Nr Ventura",
+"site_no": "11118500"
+},
+{
+"lat": 34.40125046,
+"lon": -119.48823248,
+"name": "Carpinteria C Nr Carpinteria Ca",
+"site_no": "11119500"
+},
+{
+"lat": 34.44055266,
+"lon": -119.7118027,
+"name": "Mission C A Rocky Nook Park A Santa Barbara Ca",
+"site_no": "11119745"
+},
+{
+"lat": 34.42662778,
+"lon": -119.7236694,
+"name": "Mission C Nr Mission St Nr Santa Barbara Ca",
+"site_no": "11119750"
+},
+{
+"lat": 34.41421944,
+"lon": -119.6958472,
+"name": "Mission C Bl W Gutierrez St Br A Santa Barbara Ca",
+"site_no": "11119770"
+},
+{
+"lat": 34.44498584,
+"lon": -119.8037132,
+"name": "Maria Ygnacio C A University Drive Nr Goleta Ca",
+"site_no": "11119940"
+},
+{
+"lat": 34.4247085,
+"lon": -119.8117688,
+"name": "Atascadero C Nr Goleta Ca",
+"site_no": "11120000"
+},
+{
+"lat": 34.4591521,
+"lon": -119.8089913,
+"name": "San Jose C Nr Goleta Ca",
+"site_no": "11120500"
+},
+{
+"lat": 34.4486111,
+"lon": -119.8402778,
+"name": "San Pedro C A Goleta Ca",
+"site_no": "11120520"
+},
+{
+"lat": 34.513686,
+"lon": -120.484894,
+"name": "Jalama C Nr Lompoc Ca",
+"site_no": "11120600"
+},
+{
+"lat": 34.5241514,
+"lon": -119.6870445,
+"name": "Gibraltar Dam Div Weir A Gibraltar Dam Ca",
+"site_no": "11121900"
+},
+{
+"lat": 34.52415139,
+"lon": -119.6873223,
+"name": "Gibraltar Dam Release Weir A Gibraltar Dam Ca",
+"site_no": "11122010"
+},
+{
+"lat": 34.52442917,
+"lon": -119.6873223,
+"name": "Santa Ynez R Bl Gibraltar Dam Nr Santa Barbara Ca",
+"site_no": "11123000"
+},
+{
+"lat": 34.54359399,
+"lon": -119.864827,
+"name": "Santa Ynez R Bl Los Laurls Cyn Nr Snta Ynez Ca",
+"site_no": "11123500"
+},
+{
+"lat": 34.5966563,
+"lon": -119.9087519,
+"name": "Santa Cruz C Nr Santa Ynez Ca",
+"site_no": "11124500"
+},
+{
+"lat": 34.5822032,
+"lon": -119.9826082,
+"name": "Hilton Cyn C Nr Santa Ynez Ca",
+"site_no": "11125600"
+},
+{
+"lat": 34.58388889,
+"lon": -119.985,
+"name": "Hilton Cyn C 0.25 Mi Bl Bradbury Dam Nr Santa Ynez",
+"site_no": "11125605"
+},
+{
+"lat": 34.58914745,
+"lon": -119.9887195,
+"name": "Santa Ynez R Nr Santa Ynez Ca",
+"site_no": "11126000"
+},
+{
+"lat": 34.5901111,
+"lon": -120.025361,
+"name": "Santa Ynez R A Hwy 154 Nr Santa Ynez Ca",
+"site_no": "11126400"
+},
+{
+"lat": 34.61831236,
+"lon": -120.1206677,
+"name": "Alamo Pintado C Nr Solvang Ca",
+"site_no": "11128250"
+},
+{
+"lat": 34.58497968,
+"lon": -120.1445568,
+"name": "Santa Ynez R A Solvang Ca",
+"site_no": "11128500"
+},
+{
+"lat": 34.64858889,
+"lon": -120.1842807,
+"name": "Zaca C Nr Buellton Ca",
+"site_no": "11129800"
+},
+{
+"lat": 34.58858865,
+"lon": -120.4084524,
+"name": "Salsipuedes C Nr Lompoc Ca",
+"site_no": "11132500"
+},
+{
+"lat": 34.6360873,
+"lon": -120.4245645,
+"name": "Santa Ynez R A Narrows Nr Lompoc Ca",
+"site_no": "11133000"
+},
+{
+"lat": 34.66830848,
+"lon": -120.457899,
+"name": "Santa Ynez R A H St Nr Lompoc Ca",
+"site_no": "11134000"
+},
+{
+"lat": 34.74330807,
+"lon": -120.2709507,
+"name": "San Antonio C A Los Alamos Ca",
+"site_no": "11135800"
+},
+{
+"lat": 34.77777778,
+"lon": -120.4316667,
+"name": "Harris Canyon C Nr Orcutt Ca",
+"site_no": "11136040"
+},
+{
+"lat": 34.76691944,
+"lon": -120.43335,
+"name": "San Antonio C A San Antonio Rd E Nr Orcutt Ca",
+"site_no": "11136045"
+},
+{
+"lat": 34.78219396,
+"lon": -120.5301244,
+"name": "San Antonio C Nr Casmalia Ca",
+"site_no": "11136100"
+},
+{
+"lat": 34.68804167,
+"lon": -119.3587333,
+"name": "Cuyama R Nr Ventucopa Ca",
+"site_no": "11136500"
+},
+{
+"lat": 34.82081167,
+"lon": -119.5573223,
+"name": "Santa Barbara Cyn C Nr Ventucopa Ca",
+"site_no": "11136600"
+},
+{
+"lat": 35.0561111,
+"lon": -119.9595472,
+"name": "Cuyama R Nr New Cuyama Ca",
+"site_no": "11136710"
+},
+{
+"lat": 35.02191265,
+"lon": -120.2284528,
+"name": "Cuyama R Bl Buckhorn Cyn Nr Santa Maria Ca",
+"site_no": "11136800"
+},
+{
+"lat": 35.0777435,
+"lon": -120.3717905,
+"name": "Huasna R Nr Arroyo Grande Ca",
+"site_no": "11137900"
+},
+{
+"lat": 34.83995556,
+"lon": -120.1671694,
+"name": "Sisquoc R Nr Sisquoc Ca",
+"site_no": "11138500"
+},
+{
+"lat": 34.8938596,
+"lon": -120.3065089,
+"name": "Sisquoc R Nr Garey",
+"site_no": "11140000"
+},
+{
+"lat": 34.96830147,
+"lon": -120.4040122,
+"name": "Santa Maria R A Suey Crossing Nr Santa Maria Ca",
+"site_no": "11140585"
+},
+{
+"lat": 34.8835806,
+"lon": -120.4948469,
+"name": "Orcutt C Nr Orcutt Ca",
+"site_no": "11141050"
+},
+{
+"lat": 35.23551667,
+"lon": -120.4723504,
+"name": "Lopez C Nr Arroyo Grande Ca",
+"site_no": "11141280"
+},
+{
+"lat": 36.24576038,
+"lon": -121.7732293,
+"name": "Big Sur R Nr Big Sur Ca",
+"site_no": "11143000"
+},
+{
+"lat": 36.4748611,
+"lon": -121.7288889,
+"name": "Carmel R A Robles Del Rio Ca",
+"site_no": "11143200"
+},
+{
+"lat": 36.5390863,
+"lon": -121.880458,
+"name": "Carmel R Nr Carmel Ca",
+"site_no": "11143250"
+},
+{
+"lat": 35.408753,
+"lon": -120.567008,
+"name": "Salinas R Nr Santa Margarita Ca",
+"site_no": "11145500"
+},
+{
+"lat": 35.6285813,
+"lon": -120.6843373,
+"name": "Salinas R A Paso Robles Ca",
+"site_no": "11147500"
+},
+{
+"lat": 35.71719096,
+"lon": -120.6401683,
+"name": "Estrella R Nr Estrella Ca",
+"site_no": "11148500"
+},
+{
+"lat": 35.78857918,
+"lon": -121.0938048,
+"name": "Nacimiento R Bl Sapaque C Nr Bryson Ca",
+"site_no": "11148900"
+},
+{
+"lat": 35.76135678,
+"lon": -120.855458,
+"name": "Nacimiento R Bl Nacimiento Dam Nr Bradley Ca",
+"site_no": "11149400"
+},
+{
+"lat": 35.89663404,
+"lon": -121.0882491,
+"name": "San Antonio R Nr Lockwood Ca",
+"site_no": "11149900"
+},
+{
+"lat": 35.9302434,
+"lon": -120.8687915,
+"name": "Salinas R Nr Bradley Ca",
+"site_no": "11150500"
+},
+{
+"lat": 36.26802087,
+"lon": -121.066303,
+"name": "San Lorenzo C Bl Bitterwater C Nr King City Ca",
+"site_no": "11151300"
+},
+{
+"lat": 36.203706,
+"lon": -121.142489,
+"name": "Salinas R Nr King City Ca",
+"site_no": "11151540"
+},
+{
+"lat": 36.4110383,
+"lon": -121.319331,
+"name": "Salinas R A Soledad Ca",
+"site_no": "11151700"
+},
+{
+"lat": 36.23746164,
+"lon": -121.4816027,
+"name": "Arroyo Seco Nr Greenfield Ca",
+"site_no": "11151870"
+},
+{
+"lat": 36.28052076,
+"lon": -121.3227063,
+"name": "Arroyo Seco Nr Soledad Ca",
+"site_no": "11152000"
+},
+{
+"lat": 36.39968708,
+"lon": -121.3240962,
+"name": "Arroyo Seco Bl Reliz C Nr Soledad Ca",
+"site_no": "11152050"
+},
+{
+"lat": 36.55357267,
+"lon": -121.5493856,
+"name": "Salinas R Nr Chualar Ca",
+"site_no": "11152300"
+},
+{
+"lat": 36.631071,
+"lon": -121.672446,
+"name": "Salinas R Nr Spreckels Ca",
+"site_no": "11152500"
+},
+{
+"lat": 36.98,
+"lon": -121.38027778,
+"name": "Pacheco C Nr Dunneville Ca",
+"site_no": "11153000"
+},
+{
+"lat": 36.98741308,
+"lon": -121.5271216,
+"name": "Llagas C Nr Gilroy",
+"site_no": "11153650"
+},
+{
+"lat": 36.614128,
+"lon": -121.211361,
+"name": "San Benito R Nr Willow Creek School Ca",
+"site_no": "11156500"
+},
+{
+"lat": 36.765753,
+"lon": -121.2996128,
+"name": "Tres Pinos C Nr Tres Pinos Ca",
+"site_no": "11157500"
+},
+{
+"lat": 36.81675,
+"lon": -121.3926806,
+"name": "San Benito R Bl Hospital Rd Bridge Nr Hollister Ca",
+"site_no": "11158600"
+},
+{
+"lat": 36.90019209,
+"lon": -121.5976778,
+"name": "Pajaro R A Chittenden Ca",
+"site_no": "11159000"
+},
+{
+"lat": 36.9393968,
+"lon": -121.7705065,
+"name": "Corralitos C A Freedom Ca",
+"site_no": "11159200"
+},
+{
+"lat": 36.9181222,
+"lon": -121.733611,
+"name": "Salsipuedes C Nr Watsonville Ca",
+"site_no": "11159490"
+},
+{
+"lat": 36.9056111,
+"lon": -121.7518889,
+"name": "Pajaro R A Watsonville Ca",
+"site_no": "11159500"
+},
+{
+"lat": 37.00161665,
+"lon": -121.9060688,
+"name": "Aptos C Nr Aptos Ca",
+"site_no": "11159690"
+},
+{
+"lat": 36.9913389,
+"lon": -121.9557933,
+"name": "Soquel C A Soquel Ca",
+"site_no": "11160000"
+},
+{
+"lat": 37.0443931,
+"lon": -122.072464,
+"name": "San Lorenzo R A Big Trees Ca",
+"site_no": "11160500"
+},
+{
+"lat": 36.9907832,
+"lon": -122.0319076,
+"name": "San Lorenzo R A Santa Cruz Ca",
+"site_no": "11161000"
+},
+{
+"lat": 37.2607338,
+"lon": -122.3288125,
+"name": "Pescadero C Nr Pescadero Ca",
+"site_no": "11162500"
+},
+{
+"lat": 37.233825,
+"lon": -122.3673389,
+"name": "Butano C Nr Pescadero Ca",
+"site_no": "11162540"
+},
+{
+"lat": 37.32573199,
+"lon": -122.3865927,
+"name": "San Gregorio C A San Gregorio Ca",
+"site_no": "11162570"
+},
+{
+"lat": 37.54769444,
+"lon": -122.4208889,
+"name": "Pilarcitos C Bl Spillway Nr Hillsborough Ca",
+"site_no": "111626182"
+},
+{
+"lat": 37.52813889,
+"lon": -122.4000833,
+"name": "Pilarcitos C Ab Stone Dam Nr Hillsborough Ca",
+"site_no": "11162619"
+},
+{
+"lat": 37.52461674,
+"lon": -122.3993735,
+"name": "Pilarcitos C Bl Stone Dam Nr Hillsborough Ca",
+"site_no": "11162620"
+},
+{
+"lat": 37.46656205,
+"lon": -122.4340958,
+"name": "Pilarcitos C A Half Moon Bay Ca",
+"site_no": "11162630"
+},
+{
+"lat": 37.5569722,
+"lon": -122.41825,
+"name": "San Mateo C Ab Junction Box A Dam1 Nr Hillsborough",
+"site_no": "11162735"
+},
+{
+"lat": 37.5559722,
+"lon": -122.4177222,
+"name": "San Mateo C Bl Junction Box A Dam1 Nr Hillsborough",
+"site_no": "11162737"
+},
+{
+"lat": 37.52944444,
+"lon": -122.3583333,
+"name": "San Mateo C Bl Lo Crystal Sp Res Nr San Mateo Ca",
+"site_no": "11162753"
+},
+{
+"lat": 37.42327257,
+"lon": -122.1894095,
+"name": "San Francisquito C A Stanford University Ca",
+"site_no": "11164500"
+},
+{
+"lat": 37.3738296,
+"lon": -121.9330129,
+"name": "Guadalupe R Abv Hwy 101 A San Jose Ca",
+"site_no": "11169025"
+},
+{
+"lat": 37.25438808,
+"lon": -122.039404,
+"name": "Saratoga C A Saratoga Ca",
+"site_no": "11169500"
+},
+{
+"lat": 37.07768925,
+"lon": -121.4943442,
+"name": "Coyote C Nr Gilroy Ca",
+"site_no": "11169800"
+},
+{
+"lat": 37.1229656,
+"lon": -121.5526796,
+"name": "Coyote C Bl Coyote Res Nr San Martin Ca",
+"site_no": "11169860"
+},
+{
+"lat": 37.1682416,
+"lon": -121.6496271,
+"name": "Coyote C Nr Madrone Ca",
+"site_no": "11170000"
+},
+{
+"lat": 37.21805556,
+"lon": -121.7405556,
+"name": "Coyote C Bl Coyote Ranch Rd Nr Coyote Ca",
+"site_no": "11170450"
+},
+{
+"lat": 37.27094444,
+"lon": -121.7976944,
+"name": "Coyote C Nr Edenvale Ca",
+"site_no": "11171500"
+},
+{
+"lat": 37.4221617,
+"lon": -121.9274577,
+"name": "Coyote C Ab Hwy 237 A Milpitas Ca",
+"site_no": "11172175"
+},
+{
+"lat": 37.46160337,
+"lon": -121.769397,
+"name": "Arroyo Hondo Nr San Jose Ca",
+"site_no": "11173200"
+},
+{
+"lat": 37.50194444,
+"lon": -121.8183333,
+"name": "Calaveras C Nr Sunol Ca",
+"site_no": "11173500"
+},
+{
+"lat": 37.5035472,
+"lon": -121.8246774,
+"name": "Alameda C Bl Calaveras C Nr Sunol Ca",
+"site_no": "11173510"
+},
+{
+"lat": 37.5404908,
+"lon": -121.856345,
+"name": "Alameda C Bl Welch C Nr Sunol Ca",
+"site_no": "11173575"
+},
+{
+"lat": 37.5611111,
+"lon": -121.7969444,
+"name": "Indian C Nr Sunol Ca",
+"site_no": "11173800"
+},
+{
+"lat": 37.5773982,
+"lon": -121.8576936,
+"name": "San Antonio C Nr Sunol Ca",
+"site_no": "11174000"
+},
+{
+"lat": 37.58362778,
+"lon": -121.8852917,
+"name": "Alameda C A Sunol Water Temple A Sunol Ca",
+"site_no": "11174160"
+},
+{
+"lat": 37.69444444,
+"lon": -121.9194444,
+"name": "Alamo Cn Nr Pleasanton Ca",
+"site_no": "11174600"
+},
+{
+"lat": 37.66830556,
+"lon": -121.90941667,
+"name": "Arroyo De La Laguna A Corte Madrid Nr Pleasanton",
+"site_no": "11176340"
+},
+{
+"lat": 37.56132196,
+"lon": -121.6838389,
+"name": "Arroyo Valle Bl Lang Cyn Nr Livermore Ca",
+"site_no": "11176400"
+},
+{
+"lat": 37.62323149,
+"lon": -121.7588028,
+"name": "Arroyo Valle Nr Livermore Ca",
+"site_no": "11176500"
+},
+{
+"lat": 37.62659915,
+"lon": -121.8830126,
+"name": "Arroyo De La Laguna A Verona Ca",
+"site_no": "11176900"
+},
+{
+"lat": 37.5871193,
+"lon": -121.960752,
+"name": "Alameda C Nr Niles Ca",
+"site_no": "11179000"
+},
+{
+"lat": 37.56660245,
+"lon": -122.0016278,
+"name": "Alameda C Nr Fremont Ca",
+"site_no": "11179100"
+},
+{
+"lat": 37.6060452,
+"lon": -122.0238504,
+"name": "Dry C A Union City Ca",
+"site_no": "11180500"
+},
+{
+"lat": 37.58576818,
+"lon": -122.0482955,
+"name": "Alameda C Flood Channel A Union City Ca",
+"site_no": "11180700"
+},
+{
+"lat": 37.695172,
+"lon": -122.0449223,
+"name": "San Lorenzo C Ab Don Castro Res Nr Castro V Ca",
+"site_no": "11180825"
+},
+{
+"lat": 37.70493008,
+"lon": -122.0438508,
+"name": "Crow C Nr Hayward Ca",
+"site_no": "11180900"
+},
+{
+"lat": 37.7176715,
+"lon": -122.0543673,
+"name": "Cull C Ab Cull C Res Nr Castro Valley Ca",
+"site_no": "11180960"
+},
+{
+"lat": 37.68548644,
+"lon": -122.064407,
+"name": "San Lorenzo C A Hayward Ca",
+"site_no": "11181000"
+},
+{
+"lat": 37.6799311,
+"lon": -122.0805186,
+"name": "Castro Valley C A Hayward Ca",
+"site_no": "11181008"
+},
+{
+"lat": 37.6840977,
+"lon": -122.1399649,
+"name": "San Lorenzo C A San Lorenzo Ca",
+"site_no": "11181040"
+},
+{
+"lat": 37.7729487,
+"lon": -121.9946443,
+"name": "San Ramon C A San Ramon Ca",
+"site_no": "11182500"
+},
+{
+"lat": 35.90550439,
+"lon": -118.467586,
+"name": "Kern R No 3 Cn Nr Kernville Ca",
+"site_no": "11185500"
+},
+{
+"lat": 35.94522615,
+"lon": -118.4775862,
+"name": "Kern R Nr Kernville (River Only) Ca",
+"site_no": "11186000"
+},
+{
+"lat": 35.7374672,
+"lon": -118.1736856,
+"name": "Sf Kern R Nr Onyx Ca",
+"site_no": "11189500"
+},
+{
+"lat": 35.52078857,
+"lon": -118.6770332,
+"name": "Kern R Nr Democrat Springs(River Only) Ca",
+"site_no": "11192500"
+},
+{
+"lat": 35.3035361,
+"lon": -119.2516472,
+"name": "Kern R A Enos Park Foot Br Nr Bakersfield Ca",
+"site_no": "11194152"
+},
+{
+"lat": 35.814583,
+"lon": -118.928319,
+"name": "White R Nr Ducor Ca",
+"site_no": "11199500"
+},
+{
+"lat": 35.9416243,
+"lon": -118.8228716,
+"name": "Deer C Nr Fountain Springs Ca",
+"site_no": "11200800"
+},
+{
+"lat": 36.0036722,
+"lon": -118.9643639,
+"name": "Deer C A Road 272 Bridge Nr Porterville Ca",
+"site_no": "11201095"
+},
+{
+"lat": 36.0482899,
+"lon": -118.6542574,
+"name": "Sf Tule R Nr Cholollo Campground Nr Porterville Ca",
+"site_no": "11203580"
+},
+{
+"lat": 36.02411648,
+"lon": -118.8134258,
+"name": "Sf Tule R Nr Reservation Bndry Nr Porterville Ca",
+"site_no": "11204100"
+},
+{
+"lat": 36.61166667,
+"lon": -118.7016667,
+"name": "Marble Fork Kaweah R Ab Horse C Nr Lodgepole Ca",
+"site_no": "11206820"
+},
+{
+"lat": 36.4513346,
+"lon": -118.7884306,
+"name": "Ef Kaweah R Nr Three Rivers Ca",
+"site_no": "11208730"
+},
+{
+"lat": 36.211,
+"lon": -119.568636,
+"name": "Cross C A Kansas Ave Nr Hanford Ca",
+"site_no": "11212260"
+},
+{
+"lat": 37.07633329,
+"lon": -118.9687234,
+"name": "Helms C Bl Courtright Dam Ca",
+"site_no": "11214600"
+},
+{
+"lat": 36.99383417,
+"lon": -118.9812225,
+"name": "Nf Kings R Nr Cliff Camp Ca",
+"site_no": "11215000"
+},
+{
+"lat": 36.3742611,
+"lon": -119.8872472,
+"name": "Nf Kings R A 24Th Ave Br Nr Lemoore Ca",
+"site_no": "11222975"
+},
+{
+"lat": 37.63194444,
+"lon": -119.0863889,
+"name": "Mf San Joaquin R Nr Mammoth Lakes Ca",
+"site_no": "11224000"
+},
+{
+"lat": 36.21466074,
+"lon": -120.4706956,
+"name": "Los Gatos C Ab Nunez Cyn Nr Coalinga Ca",
+"site_no": "11224500"
+},
+{
+"lat": 37.291331,
+"lon": -118.9573386,
+"name": "Sf San Joaquin R Ab Hooper C Nr Florence Lake Ca",
+"site_no": "11230070"
+},
+{
+"lat": 37.3096642,
+"lon": -118.9620614,
+"name": "Sf San Joaquin R Bl Hooper C Nr Florence Lake Ca",
+"site_no": "11230215"
+},
+{
+"lat": 37.3393863,
+"lon": -118.9734513,
+"name": "Bear C Nr Lake Thomas A Edison Ca",
+"site_no": "11230500"
+},
+{
+"lat": 37.361331,
+"lon": -118.992063,
+"name": "Mono C Bl Lk Thomas A Edison Ca",
+"site_no": "11231500"
+},
+{
+"lat": 37.3166111,
+"lon": -119.3295725,
+"name": "San Joaquin R Ab Shakeflat C Nr Big Creek Ca",
+"site_no": "11234760"
+},
+{
+"lat": 37.2213341,
+"lon": -119.2126217,
+"name": "Big C Bl Huntington Lk Ca",
+"site_no": "11237000"
+},
+{
+"lat": 37.19855659,
+"lon": -119.2137328,
+"name": "Pitman C Bl Tamarack C Ca",
+"site_no": "11237500"
+},
+{
+"lat": 37.16272389,
+"lon": -119.2542896,
+"name": "Mf Balsam C Bl Balsam Mdw Forebay Nr Big Creek Ca",
+"site_no": "11238270"
+},
+{
+"lat": 37.20772385,
+"lon": -119.3212376,
+"name": "Big C Nr Mouth Nr Big Creek Ca",
+"site_no": "11238500"
+},
+{
+"lat": 37.14466898,
+"lon": -119.3084588,
+"name": "Stevenson C A Shaver Lk Ca",
+"site_no": "11241500"
+},
+{
+"lat": 37.14439236,
+"lon": -119.454577,
+"name": "San Joaquin R Ab Willow C Nr Auberry Ca",
+"site_no": "11242000"
+},
+{
+"lat": 37.2874456,
+"lon": -119.5195827,
+"name": "Browns C Cn At Bass Lake Ca",
+"site_no": "11243300"
+},
+{
+"lat": 37.29388889,
+"lon": -119.5002778,
+"name": "Sf Willow C Nr Bass Lake Ca",
+"site_no": "11243405"
+},
+{
+"lat": 37.28883445,
+"lon": -119.530139,
+"name": "Nf Willow C Nr Bass Lake Ca",
+"site_no": "11244000"
+},
+{
+"lat": 37.24416667,
+"lon": -119.516111,
+"name": "Nf Willow C Bl Manzanita Lk Dam Nr North Fork Ca",
+"site_no": "11244050"
+},
+{
+"lat": 37.19166667,
+"lon": -119.4930556,
+"name": "Willow C Nr North Fork Ca",
+"site_no": "11245300"
+},
+{
+"lat": 37.1507812,
+"lon": -119.4604107,
+"name": "Willow C A Mouth Nr Auberry Ca",
+"site_no": "11246500"
+},
+{
+"lat": 37.1321706,
+"lon": -119.5315256,
+"name": "San Joaquin R Nr Auberry Ca",
+"site_no": "11246700"
+},
+{
+"lat": 37.0027273,
+"lon": -119.7068118,
+"name": "Madera Cn A Friant Ca",
+"site_no": "11249500"
+},
+{
+"lat": 36.9980051,
+"lon": -119.7040338,
+"name": "Friant-Kern Cn A Friant Ca",
+"site_no": "11250000"
+},
+{
+"lat": 36.99916667,
+"lon": -119.706111,
+"name": "San Joaquin R Release A Friant Dam Ca",
+"site_no": "11250110"
+},
+{
+"lat": 36.98439397,
+"lon": -119.7243124,
+"name": "San Joaquin R Bl Friant Ca",
+"site_no": "11251000"
+},
+{
+"lat": 36.87638889,
+"lon": -119.7930556,
+"name": "San Joaquin R Bl Hwy 41 Nr Pinedale Ca",
+"site_no": "11252275"
+},
+{
+"lat": 36.82194444,
+"lon": -120.0594444,
+"name": "San Joaquin R A Skaggs Br Nr Ripperdan Ca",
+"site_no": "11252975"
+},
+{
+"lat": 36.79916667,
+"lon": -120.163611,
+"name": "San Joaquin R A Gravelly Ford Cn Nr Kerman Ca",
+"site_no": "11253058"
+},
+{
+"lat": 36.40217399,
+"lon": -120.4334917,
+"name": "Cantua C Nr Cantua Creek Ca",
+"site_no": "11253310"
+},
+{
+"lat": 36.8105046,
+"lon": -120.3782256,
+"name": "San Joaquin R Nr Mendota Ca",
+"site_no": "11254000"
+},
+{
+"lat": 36.65245145,
+"lon": -120.6321186,
+"name": "Panoche C A I-5 Nr Silver Creek Ca",
+"site_no": "11255575"
+},
+{
+"lat": 37.29513418,
+"lon": -120.8436176,
+"name": "San Joaquin R Nr Stevinson Ca",
+"site_no": "11260815"
+},
+{
+"lat": 37.2476912,
+"lon": -120.8521075,
+"name": "Salt Slough A Hwy 165 Nr Stevinson Ca",
+"site_no": "11261100"
+},
+{
+"lat": 37.3099115,
+"lon": -120.9309993,
+"name": "San Joaquin R A Fremont Ford Bridge Ca",
+"site_no": "11261500"
+},
+{
+"lat": 37.26241267,
+"lon": -120.9065536,
+"name": "Mud Slough Nr Gustine Ca",
+"site_no": "11262900"
+},
+{
+"lat": 37.73130354,
+"lon": -119.5590243,
+"name": "Merced R A Happy Isles Bridge Nr Yosemite Ca",
+"site_no": "11264500"
+},
+{
+"lat": 37.71627778,
+"lon": -119.6656667,
+"name": "Merced R A Pohono Bridge Nr Yosemite Ca",
+"site_no": "11266500"
+},
+{
+"lat": 37.5216029,
+"lon": -120.3324114,
+"name": "Merced R Bl Merced Falls Dam Nr Snell Ca",
+"site_no": "11270900"
+},
+{
+"lat": 37.45410365,
+"lon": -120.6088084,
+"name": "Merced R A Shaffer Bridge Nr Cressey Ca",
+"site_no": "11271290"
+},
+{
+"lat": 37.42490969,
+"lon": -120.6646985,
+"name": "Merced R Nr Alves Rd Nr Cressey Ca",
+"site_no": "11271360"
+},
+{
+"lat": 37.34718815,
+"lon": -120.9761399,
+"name": "San Joaquin R Ab Merced R Nr Newman Ca",
+"site_no": "11273400"
+},
+{
+"lat": 37.35046585,
+"lon": -120.9771121,
+"name": "San Joaquin R Nr Newman Ca",
+"site_no": "11274000"
+},
+{
+"lat": 37.3154653,
+"lon": -121.125171,
+"name": "Orestimba C Nr Newman Ca",
+"site_no": "11274500"
+},
+{
+"lat": 37.43218889,
+"lon": -121.0133444,
+"name": "San Joaquin R Nr Crows Landing Ca",
+"site_no": "11274550"
+},
+{
+"lat": 37.48657227,
+"lon": -121.2090645,
+"name": "Del Puerto C Nr Patterson Ca",
+"site_no": "11274630"
+},
+{
+"lat": 37.91657698,
+"lon": -119.6598627,
+"name": "Tuolumne R A Grand Cyn Of Tuolumne Ab Hetch Hetchy",
+"site_no": "11274790"
+},
+{
+"lat": 37.93740877,
+"lon": -119.7982,
+"name": "Tuolumne R Nr Hetch Hetchy Ca",
+"site_no": "11276500"
+},
+{
+"lat": 37.96768499,
+"lon": -119.91737025,
+"name": "Cherry C Bl Valley Dam Nr Hetch Hetchy Ca",
+"site_no": "11277300"
+},
+{
+"lat": 37.96907415,
+"lon": -119.8820916,
+"name": "Eleanor C Nr Hetch Hetchy Ca",
+"site_no": "11278000"
+},
+{
+"lat": 37.890186,
+"lon": -119.9698706,
+"name": "Cherry C Bl Dion R Holm Ph Nr Mather Ca",
+"site_no": "11278400"
+},
+{
+"lat": 37.8418518,
+"lon": -120.1848757,
+"name": "Big C Ab Whites Gulch Nr Groveland Ca",
+"site_no": "11284400"
+},
+{
+"lat": 37.67240817,
+"lon": -120.474881,
+"name": "Modesto Cn Nr La Grange Ca",
+"site_no": "11289000"
+},
+{
+"lat": 37.6657419,
+"lon": -120.4409912,
+"name": "Turlock Cn Nr La Grange Ca",
+"site_no": "11289500"
+},
+{
+"lat": 37.66629746,
+"lon": -120.4421023,
+"name": "Tuolumne R Bl Lagrange Dam Nr Lagrange Ca",
+"site_no": "11289650"
+},
+{
+"lat": 37.666321,
+"lon": -120.4421394,
+"name": "Combined Flow Tuolumne R + Modesto Cn + Turlock Cn",
+"site_no": "11289651"
+},
+{
+"lat": 37.71144167,
+"lon": -120.6098028,
+"name": "Dry C A Crabtree Rd Nr La Grange Ca",
+"site_no": "11289850"
+},
+{
+"lat": 37.627153,
+"lon": -120.9843777,
+"name": "Tuolumne R A Modesto Ca",
+"site_no": "11290000"
+},
+{
+"lat": 38.247138,
+"lon": -120.03463,
+"name": "Mf Stanislaus R A Hells Half Acre Bridge Ca",
+"site_no": "11292700"
+},
+{
+"lat": 38.19325109,
+"lon": -120.0990762,
+"name": "Mf Stanislaus R Bl Beardsley Dam Ca",
+"site_no": "11292900"
+},
+{
+"lat": 38.4411111,
+"lon": -120.0027778,
+"name": "Nf Stanislaus R Bl Utica Res Nr Bear Valley Ca",
+"site_no": "11293372"
+},
+{
+"lat": 38.4708333,
+"lon": -120.005,
+"name": "Silver C Bl Lk Alpine Nr Bear Valley Ca",
+"site_no": "11293462"
+},
+{
+"lat": 38.4343564,
+"lon": -120.0187968,
+"name": "Nf Stanislaus R Bl Div D",
+"site_no": "11293600"
+},
+{
+"lat": 38.39241265,
+"lon": -119.9993515,
+"name": "New Spicer Mdw Dam Pp A Nsmd Nr B Mdw Ca",
+"site_no": "11293760"
+},
+{
+"lat": 38.2438067,
+"lon": -120.2910282,
+"name": "Nf Stanislaus R Nr Avery Ca",
+"site_no": "11294500"
+},
+{
+"lat": 38.19241898,
+"lon": -120.3549186,
+"name": "Utica Ca A Pressure Tap Nr Hathaway Pines Ca",
+"site_no": "11295240"
+},
+{
+"lat": 38.14242024,
+"lon": -120.3785296,
+"name": "Collierville Pp Nr Murphys Ca",
+"site_no": "11295250"
+},
+{
+"lat": 38.2326959,
+"lon": -120.293528,
+"name": "Nf Stanislaus R Bl Mckays Point Dam Nr Avery Ca",
+"site_no": "11295270"
+},
+{
+"lat": 38.19805556,
+"lon": -120.36,
+"name": "Mill C Bl Hunter Res A Hathaway Pines Ca",
+"site_no": "11295340"
+},
+{
+"lat": 38.09242097,
+"lon": -120.1687993,
+"name": "Sf Stanislaus R Nr Long Barn Ca",
+"site_no": "11298000"
+},
+{
+"lat": 38.15138889,
+"lon": -120.4402778,
+"name": "Angels C Bl Murphys Afterbay Nr Murphys Ca",
+"site_no": "11298650"
+},
+{
+"lat": 37.96103615,
+"lon": -120.6152035,
+"name": "Black C Nr Copperopolis Ca",
+"site_no": "11299600"
+},
+{
+"lat": 37.85437157,
+"lon": -120.6382594,
+"name": "S San Joaquin Cn Nr Knights Ferry Ca",
+"site_no": "11300500"
+},
+{
+"lat": 37.85881594,
+"lon": -120.6332592,
+"name": "Oakdale Cn Nr Knights Ferry Ca",
+"site_no": "11301000"
+},
+{
+"lat": 37.85159385,
+"lon": -120.6379816,
+"name": "Stanislaus R Bl Goodwin Dam Nr Knights Ferry Ca",
+"site_no": "11302000"
+},
+{
+"lat": 37.77715006,
+"lon": -120.852988,
+"name": "Stanislaus R A Oakdale Ca",
+"site_no": "11302500"
+},
+{
+"lat": 37.72962389,
+"lon": -121.110454,
+"name": "Stanislaus R A Ripon Ca",
+"site_no": "11303000"
+},
+{
+"lat": 37.67601249,
+"lon": -121.2662907,
+"name": "San Joaquin R Nr Vernalis Ca",
+"site_no": "11303500"
+},
+{
+"lat": 37.93547987,
+"lon": -121.3302245,
+"name": "San Joaquin R Bl Garwood Bridge A Stockton Ca",
+"site_no": "11304810"
+},
+{
+"lat": 37.94226944,
+"lon": -121.5337,
+"name": "Middle R At Middle River Ca",
+"site_no": "11312676"
+},
+{
+"lat": 38.00305556,
+"lon": -121.5108333,
+"name": "Middle R Nr Holt Ca",
+"site_no": "11312685"
+},
+{
+"lat": 37.82,
+"lon": -121.5447222,
+"name": "Grant Line Cn Nr Tracy Ca",
+"site_no": "11313240"
+},
+{
+"lat": 37.89103627,
+"lon": -121.5702283,
+"name": "Old River Near Byron Ca",
+"site_no": "11313315"
+},
+{
+"lat": 37.96992306,
+"lon": -121.572174,
+"name": "Old R A Bacon Island Ca",
+"site_no": "11313405"
+},
+{
+"lat": 38.01638889,
+"lon": -121.5819444,
+"name": "Holland Cut Nr Bethel Island Ca",
+"site_no": "11313431"
+},
+{
+"lat": 38.0135326,
+"lon": -121.667731,
+"name": "Dutch Slough Bl Jersey Island Rd A Jersey Island",
+"site_no": "11313433"
+},
+{
+"lat": 38.0272222,
+"lon": -121.5644444,
+"name": "Old R A Quimby Island Nr Bethel Island Ca",
+"site_no": "11313434"
+},
+{
+"lat": 38.0558333,
+"lon": -121.6669444,
+"name": "False R Nr Oakley Ca",
+"site_no": "11313440"
+},
+{
+"lat": 38.05944444,
+"lon": -121.5572222,
+"name": "San Joaquin R A Prisoners Pt Nr Terminous Ca",
+"site_no": "11313460"
+},
+{
+"lat": 38.626297,
+"lon": -119.9371264,
+"name": "Up Blue Lk Outlet Nr Markleeville Ca",
+"site_no": "11313472"
+},
+{
+"lat": 38.606575,
+"lon": -119.9262929,
+"name": "Lo Blue Lk Outlet Nr Markleeville Ca",
+"site_no": "11313477"
+},
+{
+"lat": 38.6097222,
+"lon": -119.945,
+"name": "Meadow C Bl Twin Lk Nr Markleeville Ca",
+"site_no": "11313482"
+},
+{
+"lat": 38.59796445,
+"lon": -119.9787946,
+"name": "Meadow Lk Outlet Nr Markleeville Ca",
+"site_no": "11313485"
+},
+{
+"lat": 38.4957454,
+"lon": -120.2207489,
+"name": "Tiger C Ph Cond Bl Salt Springs Dam Ca",
+"site_no": "11314000"
+},
+{
+"lat": 38.4935232,
+"lon": -120.2210266,
+"name": "Nf Mokelumne R Bl Salt Springs Dam Ca",
+"site_no": "11314500"
+},
+{
+"lat": 38.5190783,
+"lon": -120.2126928,
+"name": "Cole C Nr Salt Springs Dam Ca",
+"site_no": "11315000"
+},
+{
+"lat": 38.5363004,
+"lon": -120.2576942,
+"name": "Bear R Bl Lo Bear R Dam Ca",
+"site_no": "11315900"
+},
+{
+"lat": 38.47694444,
+"lon": -120.4530556,
+"name": "Tiger C Bl Regulator Res Nr Pioneer Ca",
+"site_no": "11316605"
+},
+{
+"lat": 38.44018829,
+"lon": -120.504925,
+"name": "Nf Mokelumne R Bl Tiger C Res Nr West Pt Ca",
+"site_no": "11316670"
+},
+{
+"lat": 38.40324566,
+"lon": -120.4468676,
+"name": "Forest C Nr Wilseyville Ca",
+"site_no": "11316800"
+},
+{
+"lat": 38.3896344,
+"lon": -120.5265927,
+"name": "Mf Mokelumne R A West Point Ca",
+"site_no": "11317000"
+},
+{
+"lat": 38.36824625,
+"lon": -120.5454823,
+"name": "Sf Mokelumne R Nr West Point Ca",
+"site_no": "11318500"
+},
+{
+"lat": 38.3126926,
+"lon": -120.7202112,
+"name": "Mokelumne R Nr Mokelumne Hill Ca",
+"site_no": "11319500"
+},
+{
+"lat": 38.1524182,
+"lon": -121.3018925,
+"name": "Woodbridge Cn A Woodbridge Ca",
+"site_no": "11325000"
+},
+{
+"lat": 38.15852914,
+"lon": -121.3035592,
+"name": "Mokelumne R A Woodbridge Ca",
+"site_no": "11325500"
+},
+{
+"lat": 38.24825195,
+"lon": -121.22760315,
+"name": "Dry C Nr Galt Ca",
+"site_no": "11329500"
+},
+{
+"lat": 38.5001656,
+"lon": -121.0451852,
+"name": "Cosumnes R A Michigan Bar Ca",
+"site_no": "11335000"
+},
+{
+"lat": 38.42321988,
+"lon": -121.3532478,
+"name": "Laguna C Nr Elk Grove Ca",
+"site_no": "11336585"
+},
+{
+"lat": 38.22555556,
+"lon": -121.491111,
+"name": "S Mokelumne R A New Hope Br Nr Walnut Grove Ca",
+"site_no": "11336680"
+},
+{
+"lat": 38.2233333,
+"lon": -121.5072222,
+"name": "N Mokelumne Nr Walnut Grove Ca",
+"site_no": "11336685"
+},
+{
+"lat": 37.9954775,
+"lon": -121.701898,
+"name": "Contra Costa Cn Nr Oakley Ca",
+"site_no": "11337000"
+},
+{
+"lat": 38.1033333,
+"lon": -121.686111,
+"name": "Threemile Slough Nr Rio Vista Ca",
+"site_no": "11337080"
+},
+{
+"lat": 38.0521424,
+"lon": -121.6888428,
+"name": "San Joaquin R A Jersey Point Ca",
+"site_no": "11337190"
+},
+{
+"lat": 40.93959397,
+"lon": -122.4172351,
+"name": "Sacramento R A Delta Ca",
+"site_no": "11342000"
+},
+{
+"lat": 41.2306851,
+"lon": -120.437154,
+"name": "Sf Pit R Nr Likely Ca",
+"site_no": "11345500"
+},
+{
+"lat": 41.40600116,
+"lon": -120.9277458,
+"name": "Pit R Nr Canby Ca",
+"site_no": "11348500"
+},
+{
+"lat": 41.0151662,
+"lon": -121.154694,
+"name": "Pit R Bypss Flw Bl Div To Muck Valley Pp Nr Bieber",
+"site_no": "11351946"
+},
+{
+"lat": 41.0151662,
+"lon": -121.154694,
+"name": "Pit R Ogee Weir Bl Div To Muck Valley Pp Nr Bieber",
+"site_no": "11351948"
+},
+{
+"lat": 41.0151662,
+"lon": -121.154694,
+"name": "Pit R Bl Div To Muck Valley Pp Nr Bieber Ca",
+"site_no": "11351950"
+},
+{
+"lat": 41.0075,
+"lon": -121.4469444,
+"name": "Fall R A Fall River Mills Ca",
+"site_no": "11354500"
+},
+{
+"lat": 40.9832178,
+"lon": -121.511927,
+"name": "Pit R Bl Pit No 1 Ph Nr Fall River Mills Ca",
+"site_no": "11355010"
+},
+{
+"lat": 40.6891111,
+"lon": -121.4228056,
+"name": "Hat C Nr Hat Creek Ca",
+"site_no": "11355500"
+},
+{
+"lat": 40.9511111,
+"lon": -121.5452778,
+"name": "Hat C Low Flow Release Bl Baum Lake Nr Burney Ca",
+"site_no": "11359120"
+},
+{
+"lat": 40.9572222,
+"lon": -121.5477778,
+"name": "Hat C Nr Burney Ca",
+"site_no": "11359200"
+},
+{
+"lat": 41.02154927,
+"lon": -121.6747102,
+"name": "Pit R Bl Lk Britton Dam Nr Burney Ca",
+"site_no": "11361450"
+},
+{
+"lat": 40.97349199,
+"lon": -121.7794355,
+"name": "Pit R Bl Pit No 4 Dam Ca",
+"site_no": "11362500"
+},
+{
+"lat": 41.04210268,
+"lon": -121.8772172,
+"name": "Nelson C Overflow Weir Bl Pp Div Nr Big Bend Ca",
+"site_no": "11362880"
+},
+{
+"lat": 41.04210268,
+"lon": -121.8772172,
+"name": "Nelson C Release Weir Bl Pp Div Nr Big Bend Ca",
+"site_no": "11362890"
+},
+{
+"lat": 41.0401582,
+"lon": -121.8755504,
+"name": "Ef Nelson C Overflow Weir Bl Pp Div Nr Big Bend Ca",
+"site_no": "11362940"
+},
+{
+"lat": 41.0401582,
+"lon": -121.8755504,
+"name": "Ef Nelson C Release Weir Bl Pp Div Nr Big Bend Ca",
+"site_no": "11362945"
+},
+{
+"lat": 41.01932436,
+"lon": -121.911107,
+"name": "Pit R A Big Bend Ca",
+"site_no": "11363000"
+},
+{
+"lat": 41.03932379,
+"lon": -121.9852764,
+"name": "Iron Canyon C Bl Iron Canyon Dam Nr Big Bend Ca",
+"site_no": "11363930"
+},
+{
+"lat": 40.84376636,
+"lon": -122.0024986,
+"name": "Pit R Nr Montgomery Creek Ca",
+"site_no": "11365000"
+},
+{
+"lat": 41.18821296,
+"lon": -122.065557,
+"name": "Mccloud R Nr Mccloud Ca",
+"site_no": "11367500"
+},
+{
+"lat": 41.12515666,
+"lon": -122.0686126,
+"name": "Mccloud R Bl Mccloud Dam Nr Mccloud Ca",
+"site_no": "11367760"
+},
+{
+"lat": 41.1107115,
+"lon": -122.0961134,
+"name": "Mccloud R A Ah-Di-Na Nr Mccloud Ca",
+"site_no": "11367800"
+},
+{
+"lat": 40.9582079,
+"lon": -122.2197275,
+"name": "Mccloud R Ab Shasta Lk Ca",
+"site_no": "11368000"
+},
+{
+"lat": 40.6009835,
+"lon": -122.4444553,
+"name": "Sacramento R A Keswick Ca",
+"site_no": "11370500"
+},
+{
+"lat": 40.5687315,
+"lon": -122.381363,
+"name": "Anderson-Cottonwood Id Cn At Sharon Ave Redding Ca",
+"site_no": "11370700"
+},
+{
+"lat": 40.51320587,
+"lon": -122.5241795,
+"name": "Clear C Nr Igo Ca",
+"site_no": "11372000"
+},
+{
+"lat": 40.50487467,
+"lon": -122.2330577,
+"name": "Cow C Nr Millville Ca",
+"site_no": "11374000"
+},
+{
+"lat": 40.38709797,
+"lon": -122.2386119,
+"name": "Cottonwood C Nr Cottonwood Ca",
+"site_no": "11376000"
+},
+{
+"lat": 40.6026578,
+"lon": -121.6558194,
+"name": "Nf Battle C Bl N Battle C Dam Nr Manzanita Lake Ca",
+"site_no": "11376015"
+},
+{
+"lat": 40.51265708,
+"lon": -121.7899893,
+"name": "Nf Battle C Bl Div To Al Smith Cn Nr Manton Ca",
+"site_no": "11376040"
+},
+{
+"lat": 40.49987919,
+"lon": -121.8091564,
+"name": "Nf Battle C Bl Div To Keswick Cn Nr Manton Ca",
+"site_no": "11376050"
+},
+{
+"lat": 40.4543234,
+"lon": -121.8608237,
+"name": "Nf Battle C Bl Div To Xcountry Cn Nr Manton Ca",
+"site_no": "11376140"
+},
+{
+"lat": 40.42043388,
+"lon": -121.9611038,
+"name": "Nf Battle C Bl Div To Wildcat Cn Nr Manton Ca",
+"site_no": "11376160"
+},
+{
+"lat": 40.39515696,
+"lon": -121.883601,
+"name": "Sf Battle C Bl Div To Inskip Cn Nr Manton Ca",
+"site_no": "11376440"
+},
+{
+"lat": 40.4026562,
+"lon": -121.968326,
+"name": "Sf Battle C Bl Div To Coleman Cn Nr Manton Ca",
+"site_no": "11376460"
+},
+{
+"lat": 40.39820996,
+"lon": -122.1463869,
+"name": "Battle C Bl Coleman Fish Hatchery Nr Cottonwood Ca",
+"site_no": "11376550"
+},
+{
+"lat": 40.2884596,
+"lon": -122.1866312,
+"name": "Sacramento R Ab Bend Bridge Nr Red Bluff Ca",
+"site_no": "11377100"
+},
+{
+"lat": 40.2037674,
+"lon": -122.1183272,
+"name": "Antelope C Nr Red Bluff Ca",
+"site_no": "11379000"
+},
+{
+"lat": 40.02376507,
+"lon": -122.5119462,
+"name": "Elder C Nr Paskenta Ca",
+"site_no": "11379500"
+},
+{
+"lat": 40.0546022,
+"lon": -122.0241541,
+"name": "Mill C Nr Los Molinos Ca",
+"site_no": "11381500"
+},
+{
+"lat": 40.0140214,
+"lon": -121.9482872,
+"name": "Deer C Nr Vina Ca",
+"site_no": "11383500"
+},
+{
+"lat": 39.21403369,
+"lon": -122.0002208,
+"name": "Sacramento R A Colusa Ca",
+"site_no": "11389500"
+},
+{
+"lat": 39.72599524,
+"lon": -121.7088643,
+"name": "Butte C Nr Chico Ca",
+"site_no": "11390000"
+},
+{
+"lat": 39.00987205,
+"lon": -121.8246576,
+"name": "Sacramento R Bl Wilkins Slough Nr Grimes Ca",
+"site_no": "11390500"
+},
+{
+"lat": 39.72378055,
+"lon": -121.0221775,
+"name": "Sf Feather R Bl Little Grass Valley Dam Ca",
+"site_no": "11395030"
+},
+{
+"lat": 39.5735007,
+"lon": -121.141625,
+"name": "Lost C Nr Clipper Mills Ca",
+"site_no": "11396000"
+},
+{
+"lat": 39.5512773,
+"lon": -121.2094046,
+"name": "Sf Feather R Bl Forbestown Dam Ca",
+"site_no": "11396200"
+},
+{
+"lat": 40.16822096,
+"lon": -121.093016,
+"name": "Nf Feather R Nr Prattville Ca",
+"site_no": "11399500"
+},
+{
+"lat": 40.18710789,
+"lon": -121.1880187,
+"name": "Butt C Bl Almanor-Butt C Tu Nr Prattville Ca",
+"site_no": "11400500"
+},
+{
+"lat": 40.07127605,
+"lon": -121.1646843,
+"name": "Nf Feather R Bl Belden Dam Ca",
+"site_no": "11401112"
+},
+{
+"lat": 39.9458333,
+"lon": -120.9425,
+"name": "Spanish C A Quincy Ca",
+"site_no": "11401920"
+},
+{
+"lat": 40.0029195,
+"lon": -120.9543714,
+"name": "Spanish C Ab Blackhawk C At Keddie Ca",
+"site_no": "11402000"
+},
+{
+"lat": 39.85238459,
+"lon": -121.3924673,
+"name": "Nf Feather R Bl Grizzly C Ca",
+"site_no": "11404330"
+},
+{
+"lat": 39.79432869,
+"lon": -121.4516352,
+"name": "Nf Feather R A Pulga Ca",
+"site_no": "11404500"
+},
+{
+"lat": 40.0732158,
+"lon": -121.4533047,
+"name": "Wb Feather R Bl Snag Lk Nr Jonesville Ca",
+"site_no": "11405085"
+},
+{
+"lat": 40.02988234,
+"lon": -121.4777494,
+"name": "Philbrook C Bl Philbrook Dam Nr Butte Meadows Ca",
+"site_no": "11405120"
+},
+{
+"lat": 39.5329419,
+"lon": -121.4830236,
+"name": "Palermo Cn A Oroville Dam Ca",
+"site_no": "11406810"
+},
+{
+"lat": 39.4562759,
+"lon": -121.637194,
+"name": "Thermalito Afterbay Rel To Feather R Nr Oroville",
+"site_no": "11406920"
+},
+{
+"lat": 39.52155294,
+"lon": -121.5477477,
+"name": "Feather R A Oroville Ca",
+"site_no": "11407000"
+},
+{
+"lat": 39.50990117,
+"lon": -120.5552124,
+"name": "M Yuba R Ctrl Rel Frm Jck.Mdw Res Nr Sierra Cty Ca",
+"site_no": "11407815"
+},
+{
+"lat": 39.46017837,
+"lon": -120.6113246,
+"name": "Milton-Bowman Tunnel Outlet Nr Graniteville Ca",
+"site_no": "11408000"
+},
+{
+"lat": 39.5218451,
+"lon": -120.583547,
+"name": "M Yuba R Bl Milton Dam Ca",
+"site_no": "11408550"
+},
+{
+"lat": 39.4115596,
+"lon": -120.9980072,
+"name": "M Yuba R Bl Our House Dam Ca",
+"site_no": "11408880"
+},
+{
+"lat": 39.4393363,
+"lon": -121.0591211,
+"name": "Oregon C Bl Log Cabin Dam Nr Camptonville Ca",
+"site_no": "11409400"
+},
+{
+"lat": 39.52487147,
+"lon": -120.9379749,
+"name": "N Yuba R Bl Goodyears Bar Ca",
+"site_no": "11413000"
+},
+{
+"lat": 39.39044696,
+"lon": -121.1444008,
+"name": "N Yuba R Low Flow Rel Bl New Bullards Bar Dam Ca",
+"site_no": "11413517"
+},
+{
+"lat": 39.37990268,
+"lon": -120.4993742,
+"name": "Fordyce C Bl Fordyce Dam Nr Cisco Ca",
+"site_no": "11414100"
+},
+{
+"lat": 39.31740077,
+"lon": -120.6532675,
+"name": "Drum Cn A Tunnel Outlet Nr Emigrant Gap Ca",
+"site_no": "11414170"
+},
+{
+"lat": 39.31351176,
+"lon": -120.66299,
+"name": "S Yuba Cn Nr Emigrant Gap Ca",
+"site_no": "11414200"
+},
+{
+"lat": 39.3185118,
+"lon": -120.657712,
+"name": "S Yuba R A Langs Crossing Nr Emigrant Gap Ca",
+"site_no": "11414250"
+},
+{
+"lat": 39.35878967,
+"lon": -120.6368789,
+"name": "Rucker C Bl Blue Lk Nr Emigrant Gap Ca",
+"site_no": "11414265"
+},
+{
+"lat": 39.35628936,
+"lon": -120.6585463,
+"name": "Rucker C Bl Rucker Lk Nr Cisco Ca",
+"site_no": "11414280"
+},
+{
+"lat": 39.4001783,
+"lon": -120.6382687,
+"name": "Lake C Bl Feeley Lk Nr Graniteville Ca",
+"site_no": "11414350"
+},
+{
+"lat": 39.3990671,
+"lon": -120.642991,
+"name": "Lake C Bl Carr Lk Nr Graniteville Ca",
+"site_no": "11414360"
+},
+{
+"lat": 39.42101294,
+"lon": -120.5421545,
+"name": "Canyon C Bl French Lake Ca",
+"site_no": "11414410"
+},
+{
+"lat": 39.4646235,
+"lon": -120.5638229,
+"name": "Jackson C Bl Jackson Lk Ca",
+"site_no": "11414700"
+},
+{
+"lat": 39.342123,
+"lon": -120.6416009,
+"name": "Bowman Spaulding Cn A Jordan C Siphon Ca",
+"site_no": "11416100"
+},
+{
+"lat": 39.43962219,
+"lon": -120.661326,
+"name": "Canyon C Bl Bowman Lk Ca",
+"site_no": "11416500"
+},
+{
+"lat": 39.4301784,
+"lon": -120.6188242,
+"name": "Texas C Bl Rock Lk Nr Graniteville Ca",
+"site_no": "11416585"
+},
+{
+"lat": 39.4282339,
+"lon": -120.622991,
+"name": "Texas C Bl Lo Rock Lk Nr Graniteville Ca",
+"site_no": "11416610"
+},
+{
+"lat": 39.4212895,
+"lon": -120.6235464,
+"name": "Texas C Trib Bl Culbertson Lk Nr Granitvle Ca",
+"site_no": "11416620"
+},
+{
+"lat": 39.4160116,
+"lon": -120.632991,
+"name": "Lindsey C Bl M Lindsey Lk Nr Graniteville Ca",
+"site_no": "11416670"
+},
+{
+"lat": 39.41194444,
+"lon": -120.6483333,
+"name": "Lindsey C Bl Lo Lindsey Lk Nr Graniteville Ca",
+"site_no": "11416700"
+},
+{
+"lat": 39.23517079,
+"lon": -121.2741256,
+"name": "Yuba R Bl Englebright Dam Nr Smartsville Ca",
+"site_no": "11418000"
+},
+{
+"lat": 39.22431786,
+"lon": -121.2685349,
+"name": "Deer C Nr Smartsville Ca",
+"site_no": "11418500"
+},
+{
+"lat": 39.1757251,
+"lon": -121.5249647,
+"name": "Yuba R Nr Marysville Ca",
+"site_no": "11421000"
+},
+{
+"lat": 39.30628935,
+"lon": -120.6791015,
+"name": "Bear R Nr Emigrant Gap Ca",
+"site_no": "11421710"
+},
+{
+"lat": 39.2543436,
+"lon": -120.7749374,
+"name": "Bear R Bl Drum Afterbay Nr Blue Canyon Ca",
+"site_no": "11421770"
+},
+{
+"lat": 39.21350886,
+"lon": -120.8452174,
+"name": "Bear R Bl Dutch Flat Afterbay Nr Dutch Flat Ca",
+"site_no": "11421790"
+},
+{
+"lat": 39.131285,
+"lon": -120.95911,
+"name": "Bear R Bl Rollins Dam Nr Colfax Ca",
+"site_no": "11422500"
+},
+{
+"lat": 39.0001537,
+"lon": -121.4065908,
+"name": "Bear R Nr Wheatland Ca",
+"site_no": "11424000"
+},
+{
+"lat": 39.0262641,
+"lon": -121.4371476,
+"name": "Dry C Nr Wheatland Ca",
+"site_no": "11424500"
+},
+{
+"lat": 38.77432258,
+"lon": -121.5982593,
+"name": "Sacramento R A Verona Ca",
+"site_no": "11425500"
+},
+{
+"lat": 38.60684926,
+"lon": -121.5552347,
+"name": "Sacramento Weir Spill To Yolo Bypass Nr Sac Ca",
+"site_no": "11426000"
+},
+{
+"lat": 39.2987899,
+"lon": -120.6429889,
+"name": "Lake Valley Cn Nr Emigrant Gap Ca",
+"site_no": "11426190"
+},
+{
+"lat": 39.25739995,
+"lon": -120.7335469,
+"name": "Canyon C Nr Blue Canyon Ca",
+"site_no": "11426195"
+},
+{
+"lat": 38.9359915,
+"lon": -121.023802,
+"name": "Nf American R A North Fork Dam Ca",
+"site_no": "11427000"
+},
+{
+"lat": 39.1096266,
+"lon": -120.4813127,
+"name": "Mf American R A French Meadows Ca",
+"site_no": "11427500"
+},
+{
+"lat": 39.0251806,
+"lon": -120.5954812,
+"name": "Mf American R Ab Mf Ph Nr Foresthill Ca",
+"site_no": "11427760"
+},
+{
+"lat": 39.02629158,
+"lon": -120.603537,
+"name": "Mf American R Bl Interbay Dam Nr Foresthill Ca",
+"site_no": "11427770"
+},
+{
+"lat": 39.05657207,
+"lon": -120.4079758,
+"name": "Rubicon R Bl Hell Hole Dam Ca",
+"site_no": "11428800"
+},
+{
+"lat": 38.94805556,
+"lon": -120.3888889,
+"name": "Sf Rubicon R Bl Robbs Pk Forebay Nr Kyburz Ca",
+"site_no": "11428995"
+},
+{
+"lat": 39.00546206,
+"lon": -120.3154712,
+"name": "Gerle C Bl Loon Lk Nr Meeks Bay Ca",
+"site_no": "11429500"
+},
+{
+"lat": 38.9660169,
+"lon": -120.3938075,
+"name": "Gerle C Low Flow Release Bl Gerle Res Nr Meeks Bay",
+"site_no": "114296005"
+},
+{
+"lat": 39.0060108,
+"lon": -120.7607633,
+"name": "Mf American R Nr Foresthill Ca",
+"site_no": "11433300"
+},
+{
+"lat": 38.83656658,
+"lon": -121.0943902,
+"name": "Mormon Ravine Nr Newcastle Ca",
+"site_no": "11433930"
+},
+{
+"lat": 38.81574095,
+"lon": -120.1171308,
+"name": "Pyramid C A Twin Bridges Ca",
+"site_no": "11435100"
+},
+{
+"lat": 38.67157545,
+"lon": -120.1229654,
+"name": "Silver Lk Outlet Nr Kirkwood Ca",
+"site_no": "11436000"
+},
+{
+"lat": 38.67888889,
+"lon": -120.1163889,
+"name": "Oyster C Nr Kirkwood Ca",
+"site_no": "11436510"
+},
+{
+"lat": 38.7085188,
+"lon": -120.0515736,
+"name": "Caples C Release Bl Caples Dam Nr Kirkwood Ca",
+"site_no": "11436999"
+},
+{
+"lat": 38.7643516,
+"lon": -120.320194,
+"name": "El Dorado Cn Nr Kyburz Ca",
+"site_no": "11439000"
+},
+{
+"lat": 38.76351814,
+"lon": -120.3285276,
+"name": "Sf American R Nr Kyburz(River Only) Ca",
+"site_no": "11439500"
+},
+{
+"lat": 38.764,
+"lon": -120.34,
+"name": "No Name C Nr Kyburz Ca",
+"site_no": "11439510"
+},
+{
+"lat": 38.7558333,
+"lon": -120.3733333,
+"name": "Alder C Nr White Hall (Creek Only) Ca",
+"site_no": "11439999"
+},
+{
+"lat": 38.765,
+"lon": -120.428,
+"name": "Bull C Nr Pacific Ca",
+"site_no": "11440480"
+},
+{
+"lat": 38.763,
+"lon": -120.471,
+"name": "Ogilby Canyon C Nr Pacific Ca",
+"site_no": "11440530"
+},
+{
+"lat": 38.76,
+"lon": -120.4883333,
+"name": "Esmeralda C A Pacific Ca",
+"site_no": "11440550"
+},
+{
+"lat": 38.81879517,
+"lon": -120.3651957,
+"name": "Sf Silver C Nr Ice House Ca",
+"site_no": "11441500"
+},
+{
+"lat": 38.85212708,
+"lon": -120.4571437,
+"name": "Silver C Bl Junction Dam Nr Pollock Pines Ca",
+"site_no": "11441800"
+},
+{
+"lat": 38.8112919,
+"lon": -120.623261,
+"name": "Brush C Bl Brush Creek Dam Nr Pollock Pines Ca",
+"site_no": "11442700"
+},
+{
+"lat": 38.7729583,
+"lon": -120.7015975,
+"name": "Sf American R Nr Camino Ca",
+"site_no": "11443500"
+},
+{
+"lat": 38.7710133,
+"lon": -120.8163242,
+"name": "Sf American R Nr Placerville Ca",
+"site_no": "11444500"
+},
+{
+"lat": 38.6354394,
+"lon": -121.227692,
+"name": "American R A Fair Oaks Ca",
+"site_no": "11446500"
+},
+{
+"lat": 38.6418268,
+"lon": -121.3826961,
+"name": "Arcade C Nr Del Paso Heights Ca",
+"site_no": "11447360"
+},
+{
+"lat": 38.45566389,
+"lon": -121.5016167,
+"name": "Sacramento R A Freeport Ca",
+"site_no": "11447650"
+},
+{
+"lat": 38.32916667,
+"lon": -121.5791667,
+"name": "Sutter Slough A Courtland Ca",
+"site_no": "11447830"
+},
+{
+"lat": 38.2847222,
+"lon": -121.5866667,
+"name": "Steamboat Slough Nr Walnut Grove Ca",
+"site_no": "11447850"
+},
+{
+"lat": 38.25769218,
+"lon": -121.5182865,
+"name": "Sacramento R Ab Delta Cross Channel Ca",
+"site_no": "11447890"
+},
+{
+"lat": 38.23880385,
+"lon": -121.5227309,
+"name": "Sacramento R Bl Georgiana Slough Ca",
+"site_no": "11447905"
+},
+{
+"lat": 39.04027778,
+"lon": -122.98330556,
+"name": "Sf Scotts C Nr Lakeport Ca",
+"site_no": "11448750"
+},
+{
+"lat": 39.04194444,
+"lon": -122.98083333,
+"name": "Scotts C Bl Sf Scotts C Nr Lakeport Ca",
+"site_no": "11448800"
+},
+{
+"lat": 39.17577778,
+"lon": -122.9028889,
+"name": "Clover C Bypass A Elk Mtn Rd Nr Upper Lake Ca",
+"site_no": "11449235"
+},
+{
+"lat": 39.1576361,
+"lon": -122.9207333,
+"name": "Scotts C Ab State Route 29 A Upper Lake Ca",
+"site_no": "11449255"
+},
+{
+"lat": 38.9273642,
+"lon": -122.8435719,
+"name": "Kelsey C Nr Kelseyville Ca",
+"site_no": "11449500"
+},
+{
+"lat": 38.97932778,
+"lon": -122.8305778,
+"name": "Cole C A Kelseyville Ca",
+"site_no": "11449820"
+},
+{
+"lat": 38.92403349,
+"lon": -122.5657869,
+"name": "Cache C Nr Lower Lake Ca",
+"site_no": "11451000"
+},
+{
+"lat": 39.1654458,
+"lon": -122.6199862,
+"name": "Nf Cache C A Hough Spring Nr Clearlake Oaks Ca",
+"site_no": "11451100"
+},
+{
+"lat": 39.07542006,
+"lon": -122.5341216,
+"name": "Nf Cache C Nr Clearlake Oaks Ca",
+"site_no": "11451300"
+},
+{
+"lat": 38.95764605,
+"lon": -122.342726,
+"name": "Bear C Ab Holsten Chimney Cyn Nr Rumsey Ca",
+"site_no": "11451715"
+},
+{
+"lat": 38.8898988,
+"lon": -122.2383082,
+"name": "Cache C A Rumsey Ca",
+"site_no": "11451800"
+},
+{
+"lat": 38.727126,
+"lon": -121.8071874,
+"name": "Cache C A Yolo Ca",
+"site_no": "11452500"
+},
+{
+"lat": 38.68265687,
+"lon": -121.6729821,
+"name": "Cache C Overflow Weir From Settling Bas Nr Wood'Ld",
+"site_no": "11452800"
+},
+{
+"lat": 38.67851526,
+"lon": -121.6727386,
+"name": "Cache C Outflow From Settling Basin Nr Woodland Ca",
+"site_no": "11452900"
+},
+{
+"lat": 38.67851526,
+"lon": -121.6727386,
+"name": "Cache C Total Flow From Settling Bas Nr Wood'Ld Ca",
+"site_no": "11452901"
+},
+{
+"lat": 38.6776572,
+"lon": -121.6440924,
+"name": "Yolo Bypass Nr Woodland Ca",
+"site_no": "11453000"
+},
+{
+"lat": 38.7787587,
+"lon": -122.51745,
+"name": "Putah C Nr Guenoc Ca",
+"site_no": "11453500"
+},
+{
+"lat": 38.6469722,
+"lon": -122.365825,
+"name": "Pope C A Walter Springs Ca",
+"site_no": "11453590"
+},
+{
+"lat": 38.5151562,
+"lon": -122.0818793,
+"name": "Putah C Nr Winters Ca",
+"site_no": "11454000"
+},
+{
+"lat": 38.4926849,
+"lon": -122.0030248,
+"name": "Putah South Cn Nr Winters Ca",
+"site_no": "11454210"
+},
+{
+"lat": 38.34916667,
+"lon": -121.6447222,
+"name": "Toe Drain A Liberty Island Nr Courtland Ca",
+"site_no": "11455140"
+},
+{
+"lat": 38.3078583,
+"lon": -121.6924278,
+"name": "Shag Slough A Liberty Island Nr Courtland Ca",
+"site_no": "11455276"
+},
+{
+"lat": 38.19395556,
+"lon": -121.6580028,
+"name": "Cache Slough Ab Ryer Island Ferry Nr Rio Vista Ca",
+"site_no": "11455385"
+},
+{
+"lat": 38.153281,
+"lon": -121.687008,
+"name": "Sacramento R A Rio Vista Ca",
+"site_no": "11455420"
+},
+{
+"lat": 38.12379722,
+"lon": -122.08138611,
+"name": "Suisun Slough Nr Benicia Ca",
+"site_no": "11455740"
+},
+{
+"lat": 38.51126405,
+"lon": -122.4557779,
+"name": "Napa R Nr St Helena Ca",
+"site_no": "11456000"
+},
+{
+"lat": 38.36821248,
+"lon": -122.3032719,
+"name": "Napa R Nr Napa Ca",
+"site_no": "11458000"
+},
+{
+"lat": 38.4188004,
+"lon": -122.5627606,
+"name": "Sonoma Creek A Kenwood Ca",
+"site_no": "11458433"
+},
+{
+"lat": 38.32321159,
+"lon": -122.4943873,
+"name": "Sonoma C A Agua Caliente Ca",
+"site_no": "11458500"
+},
+{
+"lat": 38.2808333,
+"lon": -122.4558333,
+"name": "Nathanson C A Sonoma Ca",
+"site_no": "11458600"
+},
+{
+"lat": 38.1076593,
+"lon": -122.5799419,
+"name": "Novato C A Novato Ca",
+"site_no": "11459500"
+},
+{
+"lat": 37.96294006,
+"lon": -122.5568837,
+"name": "Corte Madera C A Ross Ca",
+"site_no": "11460000"
+},
+{
+"lat": 37.8661111,
+"lon": -122.578611,
+"name": "Redwood C A Hwy 1 Bridge A Muir Beach Ca",
+"site_no": "11460151"
+},
+{
+"lat": 38.0268261,
+"lon": -122.7363337,
+"name": "Lagunitas C A Samuel P Taylor State Park Ca",
+"site_no": "11460400"
+},
+{
+"lat": 38.08019988,
+"lon": -122.7844348,
+"name": "Lagunitas C Nr Pt Reyes Station Ca",
+"site_no": "11460600"
+},
+{
+"lat": 38.0386111,
+"lon": -122.7858333,
+"name": "Olema C A Vedanta Bridge A Olema Ca",
+"site_no": "11460605"
+},
+{
+"lat": 38.1757531,
+"lon": -122.8183254,
+"name": "Walker C Nr Marshall Ca",
+"site_no": "11460750"
+},
+{
+"lat": 39.24652277,
+"lon": -123.1302509,
+"name": "Ef Russian R Nr Calpella Ca",
+"site_no": "11461500"
+},
+{
+"lat": 39.1129134,
+"lon": -123.183028,
+"name": "Russian R Nr Talmage Ca",
+"site_no": "11462080"
+},
+{
+"lat": 39.0265265,
+"lon": -123.1305253,
+"name": "Russian R Nr Hopland Ca",
+"site_no": "11462500"
+},
+{
+"lat": 38.87930758,
+"lon": -123.0535767,
+"name": "Russian R Nr Cloverdale Ca",
+"site_no": "11463000"
+},
+{
+"lat": 38.79764466,
+"lon": -122.8024578,
+"name": "Big Sulphur C A G Resort Nr Cloverdale Ca",
+"site_no": "11463170"
+},
+{
+"lat": 38.8259757,
+"lon": -122.9969077,
+"name": "Big Sulphur C Nr Cloverdale Ca",
+"site_no": "11463200"
+},
+{
+"lat": 38.7126453,
+"lon": -122.8957923,
+"name": "Russian R A Geyserville Ca",
+"site_no": "11463500"
+},
+{
+"lat": 38.65820245,
+"lon": -122.8294009,
+"name": "Russian R A Jimtown Ca",
+"site_no": "11463682"
+},
+{
+"lat": 38.6409811,
+"lon": -122.7638434,
+"name": "Maacama C Nr Kellogg Ca",
+"site_no": "11463900"
+},
+{
+"lat": 38.63292489,
+"lon": -122.8555123,
+"name": "Russian R A Digger Bend Nr Healdsburg Ca",
+"site_no": "11463980"
+},
+{
+"lat": 38.6132032,
+"lon": -122.8363448,
+"name": "Russian R Nr Healdsburg Ca",
+"site_no": "11464000"
+},
+{
+"lat": 38.65320165,
+"lon": -122.927181,
+"name": "Dry C Blw Lambert Br Nr Geyserville Ca",
+"site_no": "11465240"
+},
+{
+"lat": 38.58737009,
+"lon": -122.8621784,
+"name": "Dry C Nr Mouth Nr Healdsburg Ca",
+"site_no": "11465350"
+},
+{
+"lat": 38.5157047,
+"lon": -122.8646775,
+"name": "Russian R Nr Windsor Ca",
+"site_no": "11465390"
+},
+{
+"lat": 38.34324776,
+"lon": -122.7019317,
+"name": "Copeland C A Rohnert Park Ca",
+"site_no": "11465660"
+},
+{
+"lat": 38.3520977,
+"lon": -122.7441164,
+"name": "Laguna De Santa Rosa A Stony Pt Rd Nr Cotati Ca",
+"site_no": "11465680"
+},
+{
+"lat": 38.40209687,
+"lon": -122.7330057,
+"name": "Colgan C Nr Santa Rosa Ca",
+"site_no": "11465690"
+},
+{
+"lat": 38.37348597,
+"lon": -122.768284,
+"name": "Colgan C Nr Sebastopol Ca",
+"site_no": "11465700"
+},
+{
+"lat": 38.42546874,
+"lon": -122.8291584,
+"name": "Laguna De Santa Rosa C Nr Sebastopol Ca",
+"site_no": "11465750"
+},
+{
+"lat": 38.43876314,
+"lon": -122.7024499,
+"name": "Matanzas C A Santa Rosa Ca",
+"site_no": "11466170"
+},
+{
+"lat": 38.43654076,
+"lon": -122.7246727,
+"name": "Santa Rosa C A Santa Rosa Ca",
+"site_no": "11466200"
+},
+{
+"lat": 38.44519026,
+"lon": -122.8072129,
+"name": "Santa Rosa C A Willowside Rd Nr Santa Rosa Ca",
+"site_no": "11466320"
+},
+{
+"lat": 38.4940385,
+"lon": -122.853288,
+"name": "Mark West C Nr Mirabel Heights Ca",
+"site_no": "11466800"
+},
+{
+"lat": 38.50848204,
+"lon": -122.9277345,
+"name": "Russian R A Hacienda Bridge Nr Guerneville Ca",
+"site_no": "11467000"
+},
+{
+"lat": 38.5065363,
+"lon": -123.0696826,
+"name": "Austin C Nr Cazadero Ca",
+"site_no": "11467200"
+},
+{
+"lat": 38.70902938,
+"lon": -123.4266393,
+"name": "Sf Gualala R Nr The Sea Ranch Ca",
+"site_no": "11467510"
+},
+{
+"lat": 38.78986049,
+"lon": -123.5094204,
+"name": "Nf Gualala R Ab Sf Gualala R Nr Gualala Ca",
+"site_no": "11467553"
+},
+{
+"lat": 39.1704079,
+"lon": -123.6680415,
+"name": "Navarro R Nr Navarro Ca",
+"site_no": "11468000"
+},
+{
+"lat": 39.42818069,
+"lon": -123.7377695,
+"name": "Noyo R Nr Fort Bragg Ca",
+"site_no": "11468500"
+},
+{
+"lat": 40.139278,
+"lon": -123.9913987,
+"name": "Mattole R Nr Ettersburg Ca",
+"site_no": "11468900"
+},
+{
+"lat": 40.31316145,
+"lon": -124.2833536,
+"name": "Mattole R Nr Petrolia Ca",
+"site_no": "11469000"
+},
+{
+"lat": 39.40793878,
+"lon": -122.9713896,
+"name": "Eel R Bl Scott Dam Nr Potter Valley Ca",
+"site_no": "11470500"
+},
+{
+"lat": 39.36155219,
+"lon": -123.1283379,
+"name": "Potter Valley Irrig Cn E5 Nr Potter Valley Ca",
+"site_no": "11471105"
+},
+{
+"lat": 39.36155219,
+"lon": -123.1283379,
+"name": "Potter Valley Irrig Cn E6 Nr Potter Valley Ca",
+"site_no": "11471106"
+},
+{
+"lat": 39.38849566,
+"lon": -123.1161157,
+"name": "Eel R A Van Arsdale Dam Nr Potter Valley Ca",
+"site_no": "11471500"
+},
+{
+"lat": 39.42044444,
+"lon": -123.3406667,
+"name": "Outlet C Nr Willits Ca",
+"site_no": "11472180"
+},
+{
+"lat": 39.7062356,
+"lon": -123.3252632,
+"name": "Mf Eel R Nr Dos Rios Ca",
+"site_no": "11473900"
+},
+{
+"lat": 40.21816919,
+"lon": -123.6325017,
+"name": "Eel R A Fort Seward Ca",
+"site_no": "11475000"
+},
+{
+"lat": 39.71904456,
+"lon": -123.652796,
+"name": "Sf Eel R Nr Branscomb Ca",
+"site_no": "11475500"
+},
+{
+"lat": 39.72956555,
+"lon": -123.643883,
+"name": "Elder C Nr Branscomb Ca",
+"site_no": "11475560"
+},
+{
+"lat": 39.8745957,
+"lon": -123.7205775,
+"name": "Sf Eel R A Leggett Ca",
+"site_no": "11475800"
+},
+{
+"lat": 40.18177947,
+"lon": -123.776116,
+"name": "Sf Eel R Nr Miranda Ca",
+"site_no": "11476500"
+},
+{
+"lat": 40.3514969,
+"lon": -124.0050136,
+"name": "Bull C Nr Weott Ca",
+"site_no": "11476600"
+},
+{
+"lat": 40.49149394,
+"lon": -124.0997407,
+"name": "Eel R A Scotia Ca",
+"site_no": "11477000"
+},
+{
+"lat": 40.480385,
+"lon": -123.8908461,
+"name": "Van Duzen R Nr Bridgeville Ca",
+"site_no": "11478500"
+},
+{
+"lat": 40.70191258,
+"lon": -124.15621515,
+"name": "Elk R Nr Falk Ca",
+"site_no": "11479700"
+},
+{
+"lat": 40.28428216,
+"lon": -123.3352727,
+"name": "Mad R Ab Ruth Res Nr Forest Glen Ca",
+"site_no": "11480390"
+},
+{
+"lat": 40.37097808,
+"lon": -123.4361411,
+"name": "Mad R Bl Ruth Res Nr Forest Glen Ca",
+"site_no": "11480410"
+},
+{
+"lat": 40.9098217,
+"lon": -124.06058,
+"name": "Mad R Nr Arcata Ca",
+"site_no": "11481000"
+},
+{
+"lat": 41.00982016,
+"lon": -124.0814157,
+"name": "Little R Nr Trinidad Ca",
+"site_no": "11481200"
+},
+{
+"lat": 40.90596479,
+"lon": -123.815335,
+"name": "Redwood C Nr Blue Lake Ca",
+"site_no": "11481500"
+},
+{
+"lat": 41.2992896,
+"lon": -124.0511825,
+"name": "Redwood C A Orick Ca",
+"site_no": "11482500"
+},
+{
+"lat": 41.92788026,
+"lon": -122.4441653,
+"name": "Klamath R Bl Iron Gate Dam Ca",
+"site_no": "11516530"
+},
+{
+"lat": 41.590611,
+"lon": -122.438083,
+"name": "Shasta R A E Louie Rd Br Nr Lk Shastina Ca",
+"site_no": "11516870"
+},
+{
+"lat": 41.708993,
+"lon": -122.538053,
+"name": "Shasta R Nr  Montague Ca",
+"site_no": "11517000"
+},
+{
+"lat": 41.82288,
+"lon": -122.5955565,
+"name": "Shasta R Nr Yreka Ca",
+"site_no": "11517500"
+},
+{
+"lat": 41.595528,
+"lon": -122.851528,
+"name": "Scott R Ab Hwy 3 Br A Fort Jones Ca",
+"site_no": "11518700"
+},
+{
+"lat": 41.64065587,
+"lon": -123.0150092,
+"name": "Scott R Nr Fort Jones Ca",
+"site_no": "11519500"
+},
+{
+"lat": 41.8537379,
+"lon": -123.2322733,
+"name": "Klamath R Nr Seiad Valley Ca",
+"site_no": "11520500"
+},
+{
+"lat": 41.83509438,
+"lon": -123.383078,
+"name": "Indian C Nr Happy Camp Ca",
+"site_no": "11521500"
+},
+{
+"lat": 41.37648796,
+"lon": -123.4769615,
+"name": "Salmon R A Somes Bar Ca",
+"site_no": "11522500"
+},
+{
+"lat": 41.30343278,
+"lon": -123.5344618,
+"name": "Klamath R A Orleans",
+"site_no": "11523000"
+},
+{
+"lat": 41.11122108,
+"lon": -122.7055474,
+"name": "Trinity R Ab Coffee C Nr Trinity Center Ca",
+"site_no": "11523200"
+},
+{
+"lat": 40.7247222,
+"lon": -122.801111,
+"name": "Trinity R A Lewiston Ca",
+"site_no": "11525500"
+},
+{
+"lat": 40.72455839,
+"lon": -122.834711,
+"name": "Rush C Nr Lewiston Ca",
+"site_no": "11525530"
+},
+{
+"lat": 40.67261385,
+"lon": -122.9205459,
+"name": "Trinity R Bl Limekiln Gulch Nr Douglas City Ca",
+"site_no": "11525655"
+},
+{
+"lat": 40.65178087,
+"lon": -122.9144343,
+"name": "Indian C Nr Douglas City Ca",
+"site_no": "11525670"
+},
+{
+"lat": 40.64527778,
+"lon": -122.9566667,
+"name": "Trinity R A Douglas City Ca",
+"site_no": "11525854"
+},
+{
+"lat": 40.7284768,
+"lon": -123.0619736,
+"name": "Trinity R A Junction City Ca",
+"site_no": "11526250"
+},
+{
+"lat": 40.76649958,
+"lon": -123.1144415,
+"name": "Trinity R Ab Nf Trinity R Nr Helena Ca",
+"site_no": "11526400"
+},
+{
+"lat": 40.78871835,
+"lon": -123.440006,
+"name": "Trinity R Nr Burnt Ranch Ca",
+"site_no": "11527000"
+},
+{
+"lat": 40.375489,
+"lon": -123.32855,
+"name": "Sf Trinity R A Forest Glen Ca",
+"site_no": "11528100"
+},
+{
+"lat": 40.64983089,
+"lon": -123.4941718,
+"name": "Sf Trinity R Bl Hyampom Ca",
+"site_no": "11528700"
+},
+{
+"lat": 41.0498236,
+"lon": -123.6736278,
+"name": "Trinity R A Hoopa Ca",
+"site_no": "11530000"
+},
+{
+"lat": 41.51092575,
+"lon": -123.9794772,
+"name": "Klamath R Nr Klamath Ca",
+"site_no": "11530500"
+},
+{
+"lat": 41.7914769,
+"lon": -124.0761515,
+"name": "Smith R Nr Crescent City Ca",
+"site_no": "11532500"
+},
+{
+"lat": 42.0040833,
+"lon": -123.1486944,
+"name": "Elliott Creek Near Copper, Or",
+"site_no": "14361600"
+},
+{
+"lat": 37.57611111,
+"lon": -121.80777778,
+"name": "Indian C A Indian Creek Road Nr Sunol Ca",
+"site_no": "373434121482801"
+},
+{
+"lat": 37.58527778,
+"lon": -121.7891667,
+"name": "San Antonio C A Indian Creek Road Nr Sunol Ca",
+"site_no": "373507121472101"
+},
+{
+"lat": 38.2408583,
+"lon": -121.515836,
+"name": "Sacramento R Bl Walnut Grove Br A Walnut Grove Ca",
+"site_no": "381427121305401"
+},
+{
+"lat": 38.30202778,
+"lon": -121.69377778,
+"name": "Nemeth Slough Nr Courtland Ca",
+"site_no": "381807121413801"
+},
+{
+"lat": 38.31791667,
+"lon": -121.69425,
+"name": "Green Slough Nr Courtland Ca",
+"site_no": "381905121413901"
+},
+{
+"lat": 38.3214833,
+"lon": -121.688111,
+"name": "Liberty Island A Lower Stair Step Nr Courtland Ca",
+"site_no": "381917121411701"
+},
+{
+"lat": 42.6027222,
+"lon": -120.4100278,
+"name": "Chewaucan R At Narrows Nr Paisley, Or",
+"site_no": "10386000"
+},
+{
+"lat": 42.7908333,
+"lon": -118.8675,
+"name": "Donner Und Blitzen River Nr Frenchglen Or",
+"site_no": "10396000"
+},
+{
+"lat": 42.95166667,
+"lon": -121.4590556,
+"name": "Irving Creek Near Lenz, Or",
+"site_no": "11491450"
+},
+{
+"lat": 42.9783611,
+"lon": -121.459361,
+"name": "Jackson Creek Near Lenz, Or",
+"site_no": "11491470"
+},
+{
+"lat": 43.1833333,
+"lon": -121.8735556,
+"name": "Miller Creek Near Beaver Marsh, Or",
+"site_no": "11491950"
+},
+{
+"lat": 42.739925,
+"lon": -121.8345167,
+"name": "Williamson River Near Klamath Agency, Or",
+"site_no": "11493500"
+},
+{
+"lat": 42.58430556,
+"lon": -121.8483333,
+"name": "Sprague River Near Chiloquin, Or",
+"site_no": "11501000"
+},
+{
+"lat": 42.564375,
+"lon": -121.8797139,
+"name": "Williamson River Blw Sprague River Nr Chiloquin,Or",
+"site_no": "11502500"
+},
+{
+"lat": 42.58155556,
+"lon": -121.9417028,
+"name": "Wood River Near Klamath Agency, Or",
+"site_no": "11504115"
+},
+{
+"lat": 42.51269444,
+"lon": -122.0761389,
+"name": "Crystal Creek Near Rocky Point, Or",
+"site_no": "11504270"
+},
+{
+"lat": 42.58166667,
+"lon": -121.9713889,
+"name": "Sevenmile Cnl At Dike Rd Br, Nr Klamath Agency, Or",
+"site_no": "11504290"
+},
+{
+"lat": 42.22347795,
+"lon": -121.7941708,
+"name": "Link River At Klamath Falls, Or",
+"site_no": "11507500"
+},
+{
+"lat": 42.08095278,
+"lon": -121.8483222,
+"name": "Klamath Straits Drain Near Worden, Or",
+"site_no": "11509340"
+},
+{
+"lat": 42.13319946,
+"lon": -121.9622313,
+"name": "Klamath River At Keno, Or",
+"site_no": "11509500"
+},
+{
+"lat": 42.0845877,
+"lon": -122.0733453,
+"name": "Klamath River Blw John C.Boyle Pwrplnt, Nr Keno,Or",
+"site_no": "11510700"
+},
+{
+"lat": 42.86638889,
+"lon": -117.6491667,
+"name": "Owyhee River Nr Rome Or",
+"site_no": "13181000"
+},
+{
+"lat": 43.65444444,
+"lon": -117.2558333,
+"name": "Owyhee River Below Owyhee Dam, Or",
+"site_no": "13183000"
+},
+{
+"lat": 43.5190833,
+"lon": -118.1750583,
+"name": "South Fork Malheur River Nr Riverside, Or",
+"site_no": "13215480"
+},
+{
+"lat": 43.9875,
+"lon": -117.2188889,
+"name": "Malheur River Below Nevada Dam Near Vale Or",
+"site_no": "13233300"
+},
+{
+"lat": 45.2544444,
+"lon": -116.6969444,
+"name": "Snake River At Hells Canyon Dam Id-Or State Line",
+"site_no": "13290450"
+},
+{
+"lat": 45.27110278,
+"lon": -117.211325,
+"name": "East Fork Wallowa River Near Joseph, Or",
+"site_no": "13325000"
+},
+{
+"lat": 45.6198669,
+"lon": -117.7265892,
+"name": "Minam River At Minam, Or",
+"site_no": "13331500"
+},
+{
+"lat": 45.9457019,
+"lon": -117.4510089,
+"name": "Grande Ronde River At Troy, Or",
+"site_no": "13333000"
+},
+{
+"lat": 45.93268257,
+"lon": -119.2965915,
+"name": "Columbia River At Mcnary Dam,Near Umatilla, Or",
+"site_no": "14019200"
+},
+{
+"lat": 45.71957668,
+"lon": -118.3232913,
+"name": "Umatilla River Above Meacham Creek, Nr Gibbon, Or",
+"site_no": "14020000"
+},
+{
+"lat": 45.689125,
+"lon": -118.3544472,
+"name": "Meacham Creek At Gibbon, Or",
+"site_no": "14020300"
+},
+{
+"lat": 45.67151937,
+"lon": -118.736649,
+"name": "Umatilla R At W Reservation Bndy Nr Pendleton, Or",
+"site_no": "14020850"
+},
+{
+"lat": 45.9026944,
+"lon": -119.3270833,
+"name": "Umatilla River Near Umatilla, Or",
+"site_no": "14033500"
+},
+{
+"lat": 45.34068289,
+"lon": -119.5158544,
+"name": "Willow Creek Abv Willow Cr Lake, Nr Heppner, Or",
+"site_no": "14034470"
+},
+{
+"lat": 45.33207265,
+"lon": -119.5411325,
+"name": "Balm Fork Near Heppner, Or",
+"site_no": "14034480"
+},
+{
+"lat": 45.3504062,
+"lon": -119.5500218,
+"name": "Willow Creek At Heppner, Or",
+"site_no": "14034500"
+},
+{
+"lat": 45.3612398,
+"lon": -119.5602998,
+"name": "Willow Creek At Morgan Street, At Heppner, Or",
+"site_no": "14034608"
+},
+{
+"lat": 44.35793778,
+"lon": -118.5760531,
+"name": "John Day R At Blue Mtn Hot Spgs Nr Prairie City,Or",
+"site_no": "14036860"
+},
+{
+"lat": 44.41848897,
+"lon": -118.9063419,
+"name": "John Day River Near John Day, Or",
+"site_no": "14038530"
+},
+{
+"lat": 44.692625,
+"lon": -118.7943083,
+"name": "Mf John Day River Abv Camp Creek, Nr Galena, Or",
+"site_no": "14043840"
+},
+{
+"lat": 44.88876388,
+"lon": -119.1413686,
+"name": "Middle Fork John Day River At Ritter, Or",
+"site_no": "14044000"
+},
+{
+"lat": 44.81491667,
+"lon": -119.432,
+"name": "North Fork John Day River At Monument, Or",
+"site_no": "14046000"
+},
+{
+"lat": 44.79401389,
+"lon": -120.0070194,
+"name": "John Day River At Service Creek, Or",
+"site_no": "14046500"
+},
+{
+"lat": 44.7268722,
+"lon": -120.3019167,
+"name": "Bridge Cr Abv Coyote Canyon Nr Mitchell, Or",
+"site_no": "14046778"
+},
+{
+"lat": 45.5876278,
+"lon": -120.4094919,
+"name": "John Day River At Mcdonald Ferry, Or",
+"site_no": "14048000"
+},
+{
+"lat": 43.68595349,
+"lon": -121.6880826,
+"name": "Deschutes R Bl Wickiup Res Nr La Pine, Or",
+"site_no": "14056500"
+},
+{
+"lat": 43.93011715,
+"lon": -121.4119746,
+"name": "Deschutes R At Benham Falls Nr Bend, Or",
+"site_no": "14064500"
+},
+{
+"lat": 44.03711389,
+"lon": -121.6327694,
+"name": "M F Tumalo Creek Abv Prowell Springs, Nr Bend, Or",
+"site_no": "14070615"
+},
+{
+"lat": 44.03722778,
+"lon": -121.6325639,
+"name": "M F Tumalo Creek Blw Prowell Springs, Nr Bend, Or",
+"site_no": "14070624"
+},
+{
+"lat": 44.4987293,
+"lon": -121.3211558,
+"name": "Deschutes River Near Culver, Or",
+"site_no": "14076500"
+},
+{
+"lat": 44.062,
+"lon": -120.04330556,
+"name": "Sf Crooked River Near Bell Butte, Near Paulina, Or",
+"site_no": "14078260"
+},
+{
+"lat": 44.4268972,
+"lon": -121.2328728,
+"name": "Crooked River Blw Osborne Canyon, Nr Opal City, Or",
+"site_no": "14087380"
+},
+{
+"lat": 44.4923407,
+"lon": -121.298377,
+"name": "Crooked River Below Opal Springs, Near Culver, Or",
+"site_no": "14087400"
+},
+{
+"lat": 44.6262275,
+"lon": -121.4839433,
+"name": "Metolius River Near Grandview, Or",
+"site_no": "14091500"
+},
+{
+"lat": 44.72595225,
+"lon": -121.2469939,
+"name": "Deschutes River Near Madras, Or",
+"site_no": "14092500"
+},
+{
+"lat": 44.75039516,
+"lon": -121.633397,
+"name": "Shitike Crk At Peters Pasture, Nr Warm Springs, Or",
+"site_no": "14092750"
+},
+{
+"lat": 44.7642856,
+"lon": -121.2364393,
+"name": "Shitike Creek Near Warm Springs, Or",
+"site_no": "14093000"
+},
+{
+"lat": 44.9587272,
+"lon": -121.3942286,
+"name": "Beaver Creek Below Quartz Creek, Nr Simnasho, Or",
+"site_no": "14096850"
+},
+{
+"lat": 44.8565087,
+"lon": -121.1497735,
+"name": "Warm Springs River Near Kahneeta Hot Springs, Or",
+"site_no": "14097100"
+},
+{
+"lat": 45.241722,
+"lon": -121.095139,
+"name": "White River Below Tygh Valley, Or",
+"site_no": "14101500"
+},
+{
+"lat": 45.26102778,
+"lon": -121.03636111,
+"name": "Deschutes River At Sherars Bridge, Or",
+"site_no": "14102000"
+},
+{
+"lat": 45.6220678,
+"lon": -120.9056203,
+"name": "Deschutes River At Moody, Near Biggs, Or",
+"site_no": "14103000"
+},
+{
+"lat": 45.60827778,
+"lon": -121.1899167,
+"name": "Columbia River At The Dalles, Or",
+"site_no": "14105700"
+},
+{
+"lat": 45.649008,
+"lon": -121.3772951,
+"name": "Mosier Creek Near Mosier, Or",
+"site_no": "14113200"
+},
+{
+"lat": 45.599139,
+"lon": -121.636417,
+"name": "West Fork Hood River Near Dee, Or",
+"site_no": "14118500"
+},
+{
+"lat": 45.6545,
+"lon": -121.5488,
+"name": "Hood River At Tucker Bridge, Near Hood River, Or",
+"site_no": "14120000"
+},
+{
+"lat": 45.3995642,
+"lon": -122.1373068,
+"name": "Sandy River Near Marmot, Or",
+"site_no": "14137000"
+},
+{
+"lat": 45.4526183,
+"lon": -121.8914684,
+"name": "Blazed Alder Creek Near Rhododendron, Or",
+"site_no": "14138800"
+},
+{
+"lat": 45.4981743,
+"lon": -122.0123049,
+"name": "Bull Run River Near Multnomah Falls, Or",
+"site_no": "14138850"
+},
+{
+"lat": 45.48011889,
+"lon": -122.0256385,
+"name": "Fir Creek Near Brightwood, Or",
+"site_no": "14138870"
+},
+{
+"lat": 45.4942454,
+"lon": -122.035888,
+"name": "North Fork Bull Run River Near Multnomah Falls, Or",
+"site_no": "14138900"
+},
+{
+"lat": 45.444564,
+"lon": -122.1095292,
+"name": "South Fork Bull Run River Near Bull Run, Or",
+"site_no": "14139800"
+},
+{
+"lat": 45.44852778,
+"lon": -122.1551944,
+"name": "Bull Run River Blw Bull Run Res 2, Nr Bull Run, Or",
+"site_no": "14139940"
+},
+{
+"lat": 45.4373,
+"lon": -122.1796556,
+"name": "Bull Run River Near Bull Run (River Only), Or",
+"site_no": "14140000"
+},
+{
+"lat": 45.43734229,
+"lon": -122.1795309,
+"name": "Bull Run River Near Bull Run, Or",
+"site_no": "14140001"
+},
+{
+"lat": 45.41539777,
+"lon": -122.1714746,
+"name": "Little Sandy River Near Bull Run, Or",
+"site_no": "14141500"
+},
+{
+"lat": 45.4490094,
+"lon": -122.2450885,
+"name": "Sandy River Blw Bull Run River, Nr Bull Run, Or",
+"site_no": "14142500"
+},
+{
+"lat": 45.5123333,
+"lon": -122.4003056,
+"name": "Kelly Creek At Kane Road Near Gresham, Or",
+"site_no": "14142580"
+},
+{
+"lat": 45.5194444,
+"lon": -122.3892778,
+"name": "Beaver Creek At Troutdale, Or",
+"site_no": "14142800"
+},
+{
+"lat": 43.60178867,
+"lon": -122.4575474,
+"name": "Middle Fork Willamette River Nr Oakridge, Or",
+"site_no": "14144800"
+},
+{
+"lat": 43.6804006,
+"lon": -122.3705999,
+"name": "Hills Cr Ab Hills Cr Res, Nr Oakridge, Or",
+"site_no": "14144900"
+},
+{
+"lat": 43.72095655,
+"lon": -122.4378256,
+"name": "Mf Willamette River Abv Salt Crk, Near Oakridge,Or",
+"site_no": "14145500"
+},
+{
+"lat": 43.88468889,
+"lon": -122.2451306,
+"name": "Nf Of Mf Willamette R Ab Parker Cr Nr Oakridge, Or",
+"site_no": "14147200"
+},
+{
+"lat": 43.7567902,
+"lon": -122.5053292,
+"name": "N Fk Of M Fk Willamette R Nr Oakridge, Or",
+"site_no": "14147500"
+},
+{
+"lat": 43.80123517,
+"lon": -122.5608879,
+"name": "Mf Willamette River Blw N Fork, Nr Oakridge, Or.",
+"site_no": "14148000"
+},
+{
+"lat": 43.9456815,
+"lon": -122.8372967,
+"name": "Middle Fork Willamette River Near Dexter, Or",
+"site_no": "14150000"
+},
+{
+"lat": 43.98478056,
+"lon": -122.4336,
+"name": "Fall Creek Above Tiller Creek, Near Lowell, Or",
+"site_no": "14150250"
+},
+{
+"lat": 43.9142924,
+"lon": -122.6886762,
+"name": "Winberry Creek Near Lowell,Or",
+"site_no": "14150800"
+},
+{
+"lat": 43.94429299,
+"lon": -122.774794,
+"name": "Fall Creek Blw Winberry Creek, Near Fall Creek, Or",
+"site_no": "14151000"
+},
+{
+"lat": 43.99818166,
+"lon": -122.9059126,
+"name": "Middle Fork Willamette River At Jasper, Or",
+"site_no": "14152000"
+},
+{
+"lat": 43.64151015,
+"lon": -123.0859089,
+"name": "Coast Fork Willamette At London, Or",
+"site_no": "14152500"
+},
+{
+"lat": 43.72067785,
+"lon": -123.0497994,
+"name": "Coast Fork Willamette R Blw Cottage Grove Dam, Or",
+"site_no": "14153500"
+},
+{
+"lat": 43.73527778,
+"lon": -122.8744444,
+"name": "Row River Above Pitcher Creek, Near Dorena, Or",
+"site_no": "14154500"
+},
+{
+"lat": 43.7929012,
+"lon": -122.9914655,
+"name": "Row River Near Cottage Grove, Or",
+"site_no": "14155500"
+},
+{
+"lat": 43.98040324,
+"lon": -122.96647,
+"name": "Coast Fork Willamette River Near Goshen, Or",
+"site_no": "14157500"
+},
+{
+"lat": 44.3609545,
+"lon": -121.9956172,
+"name": "Mckenzie River At Outlet Of Clear Lake, Or",
+"site_no": "14158500"
+},
+{
+"lat": 44.28638889,
+"lon": -122.0368056,
+"name": "Mckenzie River Bl Payne Cr, Nr Belknap Springs, Or",
+"site_no": "14158740"
+},
+{
+"lat": 44.3345666,
+"lon": -122.0470074,
+"name": "Smith River Abv Smith R Resv,Nr Belknap Sprngs,Or",
+"site_no": "14158790"
+},
+{
+"lat": 44.28988889,
+"lon": -122.0485833,
+"name": "Smith River Abv Trail Brdg Resv Nr Belknap Springs",
+"site_no": "14158798"
+},
+{
+"lat": 44.2679001,
+"lon": -122.0497826,
+"name": "Mckenzie R Blw Trail Br Dam Nr Belknap Springs, Or",
+"site_no": "14158850"
+},
+{
+"lat": 44.16269444,
+"lon": -122.154,
+"name": "Horse Creek Near Mckenzie Bridge, Or",
+"site_no": "14159100"
+},
+{
+"lat": 44.16633386,
+"lon": -122.2565067,
+"name": "Mckenzie River Above South Fork, Near Rainbow, Or",
+"site_no": "14159110"
+},
+{
+"lat": 43.95702778,
+"lon": -122.085,
+"name": "Sf Mckenzie River Abv Roaring R Nr Cougar Dam, Or",
+"site_no": "14159130"
+},
+{
+"lat": 44.047067,
+"lon": -122.2178245,
+"name": "So Fk Mckenzie River Abv Cougar Lake Nr Rainbow Or",
+"site_no": "14159200"
+},
+{
+"lat": 44.13595817,
+"lon": -122.248391,
+"name": "South Fork Mckenzie River Near Rainbow, Or",
+"site_no": "14159500"
+},
+{
+"lat": 44.2179043,
+"lon": -122.2650676,
+"name": "Blue River Below Tidbits Creek, Nr Blue River, Or",
+"site_no": "14161100"
+},
+{
+"lat": 44.2095708,
+"lon": -122.256733,
+"name": "Lookout Creek Near Blue River, Or",
+"site_no": "14161500"
+},
+{
+"lat": 44.1845,
+"lon": -122.3148056,
+"name": "Nf Quartz Creek Near Blue River, Or",
+"site_no": "14162050"
+},
+{
+"lat": 44.16234819,
+"lon": -122.3331192,
+"name": "Blue River At Blue River, Or",
+"site_no": "14162200"
+},
+{
+"lat": 44.10798056,
+"lon": -122.35521111,
+"name": "Quartz Creek Blw Cane Creek Near Finn Rock, Or",
+"site_no": "14162440"
+},
+{
+"lat": 44.1233611,
+"lon": -122.3787222,
+"name": "Quartz Creek Near Finn Rock, Or",
+"site_no": "14162450"
+},
+{
+"lat": 44.1248487,
+"lon": -122.47062,
+"name": "Mckenzie River Near Vida, Or",
+"site_no": "14162500"
+},
+{
+"lat": 44.1460861,
+"lon": -122.5730333,
+"name": "Gate Creek At Vida, Or",
+"site_no": "14163000"
+},
+{
+"lat": 44.123738,
+"lon": -122.6275715,
+"name": "Mckenzie River Blw Leaburg Dam, Nr Leaburg, Or",
+"site_no": "14163150"
+},
+{
+"lat": 44.0698492,
+"lon": -122.7711874,
+"name": "Mckenzie River Near Walterville, Or",
+"site_no": "14163900"
+},
+{
+"lat": 44.07066667,
+"lon": -122.8846667,
+"name": "Camp Crk At Camp Crk Rd Bridge, Nr Springfield, Or",
+"site_no": "14164550"
+},
+{
+"lat": 44.059348,
+"lon": -122.9196644,
+"name": "Cedar Creek At Springfield, Or",
+"site_no": "14164700"
+},
+{
+"lat": 44.0712365,
+"lon": -122.9645273,
+"name": "Mckenzie River Abv Hayden Br, At Springfield,Or",
+"site_no": "14164900"
+},
+{
+"lat": 44.09290317,
+"lon": -122.9573052,
+"name": "Mohawk River Near Springfield, Or",
+"site_no": "14165000"
+},
+{
+"lat": 44.11305556,
+"lon": -123.0469722,
+"name": "Mckenzie River Near Coburg, Or",
+"site_no": "14165500"
+},
+{
+"lat": 44.27040126,
+"lon": -123.1737036,
+"name": "Willamette River At Harrisburg, Or",
+"site_no": "14166000"
+},
+{
+"lat": 44.04984478,
+"lon": -123.4262097,
+"name": "Long Tom River Near Noti, Or",
+"site_no": "14166500"
+},
+{
+"lat": 44.1226111,
+"lon": -123.3003056,
+"name": "Long Tom River Near Alvadore, Or",
+"site_no": "14169000"
+},
+{
+"lat": 44.3128333,
+"lon": -123.296361,
+"name": "Long Tom River At Monroe, Or",
+"site_no": "14170000"
+},
+{
+"lat": 44.525,
+"lon": -123.334,
+"name": "Marys River Near Philomath, Or",
+"site_no": "14171000"
+},
+{
+"lat": 44.5663611,
+"lon": -123.2568056,
+"name": "Willamette River At Corvallis, Or",
+"site_no": "14171600"
+},
+{
+"lat": 44.62002778,
+"lon": -123.1284722,
+"name": "Calapooia River At Albany, Or",
+"site_no": "14173500"
+},
+{
+"lat": 44.6387328,
+"lon": -123.1067616,
+"name": "Willamette River At Albany, Or",
+"site_no": "14174000"
+},
+{
+"lat": 44.5990833,
+"lon": -121.966,
+"name": "North Santiam River Nr Marion Forks, Or",
+"site_no": "14174450"
+},
+{
+"lat": 44.7067885,
+"lon": -122.1011859,
+"name": "No Santiam R Blw Boulder Crk, Nr Detroit, Or",
+"site_no": "14178000"
+},
+{
+"lat": 44.7779444,
+"lon": -121.9968889,
+"name": "Breitenbush River Blw Breitenbush Hot Springs, Or",
+"site_no": "14178610"
+},
+{
+"lat": 44.75262179,
+"lon": -122.1289648,
+"name": "Breitenbush R Abv French Cr Nr Detroit, Or.",
+"site_no": "14179000"
+},
+{
+"lat": 44.65289999,
+"lon": -122.130908,
+"name": "Blowout Creek Near Detroit, Or",
+"site_no": "14180300"
+},
+{
+"lat": 44.75377778,
+"lon": -122.2974444,
+"name": "North Santiam River At Niagara, Or",
+"site_no": "14181500"
+},
+{
+"lat": 44.83580278,
+"lon": -122.35495,
+"name": "Little N Santiam River Abv Evans Cr, At Elkhorn,Or",
+"site_no": "14181900"
+},
+{
+"lat": 44.7915108,
+"lon": -122.5789738,
+"name": "Little North Santiam River Near Mehama, Or",
+"site_no": "14182500"
+},
+{
+"lat": 44.78925,
+"lon": -122.6188056,
+"name": "North Santiam River At Mehama, Or",
+"site_no": "14183000"
+},
+{
+"lat": 44.7079444,
+"lon": -122.973111,
+"name": "North Santiam R At Greens Bridge, Nr Jefferson, Or",
+"site_no": "14184100"
+},
+{
+"lat": 44.40475,
+"lon": -122.278,
+"name": "South Santiam River At Upper Soda, Or",
+"site_no": "14184300"
+},
+{
+"lat": 44.39179225,
+"lon": -122.4975817,
+"name": "South Santiam River Below Cascadia, Or",
+"site_no": "14185000"
+},
+{
+"lat": 44.5013333,
+"lon": -122.1690556,
+"name": "Middle Santiam River Nr Santiam Junction, Or",
+"site_no": "14185600"
+},
+{
+"lat": 44.5151239,
+"lon": -122.3720249,
+"name": "Middle Santiam R Near Cascadia, Or",
+"site_no": "14185800"
+},
+{
+"lat": 44.58105556,
+"lon": -122.335,
+"name": "Quartzville Creek Blw Galena Creek Nr Cascadia, Or",
+"site_no": "14185865"
+},
+{
+"lat": 44.54012357,
+"lon": -122.4359155,
+"name": "Quartzville Creek Near Cascadia, Or",
+"site_no": "14185900"
+},
+{
+"lat": 44.41475,
+"lon": -122.67344444,
+"name": "South Santiam River At Foster, Or",
+"site_no": "14186700"
+},
+{
+"lat": 44.37234769,
+"lon": -122.6231384,
+"name": "Wiley Creek Near Foster, Or",
+"site_no": "14187000"
+},
+{
+"lat": 44.4123468,
+"lon": -122.6886956,
+"name": "South Santiam River Near Foster, Or",
+"site_no": "14187200"
+},
+{
+"lat": 44.4984564,
+"lon": -122.8234214,
+"name": "South Santiam River At Waterloo, Or",
+"site_no": "14187500"
+},
+{
+"lat": 44.61956728,
+"lon": -122.4659162,
+"name": "Schafer Creek Near Lacomb, Or",
+"site_no": "14188610"
+},
+{
+"lat": 44.65401136,
+"lon": -122.8525893,
+"name": "Crabtree Creek Near Crabtree, Oreg.",
+"site_no": "14188700"
+},
+{
+"lat": 44.673139,
+"lon": -122.91925,
+"name": "Crabtree Creek Near Scio, Or",
+"site_no": "14188750"
+},
+{
+"lat": 44.71206687,
+"lon": -122.7700878,
+"name": "Thomas Creek Near Scio, Or",
+"site_no": "14188800"
+},
+{
+"lat": 44.7147222,
+"lon": -123.01425,
+"name": "Santiam River At Jefferson, Or",
+"site_no": "14189000"
+},
+{
+"lat": 44.78317527,
+"lon": -123.2345435,
+"name": "Luckiamute River Near Suver, Or",
+"site_no": "14190500"
+},
+{
+"lat": 44.73008889,
+"lon": -123.1623,
+"name": "Luckiamute River Near Buena Vista, Or",
+"site_no": "14190610"
+},
+{
+"lat": 44.9442863,
+"lon": -123.0428742,
+"name": "Willamette River At Salem, Or",
+"site_no": "14191000"
+},
+{
+"lat": 45.2069444,
+"lon": -123.1816667,
+"name": "South Yamhill River At Mcminnville, Or",
+"site_no": "14194150"
+},
+{
+"lat": 45.2845625,
+"lon": -122.9614893,
+"name": "Willamette River At Newberg, Or",
+"site_no": "14197900"
+},
+{
+"lat": 44.9609,
+"lon": -122.385,
+"name": "Bull Creek Near Wilhoit, Or",
+"site_no": "14198400"
+},
+{
+"lat": 45.0097222,
+"lon": -122.4809167,
+"name": "Molalla R Ab Pc Nr Wilhoit, Or",
+"site_no": "14198500"
+},
+{
+"lat": 45.2054444,
+"lon": -122.412111,
+"name": "Nate Creek Tributary Near Colton, Or",
+"site_no": "14199704"
+},
+{
+"lat": 45.24391667,
+"lon": -122.6874444,
+"name": "Molalla River Near Canby, Or",
+"site_no": "14200000"
+},
+{
+"lat": 44.97680556,
+"lon": -122.830111,
+"name": "Drift Creek Near Silverton, Or",
+"site_no": "14200100"
+},
+{
+"lat": 45.15123137,
+"lon": -122.80426,
+"name": "Pudding River Near Woodburn, Or",
+"site_no": "14201340"
+},
+{
+"lat": 45.1015099,
+"lon": -122.7462019,
+"name": "Butte Creek At Monitor, Or",
+"site_no": "14201500"
+},
+{
+"lat": 45.23327778,
+"lon": -122.7509167,
+"name": "Pudding River At Aurora, Or",
+"site_no": "14202000"
+},
+{
+"lat": 45.44064167,
+"lon": -123.125,
+"name": "Wapato Creek At Sw Gaston Road, At Gaston, Or",
+"site_no": "14202650"
+},
+{
+"lat": 45.46927968,
+"lon": -123.200109,
+"name": "Scoggins Ck Blw Henry Hagg Lake, Nr Gaston, Or",
+"site_no": "14202980"
+},
+{
+"lat": 45.4748365,
+"lon": -123.124274,
+"name": "Tualatin River Near Dilley, Or",
+"site_no": "14203500"
+},
+{
+"lat": 45.69385556,
+"lon": -123.0700194,
+"name": "Ef Dairy Cr Abv Murtaugh Cr Nr Meacham Corner, Or",
+"site_no": "14205350"
+},
+{
+"lat": 45.50038889,
+"lon": -122.99094444,
+"name": "Tualatin River At Hwy 219 Near Hillsboro, Or",
+"site_no": "14206241"
+},
+{
+"lat": 45.385417,
+"lon": -122.837056,
+"name": "Chicken Creek Abv Seasonal Trail, Nr Sherwood, Or",
+"site_no": "14206752"
+},
+{
+"lat": 45.4881944,
+"lon": -122.73475,
+"name": "Fanno Creek At 56Th Ave, At Portland, Or",
+"site_no": "14206900"
+},
+{
+"lat": 45.403452,
+"lon": -122.7548185,
+"name": "Fanno Creek At Durham, Or",
+"site_no": "14206950"
+},
+{
+"lat": 45.35067559,
+"lon": -122.6762044,
+"name": "Tualatin River At West Linn, Or",
+"site_no": "14207500"
+},
+{
+"lat": 45.0170833,
+"lon": -121.9235278,
+"name": "Clackamas River At Big Bottom, Or",
+"site_no": "14208000"
+},
+{
+"lat": 44.987944,
+"lon": -122.065972,
+"name": "Collawash R Nr Breitenbush, Or",
+"site_no": "14208300"
+},
+{
+"lat": 45.11373009,
+"lon": -121.8150775,
+"name": "Oak Grove Fork Near Government Camp, Or",
+"site_no": "14208700"
+},
+{
+"lat": 45.07981389,
+"lon": -122.0428583,
+"name": "Oak Grove Fork At Ripplebrook Campground, Or",
+"site_no": "14209250"
+},
+{
+"lat": 45.1248432,
+"lon": -122.0734137,
+"name": "Clackamas River Above Three Lynx Creek, Or",
+"site_no": "14209500"
+},
+{
+"lat": 45.148278,
+"lon": -122.154472,
+"name": "Fish Creek Near Three Lynx, Or",
+"site_no": "14209700"
+},
+{
+"lat": 45.29984346,
+"lon": -122.3539746,
+"name": "Clackamas River At Estacada, Or",
+"site_no": "14210000"
+},
+{
+"lat": 45.389806,
+"lon": -122.493833,
+"name": "Clear Creek At Carver, Or",
+"site_no": "14210750"
+},
+{
+"lat": 45.3792874,
+"lon": -122.5773134,
+"name": "Clackamas River Near Oregon City, Or",
+"site_no": "14211010"
+},
+{
+"lat": 45.43067476,
+"lon": -122.6737057,
+"name": "Tryon Creek Near Lake Oswego, Or",
+"site_no": "14211315"
+},
+{
+"lat": 45.4863333,
+"lon": -122.4218333,
+"name": "Johnson Creek At Regner Road, At Gresham, Or",
+"site_no": "14211400"
+},
+{
+"lat": 45.4767869,
+"lon": -122.4984239,
+"name": "Kelley Creek At Se 159Th Drive At Portland, Or",
+"site_no": "14211499"
+},
+{
+"lat": 45.47745556,
+"lon": -122.5080194,
+"name": "Johnson Creek At Sycamore, Or",
+"site_no": "14211500"
+},
+{
+"lat": 45.47402778,
+"lon": -122.6417222,
+"name": "Crystal Springs Creek At Bybee St, Portland, Or",
+"site_no": "14211542"
+},
+{
+"lat": 45.452897,
+"lon": -122.6431496,
+"name": "Johnson Creek At Milwaukie, Or",
+"site_no": "14211550"
+},
+{
+"lat": 45.5175,
+"lon": -122.6691667,
+"name": "Willamette River At Portland, Or",
+"site_no": "14211720"
+},
+{
+"lat": 45.52761968,
+"lon": -122.4487024,
+"name": "Fairview Creek At Glisan St Near Gresham, Or",
+"site_no": "14211814"
+},
+{
+"lat": 45.63900515,
+"lon": -122.763155,
+"name": "Columbia Slough At Portland, Or",
+"site_no": "14211820"
+},
+{
+"lat": 46.18122136,
+"lon": -123.1834539,
+"name": "Columbia River At Port Westward, Near Quincy, Or",
+"site_no": "14246900"
+},
+{
+"lat": 45.80705586,
+"lon": -123.2831722,
+"name": "Nehalem River Near Vernonia, Or",
+"site_no": "14299800"
+},
+{
+"lat": 45.935161,
+"lon": -123.492119,
+"name": "Nehalem River At Jewell, Or",
+"site_no": "14300350"
+},
+{
+"lat": 45.7039986,
+"lon": -123.755405,
+"name": "Nehalem River Near Foss, Or",
+"site_no": "14301000"
+},
+{
+"lat": 45.7178333,
+"lon": -123.88975,
+"name": "Nehalem River At Nehalem, Or",
+"site_no": "14301340"
+},
+{
+"lat": 45.47593996,
+"lon": -123.7251209,
+"name": "Wilson River Near Tillamook, Or",
+"site_no": "14301500"
+},
+{
+"lat": 45.4462181,
+"lon": -123.7103974,
+"name": "Trask River Above Cedar Creek, Near Tillamook, Or",
+"site_no": "14302480"
+},
+{
+"lat": 45.31063889,
+"lon": -123.4135278,
+"name": "Nestucca River Near Fairdale, Or",
+"site_no": "14302900"
+},
+{
+"lat": 45.32427635,
+"lon": -123.5465012,
+"name": "Tucca Creek Near Blaine, Or.",
+"site_no": "14303200"
+},
+{
+"lat": 45.26649446,
+"lon": -123.847061,
+"name": "Nestucca River Near Beaver, Or",
+"site_no": "14303600"
+},
+{
+"lat": 44.7151172,
+"lon": -123.8873348,
+"name": "Siletz River At Siletz, Or",
+"site_no": "14305500"
+},
+{
+"lat": 44.7646,
+"lon": -123.9137972,
+"name": "Siletz River Near Siletz, Or",
+"site_no": "14305800"
+},
+{
+"lat": 44.6037222,
+"lon": -123.8520556,
+"name": "Big Elk Creek Near Elk City, Or",
+"site_no": "14306032"
+},
+{
+"lat": 44.24789909,
+"lon": -123.6364936,
+"name": "East Fork Lobster Creek Near Alsea, Or.",
+"site_no": "14306340"
+},
+{
+"lat": 44.3859538,
+"lon": -123.831778,
+"name": "Alsea River Near Tidewater, Or",
+"site_no": "14306500"
+},
+{
+"lat": 43.92113889,
+"lon": -123.6115806,
+"name": "Siuslaw River Near Alma, Or",
+"site_no": "14306950"
+},
+{
+"lat": 44.0565,
+"lon": -123.7946889,
+"name": "Lake Creek At Swisshome, Or",
+"site_no": "14307605"
+},
+{
+"lat": 44.06234317,
+"lon": -123.8831659,
+"name": "Siuslaw River Near Mapleton, Or",
+"site_no": "14307620"
+},
+{
+"lat": 42.9303985,
+"lon": -122.9483872,
+"name": "South Umpqua River At Tiller, Or",
+"site_no": "14308000"
+},
+{
+"lat": 42.89012159,
+"lon": -122.9178303,
+"name": "Elk Creek Nr Drew, Or",
+"site_no": "14308500"
+},
+{
+"lat": 42.943694,
+"lon": -123.285917,
+"name": "S Umpqua River At Canyonville, Or",
+"site_no": "14308910"
+},
+{
+"lat": 42.82317665,
+"lon": -123.1258922,
+"name": "Cow Creek Abv Galesville Res, Nr Azalea, Or.",
+"site_no": "14308990"
+},
+{
+"lat": 42.82484286,
+"lon": -123.1789492,
+"name": "Cow Creek Near Azalea, Or",
+"site_no": "14309000"
+},
+{
+"lat": 42.80400356,
+"lon": -123.6109071,
+"name": "West Fork Cow Creek Near Glendale, Or",
+"site_no": "14309500"
+},
+{
+"lat": 42.9234502,
+"lon": -123.428957,
+"name": "Cow Creek Near Riddle, Or",
+"site_no": "14310000"
+},
+{
+"lat": 43.13317169,
+"lon": -123.3984053,
+"name": "South Umpqua River Near Brockway, Or",
+"site_no": "14312000"
+},
+{
+"lat": 43.2517611,
+"lon": -123.4477,
+"name": "South Umpqua River At Melrose, Or",
+"site_no": "14312330"
+},
+{
+"lat": 43.32401306,
+"lon": -122.1969797,
+"name": "N.Umpqua R Abv White Mule Ck, Nr Toketee Falls, Or",
+"site_no": "14313200"
+},
+{
+"lat": 43.35484515,
+"lon": -122.2519822,
+"name": "N.Umpqua R Blw Warm Springs Ck Nr Toketee Falls,Or",
+"site_no": "14313700"
+},
+{
+"lat": 43.2442903,
+"lon": -122.2872596,
+"name": "Clearwater River Abv Trap Ck Nr Toketee Falls, Or",
+"site_no": "14314500"
+},
+{
+"lat": 43.25095636,
+"lon": -122.3383725,
+"name": "Clearwater R Blw Mowich Creek, Nr Toketee Falls,Or",
+"site_no": "14314700"
+},
+{
+"lat": 43.26373317,
+"lon": -122.4217087,
+"name": "North Umpqua River At Toketee Falls, Or",
+"site_no": "14315500"
+},
+{
+"lat": 43.27641667,
+"lon": -122.4499722,
+"name": "N.Umpqua R Blw Slide Ck Dam Nr Toketee Falls, Or",
+"site_no": "14315700"
+},
+{
+"lat": 43.21123347,
+"lon": -122.4275415,
+"name": "Fish Creek Abv Slipper Creek Nr Toketee Falls, Or",
+"site_no": "14315950"
+},
+{
+"lat": 43.30373229,
+"lon": -122.4989339,
+"name": "N.Umpqua R Blw Soda Spgs Resv, Nr Toketee Falls,Or",
+"site_no": "14316455"
+},
+{
+"lat": 43.3034543,
+"lon": -122.5303237,
+"name": "Boulder Creek Near Toketee Falls, Or",
+"site_no": "14316495"
+},
+{
+"lat": 43.29595427,
+"lon": -122.5367127,
+"name": "N Umpqua River Abv Copeland Ck Nr Toketee Falls,Or",
+"site_no": "14316500"
+},
+{
+"lat": 43.349842,
+"lon": -122.7289415,
+"name": "Steamboat Creek Near Glide, Or",
+"site_no": "14316700"
+},
+{
+"lat": 43.34666389,
+"lon": -122.9925917,
+"name": "Rock Creek Near Glide, Or",
+"site_no": "14317600"
+},
+{
+"lat": 43.2526179,
+"lon": -123.0261716,
+"name": "Little River At Peel, Or",
+"site_no": "14318000"
+},
+{
+"lat": 43.27096667,
+"lon": -123.4115444,
+"name": "North Umpqua River At Winchester, Or",
+"site_no": "14319500"
+},
+{
+"lat": 43.43122665,
+"lon": -123.5867573,
+"name": "Little Wolf Creek Near Tyee, Or",
+"site_no": "14320934"
+},
+{
+"lat": 43.5859502,
+"lon": -123.5553727,
+"name": "Umpqua River Near Elkton, Or",
+"site_no": "14321000"
+},
+{
+"lat": 43.635222,
+"lon": -123.564639,
+"name": "Elk Creek At Elkton, Or",
+"site_no": "14322810"
+},
+{
+"lat": 42.89149904,
+"lon": -124.070652,
+"name": "South Fork Coquille River At Powers, Or",
+"site_no": "14325000"
+},
+{
+"lat": 43.0347222,
+"lon": -124.04025,
+"name": "Mf Coquille River Blw Mcmullen Creek Nr Bridge, Or",
+"site_no": "14326300"
+},
+{
+"lat": 43.06566537,
+"lon": -124.1470479,
+"name": "Sf Coquille River At Myrtle Point, Or",
+"site_no": "14326510"
+},
+{
+"lat": 43.06817778,
+"lon": -124.1078444,
+"name": "N Fk Coquille R Nr Myrtle Point, Or",
+"site_no": "14327000"
+},
+{
+"lat": 42.81700556,
+"lon": -124.48253611,
+"name": "Sixes River At Sixes, Or",
+"site_no": "14327150"
+},
+{
+"lat": 42.77484917,
+"lon": -122.4997585,
+"name": "Rogue River Above Prospect, Or",
+"site_no": "14328000"
+},
+{
+"lat": 42.72957187,
+"lon": -122.516147,
+"name": "Rogue River Below Prospect, Or",
+"site_no": "14330000"
+},
+{
+"lat": 42.70638889,
+"lon": -122.388611,
+"name": "South Fork Rogue River Near Prospect, Or",
+"site_no": "14332000"
+},
+{
+"lat": 42.6658333,
+"lon": -122.6863889,
+"name": "Rogue R At Cole M Rivers F Hatchery Nr Mcleod, Or",
+"site_no": "14335072"
+},
+{
+"lat": 42.6512372,
+"lon": -122.6914288,
+"name": "Big Butte Creek Near Mcleod, Or",
+"site_no": "14337500"
+},
+{
+"lat": 42.6554035,
+"lon": -122.7150408,
+"name": "Rogue River Near Mcleod, Or",
+"site_no": "14337600"
+},
+{
+"lat": 42.6787364,
+"lon": -122.7419867,
+"name": "Elk Creek Near Trail, Or",
+"site_no": "14338000"
+},
+{
+"lat": 42.5248471,
+"lon": -122.8428203,
+"name": "Rogue River At Dodge Bridge, Near Eagle Point, Or",
+"site_no": "14339000"
+},
+{
+"lat": 42.14874336,
+"lon": -122.7166989,
+"name": "West Fork Ashland Creek Near Ashland, Or",
+"site_no": "14353000"
+},
+{
+"lat": 42.1526323,
+"lon": -122.7094764,
+"name": "East Fork Ashland Creek Near Ashland, Or",
+"site_no": "14353500"
+},
+{
+"lat": 42.2185,
+"lon": -122.7248056,
+"name": "Bear Creek Below Ashland Creek At Ashland, Or",
+"site_no": "14354200"
+},
+{
+"lat": 42.32401547,
+"lon": -122.8667057,
+"name": "Bear Creek At Medford, Or",
+"site_no": "14357500"
+},
+{
+"lat": 42.43734597,
+"lon": -122.9872678,
+"name": "Rogue River At Raygold Near Central Point, Or",
+"site_no": "14359000"
+},
+{
+"lat": 42.43039607,
+"lon": -123.3178365,
+"name": "Rogue River At Grants Pass, Or",
+"site_no": "14361500"
+},
+{
+"lat": 42.0637361,
+"lon": -123.1114358,
+"name": "Applegate River Near Copper, Or",
+"site_no": "14362000"
+},
+{
+"lat": 42.15401355,
+"lon": -123.075323,
+"name": "Star Gulch Near Ruch, Or",
+"site_no": "14362250"
+},
+{
+"lat": 42.1781813,
+"lon": -123.0030974,
+"name": "Little Applegate River Near Buncom, Or",
+"site_no": "14365400"
+},
+{
+"lat": 42.2415113,
+"lon": -123.1400485,
+"name": "Applegate River Near Applegate, Or",
+"site_no": "14366000"
+},
+{
+"lat": 42.3540058,
+"lon": -123.4067276,
+"name": "Applegate River Near Wilderville, Or",
+"site_no": "14369500"
+},
+{
+"lat": 42.59277778,
+"lon": -124.062,
+"name": "Rogue River Near Agness, Or",
+"site_no": "14372300"
+},
+{
+"lat": 42.15956105,
+"lon": -123.4789509,
+"name": "Sucker Creek Blw Little Grayback Ck, Nr Holland,Or",
+"site_no": "14375100"
+},
+{
+"lat": 42.23177936,
+"lon": -123.66368,
+"name": "Illinois River Near Kerby, Or",
+"site_no": "14377100"
+},
+{
+"lat": 42.54487778,
+"lon": -124.0519139,
+"name": "Illinois River Near Agness, Or",
+"site_no": "14378200"
+},
+{
+"lat": 42.12344278,
+"lon": -124.1873107,
+"name": "Chetco River Near Brookings, Or",
+"site_no": "14400000"
+},
+{
+"lat": 44.2288333,
+"lon": -122.165111,
+"name": "Lookout Creek Above Mack Creek, Nr Blue River, Or",
+"site_no": "441344122095400"
+},
+{
+"lat": 44.2333611,
+"lon": -122.2083333,
+"name": "Mcrae Creek Near Blue River, Or",
+"site_no": "441400122123000"
+},
+{
+"lat": 44.2512222,
+"lon": -122.1818333,
+"name": "Unnamed Trib To Mcrae Creek Near Blue River, Or",
+"site_no": "441504122105500"
+},
+{
+"lat": 45.46022222,
+"lon": -122.38788889,
+"name": "Badger Creek At Rugg Road Near Gresham, Or",
+"site_no": "452737122231400"
+},
+{
+"lat": 45.4650752,
+"lon": -122.3958978,
+"name": "Sunshine Creek At Mouth Near Gresham, Or",
+"site_no": "452755122234100"
+},
+{
+"lat": 45.46866667,
+"lon": -122.3639722,
+"name": "N Fk Johnson Cr Nr Se Orient Dr, Nr Gresham, Or",
+"site_no": "452807122215001"
+},
+{
+"lat": 46.3739937,
+"lon": -123.743482,
+"name": "Naselle River Near Naselle, Wa",
+"site_no": "12010000"
+},
+{
+"lat": 46.65093418,
+"lon": -123.6526584,
+"name": "Willapa River Near Willapa, Wa",
+"site_no": "12013500"
+},
+{
+"lat": 46.6173236,
+"lon": -123.277644,
+"name": "Chehalis River Near Doty, Wa",
+"site_no": "12020000"
+},
+{
+"lat": 46.6345457,
+"lon": -123.2968119,
+"name": "Elk Creek Below Deer Creek Near Doty, Wa",
+"site_no": "12020525"
+},
+{
+"lat": 46.44482815,
+"lon": -123.0837376,
+"name": "South Fork Chehalis River Near Wildwood, Wa",
+"site_no": "12020800"
+},
+{
+"lat": 46.6256583,
+"lon": -123.1018009,
+"name": "Chehalis River Near Adna, Wa",
+"site_no": "12021800"
+},
+{
+"lat": 46.57566178,
+"lon": -122.6851159,
+"name": "South Fork Newaukum River Near Onalaska, Wa",
+"site_no": "12024000"
+},
+{
+"lat": 46.66732635,
+"lon": -122.7701209,
+"name": "Nf Newaukum River Above Bear Creek Near Forest, Wa",
+"site_no": "12024400"
+},
+{
+"lat": 46.6201042,
+"lon": -122.945126,
+"name": "Newaukum River Near Chehalis, Wa",
+"site_no": "12025000"
+},
+{
+"lat": 46.77260276,
+"lon": -122.5940086,
+"name": "Skookumchuck River Near Vail, Wa",
+"site_no": "12025700"
+},
+{
+"lat": 46.79010157,
+"lon": -122.7354019,
+"name": "Skookumchuck River Bl Bldy Run Cr Nr Centralia, Wa",
+"site_no": "12026150"
+},
+{
+"lat": 46.7720459,
+"lon": -122.924298,
+"name": "Skookumchuck River Near Bucoda, Wa",
+"site_no": "12026400"
+},
+{
+"lat": 46.7759343,
+"lon": -123.0356919,
+"name": "Chehalis River Near Grand Mound, Wa",
+"site_no": "12027500"
+},
+{
+"lat": 46.93926375,
+"lon": -123.3143194,
+"name": "Chehalis River At Porter, Wa",
+"site_no": "12031000"
+},
+{
+"lat": 47.0006512,
+"lon": -123.4948838,
+"name": "Satsop River Near Satsop, Wa",
+"site_no": "12035000"
+},
+{
+"lat": 46.96231778,
+"lon": -123.6046072,
+"name": "Chehalis River Near Montesano, Wa",
+"site_no": "12035100"
+},
+{
+"lat": 47.3803354,
+"lon": -123.6098648,
+"name": "Wynoochee River Near Grisdale, Wa",
+"site_no": "12035400"
+},
+{
+"lat": 47.37425567,
+"lon": -123.6368365,
+"name": "Big Creek Near Grisdale, Wa",
+"site_no": "12035450"
+},
+{
+"lat": 47.2989784,
+"lon": -123.6532235,
+"name": "Wynoochee River Above Save Creek Near Aberdeen, Wa",
+"site_no": "12036000"
+},
+{
+"lat": 47.20425777,
+"lon": -123.6151652,
+"name": "Schafer Creek Near Grisdale, Wa",
+"site_no": "12036400"
+},
+{
+"lat": 47.0114831,
+"lon": -123.6554417,
+"name": "Wynoochee River Above Black Creek Nr Montesano, Wa",
+"site_no": "12037400"
+},
+{
+"lat": 47.23147599,
+"lon": -123.974063,
+"name": "Humptulips River Below Hwy 101 Nr Humptulips, Wa",
+"site_no": "12039005"
+},
+{
+"lat": 47.4575863,
+"lon": -123.8893446,
+"name": "Quinault River At Quinault Lake, Wa",
+"site_no": "12039500"
+},
+{
+"lat": 47.358325,
+"lon": -123.9939889,
+"name": "Cook Creek Blw Hatchery Near Quinault, Wa",
+"site_no": "12039510"
+},
+{
+"lat": 47.35777778,
+"lon": -124.1844444,
+"name": "Quinault River Near Taholah, Wa",
+"site_no": "1203951610"
+},
+{
+"lat": 47.5378275,
+"lon": -124.3157227,
+"name": "Queets River Near Clearwater, Wa",
+"site_no": "12040500"
+},
+{
+"lat": 47.80674726,
+"lon": -124.2510329,
+"name": "Hoh River At Us Highway 101 Near Forks, Wa",
+"site_no": "12041200"
+},
+{
+"lat": 47.8944194,
+"lon": -124.3570889,
+"name": "Bogachiel River Near Forks, Wa",
+"site_no": "12042800"
+},
+{
+"lat": 47.96007697,
+"lon": -124.3929872,
+"name": "Calawah River Near Forks, Wa",
+"site_no": "12043000"
+},
+{
+"lat": 47.90285217,
+"lon": -124.5454886,
+"name": "Bogachiel River Near La Push, Wa",
+"site_no": "12043015"
+},
+{
+"lat": 48.2653434,
+"lon": -124.6257923,
+"name": "Tsoo-Yess River Blw Miller Creek Near Ozette, Wa",
+"site_no": "12043163"
+},
+{
+"lat": 48.24146416,
+"lon": -124.3838328,
+"name": "Hoko River Near Sekiu, Wa",
+"site_no": "12043300"
+},
+{
+"lat": 48.05478018,
+"lon": -123.5832136,
+"name": "Elwha River At Mcdonald Br Near Port Angeles, Wa",
+"site_no": "12045500"
+},
+{
+"lat": 48.0142578,
+"lon": -123.1326773,
+"name": "Dungeness River Near Sequim, Wa",
+"site_no": "12048000"
+},
+{
+"lat": 47.87481306,
+"lon": -122.9596127,
+"name": "Little Quilcene River Below Div Nr Quilcene, Wa",
+"site_no": "12051900"
+},
+{
+"lat": 47.78450887,
+"lon": -122.9795778,
+"name": "Big Quilcene River Below Diversion Nr Quilcene, Wa",
+"site_no": "12052210"
+},
+{
+"lat": 47.68398059,
+"lon": -123.011551,
+"name": "Duckabush River Near Brinnon, Wa",
+"site_no": "12054000"
+},
+{
+"lat": 47.51425666,
+"lon": -123.3298868,
+"name": "Nf Skokomish R Bl Staircase Rpds Nr Hoodsport, Wa",
+"site_no": "12056500"
+},
+{
+"lat": 47.3964509,
+"lon": -123.2034642,
+"name": "Nf Skokomish R Nr Lwr Cushman Dam Nr Potlatch, Wa",
+"site_no": "12058790"
+},
+{
+"lat": 47.32978387,
+"lon": -123.243186,
+"name": "North Fork Skokomish River Near Potlatch, Wa",
+"site_no": "12059500"
+},
+{
+"lat": 47.34036949,
+"lon": -123.2801586,
+"name": "South Fork Skokomish River Near Union, Wa",
+"site_no": "12060500"
+},
+{
+"lat": 47.3098151,
+"lon": -123.1770995,
+"name": "Skokomish River Near Potlatch, Wa",
+"site_no": "12061500"
+},
+{
+"lat": 47.30325278,
+"lon": -123.1801944,
+"name": "Purdy Creek At Hwy101 Near Union, Wa",
+"site_no": "12062502"
+},
+{
+"lat": 47.3057722,
+"lon": -123.1788389,
+"name": "Weaver Creek At Hwy 101 Near Potlatch, Wa",
+"site_no": "1206250575"
+},
+{
+"lat": 47.38926205,
+"lon": -122.6990241,
+"name": "Huge Creek Near Wauna, Wa",
+"site_no": "12073500"
+},
+{
+"lat": 47.21176109,
+"lon": -123.1129292,
+"name": "Goldsborough Creek Above 7Th Street At Shelton, Wa",
+"site_no": "12076800"
+},
+{
+"lat": 47.09527778,
+"lon": -123.0905556,
+"name": "Kennedy Creek Near New Kamilche, Wa",
+"site_no": "12078500"
+},
+{
+"lat": 46.85204488,
+"lon": -122.6687354,
+"name": "Deschutes River Near Rainier, Wa",
+"site_no": "12079000"
+},
+{
+"lat": 47.01173227,
+"lon": -122.9031686,
+"name": "Deschutes River At E St Bridge At Tumwater, Wa",
+"site_no": "12080010"
+},
+{
+"lat": 46.75260766,
+"lon": -122.0837194,
+"name": "Nisqually River Near National, Wa",
+"site_no": "12082500"
+},
+{
+"lat": 46.74424068,
+"lon": -122.144529,
+"name": "Mineral Creek Near Mineral, Wa",
+"site_no": "12083000"
+},
+{
+"lat": 46.82260445,
+"lon": -122.30428,
+"name": "Nisqually River At La Grande Dam, Wa",
+"site_no": "12086000"
+},
+{
+"lat": 46.83927048,
+"lon": -122.3292809,
+"name": "Nisqually River At La Grande, Wa",
+"site_no": "12086500"
+},
+{
+"lat": 46.85673885,
+"lon": -122.3025917,
+"name": "Mashel River Near La Grande, Wa",
+"site_no": "12087000"
+},
+{
+"lat": 46.88093699,
+"lon": -122.2790026,
+"name": "Ohop Creek Near Eatonville, Wa",
+"site_no": "12088000"
+},
+{
+"lat": 46.8509041,
+"lon": -122.4353733,
+"name": "Nisqually River Ab Powell Creek Near Mckenna, Wa",
+"site_no": "12088400"
+},
+{
+"lat": 46.86507059,
+"lon": -122.4525964,
+"name": "Tanwax Creek Near Mckenna, Wa",
+"site_no": "12089000"
+},
+{
+"lat": 46.93340268,
+"lon": -122.5609345,
+"name": "Nisqually River At Mckenna, Wa",
+"site_no": "12089500"
+},
+{
+"lat": 47.1345151,
+"lon": -122.4151013,
+"name": "North Fork Clover Creek Near Parkland, Wa",
+"site_no": "12090400"
+},
+{
+"lat": 47.14590298,
+"lon": -122.5103822,
+"name": "Clover Creek Near Tillicum, Wa",
+"site_no": "12090500"
+},
+{
+"lat": 47.1888583,
+"lon": -122.5201028,
+"name": "Flett Creek At Tacoma, Wa",
+"site_no": "12091100"
+},
+{
+"lat": 47.22145848,
+"lon": -122.5092728,
+"name": "Leach Creek Near Fircrest, Wa",
+"site_no": "12091200"
+},
+{
+"lat": 47.1984316,
+"lon": -122.5209584,
+"name": "Leach Cr At Meadow Park Gc At University Place, Wa",
+"site_no": "12091290"
+},
+{
+"lat": 47.1975694,
+"lon": -122.5287173,
+"name": "Chambers Creek Bl Leach Creek Near Steilacoom, Wa",
+"site_no": "12091500"
+},
+{
+"lat": 46.9037164,
+"lon": -122.0351092,
+"name": "Puyallup River Near Electron, Wa",
+"site_no": "12092000"
+},
+{
+"lat": 47.0392396,
+"lon": -122.2078708,
+"name": "Puyallup River Near Orting, Wa",
+"site_no": "12093500"
+},
+{
+"lat": 47.02788105,
+"lon": -122.0326105,
+"name": "Carbon River Near Fairfax, Wa",
+"site_no": "12094000"
+},
+{
+"lat": 47.13954628,
+"lon": -122.0926135,
+"name": "South Prairie Creek At South Prairie, Wa",
+"site_no": "12095000"
+},
+{
+"lat": 47.18510115,
+"lon": -122.2295625,
+"name": "Puyallup River At Alderton, Wa",
+"site_no": "12096500"
+},
+{
+"lat": 47.196739,
+"lon": -122.2509312,
+"name": "Puyallup River At E Main Bridge At Puyallup, Wa",
+"site_no": "12096505"
+},
+{
+"lat": 47.0603864,
+"lon": -121.6056517,
+"name": "Huckleberry Creek Near Greenwater, Wa",
+"site_no": "12096865"
+},
+{
+"lat": 47.1534409,
+"lon": -121.6356543,
+"name": "Greenwater River At Greenwater, Wa",
+"site_no": "12097500"
+},
+{
+"lat": 47.1275,
+"lon": -121.801389,
+"name": "Clearwater River Near Buckley, Wa",
+"site_no": "12097820"
+},
+{
+"lat": 47.1467703,
+"lon": -121.8601066,
+"name": "White River Below Clearwater River Nr Buckley, Wa",
+"site_no": "12097850"
+},
+{
+"lat": 47.15118666,
+"lon": -121.94981,
+"name": "White River Near Buckley, Wa",
+"site_no": "12098500"
+},
+{
+"lat": 47.17388889,
+"lon": -122.0080556,
+"name": "White River Above Boise Creek At Buckley, Wa",
+"site_no": "12099200"
+},
+{
+"lat": 47.1856944,
+"lon": -122.0053889,
+"name": "Boise Creek At 252Nd Ave Ne Nr Buckley, Wa",
+"site_no": "12099550"
+},
+{
+"lat": 47.175935,
+"lon": -122.0184452,
+"name": "Boise Creek At Buckley, Wa",
+"site_no": "12099600"
+},
+{
+"lat": 47.27479497,
+"lon": -122.207876,
+"name": "White River At R Street Near Auburn, Wa",
+"site_no": "12100490"
+},
+{
+"lat": 47.26593409,
+"lon": -122.2298417,
+"name": "White River Near Auburn, Wa",
+"site_no": "12100496"
+},
+{
+"lat": 47.2501008,
+"lon": -122.2437309,
+"name": "White River Near Sumner, Wa",
+"site_no": "12100500"
+},
+{
+"lat": 47.2381564,
+"lon": -122.2281746,
+"name": "Lake Tapps Diversion At Dieringer, Wa",
+"site_no": "12101100"
+},
+{
+"lat": 47.19871179,
+"lon": -122.287342,
+"name": "Puyallup River At 5Th St Bridge At Puyallup, Wa",
+"site_no": "12101470"
+},
+{
+"lat": 47.20843358,
+"lon": -122.3270652,
+"name": "Puyallup River At Puyallup, Wa",
+"site_no": "12101500"
+},
+{
+"lat": 47.2009047,
+"lon": -122.3417673,
+"name": "Clarks Creek At Stewart Avenue Near Puyallup, Wa",
+"site_no": "12102078"
+},
+{
+"lat": 47.18451529,
+"lon": -122.393713,
+"name": "Swan Creek At 80Th St East Near Tacoma, Wa",
+"site_no": "12102190"
+},
+{
+"lat": 47.2837143,
+"lon": -121.797885,
+"name": "Green River Below Howard A Hanson Dam, Wa",
+"site_no": "12105900"
+},
+{
+"lat": 47.30510257,
+"lon": -121.8506647,
+"name": "Green River At Purification Plant Near Palmer, Wa",
+"site_no": "12106700"
+},
+{
+"lat": 47.2756564,
+"lon": -122.059559,
+"name": "Newaukum Creek Near Black Diamond, Wa",
+"site_no": "12108500"
+},
+{
+"lat": 47.284833,
+"lon": -122.082889,
+"name": "Green River Below Crisp Creek Nr Black Diamond, Wa",
+"site_no": "12108800"
+},
+{
+"lat": 47.31232289,
+"lon": -122.165396,
+"name": "Big Soos Creek Above Hatchery Near Auburn, Wa",
+"site_no": "12112600"
+},
+{
+"lat": 47.3123228,
+"lon": -122.2040082,
+"name": "Green River Near Auburn, Wa",
+"site_no": "12113000"
+},
+{
+"lat": 47.3534111,
+"lon": -122.2084556,
+"name": "Green River Above S 277Th St At Kent, Wa",
+"site_no": "12113150"
+},
+{
+"lat": 47.3788611,
+"lon": -122.2688056,
+"name": "Green River Below Meeker St At Kent, Wa",
+"site_no": "12113310"
+},
+{
+"lat": 47.4228775,
+"lon": -122.2653999,
+"name": "Green River At 200Th Street At Kent, Wa",
+"site_no": "12113344"
+},
+{
+"lat": 47.43121109,
+"lon": -122.2276213,
+"name": "Springbrook Creek At Orillia, Wa",
+"site_no": "12113346"
+},
+{
+"lat": 47.38315577,
+"lon": -122.2248429,
+"name": "Mill Creek At Earthworks Park At Kent, Wa",
+"site_no": "12113347"
+},
+{
+"lat": 47.43009988,
+"lon": -122.2431772,
+"name": "Mill Creek Near Mouth At Orillia, Wa",
+"site_no": "12113349"
+},
+{
+"lat": 47.46509966,
+"lon": -122.2484554,
+"name": "Green River At Tukwila, Wa",
+"site_no": "12113350"
+},
+{
+"lat": 47.4789861,
+"lon": -122.2587333,
+"name": "Duwamish River At Golf Course At Tukwila, Wa",
+"site_no": "12113390"
+},
+{
+"lat": 47.34202406,
+"lon": -121.5489688,
+"name": "Cedar River Below Bear Creek Near Cedar Falls, Wa",
+"site_no": "12114500"
+},
+{
+"lat": 47.3701073,
+"lon": -121.6251009,
+"name": "Cedar River Near Cedar Falls, Wa",
+"site_no": "12115000"
+},
+{
+"lat": 47.35063398,
+"lon": -121.6631392,
+"name": "Rex River Near Cedar Falls, Wa",
+"site_no": "12115500"
+},
+{
+"lat": 47.36621625,
+"lon": -121.6928821,
+"name": "Boulder Creek Near Cedar Falls, Wa",
+"site_no": "12115700"
+},
+{
+"lat": 47.4195473,
+"lon": -121.7664977,
+"name": "Canyon Creek Near Cedar Falls, Wa",
+"site_no": "12116100"
+},
+{
+"lat": 47.41871388,
+"lon": -121.781498,
+"name": "Cedar River At Powerplant At Cedar Falls, Wa",
+"site_no": "12116400"
+},
+{
+"lat": 47.4170215,
+"lon": -121.7920335,
+"name": "Cedar River At Cedar Falls, Wa",
+"site_no": "12116500"
+},
+{
+"lat": 47.38646539,
+"lon": -121.846201,
+"name": "Taylor Creek Near Selleck, Wa",
+"site_no": "12117000"
+},
+{
+"lat": 47.39368648,
+"lon": -121.9545378,
+"name": "Cedar River Near Landsburg, Wa",
+"site_no": "12117500"
+},
+{
+"lat": 47.3795458,
+"lon": -121.983448,
+"name": "Cedar River Below Diversion Near Landsburg, Wa",
+"site_no": "12117600"
+},
+{
+"lat": 47.3986868,
+"lon": -121.9212036,
+"name": "Rock Creek Below Walsh Lake Near Landsburg, Wa",
+"site_no": "12117700"
+},
+{
+"lat": 47.36232337,
+"lon": -122.0109484,
+"name": "Rock Creek At Highway 516 Near Ravensdale, Wa",
+"site_no": "12118400"
+},
+{
+"lat": 47.4825999,
+"lon": -122.2034547,
+"name": "Cedar River At Renton, Wa",
+"site_no": "12119000"
+},
+{
+"lat": 47.457297,
+"lon": -122.0050964,
+"name": "Issaquah Creek Near Hobart, Wa",
+"site_no": "12120600"
+},
+{
+"lat": 47.55229658,
+"lon": -122.0478776,
+"name": "Issaquah Creek Near Mouth Near Issaquah, Wa",
+"site_no": "12121600"
+},
+{
+"lat": 47.71732139,
+"lon": -122.0865123,
+"name": "Cottage Lake Creek Ab Bear Creek Near Redmond, Wa",
+"site_no": "12123100"
+},
+{
+"lat": 47.71104167,
+"lon": -121.3607333,
+"name": "South Fork Skykomish River At Skykomish, Wa",
+"site_no": "12131500"
+},
+{
+"lat": 47.83732546,
+"lon": -121.6667809,
+"name": "Skykomish River Near Gold Bar, Wa",
+"site_no": "12134500"
+},
+{
+"lat": 47.8639672,
+"lon": -121.682596,
+"name": "Wallace River At Gold Bar, Wa",
+"site_no": "12135000"
+},
+{
+"lat": 47.94732637,
+"lon": -121.6267826,
+"name": "South Fork Sultan River Near Sultan, Wa",
+"site_no": "12137290"
+},
+{
+"lat": 47.95926837,
+"lon": -121.7973447,
+"name": "Sultan River Below Diversion Dam Near Sultan, Wa",
+"site_no": "12137800"
+},
+{
+"lat": 47.90732356,
+"lon": -121.8153994,
+"name": "Sultan River Below Powerplant Near Sultan, Wa",
+"site_no": "12138160"
+},
+{
+"lat": 47.48591189,
+"lon": -121.647864,
+"name": "Middle Fork Snoqualmie River Near Tanner, Wa",
+"site_no": "12141300"
+},
+{
+"lat": 47.61482536,
+"lon": -121.7134437,
+"name": "Nf Snoqualmie River Near Snoqualmie Falls, Wa",
+"site_no": "12142000"
+},
+{
+"lat": 47.5372998,
+"lon": -121.7417569,
+"name": "North Fork Snoqualmie River Near North Bend, Wa",
+"site_no": "12143000"
+},
+{
+"lat": 47.4151086,
+"lon": -121.5873213,
+"name": "Sf Snoqualmie River Ab Alice Creek Near Garcia, Wa",
+"site_no": "12143400"
+},
+{
+"lat": 47.45260396,
+"lon": -121.7178847,
+"name": "Sf Snoqualmie River At Edgewick, Wa",
+"site_no": "12143600"
+},
+{
+"lat": 47.43257747,
+"lon": -121.7523104,
+"name": "Boxley Creek Near Cedar Falls, Wa",
+"site_no": "12143700"
+},
+{
+"lat": 47.44871459,
+"lon": -121.7317744,
+"name": "Boxley Creek Near Edgewick, Wa",
+"site_no": "12143900"
+},
+{
+"lat": 47.49288017,
+"lon": -121.7901109,
+"name": "Sf Snoqualmie River At North Bend, Wa",
+"site_no": "12144000"
+},
+{
+"lat": 47.5450765,
+"lon": -121.8423157,
+"name": "Snoqualmie River Near Snoqualmie, Wa",
+"site_no": "12144500"
+},
+{
+"lat": 47.53982388,
+"lon": -121.9090047,
+"name": "Raging River Near Fall City, Wa",
+"site_no": "12145500"
+},
+{
+"lat": 47.7197222,
+"lon": -121.7431972,
+"name": "Nf Tolt River Above Yellow Creek Nr Carnation, Wa",
+"site_no": "12147470"
+},
+{
+"lat": 47.71232365,
+"lon": -121.7887272,
+"name": "North Fork Tolt River Near Carnation, Wa",
+"site_no": "12147500"
+},
+{
+"lat": 47.7067714,
+"lon": -121.6001069,
+"name": "South Fork Tolt River Near Index, Wa",
+"site_no": "12147600"
+},
+{
+"lat": 47.70416389,
+"lon": -121.600775,
+"name": "Phelps Creek Blw Unnamed Trib Nr Index, Wa",
+"site_no": "12147680"
+},
+{
+"lat": 47.68926929,
+"lon": -121.7134457,
+"name": "South Fork Tolt River Near Carnation, Wa",
+"site_no": "12148000"
+},
+{
+"lat": 47.69676817,
+"lon": -121.7873379,
+"name": "Sf Tolt River Bl Regulating Basin Nr Carnation, Wa",
+"site_no": "12148300"
+},
+{
+"lat": 47.69565678,
+"lon": -121.8240056,
+"name": "Tolt River Near Carnation, Wa",
+"site_no": "12148500"
+},
+{
+"lat": 47.66593399,
+"lon": -121.9253969,
+"name": "Snoqualmie River Near Carnation, Wa",
+"site_no": "12149000"
+},
+{
+"lat": 47.830932,
+"lon": -122.048459,
+"name": "Snohomish River Near Monroe, Wa",
+"site_no": "12150800"
+},
+{
+"lat": 47.9348201,
+"lon": -122.0731848,
+"name": "Pilchuck River Near Snohomish, Wa",
+"site_no": "12155300"
+},
+{
+"lat": 47.911,
+"lon": -122.09875,
+"name": "Snohomish River At Snohomish, Wa",
+"site_no": "12155500"
+},
+{
+"lat": 48.1045427,
+"lon": -122.1631948,
+"name": "Quilceda Creek Near Marysville, Wa",
+"site_no": "12157000"
+},
+{
+"lat": 48.0853755,
+"lon": -122.1751388,
+"name": "Quilceda Creek Ab West Fork Near Marysville, Wa",
+"site_no": "12157005"
+},
+{
+"lat": 48.0584056,
+"lon": -122.2673406,
+"name": "Mission Creek Near Tulalip, Wa",
+"site_no": "12157250"
+},
+{
+"lat": 48.0992387,
+"lon": -122.2909534,
+"name": "West Fork Tulalip Creek Near Tulalip, Wa",
+"site_no": "12158010"
+},
+{
+"lat": 48.0947944,
+"lon": -122.2781751,
+"name": "East Fork Tulalip Creek Near Mouth Nr Tulalip, Wa",
+"site_no": "12158032"
+},
+{
+"lat": 48.06840539,
+"lon": -122.287897,
+"name": "Tulalip Creek Near Tulalip, Wa",
+"site_no": "12158040"
+},
+{
+"lat": 48.10368686,
+"lon": -121.9456652,
+"name": "Sf Stillaguamish River Near Granite Falls, Wa",
+"site_no": "12161000"
+},
+{
+"lat": 48.2614637,
+"lon": -122.0476165,
+"name": "Nf Stillaguamish River Near Arlington, Wa",
+"site_no": "12167000"
+},
+{
+"lat": 48.2112101,
+"lon": -122.337374,
+"name": "Stillaguamish River Near Stanwood, Wa",
+"site_no": "12170300"
+},
+{
+"lat": 48.7775862,
+"lon": -121.073432,
+"name": "Big Beaver Creek Near Newhalem, Wa",
+"site_no": "12172000"
+},
+{
+"lat": 48.7081426,
+"lon": -120.9773162,
+"name": "Ruby Creek Below Panther Creek Near Newhalem, Wa",
+"site_no": "12173500"
+},
+{
+"lat": 48.6726287,
+"lon": -121.0728964,
+"name": "Thunder Creek Near Newhalem, Wa",
+"site_no": "12175500"
+},
+{
+"lat": 48.67179229,
+"lon": -121.2462348,
+"name": "Skagit River At Newhalem, Wa",
+"site_no": "12178000"
+},
+{
+"lat": 48.66012536,
+"lon": -121.2476233,
+"name": "Newhalem Creek Near Newhalem, Wa",
+"site_no": "12178100"
+},
+{
+"lat": 48.6690143,
+"lon": -121.2554017,
+"name": "Newhalem Creek At Newhalem, Wa",
+"site_no": "12178150"
+},
+{
+"lat": 48.60734468,
+"lon": -121.3615155,
+"name": "Skagit River Above Alma Creek Near Marblemount, Wa",
+"site_no": "12179000"
+},
+{
+"lat": 48.6045268,
+"lon": -121.3995491,
+"name": "Bacon Creek Below Oakes Creek Near Marblemount, Wa",
+"site_no": "12179900"
+},
+{
+"lat": 48.5609154,
+"lon": -121.417882,
+"name": "Diobsud Creek Near Marblemount, Wa",
+"site_no": "12180500"
+},
+{
+"lat": 48.5337306,
+"lon": -121.4298499,
+"name": "Skagit River At Marblemount, Wa",
+"site_no": "12181000"
+},
+{
+"lat": 48.5262307,
+"lon": -121.4154046,
+"name": "Cascade River At Marblemount, Wa",
+"site_no": "12182500"
+},
+{
+"lat": 48.16869195,
+"lon": -121.470652,
+"name": "Sauk River Ab White Chuck River Nr  Darrington, Wa",
+"site_no": "12186000"
+},
+{
+"lat": 48.2498311,
+"lon": -121.5845688,
+"name": "Sauk River At Darrington, Wa",
+"site_no": "12187500"
+},
+{
+"lat": 48.25917778,
+"lon": -121.2247,
+"name": "Downey Creek At Mouth Near Darrington, Wa",
+"site_no": "12187985"
+},
+{
+"lat": 48.42455859,
+"lon": -121.5684634,
+"name": "Sauk River Near Sauk, Wa",
+"site_no": "12189500"
+},
+{
+"lat": 48.75397,
+"lon": -121.5470573,
+"name": "Baker River Ab Blum Creek Near Concrete, Wa",
+"site_no": "12190400"
+},
+{
+"lat": 48.54039255,
+"lon": -121.7434734,
+"name": "Baker River At Henry Thompson Br At Concrete, Wa",
+"site_no": "12193400"
+},
+{
+"lat": 48.52428059,
+"lon": -121.770974,
+"name": "Skagit River Near Concrete, Wa",
+"site_no": "12194000"
+},
+{
+"lat": 48.52164167,
+"lon": -121.840011,
+"name": "Finney Creek At South Skagit Hwy Nr Concrete, Wa",
+"site_no": "12194580"
+},
+{
+"lat": 48.4839962,
+"lon": -122.2432123,
+"name": "Skagit River Near Sedro Woolley, Wa",
+"site_no": "12199000"
+},
+{
+"lat": 48.4448278,
+"lon": -122.3354369,
+"name": "Skagit River Near Mount Vernon, Wa",
+"site_no": "12200500"
+},
+{
+"lat": 48.54594127,
+"lon": -122.3382169,
+"name": "Samish River Near Burlington, Wa",
+"site_no": "12201500"
+},
+{
+"lat": 48.70216667,
+"lon": -122.4824722,
+"name": "Chuckanut Creek Near Bellingham, Wa",
+"site_no": "12201700"
+},
+{
+"lat": 48.6737223,
+"lon": -122.2673823,
+"name": "Anderson Creek Near Bellingham, Wa",
+"site_no": "12201950"
+},
+{
+"lat": 48.66899978,
+"lon": -122.2801605,
+"name": "Brannian Creek At S Bay Dr Nr Wickersham, Wa",
+"site_no": "12201960"
+},
+{
+"lat": 48.7512221,
+"lon": -122.3534976,
+"name": "Olsen Creek Near Bellingham, Wa",
+"site_no": "12202300"
+},
+{
+"lat": 48.75399999,
+"lon": -122.354053,
+"name": "Carpenter Creek Near Bellingham, Wa",
+"site_no": "12202310"
+},
+{
+"lat": 48.7487209,
+"lon": -122.4093331,
+"name": "Euclid Cr At Euclid Ave At Bellingham, Wa",
+"site_no": "12202400"
+},
+{
+"lat": 48.7692772,
+"lon": -122.4065547,
+"name": "Silver Beach Cr At Maynard Pl At Bellingham, Wa",
+"site_no": "12202450"
+},
+{
+"lat": 48.766,
+"lon": -122.4996667,
+"name": "Squalicum Creek Near Mouth At Bellingham, Wa",
+"site_no": "12204010"
+},
+{
+"lat": 48.90595739,
+"lon": -121.8443104,
+"name": "Nf Nooksack River Bl Cascade Creek Nr Glacier, Wa",
+"site_no": "12205000"
+},
+{
+"lat": 48.7792828,
+"lon": -122.1065434,
+"name": "Mf Nooksack River Near Deming, Wa",
+"site_no": "12208000"
+},
+{
+"lat": 48.6728524,
+"lon": -122.139296,
+"name": "Skookum Creek Above Diversion Near Wickersham, Wa",
+"site_no": "12209490"
+},
+{
+"lat": 48.6775743,
+"lon": -122.1665191,
+"name": "Sf Nooksack River At Saxon Bridge, Wa",
+"site_no": "12210000"
+},
+{
+"lat": 48.78896314,
+"lon": -122.19957847,
+"name": "Sf Nooksack R Abv Potter Bridge At Van Zandt, Wa",
+"site_no": "12210485"
+},
+{
+"lat": 48.84174,
+"lon": -122.2943049,
+"name": "Nooksack River At North Cedarville, Wa",
+"site_no": "12210700"
+},
+{
+"lat": 48.8325728,
+"lon": -122.3390283,
+"name": "Anderson Creek At Smith Road Near Goshen, Wa",
+"site_no": "12210900"
+},
+{
+"lat": 48.91789467,
+"lon": -122.3479369,
+"name": "Nooksack River At Everson, Wa",
+"site_no": "12211200"
+},
+{
+"lat": 48.9203916,
+"lon": -122.4857206,
+"name": "Nooksack River Near Lynden, Wa",
+"site_no": "12211500"
+},
+{
+"lat": 48.9386827,
+"lon": -122.4790353,
+"name": "Fishtrap Creek At Front Street At Lynden, Wa",
+"site_no": "12212050"
+},
+{
+"lat": 48.99812708,
+"lon": -122.5012597,
+"name": "Unnamed Trib To Bertrand Cr Nr H St Nr Lynden, Wa",
+"site_no": "12212430"
+},
+{
+"lat": 48.84479237,
+"lon": -122.5893141,
+"name": "Nooksack River At Ferndale, Wa",
+"site_no": "12213100"
+},
+{
+"lat": 48.9748433,
+"lon": -122.2512642,
+"name": "Sumas River Near Sumas, Wa",
+"site_no": "12214500"
+},
+{
+"lat": 48.7809561,
+"lon": -117.4163706,
+"name": "Pend Oreille River Below Box Canyon Near Ione, Wa",
+"site_no": "12396500"
+},
+{
+"lat": 48.99881409,
+"lon": -117.3535794,
+"name": "Pend Oreille River At International Boundary",
+"site_no": "12398600"
+},
+{
+"lat": 49.00074966,
+"lon": -117.6294206,
+"name": "Columbia River At International Boundary",
+"site_no": "12399500"
+},
+{
+"lat": 48.97130417,
+"lon": -117.6410879,
+"name": "Columbia River Aux Gage At International Boundary",
+"site_no": "12399510"
+},
+{
+"lat": 48.98128428,
+"lon": -118.7664259,
+"name": "Kettle River Near Ferry, Wa",
+"site_no": "12401500"
+},
+{
+"lat": 48.9842824,
+"lon": -118.216401,
+"name": "Kettle River Near Laurier, Wa",
+"site_no": "12404500"
+},
+{
+"lat": 48.5943461,
+"lon": -118.0624887,
+"name": "Colville River At Kettle Falls, Wa",
+"site_no": "12409000"
+},
+{
+"lat": 48.31291111,
+"lon": -118.23638889,
+"name": "Hall Creek Above Inchelium, Wa",
+"site_no": "12409400"
+},
+{
+"lat": 47.67905905,
+"lon": -117.3646571,
+"name": "Spokane River Below N Greene St At Spokane, Wa",
+"site_no": "12422000"
+},
+{
+"lat": 47.6593354,
+"lon": -117.4491029,
+"name": "Spokane River At Spokane, Wa",
+"site_no": "12422500"
+},
+{
+"lat": 47.2026758,
+"lon": -117.0407304,
+"name": "Hangman Creek At State Line Road Near Tekoa, Wa",
+"site_no": "12422990"
+},
+{
+"lat": 47.6526688,
+"lon": -117.449658,
+"name": "Hangman Creek At Spokane, Wa",
+"site_no": "12424000"
+},
+{
+"lat": 47.78044505,
+"lon": -117.5455016,
+"name": "Spokane River Below Nine Mile Dam At Spokane, Wa",
+"site_no": "12426000"
+},
+{
+"lat": 47.78461388,
+"lon": -117.4043856,
+"name": "Little Spokane River At Dartford, Wa",
+"site_no": "12431000"
+},
+{
+"lat": 47.78100099,
+"lon": -117.4963338,
+"name": "Little Spokane River Near Dartford, Wa",
+"site_no": "12431500"
+},
+{
+"lat": 47.8365534,
+"lon": -117.8413478,
+"name": "Spokane River At Long Lake, Wa",
+"site_no": "12433000"
+},
+{
+"lat": 47.9946133,
+"lon": -117.7263464,
+"name": "Chamokane Creek Near Springdale, Wa",
+"site_no": "12433100"
+},
+{
+"lat": 47.8632201,
+"lon": -117.858294,
+"name": "Chamokane Creek Below Falls Near Long Lake, Wa",
+"site_no": "12433200"
+},
+{
+"lat": 48.08432459,
+"lon": -118.6914018,
+"name": "Sanpoil River Above Jack Creek At Keller, Wa",
+"site_no": "12434590"
+},
+{
+"lat": 47.9654302,
+"lon": -118.9827992,
+"name": "Columbia River At Grand Coulee, Wa",
+"site_no": "12436500"
+},
+{
+"lat": 48.0065333,
+"lon": -119.6653303,
+"name": "Columbia River At Bridgeport, Wa",
+"site_no": "12438000"
+},
+{
+"lat": 48.9703694,
+"lon": -119.4185194,
+"name": "Ninemile Creek At Eastlake Rd Near Oroville, Wa",
+"site_no": "12438905"
+},
+{
+"lat": 48.9307184,
+"lon": -119.4203419,
+"name": "Okanogan River At Oroville, Wa",
+"site_no": "12439500"
+},
+{
+"lat": 48.98460109,
+"lon": -119.6184098,
+"name": "Similkameen River Near Nighthawk, Wa",
+"site_no": "12442500"
+},
+{
+"lat": 48.96099,
+"lon": -119.5011834,
+"name": "Similkameen River Near Oroville, Wa",
+"site_no": "12443500"
+},
+{
+"lat": 48.7592699,
+"lon": -119.4092122,
+"name": "Antoine Creek At Us Hwy 97 Near Ellisforde, Wa",
+"site_no": "12444290"
+},
+{
+"lat": 48.70121386,
+"lon": -119.442823,
+"name": "Bonaparte Creek At Tonasket, Wa",
+"site_no": "12444550"
+},
+{
+"lat": 48.632375,
+"lon": -119.4617229,
+"name": "Okanogan River Near Tonasket, Wa",
+"site_no": "12445000"
+},
+{
+"lat": 48.4970458,
+"lon": -119.5261544,
+"name": "Johnson Creek Near Riverside, Wa",
+"site_no": "12445500"
+},
+{
+"lat": 48.36704638,
+"lon": -119.4450378,
+"name": "Omak Creek Near Omak, Wa",
+"site_no": "12445900"
+},
+{
+"lat": 48.59621025,
+"lon": -119.7739423,
+"name": "North Fork Salmon Creek Near Conconully, Wa",
+"site_no": "12446150"
+},
+{
+"lat": 48.5409324,
+"lon": -119.7642185,
+"name": "West Fork Salmon Creek Near Conconully, Wa",
+"site_no": "12446400"
+},
+{
+"lat": 48.40515066,
+"lon": -119.6217229,
+"name": "Salmon Creek Above Diversion Near Okanogan, Wa",
+"site_no": "12446995"
+},
+{
+"lat": 48.2812606,
+"lon": -119.7045047,
+"name": "Okanogan River At Malott, Wa",
+"site_no": "12447200"
+},
+{
+"lat": 48.28315469,
+"lon": -119.7083776,
+"name": "Loup Loup Creek At Malott, Wa",
+"site_no": "12447285"
+},
+{
+"lat": 48.57425,
+"lon": -120.385861,
+"name": "Methow River Above Goat Creek Near Mazama, Wa",
+"site_no": "12447383"
+},
+{
+"lat": 48.8228737,
+"lon": -120.1459038,
+"name": "Andrews Creek Near Mazama, Wa",
+"site_no": "12447390"
+},
+{
+"lat": 48.4770898,
+"lon": -120.1864734,
+"name": "Chewuch River At Winthrop, Wa",
+"site_no": "12448000"
+},
+{
+"lat": 48.4734787,
+"lon": -120.1773063,
+"name": "Methow River At Winthrop, Wa",
+"site_no": "12448500"
+},
+{
+"lat": 48.3698671,
+"lon": -120.148693,
+"name": "Twisp River Near Twisp, Wa",
+"site_no": "12448998"
+},
+{
+"lat": 48.36514507,
+"lon": -120.1161917,
+"name": "Methow River At Twisp, Wa",
+"site_no": "12449500"
+},
+{
+"lat": 48.0773639,
+"lon": -119.9850723,
+"name": "Methow River Near Pateros, Wa",
+"site_no": "12449950"
+},
+{
+"lat": 48.04708647,
+"lon": -119.91229,
+"name": "Methow River At Pateros, Wa",
+"site_no": "12450500"
+},
+{
+"lat": 47.94652975,
+"lon": -119.86673,
+"name": "Columbia River Below Wells Dam, Wa",
+"site_no": "12450700"
+},
+{
+"lat": 48.32958017,
+"lon": -120.6917668,
+"name": "Stehekin River At Stehekin, Wa",
+"site_no": "12451000"
+},
+{
+"lat": 47.83528716,
+"lon": -120.009638,
+"name": "Chelan River At Chelan, Wa",
+"site_no": "12452500"
+},
+{
+"lat": 47.80793056,
+"lon": -119.9857639,
+"name": "Chelan R At Habitat 4 Channel At Chelan Falls, Wa",
+"site_no": "12452550"
+},
+{
+"lat": 47.81846178,
+"lon": -120.4231438,
+"name": "Entiat River Near Ardenvoir, Wa",
+"site_no": "12452800"
+},
+{
+"lat": 47.7367943,
+"lon": -120.3686962,
+"name": "Mad River At Ardenvoir, Wa",
+"site_no": "12452890"
+},
+{
+"lat": 47.663185,
+"lon": -120.250634,
+"name": "Entiat River Near Entiat, Wa",
+"site_no": "12452990"
+},
+{
+"lat": 47.5242934,
+"lon": -120.3022969,
+"name": "Columbia River At Rocky Reach Dam, Wa",
+"site_no": "12453700"
+},
+{
+"lat": 47.8373111,
+"lon": -120.6622862,
+"name": "Chiwawa River Near Plain, Wa",
+"site_no": "12456500"
+},
+{
+"lat": 47.76286656,
+"lon": -120.6661735,
+"name": "Wenatchee River At Plain, Wa",
+"site_no": "12457000"
+},
+{
+"lat": 47.54092147,
+"lon": -120.720059,
+"name": "Icicle Creek Above Snow Creek Near Leavenworth, Wa",
+"site_no": "12458000"
+},
+{
+"lat": 47.5831447,
+"lon": -120.6195014,
+"name": "Wenatchee River At Peshastin, Wa",
+"site_no": "12459000"
+},
+{
+"lat": 47.4992578,
+"lon": -120.4244935,
+"name": "Wenatchee River At Monitor, Wa",
+"site_no": "12462500"
+},
+{
+"lat": 47.33235176,
+"lon": -120.081171,
+"name": "Columbia River Below Rock Island Dam, Wa",
+"site_no": "12462600"
+},
+{
+"lat": 47.4068192,
+"lon": -118.3188652,
+"name": "Coal Creek At Mohler, Wa",
+"site_no": "12464800"
+},
+{
+"lat": 47.36038447,
+"lon": -118.8499972,
+"name": "Crab Creek At Irby, Wa",
+"site_no": "12465000"
+},
+{
+"lat": 47.6629263,
+"lon": -118.9305666,
+"name": "Wilson Creek Below Corbett Draw Near Almira, Wa",
+"site_no": "12465400"
+},
+{
+"lat": 47.428039,
+"lon": -119.202194,
+"name": "Crab Creek Near Stratford, Wa",
+"site_no": "12466015"
+},
+{
+"lat": 47.1893085,
+"lon": -119.265855,
+"name": "Crab Creek Near Moses Lake, Wa",
+"site_no": "12467000"
+},
+{
+"lat": 47.31264008,
+"lon": -119.445588,
+"name": "Rocky Ford Creek Near Ephrata, Wa",
+"site_no": "12470500"
+},
+{
+"lat": 46.8298196,
+"lon": -119.8311276,
+"name": "Crab Creek Near Beverly, Wa",
+"site_no": "12472600"
+},
+{
+"lat": 46.6287084,
+"lon": -119.8647355,
+"name": "Columbia River Below Priest Rapids Dam, Wa",
+"site_no": "12472800"
+},
+{
+"lat": 47.19567717,
+"lon": -120.7845234,
+"name": "Teanaway River Near Cle Elum, Wa",
+"site_no": "12480500"
+},
+{
+"lat": 46.8626264,
+"lon": -120.480067,
+"name": "Yakima River At Umtanum, Wa",
+"site_no": "12484500"
+},
+{
+"lat": 46.97761606,
+"lon": -121.168696,
+"name": "American River Near Nile, Wa",
+"site_no": "12488500"
+},
+{
+"lat": 46.7237694,
+"lon": -120.8146,
+"name": "Oak Creek Above Tieton River Near Naches, Wa",
+"site_no": "12492900"
+},
+{
+"lat": 46.53425817,
+"lon": -120.4672519,
+"name": "Yakima River Above Ahtanum Creek At Union Gap, Wa",
+"site_no": "12500450"
+},
+{
+"lat": 46.53596038,
+"lon": -120.4733968,
+"name": "Ahtanum Creek At Union Gap, Wa",
+"site_no": "12502500"
+},
+{
+"lat": 46.34346299,
+"lon": -120.186995,
+"name": "Granger Drain At Granger, Wa",
+"site_no": "12505450"
+},
+{
+"lat": 46.3109589,
+"lon": -120.788125,
+"name": "Toppenish Creek Near Fort Simcoe, Wa",
+"site_no": "12506000"
+},
+{
+"lat": 46.23120786,
+"lon": -119.9994537,
+"name": "Yakima River At Mabton, Wa",
+"site_no": "12508990"
+},
+{
+"lat": 46.25346748,
+"lon": -119.4780794,
+"name": "Yakima River At Kiona, Wa",
+"site_no": "12510500"
+},
+{
+"lat": 46.66347327,
+"lon": -118.863334,
+"name": "Esquatzel Coulee At Connell, Wa",
+"site_no": "12513000"
+},
+{
+"lat": 46.09706985,
+"lon": -116.9776916,
+"name": "Snake River Near Anatone, Wa",
+"site_no": "13334300"
+},
+{
+"lat": 46.3406798,
+"lon": -117.0560319,
+"name": "Asotin Creek At Asotin, Wa",
+"site_no": "13335050"
+},
+{
+"lat": 46.5054217,
+"lon": -118.0663393,
+"name": "Tucannon River Near Starbuck, Wa",
+"site_no": "13344500"
+},
+{
+"lat": 46.7323856,
+"lon": -117.1810048,
+"name": "South Fork Palouse River At Pullman, Wa",
+"site_no": "13348000"
+},
+{
+"lat": 46.7584831,
+"lon": -118.1488494,
+"name": "Palouse River At Hooper, Wa",
+"site_no": "13351000"
+},
+{
+"lat": 46.00789299,
+"lon": -118.1185586,
+"name": "Mill Creek Near Walla Walla, Wa",
+"site_no": "14013000"
+},
+{
+"lat": 46.05763797,
+"lon": -118.140228,
+"name": "Blue Creek Near Walla Walla, Wa",
+"site_no": "14013500"
+},
+{
+"lat": 46.0856932,
+"lon": -118.2282912,
+"name": "Mill Creek At Five Mile Rd Br Nr Walla Walla, Wa",
+"site_no": "14013700"
+},
+{
+"lat": 46.0762483,
+"lon": -118.2735722,
+"name": "Mill Creek At Walla Walla, Wa",
+"site_no": "14015000"
+},
+{
+"lat": 46.05126667,
+"lon": -118.4505028,
+"name": "Mill Cr At Last Chance Rd Br Nr College Place, Wa",
+"site_no": "14015350"
+},
+{
+"lat": 46.27704167,
+"lon": -118.1115722,
+"name": "Touchet River At Gallaher Rd Near Waitsburg, Wa",
+"site_no": "14016820"
+},
+{
+"lat": 46.02760945,
+"lon": -118.7296888,
+"name": "Walla Walla River Near Touchet, Wa",
+"site_no": "14018500"
+},
+{
+"lat": 46.26480648,
+"lon": -121.2450474,
+"name": "Klickitat River Above West Fork Near Glenwood, Wa",
+"site_no": "14107000"
+},
+{
+"lat": 45.962345,
+"lon": -121.102295,
+"name": "Klickitat River Bl Summit Creek Near Glenwood, Wa",
+"site_no": "14111400"
+},
+{
+"lat": 45.75651098,
+"lon": -121.2100714,
+"name": "Klickitat River Near Pitt, Wa",
+"site_no": "14113000"
+},
+{
+"lat": 45.7520637,
+"lon": -121.5270176,
+"name": "White Salmon River Near Underwood, Wa",
+"site_no": "14123500"
+},
+{
+"lat": 45.72674698,
+"lon": -121.7947746,
+"name": "Wind River Near Carson, Wa",
+"site_no": "14128500"
+},
+{
+"lat": 45.62067265,
+"lon": -122.6734306,
+"name": "Columbia River At Vancouver, Wa",
+"site_no": "14144700"
+},
+{
+"lat": 46.060355,
+"lon": -121.9845094,
+"name": "Lewis River Above Muddy River Near Cougar, Wa",
+"site_no": "14216000"
+},
+{
+"lat": 46.0756326,
+"lon": -121.9986768,
+"name": "Muddy River Below Clear Creek Near Cougar, Wa",
+"site_no": "14216500"
+},
+{
+"lat": 45.9398339,
+"lon": -122.3170398,
+"name": "Canyon Creek Near Amboy, Wa",
+"site_no": "14219000"
+},
+{
+"lat": 46.004555,
+"lon": -122.3442638,
+"name": "Speelyai Creek Near Cougar, Wa",
+"site_no": "14219800"
+},
+{
+"lat": 45.95173827,
+"lon": -122.5639685,
+"name": "Lewis River At Ariel, Wa",
+"site_no": "14220500"
+},
+{
+"lat": 45.8367809,
+"lon": -122.4662083,
+"name": "East Fork Lewis River Near Heisson, Wa",
+"site_no": "14222500"
+},
+{
+"lat": 46.61285685,
+"lon": -121.6792344,
+"name": "Cowlitz River At Packwood, Wa",
+"site_no": "14226500"
+},
+{
+"lat": 46.5319444,
+"lon": -121.9569444,
+"name": "Cowlitz River At Randle, Wa",
+"site_no": "14231000"
+},
+{
+"lat": 46.4439666,
+"lon": -121.8400689,
+"name": "Cispus River Ab Yellowjacket Creek Near Randle, Wa",
+"site_no": "14231900"
+},
+{
+"lat": 46.4662217,
+"lon": -122.1089856,
+"name": "Cowlitz River Near Kosmos, Wa",
+"site_no": "14233500"
+},
+{
+"lat": 46.5953843,
+"lon": -122.4595564,
+"name": "Tilton River Ab Bear Canyon Creek Near Cinebar, Wa",
+"site_no": "14236200"
+},
+{
+"lat": 46.51038526,
+"lon": -122.616224,
+"name": "Cowlitz River Below Mayfield Dam, Wa",
+"site_no": "14238000"
+},
+{
+"lat": 46.43844169,
+"lon": -122.8442829,
+"name": "Cowlitz River At Toledo, Wa",
+"site_no": "14238800"
+},
+{
+"lat": 46.3717753,
+"lon": -122.5789987,
+"name": "Nf Toutle River Below Srs Near Kid Valley, Wa",
+"site_no": "14240525"
+},
+{
+"lat": 46.335,
+"lon": -122.8408333,
+"name": "Toutle River At Tower Road Near Silver Lake, Wa",
+"site_no": "14242580"
+},
+{
+"lat": 46.2748332,
+"lon": -122.9145587,
+"name": "Cowlitz River At Castle Rock, Wa",
+"site_no": "14243000"
+}
+]
+}

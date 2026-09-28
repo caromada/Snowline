@@ -374,6 +374,127 @@ def octagon(lat: float, lon: float, radius_m: float) -> list[list[float]]:
     return ring
 
 
+# The rest of the West Coast featured tier. Coordinates and elevations come
+# from each pass's OpenStreetMap node (resolved in resolve_west below), so
+# only names, disambiguation hints and hand-written notes live here. "near"
+# picks between same-named passes; notes stay empty where unsure.
+WEST_FEATURED: list[dict] = [
+    # Washington: North Cascades, Enchantments, Glacier Peak, Rainier, Goat Rocks
+    {"slug": "aasgard", "name": "Aasgard Pass", "state": "WA",
+     "aliases": ["aasgard", "asgard pass", "asgard"],
+     "aspect_note": "a 2,200 ft talus gully from Colchuck Lake into the Enchantments"},
+    {"slug": "cascade", "name": "Cascade Pass", "state": "WA", "aliases": ["cascade pass"],
+     "aspect_note": "short switchbacks from the end of the Cascade River Road; Sahale Arm above"},
+    {"slug": "cutthroat", "name": "Cutthroat Pass", "state": "WA", "aliases": ["cutthroat"],
+     "aspect_note": "PCT high ground above Rainy Pass and Highway 20"},
+    {"slug": "rainy", "name": "Rainy Pass", "state": "WA", "aliases": ["rainy pass"],
+     "aspect_note": "Highway 20 PCT crossing, trailhead for Cutthroat and Maple Pass"},
+    {"slug": "harts", "name": "Harts Pass", "state": "WA", "aliases": ["harts", "hart's pass"],
+     "aspect_note": "PCT trailhead at the top of a high dirt road into the Pasayten"},
+    {"slug": "glacier-pasayten", "name": "Glacier Pass", "state": "WA", "near": (48.67, -120.73),
+     "aliases": [], "aspect_note": ""},
+    {"slug": "hannegan", "name": "Hannegan Pass", "state": "WA", "aliases": ["hannegan"],
+     "aspect_note": "gateway into the northern Picket Range country"},
+    {"slug": "whatcom", "name": "Whatcom Pass", "state": "WA", "aliases": ["whatcom"],
+     "aspect_note": "remote North Cascades crossing facing the Challenger Glacier"},
+    {"slug": "spider-gap", "name": "Spider Gap", "state": "WA", "aliases": ["spider gap", "spider"],
+     "aspect_note": "the Spider Glacier gully below it holds snow most of the summer"},
+    {"slug": "buck-creek", "name": "Buck Creek Pass", "state": "WA", "aliases": ["buck creek"],
+     "aspect_note": "Glacier Peak Wilderness, the far side of the Spider Gap loop"},
+    {"slug": "fire-creek", "name": "Fire Creek Pass", "state": "WA", "aliases": ["fire creek"],
+     "aspect_note": "PCT in the Glacier Peak Wilderness; the north side holds snow late"},
+    {"slug": "white-glacier-peak", "name": "White Pass", "state": "WA", "near": (48.03, -121.15),
+     "aliases": ["white pass glacier peak"],
+     "aspect_note": "PCT meadow pass on the flank of Glacier Peak"},
+    {"slug": "stevens", "name": "Stevens Pass", "state": "WA", "aliases": ["stevens"],
+     "aspect_note": "Highway 2 PCT crossing"},
+    {"slug": "snoqualmie", "name": "Snoqualmie Pass", "state": "WA", "aliases": ["snoqualmie"],
+     "aspect_note": "I-90 PCT crossing, start of the Kendall Katwalk"},
+    {"slug": "chinook", "name": "Chinook Pass", "state": "WA", "aliases": ["chinook"],
+     "aspect_note": "Highway 410 PCT crossing on the east edge of Mount Rainier"},
+    {"slug": "panhandle-gap", "name": "Panhandle Gap", "state": "WA", "aliases": ["panhandle"],
+     "aspect_note": "high point of the Wonderland Trail; snowfields linger into August"},
+    {"slug": "cispus", "name": "Cispus Pass", "state": "WA", "aliases": ["cispus"],
+     "aspect_note": "PCT through the Goat Rocks, south of the Knife's Edge"},
+    {"slug": "elk-goat-rocks", "name": "Elk Pass", "state": "WA", "near": (46.54, -121.46),
+     "aliases": ["elk pass goat rocks"], "aspect_note": "PCT at the north end of the Goat Rocks"},
+    # Oregon: Mount Hood, the central Cascades, the Wallowas
+    {"slug": "lolo", "name": "Lolo Pass", "state": "OR", "aliases": ["lolo"],
+     "aspect_note": "PCT on the northwest side of Mount Hood"},
+    {"slug": "santiam", "name": "Santiam Pass", "state": "OR", "aliases": ["santiam"],
+     "aspect_note": "Highway 20 PCT crossing near Mount Washington"},
+    {"slug": "mckenzie", "name": "McKenzie Pass", "state": "OR", "aliases": ["mckenzie"],
+     "aspect_note": "Highway 242 across the lava fields, closed to cars in winter"},
+    {"slug": "willamette", "name": "Willamette Pass", "state": "OR", "aliases": ["willamette"],
+     "aspect_note": "Highway 58 PCT crossing"},
+    {"slug": "glacier-wallowa", "name": "Glacier Pass", "state": "OR", "near": (45.17, -117.29),
+     "aliases": ["glacier pass wallowa"],
+     "aspect_note": "Wallowa Mountains, above Glacier Lake in the Lakes Basin country"},
+    {"slug": "hawkins", "name": "Hawkins Pass", "state": "OR", "aliases": ["hawkins"],
+     "aspect_note": "head of the West Fork Wallowa River"},
+    {"slug": "polaris", "name": "Polaris Pass", "state": "OR", "aliases": ["polaris"],
+     "aspect_note": "long switchbacks above the West Fork Wallowa"},
+    # California beyond the High Sierra core
+    {"slug": "donner", "name": "Donner Pass", "state": "CA", "aliases": ["donner"],
+     "aspect_note": "historic crossing near the PCT north of Lake Tahoe"},
+    {"slug": "mosquito-desolation", "name": "Mosquito Pass", "state": "CA",
+     "near": (38.88, -120.16), "aliases": ["mosquito pass desolation"],
+     "aspect_note": "Desolation Wilderness"},
+    {"slug": "carson", "name": "Carson Pass", "state": "CA", "aliases": ["carson"],
+     "aspect_note": "Highway 88 PCT crossing"},
+    {"slug": "ebbetts", "name": "Ebbetts Pass", "state": "CA", "aliases": ["ebbetts"],
+     "aspect_note": "Highway 4 PCT crossing"},
+    {"slug": "sonora", "name": "Sonora Pass", "state": "CA", "aliases": ["sonora"],
+     "aspect_note": "Highway 108 PCT crossing, the second-highest road pass in the Sierra"},
+    {"slug": "dorothy-lake", "name": "Dorothy Lake Pass", "state": "CA",
+     "aliases": ["dorothy lake"],
+     "aspect_note": "PCT at the northern boundary of Yosemite"},
+    {"slug": "benson", "name": "Benson Pass", "state": "CA", "aliases": ["benson"],
+     "aspect_note": "PCT through the canyon country of northern Yosemite"},
+    {"slug": "burro", "name": "Burro Pass", "state": "CA", "aliases": ["burro"],
+     "aspect_note": "head of Matterhorn Canyon below the Sawtooth Ridge"},
+    {"slug": "isberg", "name": "Isberg Pass", "state": "CA", "aliases": ["isberg"],
+     "aspect_note": "on the southern boundary of Yosemite"},
+    {"slug": "dollar-lake-saddle", "name": "Dollar Lake Saddle", "state": "CA",
+     "aliases": ["dollar lake saddle"],
+     "aspect_note": "San Gorgonio Wilderness, on the way to Southern California's highest summit"},
+]
+
+
+def resolve_west(osm_nodes: list[dict]) -> list[dict]:
+    """Attach OSM coordinates and elevations to the West Coast featured tier."""
+    out: list[dict] = []
+    for entry in WEST_FEATURED:
+        candidates = [
+            n for n in osm_nodes
+            if n["name"] == entry["name"] and n["state"] == entry["state"]
+            and n["elevation_ft"] is not None
+        ]
+        if not candidates:
+            raise ValueError(f"no OSM node for featured pass {entry['name']} ({entry['state']})")
+        if "near" in entry:
+            lat, lon = entry["near"]
+            node = min(candidates, key=lambda n: haversine_km(lat, lon, n["lat"], n["lon"]))
+        elif len({(round(n["lat"], 2), round(n["lon"], 2)) for n in candidates}) > 1:
+            raise ValueError(f"ambiguous featured pass {entry['name']}: add a 'near' hint")
+        else:
+            node = candidates[0]
+        out.append(
+            {
+                "slug": entry["slug"],
+                "name": entry["name"],
+                "elevation_ft": node["elevation_ft"],
+                "lat": round(node["lat"], 6),
+                "lon": round(node["lon"], 6),
+                "aliases": entry["aliases"],
+                "creek": "",
+                "aspect_note": entry["aspect_note"],
+                "state": entry["state"],
+            }
+        )
+    return out
+
+
 DUPLICATE_KM = 1.5
 
 
@@ -421,6 +542,7 @@ def merge_osm(featured: list[dict], osm_nodes: list[dict]) -> list[dict]:
                 "creek": "",
                 "aspect_note": "",
                 "tier": "osm",
+                "state": node.get("state", "CA"),
                 "osm_id": node["osm_id"],
             }
         )
@@ -429,8 +551,11 @@ def merge_osm(featured: list[dict], osm_nodes: list[dict]) -> list[dict]:
 
 def main() -> None:
     root = Path(__file__).resolve().parent.parent / "gazetteer"
-    featured = [{**p, "tier": "featured"} for p in PASSES]
-    entries = featured + merge_osm(featured, load_osm_nodes(root / "osm_passes.json"))
+    osm_nodes = load_osm_nodes(root / "osm_passes.json")
+    featured = [{**p, "state": "CA", "tier": "featured"} for p in PASSES] + [
+        {**p, "tier": "featured"} for p in resolve_west(osm_nodes)
+    ]
+    entries = featured + merge_osm(featured, osm_nodes)
     features = []
     for p in entries:
         features.append(

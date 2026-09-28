@@ -42,6 +42,11 @@ FETCH_RETRY_BACKOFF_S = 2.0
 # are snapshotted in git, refreshed weekly, and served from the snapshot
 # whenever the live directory is slow, down, or suspiciously short.
 STATIONS_DIR = DATA_DIR / "stations"
+
+# The coverage region. Directory snapshots are named after it, so widening
+# the region can never be answered by a snapshot of the old footprint.
+REGION = "west-coast"
+REGION_STATES = ("CA", "OR", "WA")
 DIRECTORY_TIMEOUT_S = 120
 DIRECTORY_MAX_AGE_DAYS = 7
 DIRECTORY_MIN_KEEP_FRAC = 0.9

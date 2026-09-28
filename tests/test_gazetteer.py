@@ -4,7 +4,8 @@ from gazetteer import get_pass, load_passes, resolve
 def test_all_passes_have_polygons() -> None:
     passes = load_passes()
     assert len(passes) >= 500
-    assert sum(1 for p in passes if p["tier"] == "featured") == 33
+    assert sum(1 for p in passes if p["tier"] == "featured") >= 60
+    assert {p["state"] for p in passes} == {"CA", "OR", "WA"}
     slugs = [p["slug"] for p in passes]
     assert len(slugs) == len(set(slugs))
     for p in passes:
@@ -41,3 +42,13 @@ def test_get_pass() -> None:
     glen = get_pass("glen")
     assert glen is not None and glen["elevation_ft"] == 11926
     assert get_pass("nope") is None
+
+
+def test_osm_short_forms_do_not_hijack_free_text() -> None:
+    assert resolve("big day on the glacier, white knuckles") is None
+    assert resolve("Big Saddle") is not None  # the full name still resolves
+
+
+def test_cascades_resolve() -> None:
+    assert resolve("went up aasgard from colchuck") == "aasgard"
+    assert resolve("Panhandle Gap was still snowy") == "panhandle-gap"

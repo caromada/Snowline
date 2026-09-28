@@ -11,7 +11,7 @@ import json
 import logging
 from typing import Any
 
-from config import DIRECTORY_TIMEOUT_S
+from config import DIRECTORY_TIMEOUT_S, REGION, REGION_STATES
 from gazetteer import load_passes
 from ingest.directory import station_directory
 from ingest.geo import haversine_km
@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 NWIS_SITE_URL = "https://waterservices.usgs.gov/nwis/site/"
 NWIS_DV_URL = "https://waterservices.usgs.gov/nwis/dv/"
 NWIS_IV_URL = "https://waterservices.usgs.gov/nwis/iv/"
-BBOX = "-120.800000,35.400000,-117.800000,39.800000"
+SITES_PER_REQUEST = 100
 MAX_SITE_KM = 30.0
 MAX_SITES_PER_PASS = 2
 # Skip conveyance infrastructure; we want creeks, not ditches.
@@ -31,21 +31,28 @@ NAME_EXCLUDE = ("DITCH", "CONDUIT", "DIV DAM", "INTAKE", "FLUME", "CANAL", "PP N
 
 
 def discover_sites(store: Store) -> list[dict[str, Any]]:
-    """Active stream gauges in the Sierra bbox, via the snapshotted directory."""
-    return station_directory("usgs", lambda: _fetch_sites(store))
+    """Active stream gauges in the region, via the snapshotted directory."""
+    return station_directory(f"usgs-{REGION}", lambda: _fetch_sites(store))
 
 
 def _fetch_sites(store: Store) -> list[dict[str, Any]]:
-    params = {
-        "format": "rdb",
-        "bBox": BBOX,
-        "parameterCd": "00060",
-        "siteStatus": "active",
-        "siteType": "ST",
-    }
-    text, cached = fetch_text(NWIS_SITE_URL, params, timeout=DIRECTORY_TIMEOUT_S)
-    if not cached:
-        store.record_raw("usgs", f"{NWIS_SITE_URL}?bbox={BBOX}", text)
+    sites: list[dict[str, Any]] = []
+    for state in REGION_STATES:
+        params = {
+            "format": "rdb",
+            "stateCd": state.lower(),
+            "parameterCd": "00060",
+            "siteStatus": "active",
+            "siteType": "ST",
+        }
+        text, cached = fetch_text(NWIS_SITE_URL, params, timeout=DIRECTORY_TIMEOUT_S)
+        if not cached:
+            store.record_raw("usgs", f"{NWIS_SITE_URL}?stateCd={state}", text)
+        sites.extend(_parse_sites(text))
+    return sites
+
+
+def _parse_sites(text: str) -> list[dict[str, Any]]:
     sites: list[dict[str, Any]] = []
     header: list[str] = []
     for line in text.splitlines():
@@ -115,23 +122,29 @@ def ingest_daily(store: Store, begin: str, end: str) -> int:
         log.warning("no USGS sites in range of any pass")
         return 0
 
-    params = {
-        "format": "json",
-        "sites": ",".join(site_nos),
-        "startDT": begin,
-        "endDT": end,
-        "parameterCd": "00060",
-        "statCd": "00003,00001,00002",  # mean, max, min
-    }
-    parsed, raw, cached = fetch_json(NWIS_DV_URL, params)
-    raw_id = None
-    if not cached:
-        raw_id = store.record_raw("usgs", f"{NWIS_DV_URL}?{begin}..{end}", raw)
-
     # site_no -> date -> {mean, max, min}
     daily: dict[str, dict[str, dict[str, float]]] = {}
-    ts = parsed.get("value", {}).get("timeSeries", []) if isinstance(parsed, dict) else []
     stat_by_code = {"00003": "mean", "00001": "max", "00002": "min"}
+    raw_by_site: dict[str, int | None] = {}
+    ts: list[dict[str, Any]] = []
+    # A three-state site list overflows one URL; batch it.
+    for i in range(0, len(site_nos), SITES_PER_REQUEST):
+        batch = site_nos[i : i + SITES_PER_REQUEST]
+        params = {
+            "format": "json",
+            "sites": ",".join(batch),
+            "startDT": begin,
+            "endDT": end,
+            "parameterCd": "00060",
+            "statCd": "00003,00001,00002",  # mean, max, min
+        }
+        parsed, raw, cached = fetch_json(NWIS_DV_URL, params)
+        batch_raw = None
+        if not cached:
+            batch_raw = store.record_raw("usgs", f"{NWIS_DV_URL}?{begin}..{end}#batch{i}", raw)
+        raw_by_site.update(dict.fromkeys(batch, batch_raw))
+        if isinstance(parsed, dict):
+            ts.extend(parsed.get("value", {}).get("timeSeries", []))
     for s in ts:
         site_no = s["sourceInfo"]["siteCode"][0]["value"]
         stat_code = s["variable"]["options"]["option"][0].get("optionCode", "00003")
@@ -145,6 +158,7 @@ def ingest_daily(store: Store, begin: str, end: str) -> int:
 
     count = 0
     for site_no, site in sites.items():
+        raw_id = raw_by_site.get(site_no)
         for date, stats in daily.get(site_no, {}).items():
             geom = {"type": "Point", "coordinates": [site["lon"], site["lat"]]}
             meta = {"site_name": site["name"]}

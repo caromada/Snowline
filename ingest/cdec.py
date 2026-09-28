@@ -17,6 +17,7 @@ import logging
 import re
 from typing import Any
 
+from config import DIRECTORY_TIMEOUT_S, REGION
 from gazetteer import load_passes
 from ingest.directory import station_directory
 from ingest.geo import haversine_km
@@ -25,61 +26,63 @@ from store import Store
 
 log = logging.getLogger(__name__)
 
-STA_META_URL = "https://cdec.water.ca.gov/dynamicapp/staMeta"
+SEARCH_URL = "https://cdec.water.ca.gov/dynamicapp/staSearch"
 DATA_URL = "https://cdec.water.ca.gov/dynamicapp/req/JSONDataServlet"
 
-# High Sierra snow sensor candidates, roughly south to north. The module
-# verifies each against live metadata; wrong or dead IDs drop out on their own.
-CANDIDATE_STATIONS = [
-    "CRL", "BSH", "UBC", "BGP", "SWM", "BCB", "MHP", "GEM", "AGP",
-    "DAN", "TUM", "VLC", "STL", "TNY", "SLI", "VRG",
-    # Southern Sierra (Kern, Kaweah, Mineral King, Cottonwood country).
-    "FRW", "CBP", "WTM", "PSC", "QUA", "CBT", "MTM", "BIP",
-]
+# Every active station reporting daily snow water content (sensor 3), from
+# CDEC's station search: one call returns ID, name, coordinates and
+# elevation for the whole state, Trinity Alps to the San Bernardinos.
+SEARCH_PARAMS = {
+    "sensor_chk": "on",
+    "sensor": "3",
+    "dur_chk": "on",
+    "dur": "D",
+    "active_chk": "on",
+    "active": "Y",
+    "display": "sta",
+}
 MAX_STATION_KM = 45.0
 MAX_STATIONS_PER_PASS = 3
 SENSORS = {"3": "swe_in", "18": "snow_depth_in"}
 MISSING = -9000.0  # CDEC uses -9999 for missing
 
 
-def _parse_sta_meta(html: str) -> dict[str, Any] | None:
-    text = re.sub(r"<[^>]+>", "|", html)
-    text = re.sub(r"\s+", " ", text)
-    name_m = re.search(r"defaultMainList[^|]*[|\s]+([A-Z][A-Z0-9 .'-]{2,40})\|", text)
-    elev_m = re.search(r"Elevation\|+\s*([\d,]+) ?ft", text)
-    lat_m = re.search(r"Latitude\|+\s*(-?[\d.]+)", text)
-    lon_m = re.search(r"Longitude\|+\s*(-?[\d.]+)", text)
-    if not (lat_m and lon_m):
-        return None
-    return {
-        "name": (name_m.group(1).strip().title() if name_m else "station"),
-        "elevation_ft": int(elev_m.group(1).replace(",", "")) if elev_m else None,
-        "lat": float(lat_m.group(1)),
-        "lon": float(lon_m.group(1)),
-    }
+def _cell(html: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>|&nbsp;", " ", html)).strip()
+
+
+def parse_station_search(html: str) -> list[dict[str, Any]]:
+    """Rows of the staSearch table: ID, name, basin, county, lon, lat, elev, operator."""
+    stations: list[dict[str, Any]] = []
+    for row in re.findall(r"<tr[^>]*>(.*?)</tr>", html, re.S | re.I):
+        cells = [_cell(c) for c in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S | re.I)]
+        if len(cells) < 7 or not re.fullmatch(r"[A-Z0-9]{3}", cells[0]):
+            continue
+        try:
+            stations.append(
+                {
+                    "station_id": cells[0],
+                    "name": cells[1].title(),
+                    "lon": float(cells[4]),
+                    "lat": float(cells[5]),
+                    "elevation_ft": int(cells[6].replace(",", "")) if cells[6] else None,
+                }
+            )
+        except ValueError:
+            continue
+    return stations
 
 
 def discover_stations(store: Store) -> list[dict[str, Any]]:
-    """Candidate stations with parseable metadata, via the snapshotted directory."""
-    return station_directory("cdec", lambda: _fetch_stations(store))
+    """Active daily-SWE stations statewide, via the snapshotted directory."""
+    return station_directory(f"cdec-{REGION}", lambda: _fetch_stations(store))
 
 
 def _fetch_stations(store: Store) -> list[dict[str, Any]]:
-    stations: list[dict[str, Any]] = []
-    for sid in CANDIDATE_STATIONS:
-        try:
-            html, cached = fetch_text(STA_META_URL, {"station_id": sid})
-        except Exception as exc:  # noqa: BLE001 - one bad station must not kill ingest
-            log.warning("cdec station %s metadata fetch failed: %s", sid, exc)
-            continue
-        meta = _parse_sta_meta(html)
-        if not meta:
-            log.info("cdec station %s: no parseable metadata, skipping", sid)
-            continue
-        if not cached:
-            store.record_raw("cdec", f"{STA_META_URL}?station_id={sid}", html)
-        stations.append({"station_id": sid, **meta})
-    return stations
+    html, cached = fetch_text(SEARCH_URL, SEARCH_PARAMS, timeout=DIRECTORY_TIMEOUT_S)
+    if not cached:
+        store.record_raw("cdec", f"{SEARCH_URL}?sensor=3&dur=D&active=Y", html)
+    return parse_station_search(html)
 
 
 def link_stations(stations: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:

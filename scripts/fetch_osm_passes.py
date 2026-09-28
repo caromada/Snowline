@@ -1,6 +1,6 @@
-"""Fetch every named mountain pass and saddle in the Sierra Nevada from
-OpenStreetMap, with elevations filled from the USGS point-query service
-where OSM lacks them.
+"""Fetch every named mountain pass and saddle in Washington, Oregon, and
+California from OpenStreetMap, with elevations filled from the USGS
+point-query service where OSM lacks them.
 
 Results are cached to gazetteer/osm_passes.json (committed), so the build
 is reproducible without hammering Overpass.
@@ -23,27 +23,42 @@ log = logging.getLogger(__name__)
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 EPQS_URL = "https://epqs.nationalmap.gov/v1/json"
-# The Sierra Nevada, southern Kern country to the Tahoe rim.
-BBOX = "35.4,-120.8,39.8,-117.8"
+STATES = ("CA", "OR", "WA")
 OUT_PATH = Path(__file__).resolve().parent.parent / "gazetteer" / "osm_passes.json"
+USER_AGENT = "sierra-pass-report/1.0 (github.com/caromada/Snowline)"
 
-QUERY = f"""[out:json][timeout:120];
+
+def _query(state: str) -> str:
+    # State boundaries, not a bounding box: a box around the West Coast
+    # would drag in half of Nevada and Idaho.
+    return f"""[out:json][timeout:170];
+area["ISO3166-2"="US-{state}"]->.s;
 (
-  node["mountain_pass"="yes"]["name"]({BBOX});
-  node["natural"="saddle"]["name"]({BBOX});
+  node["mountain_pass"="yes"]["name"](area.s);
+  node["natural"="saddle"]["name"](area.s);
 );
 out body;"""
 
 
-def fetch_overpass() -> list[dict]:
-    resp = requests.post(
-        OVERPASS_URL,
-        data={"data": QUERY},
-        headers={"User-Agent": "sierra-pass-report/1.0 (github.com/caromada/Snowline)"},
-        timeout=180,
-    )
-    resp.raise_for_status()
-    return resp.json()["elements"]
+def fetch_overpass(state: str) -> list[dict]:
+    """One state's named passes. Overpass sheds load with 429/504 and empty
+    bodies, so back off and retry a few times before giving up."""
+    last: Exception | None = None
+    for attempt in range(4):
+        try:
+            resp = requests.post(
+                OVERPASS_URL,
+                data={"data": _query(state)},
+                headers={"User-Agent": USER_AGENT},
+                timeout=240,
+            )
+            resp.raise_for_status()
+            return resp.json()["elements"]
+        except (requests.RequestException, ValueError, KeyError) as exc:
+            last = exc
+            log.warning("overpass %s attempt %d failed: %s", state, attempt + 1, exc)
+            time.sleep(10 * (attempt + 1))
+    raise RuntimeError(f"overpass failed for {state}: {last}")
 
 
 def epqs_elevation_ft(lat: float, lon: float) -> int | None:
@@ -69,11 +84,19 @@ def main() -> None:
     if OUT_PATH.exists() and "--refresh" not in sys.argv:
         print(f"{OUT_PATH} exists; pass --refresh to refetch")
         return
-    elements = fetch_overpass()
-    log.info("overpass returned %d named passes/saddles", len(elements))
+    tagged: list[tuple[str, dict]] = []
+    for state in STATES:
+        elements = fetch_overpass(state)
+        log.info("overpass %s: %d named passes/saddles", state, len(elements))
+        tagged.extend((state, e) for e in elements)
+        time.sleep(3)
 
     nodes = []
-    for e in elements:
+    seen: set[int] = set()
+    for state, e in tagged:
+        if e["id"] in seen:  # a node on a state line comes back twice
+            continue
+        seen.add(e["id"])
         tags = e.get("tags", {})
         elevation = None
         ele = tags.get("ele")
@@ -89,6 +112,7 @@ def main() -> None:
                 "lat": e["lat"],
                 "lon": e["lon"],
                 "elevation_ft": elevation,
+                "state": state,
             }
         )
 
@@ -102,7 +126,7 @@ def main() -> None:
         ):
             node["elevation_ft"] = elevation
 
-    OUT_PATH.write_text(json.dumps({"bbox": BBOX, "nodes": nodes}, indent=0) + "\n")
+    OUT_PATH.write_text(json.dumps({"states": list(STATES), "nodes": nodes}, indent=0) + "\n")
     filled = sum(1 for n in nodes if n["elevation_ft"] is not None)
     print(f"wrote {OUT_PATH}: {len(nodes)} nodes, {filled} with elevation")
 

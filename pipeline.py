@@ -12,7 +12,9 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import UTC, datetime
+import re
+from datetime import UTC, date, datetime, timedelta
+from pathlib import Path
 from typing import Any
 
 from config import DB_PATH, EXTRACTIONS_CACHE, WEB_DATA_DIR
@@ -89,6 +91,11 @@ def _curve(obs: list[dict[str, Any]], metric: str, provenance: str | None = None
     ]
 
 
+def station_file(provenance: str) -> str:
+    """Filesystem- and URL-safe name for a station's curve file."""
+    return re.sub(r"[^A-Za-z0-9_-]+", "_", provenance) + ".json"
+
+
 def _vignette_params(result: dict[str, Any], pass_info: dict[str, Any]) -> dict[str, Any]:
     """Everything the 96x32 pixel scene needs to draw itself from data."""
     sensor = result["components"]["sensor"]
@@ -151,7 +158,10 @@ def export(store: Store | None = None) -> None:
         ]
 
     passes_out: list[dict[str, Any]] = []
-    (WEB_DATA_DIR / "pass").mkdir(parents=True, exist_ok=True)
+    station_curves: dict[str, dict[str, list[list]]] = {}
+    for sub in ("pass", "station"):
+        (WEB_DATA_DIR / sub).mkdir(parents=True, exist_ok=True)
+    written: set[Path] = set()
 
     for p in load_passes():
         slug = p["slug"]
@@ -191,20 +201,30 @@ def export(store: Store | None = None) -> None:
                 )
             }
 
-        ledger = _ledger(sensor_obs, satellite_obs, gauge_obs, reports)
+        ledger = _ledger(sensor_obs, satellite_obs, gauge_obs, reports, dates)
         detail = {
             "pass": {k: p[k] for k in ("slug", "name", "elevation_ft", "lat", "lon",
                                         "creek", "aspect_note", "aliases")},
             "dates": dates,
             "statuses": statuses,
             "ledger": ledger,
-            "curves": {
-                "swe_in": _curve(sensor_obs, "swe_in"),
-                "discharge_cfs": _curve(gauge_obs, "discharge_cfs"),
-                "snow_cover_frac": _curve(satellite_obs, "snow_cover_frac"),
+            # Station curves are shared by every pass near that station, so
+            # they live once under data/station/ and load on demand; only the
+            # per-pass modeled satellite curve rides inline.
+            "curves": {"snow_cover_frac": _curve(satellite_obs, "snow_cover_frac")},
+            "stations": {
+                "swe_in": sorted({o["provenance"] for o in sensor_obs}),
+                "discharge_cfs": sorted(
+                    {o["provenance"] for o in gauge_obs if o["metric"] == "discharge_cfs"}
+                ),
             },
         }
-        (WEB_DATA_DIR / "pass" / f"{slug}.json").write_text(json.dumps(detail))
+        for metric, obs in (("swe_in", sensor_obs), ("discharge_cfs", gauge_obs)):
+            for series in _curve(obs, metric):
+                station_curves.setdefault(series["provenance"], {})[metric] = series["points"]
+        path = WEB_DATA_DIR / "pass" / f"{slug}.json"
+        path.write_text(json.dumps(detail))
+        written.add(path)
 
         passes_out.append(
             {
@@ -223,11 +243,31 @@ def export(store: Store | None = None) -> None:
             }
         )
 
+    for prov, metrics in station_curves.items():
+        path = WEB_DATA_DIR / "station" / station_file(prov)
+        path.write_text(json.dumps({"provenance": prov, "curves": metrics}))
+        written.add(path)
+
+    # Passes and stations that left the gazetteer must not linger as stale files.
+    for sub in ("pass", "station"):
+        for stale in (WEB_DATA_DIR / sub).glob("*.json"):
+            if stale not in written:
+                stale.unlink()
+
     index = {"generated_at": datetime.now(UTC).isoformat(timespec="seconds"),
              "dates": dates, "passes": passes_out}
     WEB_DATA_DIR.mkdir(parents=True, exist_ok=True)
     (WEB_DATA_DIR / "passes.json").write_text(json.dumps(index))
-    log.info("exported %d passes x %d dates", len(passes_out), len(dates))
+    log.info(
+        "exported %d passes x %d dates, %d station curves",
+        len(passes_out),
+        len(dates),
+        len(station_curves),
+    )
+
+
+LEDGER_WINDOW_DAYS = 30
+LEDGER_PER_SOURCE = 4
 
 
 def _ledger(
@@ -235,18 +275,18 @@ def _ledger(
     satellite_obs: list[dict[str, Any]],
     gauge_obs: list[dict[str, Any]],
     reports: list[dict[str, Any]],
+    dates: list[str],
 ) -> list[dict[str, Any]]:
     """The auditable evidence column: one dated entry per source event."""
     entries: list[dict[str, Any]] = []
     for r in reports:
         ex = r["extraction"]
         meta = r["post_meta"]
-        date = ex.get("date_observed") or meta.get("posted_date") or ""
+        observed = ex.get("date_observed") or meta.get("posted_date") or ""
         entries.append(
             {
-                "date": date,
+                "date": observed,
                 "source": "report",
-                "glyph": "boot",
                 "title": meta.get("title") or "Trip report",
                 "detail": {
                     "author": meta.get("author"),
@@ -278,7 +318,6 @@ def _ledger(
             {
                 "date": o["observed_date"],
                 "source": "sensor",
-                "glyph": "snowstake",
                 "title": f"{o['meta'].get('station_name', 'Station')}: "
                 f"{round(o['value'], 1)} in SWE",
                 "detail": {
@@ -295,7 +334,6 @@ def _ledger(
             {
                 "date": o["observed_date"],
                 "source": "satellite",
-                "glyph": "satellite",
                 "title": f"Snow cover {round(o['value'] * 100)}%"
                 + (" (modeled)" if o["meta"].get("modeled") else ""),
                 "detail": {"provenance": o["provenance"], **o["meta"], "value": o["value"]},
@@ -306,20 +344,27 @@ def _ledger(
             {
                 "date": o["observed_date"],
                 "source": "gauge",
-                "glyph": "creek",
                 "title": f"{o['meta'].get('site_name', 'Gauge')}: {round(o['value'])} cfs",
                 "detail": {"provenance": o["provenance"], **o["meta"], "value": o["value"]},
             }
         )
     entries.sort(key=lambda e: str(e["date"]), reverse=True)
-    # Reports always ride along; sensor checkpoints cap so four seasons of
-    # weekly rows don't swamp the payload.
+    # Reports always ride along. Sensor checkpoints are kept per scrubber
+    # date: the few most recent of each source in the window before it, so
+    # scrubbing back to 2023 still shows the 2023 sensors, and four seasons of
+    # rows don't swamp the payload.
     reports_all = [e for e in entries if e["source"] == "report"]
-    sensors_capped = [e for e in entries if e["source"] != "report"][:150]
-    merged = sorted(
-        reports_all + sensors_capped, key=lambda e: str(e["date"]), reverse=True
-    )
-    return merged
+    checkpoints = [e for e in entries if e["source"] != "report"]
+    keep: set[int] = set()
+    for d in dates:
+        lo = (date.fromisoformat(d) - timedelta(days=LEDGER_WINDOW_DAYS)).isoformat()
+        taken: dict[str, int] = {}
+        for i, e in enumerate(checkpoints):
+            if lo < str(e["date"]) <= d and taken.get(e["source"], 0) < LEDGER_PER_SOURCE:
+                taken[e["source"]] = taken.get(e["source"], 0) + 1
+                keep.add(i)
+    kept = [checkpoints[i] for i in sorted(keep)]
+    return sorted(reports_all + kept, key=lambda e: str(e["date"]), reverse=True)
 
 
 if __name__ == "__main__":
