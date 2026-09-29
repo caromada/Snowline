@@ -117,6 +117,25 @@ def test_a_name_must_be_written_as_a_name() -> None:
     assert list(_linked([shouted])) == ["ebbetts"]
 
 
+def test_a_junction_camp_or_lake_named_after_the_pass_is_not_the_pass() -> None:
+    reports = [
+        _report("Twin Lakes Trail", "East Clover Creek at Granite Pass junction is dry."),
+        _report("Bubbs Creek", "White Creek, below the Granite Pass Jct., must be forded."),
+        _report("Simpson Meadow", "Trees down between Granite Pass Camp and the river."),
+        _report("Granite Pass Trailhead", "Parking lot is full by 8 am."),
+    ]
+    assert _linked(reports) == {}
+    # A trail or road named for the pass is the way to it, and does count.
+    kept = [
+        _report("Granite Pass Trail", "Brushy below the lakes.", "2026-09-22"),
+        _report("Copper Creek", "Granite Pass Road is closed at the gate.", "2026-09-21"),
+        _report("Dougherty Creek", "Snow free to Granite Pass, camp is dry.", "2026-09-20"),
+    ]
+    assert [r["place"] for r in _linked(kept)["granite"]] == [
+        "Granite Pass Trail", "Copper Creek", "Dougherty Creek",
+    ]
+
+
 def test_a_pass_named_only_in_the_text_is_linked_and_says_so() -> None:
     linked = _linked([_report("Deadman Canyon", "Stock passable up to Shepherd's Pass.")])
     assert [r["named_in"] for r in linked["shepherd"]] == ["text"]

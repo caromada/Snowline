@@ -1,6 +1,6 @@
 """Official reports, linked to passes. Pure logic.
 
-A report belongs to a pass when it names the pass, and only then. Three
+A report belongs to a pass when it names the pass, and only then. Four
 guards keep a report about one place off another pass:
 
   1. The pass must lie inside the bounds of the unit that wrote the report.
@@ -12,6 +12,9 @@ guards keep a report about one place off another pass:
      place ("pine creek" for Pine Creek Pass) are never used, the same
      caution the gazetteer takes with short names.
   3. A name two passes inside the bounds share links to neither.
+  4. A junction, camp, lake, creek or trailhead named after the pass is
+     not the pass: "at JO Pass junction" is a place on the Twin Lakes
+     Trail. A trail or road named after it is the way to it, and counts.
 
 Linking through the road or trail a pass is on is not done here. The repo
 knows trailheads only as points near a pass, and "near" is not "on". Tried
@@ -51,6 +54,12 @@ _ABBREVIATIONS = {
     "no", "vs", "etc", "sr", "us", "fs", "fr", "ave", "blvd", "lk", "cr", "ck", "mtn", "mts",
     "jr", "dr", "e", "w", "n", "s", "a", "p", "m", "g", "i",
 }
+# The word after a pass's name that makes it the name of something else.
+_NOT_THE_PASS = {
+    "junction", "jct", "camp", "camps", "campground", "creek", "lake", "lakes",
+    "trailhead", "ski", "resort", "lodge", "sno",
+}
+_NEXT_WORD = re.compile(r"[ \t]+([A-Za-z]+)")
 _PUBLIC_FIELDS = ("agency", "unit", "section", "place", "text", "date", "url", "fetched_at")
 
 
@@ -83,12 +92,17 @@ def _pattern(name: str) -> re.Pattern[str]:
 def _spans(name: str, text: str) -> list[tuple[int, int]]:
     """Where the name is written as a name: its first and last words open
     with a capital or a digit, so "Trail Pass" and "TRAIL PASS" count and
-    "trail pass" does not."""
+    "trail pass" does not. Not counted when the word after it makes it the
+    name of something else."""
     spans = []
     for m in _pattern(name).finditer(text):
         words = re.findall(r"[A-Za-z0-9]+", m.group(0))
-        if all(w[0].isupper() or w[0].isdigit() for w in (words[0], words[-1])):
-            spans.append(m.span())
+        if not all(w[0].isupper() or w[0].isdigit() for w in (words[0], words[-1])):
+            continue
+        follows = _NEXT_WORD.match(text, m.end())
+        if follows and follows.group(1).lower() in _NOT_THE_PASS:
+            continue
+        spans.append(m.span())
     return spans
 
 
