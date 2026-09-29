@@ -130,6 +130,41 @@ export interface Forecast {
   issued_for: string;
 }
 
+export interface Trailhead {
+  name: string;
+  lat: number;
+  lon: number;
+  /** Straight-line miles from the pass. */
+  distance_mi: number;
+  elevation_ft?: number;
+  /** Pass elevation minus trailhead elevation; negative when the road is higher. */
+  gain_ft?: number;
+  fee?: boolean;
+  website?: string;
+  operator?: string;
+  parking?: { spaces?: number; fee?: boolean; surface?: string };
+}
+
+export interface Campground {
+  name: string;
+  lat: number;
+  lon: number;
+  distance_mi: number;
+  elevation_ft?: number;
+  reservation?: string;
+  fee?: boolean;
+  sites?: number;
+  tents?: boolean;
+  backcountry?: boolean;
+  website?: string;
+  operator?: string;
+}
+
+export interface Access {
+  trailheads: Trailhead[];
+  campgrounds: Campground[];
+}
+
 export interface PassDetail {
   pass: {
     slug: string;
@@ -146,6 +181,8 @@ export interface PassDetail {
   ledger: LedgerEntry[];
   /** Inline per-pass curves (the modeled satellite cover). */
   curves: Record<string, CurveSeries[]>;
+  /** Nearest trailheads (with their parking) and campgrounds. */
+  access?: Access;
   /** Seven days ahead at pass elevation, present only when freshly issued. */
   forecast?: Forecast;
   /** Shared station curves, by metric: provenance ids to load on demand. */

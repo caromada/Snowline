@@ -12,7 +12,7 @@ import SafetyNotice from "@/components/SafetyNotice";
 import TimeControl from "@/components/TimeControl";
 import { brand } from "@/lib/brand";
 import { dataUrl } from "@/lib/paths";
-import type { PassIndex } from "@/lib/types";
+import type { Access, PassIndex } from "@/lib/types";
 
 const MapView = dynamic(() => import("@/components/MapView"), {
   ssr: false,
@@ -22,7 +22,14 @@ const MapView = dynamic(() => import("@/components/MapView"), {
 export default function Home() {
   const [index, setIndex] = useState<PassIndex | null>(null);
   const [evalDate, setEvalDate] = useState<string | null>(null);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelectedSlug] = useState<string | null>(null);
+  const [access, setAccess] = useState<Access | null>(null);
+  const [focus, setFocus] = useState<{ lat: number; lon: number; n: number } | null>(null);
+  // The map's trailhead and campground markers belong to the open pass.
+  const setSelected = useCallback((slug: string | null) => {
+    setSelectedSlug(slug);
+    setAccess(null);
+  }, []);
   const [here, setHere] = useState<{ pos: Position | null; error: string | null } | null>(null);
 
   useEffect(() => {
@@ -41,7 +48,11 @@ export default function Home() {
       .catch(() => {});
   }, []);
 
-  const onSelect = useCallback((slug: string) => setSelected(slug), []);
+  const onSelect = useCallback((slug: string) => setSelected(slug), [setSelected]);
+  const onShow = useCallback(
+    (lat: number, lon: number) => setFocus((f) => ({ lat, lon, n: (f?.n ?? 0) + 1 })),
+    [],
+  );
   const onLocate = useCallback(
     (pos: Position | null, error?: string) => setHere({ pos, error: error ?? null }),
     [],
@@ -66,7 +77,7 @@ export default function Home() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [setSelected]);
 
   if (!index || !evalDate) {
     return (
@@ -82,6 +93,8 @@ export default function Home() {
         passes={index.passes}
         evalDate={evalDate}
         selected={selected}
+        access={access}
+        focus={focus}
         onSelect={onSelect}
         onLocate={onLocate}
       />
@@ -116,7 +129,13 @@ export default function Home() {
       )}
       <MapLegend />
       <TimeControl dates={index.dates} value={evalDate} onChange={setEvalDate} />
-      <PassPanel slug={selected} evalDate={evalDate} onClose={() => setSelected(null)} />
+      <PassPanel
+        slug={selected}
+        evalDate={evalDate}
+        onClose={() => setSelected(null)}
+        onAccess={setAccess}
+        onShow={onShow}
+      />
       <SafetyNotice />
     </main>
   );

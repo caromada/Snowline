@@ -22,6 +22,7 @@ from extraction.extractor import post_hash
 from extraction.resolve import resolve_post
 from fusion import fuse
 from gazetteer import load_passes
+from gazetteer.access import link_access, load_access
 from ingest.forums import load_corpus
 from store import Store
 
@@ -135,6 +136,7 @@ def export(store: Store | None = None) -> None:
 
     reports_by_pass = _reports_by_pass(store)
     forecasts = _load_forecasts(today)
+    access = load_access()
 
     # Sensor rows are stored once per station; passes join to them through
     # the link tables at read time, annotated with their own distance.
@@ -214,6 +216,9 @@ def export(store: Store | None = None) -> None:
             # per-pass modeled satellite curve rides inline.
             "curves": {"snow_cover_frac": _curve(satellite_obs, "snow_cover_frac")},
             "forecast": forecasts.get(slug),
+            "access": link_access(
+                p, access["trailheads"], access["campgrounds"], access["parking"]
+            ),
             "stations": {
                 "swe_in": sorted({o["provenance"] for o in sensor_obs}),
                 "discharge_cfs": sorted(

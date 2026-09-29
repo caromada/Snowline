@@ -7,11 +7,11 @@ import { useEffect, useRef, useState } from "react";
 // Bundlers resolve MapLibre's worker inconsistently; serving it as a plain
 // static file sidesteps all of that.
 maplibregl.setWorkerUrl("/maplibre-gl-worker.mjs");
-import { drawSprite, glyphByStatus, tent as tentSprite } from "@/lib/pixel";
+import { boot as bootSprite, drawSprite, glyphByStatus, tent as tentSprite } from "@/lib/pixel";
 import { setupContours } from "@/lib/contours";
 import { buildMapStyle } from "@/lib/mapStyle";
 import { palette, statusColor } from "@/lib/theme";
-import type { PassIndexEntry } from "@/lib/types";
+import type { Access, PassIndexEntry } from "@/lib/types";
 import { loadSaved } from "./PassPanel";
 
 const CONTOUR_TILES = setupContours(maplibregl);
@@ -113,6 +113,27 @@ function markerElement(
     `text-shadow:0 1px 3px ${palette.deepPine},0 0 6px ${palette.deepPine};margin-top:-2px;` +
     "user-select:none;";
   el.appendChild(dotWrap);
+  el.appendChild(label);
+  return el;
+}
+
+/** A trailhead (boot) or campground (tent) of the open pass. */
+function accessElement(name: string, kind: "trailhead" | "campground"): HTMLDivElement {
+  const el = document.createElement("div");
+  el.className = `access-marker ${kind}`;
+  el.setAttribute("role", "img");
+  el.setAttribute("aria-label", `${kind === "trailhead" ? "Trailhead" : "Campground"}: ${name}`);
+  el.title = name;
+  const glyph = document.createElement("canvas");
+  glyph.width = 16;
+  glyph.height = 16;
+  glyph.className = "pixel";
+  const ctx = glyph.getContext("2d");
+  if (ctx) drawSprite(ctx, kind === "trailhead" ? bootSprite : tentSprite, 0, 0, 1);
+  const label = document.createElement("div");
+  label.className = "mono access-marker-label";
+  label.textContent = name;
+  el.appendChild(glyph);
   el.appendChild(label);
   return el;
 }
@@ -226,12 +247,17 @@ export default function MapView({
   passes,
   evalDate,
   selected,
+  access,
+  focus,
   onSelect,
   onLocate,
 }: {
   passes: PassIndexEntry[];
   evalDate: string;
   selected: string | null;
+  access: Access | null;
+  /** A point the panel asked to see; `n` changes on every request. */
+  focus: { lat: number; lon: number; n: number } | null;
   onSelect: (slug: string) => void;
   onLocate?: (pos: Position | null, error?: string) => void;
 }) {
@@ -239,6 +265,7 @@ export default function MapView({
   const mapRef = useRef<maplibregl.Map | null>(null);
   const markersRef = useRef<maplibregl.Marker[]>([]);
   const youRef = useRef<maplibregl.Marker | null>(null);
+  const accessRef = useRef<maplibregl.Marker[]>([]);
   // Once the viewer or the app has framed something (a drag, a search, a
   // deep link, locate-me), the startup fit-to-region stands down for good.
   const framedRef = useRef(false);
@@ -371,6 +398,32 @@ export default function MapView({
       });
     }
   }, [selected, passes]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    accessRef.current.forEach((m) => m.remove());
+    accessRef.current = [];
+    if (!map || !access) return;
+    const place = (name: string, lat: number, lon: number, kind: "trailhead" | "campground") =>
+      new maplibregl.Marker({ element: accessElement(name, kind), anchor: "center" })
+        .setLngLat([lon, lat])
+        .addTo(map);
+    accessRef.current = [
+      ...access.campgrounds.map((c) => place(c.name, c.lat, c.lon, "campground")),
+      ...access.trailheads.map((t) => place(t.name, t.lat, t.lon, "trailhead")),
+    ];
+  }, [access]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !focus) return;
+    framedRef.current = true;
+    map.easeTo({
+      center: [focus.lon, focus.lat],
+      zoom: Math.max(map.getZoom(), 12.5),
+      duration: reducedMotion() ? 0 : 800,
+    });
+  }, [focus]);
 
   useEffect(() => {
     const handler = () => setSavedVersion((v) => v + 1);

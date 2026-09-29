@@ -6,10 +6,11 @@ import { useEffect, useRef, useState } from "react";
 import { offlineSupported, removeOffline, saveForOffline } from "@/lib/offline";
 import { passFile } from "@/lib/paths";
 import { glyphByStatus, tent } from "@/lib/pixel";
-import type { Fact, PassDetail } from "@/lib/types";
+import type { Access, Fact, PassDetail } from "@/lib/types";
 import Byok from "./Byok";
 import Campfire from "./Campfire";
 import EvidenceLedger from "./EvidenceLedger";
+import GettingThere from "./GettingThere";
 import PixelGlyph from "./PixelGlyph";
 import Vignette from "./Vignette";
 
@@ -92,10 +93,15 @@ export default function PassPanel({
   slug,
   evalDate,
   onClose,
+  onAccess,
+  onShow,
 }: {
   slug: string | null;
   evalDate: string;
   onClose: () => void;
+  /** The open pass's trailheads and campgrounds, for the map to draw. */
+  onAccess: (access: Access | null) => void;
+  onShow: (lat: number, lon: number) => void;
 }) {
   const [fetched, setFetched] = useState<{ slug: string; data: PassDetail } | null>(null);
   const [saved, setSaved] = useState<string[]>([]);
@@ -114,13 +120,15 @@ export default function PassPanel({
     fetch(passFile(slug))
       .then((r) => r.json())
       .then((data: PassDetail) => {
-        if (!cancelled) setFetched({ slug, data });
+        if (cancelled) return;
+        setFetched({ slug, data });
+        onAccess(data.access ?? null);
       })
       .catch(() => {});
     return () => {
       cancelled = true;
     };
-  }, [slug]);
+  }, [slug, onAccess]);
 
   const detail = fetched && fetched.slug === slug ? fetched.data : null;
 
@@ -271,6 +279,8 @@ export default function PassPanel({
           <p style={{ marginTop: 12, color: "var(--sage)", fontStyle: "italic" }}>
             {detail.pass.aspect_note}
           </p>
+
+          {detail.access && <GettingThere access={detail.access} onShow={onShow} />}
 
           <div ref={ledgerRef}>
             <EvidenceLedger ledger={detail.ledger} curves={detail.curves} evalDate={evalDate} />
