@@ -1,15 +1,23 @@
-"""Orchestrate: observations + cached extractions -> fused JSON for the web app.
+"""Orchestrate: observations -> fused JSON for the web app.
 
 Writes:
-- web/public/data/passes.json    gazetteer + status per pass per demo week
+- web/public/data/passes.json    gazetteer + status per pass per checkpoint
 - web/public/data/pass/<slug>.json  full evidence ledger and curves per pass
+- web/public/data/landing.json   compact facts and counts for the site
 
-Demo weeks walk the 2023 melt season; the final eval date is today, fed by
-the trailing-week ingest.
+Checkpoints walk every melt season from 2023 on; the final eval date is
+today, fed by the trailing-week ingest.
+
+Verdicts are fused from snow sensors and stream gauges. The sample trip
+reports and the modeled snow cover written for the demo stay out unless
+SNOWLINE_DEMO_STREAMS=1 (see config.demo_streams and ingest.samples).
+
+Usage: python pipeline.py [--db PATH]
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import logging
 import re
@@ -17,7 +25,7 @@ from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-from config import DB_PATH, EXTRACTIONS_CACHE, WEB_DATA_DIR
+from config import DB_PATH, EXTRACTIONS_CACHE, WEB_DATA_DIR, demo_streams
 from extraction.extractor import post_hash
 from extraction.resolve import resolve_post
 from fusion import fuse
@@ -25,6 +33,7 @@ from fusion.winter import load_winter
 from gazetteer import load_passes
 from gazetteer.access import link_access, load_access
 from ingest.forums import load_corpus
+from ingest.samples import is_modeled_observation, is_sample_post
 from store import Store
 
 log = logging.getLogger(__name__)
@@ -44,10 +53,27 @@ def eval_dates(today: str) -> list[str]:
     return [*dates, today]
 
 
-def _reports_by_pass(store: Store) -> dict[str, list[dict[str, Any]]]:
+def _report_posts(demo: bool) -> list[dict[str, Any]]:
+    """Every trip report the pipeline may read.
+
+    The curated corpus is the only source today and every post in it is a
+    sample, so outside demo mode this is empty. The rule is about what a
+    post is, not where it came from: a real report passes straight through.
+    """
+    posts = load_corpus()
+    return posts if demo else [p for p in posts if not is_sample_post(p)]
+
+
+def _satellite_rows(store: Store, slug: str, demo: bool) -> list[dict[str, Any]]:
+    """Stored snow cover for a pass, without modeled rows outside demo mode."""
+    rows = store.observations(slug, stream="satellite")
+    return rows if demo else [o for o in rows if not is_modeled_observation(o)]
+
+
+def _reports_by_pass(store: Store, posts: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
     """Cached extractions resolved onto passes."""
     by_pass: dict[str, list[dict[str, Any]]] = {}
-    for post in load_corpus():
+    for post in posts:
         cached = store.get_extraction(post_hash(post["text"]))
         if cached is None:
             continue
@@ -98,20 +124,40 @@ def station_file(provenance: str) -> str:
     return re.sub(r"[^A-Za-z0-9_-]+", "_", provenance) + ".json"
 
 
+VIGNETTE_FULL_COVER_SWE_IN = 20.0
+VIGNETTE_FRESH_DAYS = 4
+
+
 def _vignette_params(result: dict[str, Any], pass_info: dict[str, Any]) -> dict[str, Any]:
-    """Everything the 96x32 pixel scene needs to draw itself from data."""
-    sensor = result["components"]["sensor"]
-    satellite = result["components"]["satellite"]
-    crossing = result["crossing"]
-    cover = satellite["cover_frac"] if satellite else None
-    if cover is None and sensor:
-        cover = min(1.0, sensor["swe_in"] / 20.0)
-    flow = crossing.get("flow_cfs")
+    """Everything the 96x32 pixel scene needs to draw itself from data.
+
+    The scene is a drawing of the evidence, not a picture of the pass. Snow
+    is drawn from the best thing that speaks for the pass: an observed snow
+    cover when one exists, else the water in the snowpack at nearby sensors,
+    else the snowline estimate, so the drawing never shows bare ground under
+    a status that says snow. With no evidence it draws none. The sky
+    brightens only when that evidence was measured in the last few days; an
+    estimate is never fresh.
+    """
+    components = result["components"]
+    sensor = components["sensor"]
+    snowline = components.get("snowline")
+    satellite = components["satellite"]
+    cover, fresh = 0.0, False
+    if satellite:
+        cover = satellite["cover_frac"]
+        fresh = satellite["age_days"] <= VIGNETTE_FRESH_DAYS
+    elif sensor:
+        cover = min(1.0, sensor["swe_in"] / VIGNETTE_FULL_COVER_SWE_IN)
+        fresh = sensor["age_days"] <= VIGNETTE_FRESH_DAYS
+    elif snowline:
+        cover = min(1.0, snowline["severity"] / 3.0)
+    flow = result["crossing"].get("flow_cfs")
     return {
-        "snow_cover": cover if cover is not None else 0.0,
-        "snowline_frac": 1.0 - (cover if cover is not None else 0.0) * 0.85,
+        "snow_cover": round(cover, 3),
+        "snowline_frac": round(1.0 - cover * 0.85, 3),
         "creek_level": min(1.0, (flow or 0.0) / 400.0),
-        "sky_fresh": (satellite["age_days"] <= 4) if satellite else False,
+        "sky_fresh": fresh,
         "status": result["status"],
         "elevation_ft": pass_info["elevation_ft"],
     }
@@ -128,14 +174,19 @@ def export(store: Store | None = None) -> None:
     if loaded:
         log.info("hydrated %d cached extractions", loaded)
 
-    # Modeled satellite cover is derived deterministically from the sensor
-    # curves, so regenerate it wholesale each run; stale rows never linger.
-    from ingest.satellite import ingest_modeled
-
+    # Modeled cover is the only thing ever written to the satellite stream,
+    # so the stream is cleared each run: a store carried over from a demo run
+    # must not leak modeled rows into a real one. Demo mode regenerates them
+    # from the sensor curves, deterministically.
+    demo = demo_streams()
     store.clear_observations("satellite")
-    ingest_modeled(store, f"{FIRST_SEASON_YEAR}-04-01", today)
+    if demo:
+        from ingest.satellite import ingest_modeled
 
-    reports_by_pass = _reports_by_pass(store)
+        ingest_modeled(store, f"{FIRST_SEASON_YEAR}-04-01", today)
+        log.warning("demo streams on: sample reports and modeled cover feed this export")
+
+    reports_by_pass = _reports_by_pass(store, _report_posts(demo))
     forecasts = _load_forecasts(today)
     fire = _load_fire(today)
     winter = load_winter(today)
@@ -178,7 +229,7 @@ def export(store: Store | None = None) -> None:
             for o in station_rows(stream, link)
         ]
         sensor_obs = [o for o in snow_rows if o["metric"] == "swe_in"]
-        satellite_obs = [o for o in store.observations(slug, stream="satellite")]
+        satellite_obs = _satellite_rows(store, slug, demo)
         gauge_obs = [
             o
             for link in links_by_stream["usgs"].get(slug, [])
@@ -215,8 +266,9 @@ def export(store: Store | None = None) -> None:
             "statuses": statuses,
             "ledger": ledger,
             # Station curves are shared by every pass near that station, so
-            # they live once under data/station/ and load on demand; only the
-            # per-pass modeled satellite curve rides inline.
+            # they live once under data/station/ and load on demand. Snow
+            # cover is per pass and rides inline; it is empty until a real
+            # cover stream exists (or demo mode models one).
             "curves": {"snow_cover_frac": _curve(satellite_obs, "snow_cover_frac")},
             "forecast": forecasts.get(slug),
             "fire": fire.get(slug),
@@ -269,7 +321,14 @@ def export(store: Store | None = None) -> None:
     generated_at = datetime.now(UTC).isoformat(timespec="seconds")
     (WEB_DATA_DIR / "landing.json").write_text(
         json.dumps(
-            _landing(passes_out, dates, links_by_stream, generated_at),
+            _landing(
+                passes_out,
+                dates,
+                links_by_stream,
+                generated_at,
+                access,
+                _fire_count(today, WEB_DATA_DIR / "fire.json"),
+            ),
             separators=(",", ":"),
         )
     )
@@ -321,6 +380,20 @@ def _load_fire(today: str) -> dict[str, Any]:
     return {slug: {**f, **dates} for slug, f in doc["passes"].items()}
 
 
+def _fire_count(today: str, path: Path) -> int:
+    """Fires on today's map, under the forecast's rule: issued today or
+    yesterday, or not counted at all. The map file names one label point per
+    fire perimeter, whatever its size."""
+    try:
+        doc = json.loads(path.read_text())
+        issued = date.fromisoformat(doc.get("issued_for", "1970-01-01"))
+    except (OSError, ValueError):
+        return 0
+    if (date.fromisoformat(today) - issued).days > 1 or doc.get("fires_available") is False:
+        return 0
+    return len((doc.get("fire_labels") or {}).get("features") or [])
+
+
 LANDING_STATUS_KEYS = ["open", "snow_caution", "traction_advised", "not_recommended", "unknown"]
 
 
@@ -329,6 +402,8 @@ def _landing(
     dates: list[str],
     links_by_stream: dict[str, dict[str, list[dict[str, Any]]]],
     generated_at: str,
+    access: dict[str, list[dict[str, Any]]],
+    fires: int,
 ) -> dict[str, Any]:
     """Compact data for the marketing page: ~1/20th of the full index.
 
@@ -366,6 +441,9 @@ def _landing(
             "snow_stations": stations.get("snotel", 0) + stations.get("cdec", 0),
             "stream_gauges": stations.get("usgs", 0),
             "seasons": len({d[:4] for d in dates}),
+            "trailheads": len(access.get("trailheads", [])),
+            "campgrounds": len(access.get("campgrounds", [])),
+            "fires": fires,
         },
         "passes": [
             [
@@ -433,7 +511,7 @@ def _ledger(
                 },
             }
         )
-    # Sensors and satellite: weekly checkpoints rather than every day, so the
+    # Sensors and snow cover: weekly checkpoints rather than every day, so the
     # ledger stays a register, not a data dump.
     def _weekly(obs: list[dict[str, Any]], metric: str) -> list[dict[str, Any]]:
         rows = [o for o in obs if o["metric"] == metric]
@@ -502,4 +580,6 @@ def _ledger(
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    export()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--db", type=Path, default=DB_PATH, help="sensor store to read")
+    export(Store(parser.parse_args().db))
