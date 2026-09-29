@@ -29,8 +29,8 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: { default: brand.name, template: `%s · ${brand.name}` },
   description:
-    "Mountain pass conditions for Washington, Oregon and California: sensors, satellite " +
-    "and trip reports fused with honest confidence.",
+    "Mountain pass conditions for Washington, Oregon and California, read every morning " +
+    "from snow sensors and stream gauges, with honest confidence.",
   appleWebApp: { capable: true, title: brand.shortName, statusBarStyle: "black-translucent" },
   icons: {
     icon: [{ url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" }],

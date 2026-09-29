@@ -5,33 +5,28 @@ import PageHero from "@/components/landing/PageHero";
 import Reveal from "@/components/landing/Reveal";
 import PixelGlyph from "@/components/PixelGlyph";
 import { landingAtBuild, passAtBuild } from "@/lib/buildData";
+import { flame } from "@/lib/fire";
 import { photos } from "@/lib/photos";
-import { glyphBySource } from "@/lib/pixel";
+import { glyphBySource, glyphByStatus, road, tent } from "@/lib/pixel";
 
 export const metadata: Metadata = {
   title: "How it works",
-  description: "Four evidence streams, weighted by trust and freshness, fused into an honest answer for every pass.",
+  description:
+    "Snow sensors and stream gauges, read every morning against each pass's elevation, with forecasts, fire maps, road reports and official avalanche ratings beside the verdict.",
 };
-
-const FIELD_NAMES: Record<string, string> = {
-  location: "Which pass",
-  date_observed: "Date seen",
-  snow_condition: "Snow",
-  traction_used: "Traction",
-  crossing_condition: "Crossings",
-  exposure_comfort: "How it felt",
-  reporter_register: "Who is talking",
-  quote_span: "Exact quote",
-};
-
-const pct = (x: number) => `${Math.round(x * 1000) / 10}%`;
 
 export default function HowItWorks() {
   const { counts, model } = landingAtBuild();
   const aasgard = passAtBuild("aasgard").statuses["2023-06-15"];
   const snowlineFact = aasgard?.facts.find((f) => f.text.includes("snowline"));
+  const fires = counts.fires ?? 0;
+  const places =
+    counts.trailheads !== undefined && counts.campgrounds !== undefined
+      ? `${counts.trailheads.toLocaleString()} trailheads and ${counts.campgrounds.toLocaleString()} campgrounds, each linked to the passes near it.`
+      : "Trailheads and campgrounds, each linked to the passes near it.";
 
-  const streams = [
+  // What is fused into the status and the confidence grade.
+  const feeds = [
     {
       glyph: glyphBySource.sensor,
       name: "Snow sensors",
@@ -43,30 +38,80 @@ export default function HowItWorks() {
       glyph: glyphBySource.gauge,
       name: "Stream gauges",
       what: `${counts.stream_gauges} stream gauges on the creeks below the passes.`,
-      strong: "Flow answers the crossing question, and the afternoon swing shows melt in action.",
+      strong: "Flow speaks to the crossing, and the afternoon swing shows melt in action.",
       blind: "A gauge sees the whole basin, not the one ford you care about.",
     },
+  ];
+
+  // What is shown beside the verdict, as issued, and never changes the status.
+  const beside = [
     {
-      glyph: glyphBySource.satellite,
-      name: "Satellite",
-      what: "Fractional snow cover sampled over each pass bowl, with cloud gaps tracked.",
-      strong: "Sees every pass, everywhere, at once.",
-      blind: "Sees cover, not condition, and clouds hide it. Modeled from sensors today, and labeled so.",
+      glyph: glyphByStatus.snow_caution,
+      name: "Forecasts",
+      what: "Seven days ahead at pass elevation: temperature, snow level, new snow, wind and thunder.",
+      strong: "The only reader that looks forward.",
+      blind: "A forecast is a forecast. It is shown for today only, never for a past date.",
+    },
+    {
+      glyph: flame,
+      name: "Fire and smoke",
+      what: fires
+        ? `${fires.toLocaleString()} fires on the map this morning, the nearest one measured to each pass, and smoke mapped from satellite.`
+        : "Fire perimeters, the nearest one measured to each pass, and smoke mapped from satellite.",
+      strong: "Where a fire is, how big, and how far, in a straight line.",
+      blind: "Smoke is seen from above, so it can sit higher than the pass. A perimeter more than a day old is not drawn.",
+    },
+    {
+      glyph: glyphByStatus.not_recommended,
+      name: "Avalanche centers",
+      what: "The official rating for the forecast zone a pass sits in, quoted word for word with a link.",
+      strong: "The official word, from the center that issues it. Never rewritten by us.",
+      blind: "Many passes sit outside every forecast zone, and centers issue no rating off season. The page says which.",
+    },
+    {
+      glyph: road,
+      name: "Road reports",
+      what: "Chain controls and pass reports on California and Washington highways, in the highway agency's own words.",
+      strong: "Whether you can drive to the trailhead at all.",
+      blind: "Agencies change them through the day. Oregon highways are not covered yet.",
+    },
+    {
+      glyph: tent,
+      name: "Getting there",
+      what: places,
+      strong: "The nearest trailheads, their parking, and where to camp.",
+      blind: "Distances are straight lines, not trail miles.",
     },
     {
       glyph: glyphBySource.report,
-      name: "Trip reports",
-      what: "Posts from people who were just there, read by AI into structured evidence.",
-      strong: "Condition exactly where you care: the chute, the cornice, the ford.",
-      blind: "Noisy and biased by who is talking. We calibrate for that, and keep the quote.",
+      name: "Trip reports, coming",
+      what: "People will be able to file a report from the pass in the app. Each one will be shown with its date.",
+      strong: "Condition exactly where it matters: the chute, the cornice, the ford.",
+      blind: "One person on one day. No report feeds a verdict today.",
     },
   ];
+
+  const card = (st: (typeof feeds)[number], i: number) => (
+    <Reveal key={st.name} className={s.streamCard} delay={(i % 2) * 0.08}>
+      <div className={s.cellHead}>
+        <PixelGlyph sprite={st.glyph} scale={2} title="" />
+        <h3 className={`${s.display} ${s.h3}`}>{st.name}</h3>
+      </div>
+      <p className={s.body}>{st.what}</p>
+      <dl>
+        <dt>Good at</dt>
+        <dd>{st.strong}</dd>
+        <dt>Blind spot</dt>
+        <dd>{st.blind}</dd>
+      </dl>
+    </Reveal>
+  );
 
   return (
     <>
       <PageHero
         title="How it works"
-        lede="Four streams of evidence, weighted by how far each can be trusted and how fresh it is, fused into one answer per pass."
+        lede="Two kinds of instrument set every verdict, read each morning against the elevation of the pass. The official sources sit beside it, shown as issued."
         photo={photos.spring}
         position="50% 45%"
       />
@@ -74,52 +119,58 @@ export default function HowItWorks() {
       <section className={s.section}>
         <div className={s.wrap}>
           <Reveal>
-            <h2 className={`${s.display} ${s.h2}`}>Every stream sees something the others miss.</h2>
+            <h2 className={`${s.display} ${s.h2}`}>What sets the verdict.</h2>
+            <p className={s.body} style={{ marginTop: 20 }}>
+              The status on a pass comes from snow sensors, and from a snowline estimate when the
+              sensors sit too low to see it. Stream gauges add the creek below and count toward
+              the confidence grade. Nothing else is fused in.
+            </p>
           </Reveal>
-          <div className={s.streamGrid}>
-            {streams.map((st, i) => (
-              <Reveal key={st.name} className={s.streamCard} delay={(i % 2) * 0.08}>
-                <div className={s.cellHead}>
-                  <PixelGlyph sprite={st.glyph} scale={2} title="" />
-                  <h3 className={`${s.display} ${s.h3}`}>{st.name}</h3>
-                </div>
-                <p className={s.body}>{st.what}</p>
-                <dl>
-                  <dt>Good at</dt>
-                  <dd>{st.strong}</dd>
-                  <dt>Blind spot</dt>
-                  <dd>{st.blind}</dd>
-                </dl>
-              </Reveal>
-            ))}
-          </div>
+          <div className={s.streamGrid}>{feeds.map(card)}</div>
         </div>
       </section>
 
       <section className={s.section} style={{ paddingTop: 0 }}>
         <div className={s.wrap}>
           <Reveal>
-            <h2 className={`${s.display} ${s.h2}`}>Trust decays. Disagreement is said out loud.</h2>
+            <h2 className={`${s.display} ${s.h2}`}>What stands beside it.</h2>
             <p className={s.body} style={{ marginTop: 20 }}>
-              Each stream starts with a trust weight and loses half its pull every few days. When
-              two streams disagree by more than a full level, the panel says so and the
-              confidence grade drops. These are the live settings.
+              These inform the page and never change the status. Official words are quoted as
+              issued, with a link to where they came from.
+            </p>
+          </Reveal>
+          <div className={s.streamGrid}>{beside.map(card)}</div>
+        </div>
+      </section>
+
+      <section className={s.section} style={{ paddingTop: 0 }}>
+        <div className={s.wrap}>
+          <Reveal>
+            <h2 className={`${s.display} ${s.h2}`}>Old readings drop out. Blind sensors stay quiet.</h2>
+            <p className={s.body} style={{ marginTop: 20 }}>
+              A sensor reading is used for {model.max_age_days.sensor} days and then dropped, and
+              the older it is, the lower the confidence grade. Among sensors that can see a pass,
+              the ones nearer to it, in distance and in elevation, count for more. With one kind
+              of instrument behind a status, confidence tops out at moderate. These are the live
+              settings.
             </p>
           </Reveal>
           <div className={s.tiles}>
-            {(["sensor", "satellite", "report"] as const).map((k, i) => (
-              <Reveal key={k} className={s.tile} delay={i * 0.06}>
-                <span className={s.mono} style={{ color: "var(--muted)" }}>
-                  {k === "report" ? "trip reports" : k === "sensor" ? "sensors" : "satellite"}
-                </span>
-                <span className={s.tileValue}>{model.priors[k].toFixed(2)}</span>
-                <p>
-                  Starting trust. Half-life {model.half_life_days[k]} days; ignored after{" "}
-                  {model.max_age_days[k]}.
-                </p>
-              </Reveal>
-            ))}
-            <Reveal className={s.tile} delay={0.18}>
+            <Reveal className={s.tile}>
+              <span className={s.mono} style={{ color: "var(--muted)" }}>
+                reading window
+              </span>
+              <span className={s.tileValue}>{model.max_age_days.sensor} days</span>
+              <p>A sensor reading older than this is not used at all.</p>
+            </Reveal>
+            <Reveal className={s.tile} delay={0.06}>
+              <span className={s.mono} style={{ color: "var(--muted)" }}>
+                blind gap
+              </span>
+              <span className={s.tileValue}>{model.blind_gap_ft} ft</span>
+              <p>A melted-out sensor farther than this below a pass cannot call it clear.</p>
+            </Reveal>
+            <Reveal className={s.tile} delay={0.12}>
               <span className={s.mono} style={{ color: "var(--muted)" }}>
                 snowline climb
               </span>
@@ -165,35 +216,6 @@ export default function HowItWorks() {
           </Reveal>
         </div>
       </section>
-
-      {model.eval && (
-        <section className={s.section} style={{ paddingTop: 0 }}>
-          <div className={s.wrap}>
-            <Reveal>
-              <h2 className={`${s.display} ${s.h2}`}>
-                One honest number: {pct(model.eval.overall)}.
-              </h2>
-              <p className={s.body} style={{ marginTop: 20 }}>
-                How often the AI reads a trip report the way a careful human does, scored field by
-                field against {model.eval.posts} hand-labeled posts it never saw. The two
-                subjective fields score lowest, and we show them anyway.
-              </p>
-            </Reveal>
-            <div className={s.tiles}>
-              {Object.entries(model.eval.fields).map(([k, v], i) => (
-                <Reveal key={k} className={s.tile} delay={(i % 4) * 0.05}>
-                  <span className={s.mono} style={{ color: "var(--muted)" }}>
-                    {FIELD_NAMES[k] ?? k}
-                  </span>
-                  <span className={s.tileValue} style={v < 0.75 ? { color: "var(--alpenglow)" } : undefined}>
-                    {pct(v)}
-                  </span>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       <FinalCta title="See the evidence for yourself." />
     </>

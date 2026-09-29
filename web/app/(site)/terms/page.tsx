@@ -16,8 +16,9 @@ export default function Terms() {
           </p>
           <h2>What this is</h2>
           <p>
-            {brand.name} is an informational planning aid. It gathers public sensor data,
-            satellite-derived estimates and trip reports, and summarizes them for mountain passes.
+            {brand.name} is an informational planning aid. It gathers public data from snow
+            sensors and stream gauges, weather forecasts, fire and smoke maps, road reports and
+            avalanche center ratings, and summarizes them for mountain passes.
             It is not a safety device, a forecast service, an avalanche forecast, or a substitute
             for your own judgment, training and equipment.
           </p>
@@ -31,8 +32,8 @@ export default function Terms() {
           <h2>No warranty</h2>
           <p>
             Data is provided as is and as available. It may be late, incomplete, estimated or
-            wrong. Sensors fail, satellites are blocked by clouds, and trip reports reflect one
-            party on one day. Conditions shown may not match conditions on the ground.
+            wrong. Sensors fail or report late, forecasts miss, and fire maps and road reports
+            lag behind events. Conditions shown may not match conditions on the ground.
           </p>
           <h2>Limitation of liability</h2>
           <p>
