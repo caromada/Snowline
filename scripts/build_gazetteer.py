@@ -10,7 +10,8 @@ Two tiers merge here:
 
 Polygons are octagonal buffers around the saddle, sized to cover the
 approach bowls that satellite sampling cares about. Featured entries win
-alias collisions and absorb OSM duplicates by proximity.
+alias collisions and absorb OSM nodes of the same name or the same saddle.
+Named neighbours (Army Pass beside New Army Pass) stay passes of their own.
 """
 
 from __future__ import annotations
@@ -181,7 +182,7 @@ PASSES: list[dict] = [
         "name": "New Army Pass",
         "elevation_ft": 12315,
         "near": (36.4570, -118.2230),
-        "aliases": ["new army", "new army pass", "army pass"],
+        "aliases": ["new army", "new army pass"],
         "creek": "Cottonwood Creek / Rock Creek (south)",
         "aspect_note": "north-facing switchbacks ice over early and late in season",
     },
@@ -505,7 +506,10 @@ def resolve_sierra(
     return out
 
 
-DUPLICATE_KM = 1.5
+# A differently named node this close to a featured pass is the same saddle
+# under another name. Featured positions are exact, so the radius is small:
+# the nearest real neighbour is 0.39 km off (Historic Donner Summit).
+DUPLICATE_KM = 0.3
 
 
 def _slugify(name: str) -> str:

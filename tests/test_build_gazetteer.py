@@ -3,9 +3,9 @@ from pathlib import Path
 
 import pytest
 
-from gazetteer import load_passes
+from gazetteer import get_pass, load_passes, resolve
 from ingest.geo import haversine_km
-from scripts.build_gazetteer import PASSES, merge_osm, resolve_sierra
+from scripts.build_gazetteer import DUPLICATE_KM, PASSES, merge_osm, resolve_sierra
 
 OSM_PATH = Path(__file__).resolve().parent.parent / "gazetteer" / "osm_passes.json"
 
@@ -77,6 +77,47 @@ def test_merge_drops_the_osm_twin_of_a_resolved_pass() -> None:
     assert [m["name"] for m in merged] == ["Gabbot Pass"]
 
 
+NEW_ARMY = {
+    "slug": "new-army",
+    "name": "New Army Pass",
+    "elevation_ft": 12315,
+    "near": (36.4570, -118.2230),
+    "aliases": ["new army", "new army pass"],
+    "creek": "Cottonwood Creek / Rock Creek (south)",
+    "aspect_note": "",
+}
+NEW_ARMY_NODE = _node(1343514123, "New Army Pass", 36.4904112, -118.240752, 12178)
+
+
+def test_a_named_neighbour_is_its_own_pass() -> None:
+    featured = resolve_sierra([NEW_ARMY], [NEW_ARMY_NODE])
+    army = _node(1343514151, "Army Pass", 36.4966, -118.2388, 12021)
+    assert 0.5 < haversine_km(army["lat"], army["lon"], 36.4904112, -118.240752) < 1.0
+    merged = merge_osm(featured, [NEW_ARMY_NODE, army])
+    assert [m["slug"] for m in merged] == ["army-pass"]
+
+
+def test_a_node_on_top_of_a_featured_pass_is_dropped() -> None:
+    featured = resolve_sierra([NEW_ARMY], [NEW_ARMY_NODE])
+    twin = _node(2, "New Army Saddle", 36.4911, -118.2407, 12170)
+    assert merge_osm(featured, [NEW_ARMY_NODE, twin]) == []
+
+
+def test_army_and_new_army_resolve_apart() -> None:
+    army = get_pass("army-pass")
+    assert army is not None and army["tier"] == "osm"
+    assert resolve("Army Pass") == "army-pass"
+    assert resolve("New Army Pass") == "new-army"
+    assert resolve("came down new army pass in the afternoon") == "new-army"
+    assert resolve("old army pass still had a cornice") == "army-pass"
+
+
+def test_neighbours_of_featured_passes_resolve() -> None:
+    assert resolve("Junction Pass") == "junction-pass"
+    assert resolve("Gould Pass") == "gould-pass"
+    assert resolve("Whitney Pass") == "whitney-pass"
+
+
 def test_every_sierra_pass_has_a_node_within_the_cap() -> None:
     nodes = json.loads(OSM_PATH.read_text())["nodes"]
     assert len(resolve_sierra(PASSES, nodes)) == len(PASSES)
@@ -103,4 +144,4 @@ def test_no_osm_entry_duplicates_a_featured_pass() -> None:
             continue
         assert p["osm_id"] not in featured_ids
         for f in featured:
-            assert haversine_km(p["lat"], p["lon"], f["lat"], f["lon"]) >= 1.5
+            assert haversine_km(p["lat"], p["lon"], f["lat"], f["lon"]) >= DUPLICATE_KM
