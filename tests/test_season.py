@@ -683,13 +683,49 @@ def test_the_chart_is_the_nearest_station_with_its_melt_out_marks() -> None:
     chart = s["chart"]
     assert chart["name"] == "Birch Camp"
     assert chart["provenance"] == "test:birch-camp"
-    assert chart["seasons"] == [
-        {"year": 2023, "melt_out": "2023-07-01"},
-        {"year": 2024, "melt_out": "2024-05-20"},
-        {"year": 2025, "melt_out": "2025-05-28"},
-        {"year": 2026, "melt_out": "2026-06-09"},
+    assert [(s["year"], s["melt_out"]) for s in chart["seasons"]] == [
+        (2023, "2023-07-01"),
+        (2024, "2024-05-20"),
+        (2025, "2025-05-28"),
+        (2026, "2026-06-09"),
     ]
+    assert chart["seasons"][0]["melt_out_note"] == "Jul 1"
+    assert chart["seasons"][0]["peak_swe_in"] == 30.0
     assert chart["max_swe_in"] == MAX_PLAUSIBLE_SWE_IN
+
+
+def test_the_chart_says_why_a_drawn_season_has_no_mark() -> None:
+    melt = {2023: "06-01", 2024: "bare", 2025: None, 2026: "05-20"}
+    s = pass_season(PASS, station("Alder Flat", 8600, melt, end={2025: "06-16"}), TODAY)
+    assert s is not None
+    notes = {y["year"]: y["melt_out_note"] for y in s["chart"]["seasons"]}
+    assert notes == {
+        2023: "Jun 1",
+        2024: "before Apr 1",
+        2025: "no date: stopped reporting before melt-out",
+        2026: "May 20",
+    }
+
+
+def test_a_station_that_matches_the_middle_season_exactly() -> None:
+    same = {**LATE, 2026: "06-05"}
+    s = pass_season(PASS, station("Alder Flat", 8600, same), TODAY)
+    assert fact(s, "melt_out")["text"] == (
+        "Snow left Alder Flat (8,600 ft) this year on the same day as the median of "
+        "the three earlier seasons on file (2023 to 2025)."
+    )
+    obs = station("Alder Flat", 8600, same) + station("Birch Camp", 8100, LATE_TOO, km=9.0)
+    assert "up to 12 days later this year than" in fact(pass_season(PASS, obs, TODAY), "melt_out")[
+        "text"
+    ]
+
+
+def test_disagreement_is_flagged_for_the_panel() -> None:
+    early = {2023: "07-01", 2024: "05-20", 2025: "05-28", 2026: "05-18"}
+    obs = station("Alder Flat", 8600, LATE) + station("Birch Camp", 8100, early, km=9.0)
+    assert fact(pass_season(PASS, obs, TODAY), "melt_out")["disagree"] is True
+    agree = station("Alder Flat", 8600, LATE)
+    assert fact(pass_season(PASS, agree, TODAY), "melt_out")["disagree"] is False
 
 
 def test_an_erratic_season_is_not_drawn() -> None:

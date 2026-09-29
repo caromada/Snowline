@@ -522,8 +522,10 @@ def _melt_out_fact(
     else:
         if lo == hi:
             shift = _shift(lo)
-        elif lo < 0 < hi or lo == 0 or hi == 0:
-            shift = f"between {_shift(lo)} and {_shift(hi)}".replace("0 days earlier", "no days")
+        elif lo == 0 or hi == 0:
+            shift = f"up to {_shift(lo or hi)}"
+        elif lo < 0 < hi:
+            shift = f"between {_shift(lo)} and {_shift(hi)}"
         else:
             near, far = sorted((abs(lo), abs(hi)))
             shift = f"{near} to {far} days {'later' if lo > 0 else 'earlier'}"
@@ -538,7 +540,7 @@ def _melt_out_fact(
         "max_days": hi, "earlier_years": list(years),
         "stations": [st["provenance"] for st in group],
     }
-    return _fact("melt_out", text, evidence), summary
+    return _fact("melt_out", text, evidence, disagree=not agree), summary
 
 
 def _still_snow_fact(
@@ -684,7 +686,7 @@ def _pass_window(
             f"The nearby stations disagree about when snow {verb} the pass itself{in_year}, "
             f"so no window is given: {_join(each)}."
         )
-        return None, _fact("pass_window", text, evidence)
+        return None, _fact("pass_window", text, evidence, disagree=True)
     if floor is not None and floor > start:
         start = floor
     if end.year != season or end.isoformat()[5:] > QUIET_EVIDENCE_UNTIL_MMDD:
@@ -716,9 +718,34 @@ def _middle(days: list[date], toward: Callable[[float], int]) -> date:
 
 
 def _fact(
-    kind: str, text: str, evidence: list[dict[str, Any]], estimate: bool = False
+    kind: str,
+    text: str,
+    evidence: list[dict[str, Any]],
+    estimate: bool = False,
+    disagree: bool = False,
 ) -> dict[str, Any]:
-    return {"kind": kind, "text": text, "estimate": estimate, "evidence": evidence}
+    return {
+        "kind": kind,
+        "text": text,
+        "estimate": estimate,
+        "disagree": disagree,
+        "evidence": evidence,
+    }
+
+
+def _short(iso: str) -> str:
+    d = date.fromisoformat(iso)
+    return f"{d:%b} {d.day}"
+
+
+def _melt_out_note(s: dict[str, Any]) -> str:
+    if s["status"] == "melted":
+        return _short(s["melt_out"])
+    if s["status"] == "bare_at_start":
+        return "before Apr 1"
+    if s["status"] == "snow":
+        return f"snow on {_short(s['last_reading'])}"
+    return f"no date: {REASON_TEXT[s['reason']]}"
 
 
 def _chart(stations: list[dict[str, Any]]) -> dict[str, Any] | None:
@@ -733,7 +760,12 @@ def _chart(stations: list[dict[str, Any]]) -> dict[str, Any] | None:
                     "distance_mi": st["distance_mi"],
                     "max_swe_in": MAX_PLAUSIBLE_SWE_IN,
                     "seasons": [
-                        {"year": s["year"], "melt_out": s["melt_out"]}
+                        {
+                            "year": s["year"],
+                            "melt_out": s["melt_out"],
+                            "melt_out_note": _melt_out_note(s),
+                            "peak_swe_in": s["peak_swe_in"],
+                        }
                         for s in st["seasons"]
                         if s["reason"] not in ("no data", "erratic")
                     ],
