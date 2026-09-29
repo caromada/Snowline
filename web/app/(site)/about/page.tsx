@@ -36,7 +36,7 @@ export default function About() {
     <>
       <PageHero
         title="Why this exists"
-        lede="Because the answer to “can I get over the pass this weekend?” was scattered across six sites and a forum thread."
+        lede="Because the answer to “can I get over the pass this weekend?” was scattered across half a dozen sites."
         photo={photos.summer}
         position="50% 40%"
       />
