@@ -14,6 +14,7 @@ import Campfire from "./Campfire";
 import EvidenceLedger from "./EvidenceLedger";
 import FirePanel from "./FirePanel";
 import GettingThere from "./GettingThere";
+import OfficialReports from "./OfficialReports";
 import PassReports from "./PassReports";
 import PixelGlyph from "./PixelGlyph";
 import SeasonPanel from "./SeasonPanel";
@@ -293,6 +294,8 @@ export default function PassPanel({
           {isNow && detail.season && <SeasonPanel season={detail.season} />}
 
           {isNow && detail.winter && <WinterPanel winter={detail.winter} />}
+
+          {isNow && detail.official && <OfficialReports official={detail.official} />}
 
           <p style={{ marginTop: 12, color: "var(--sage)", fontStyle: "italic" }}>
             {detail.pass.aspect_note}

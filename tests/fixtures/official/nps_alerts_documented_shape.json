@@ -1,0 +1,53 @@
+{
+  "_note": "Written by hand to the shape the NPS API documents for /alerts. Not a saved response: no key was registered when the module was built. Replace with a real response once NPS_API_KEY exists.",
+  "total": "5",
+  "limit": "200",
+  "start": "0",
+  "data": [
+    {
+      "id": "00000000-0000-0000-0000-000000000001",
+      "url": "https://www.nps.gov/yose/planyourvisit/conditions.htm",
+      "title": "Tioga Road closed for the season",
+      "parkCode": "yose",
+      "description": "Tioga Road (Highway 120 through the park) is closed for the winter.",
+      "category": "Park Closure",
+      "lastIndexedDate": "2026-11-12 08:15:42.0"
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000002",
+      "url": "https://www.nps.gov/seki/planyourvisit/conditions.htm",
+      "title": "An alert the index gave no date",
+      "parkCode": "seki",
+      "description": "Dropped: an undated condition is worse than none.",
+      "category": "Caution",
+      "lastIndexedDate": ""
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000003",
+      "url": "https://www.nps.gov/mora/planyourvisit/conditions.htm",
+      "title": "An alert with no words",
+      "parkCode": "mora",
+      "description": "",
+      "category": "Information",
+      "lastIndexedDate": "2026-11-12 08:15:42.0"
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000004",
+      "url": "https://www.nps.gov/acad/planyourvisit/conditions.htm",
+      "title": "A park Snowline does not cover",
+      "parkCode": "acad",
+      "description": "Dropped: not one of the parks asked for.",
+      "category": "Information",
+      "lastIndexedDate": "2026-11-12 08:15:42.0"
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000005",
+      "url": "https://www.nps.gov/noca/planyourvisit/conditions.htm",
+      "title": "An alert dated after it was fetched",
+      "parkCode": "noca",
+      "description": "Dropped: the date is in the future.",
+      "category": "Information",
+      "lastIndexedDate": "2027-01-01 00:00:00.0"
+    }
+  ]
+}
