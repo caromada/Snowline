@@ -58,6 +58,12 @@ Other rules
 - "Sensor near pass elevation": a linked station within BLIND_GAP_FT of the
   pass elevation, above or below, with a reading inside the sensor window.
 
+Added after the first run
+-------------------------
+One diagnostic, which changes no score: each row lists the stations voting
+in its verdict whose reading had not moved in a week (`stalled_sensors`),
+because the first run showed misses fed by pillows stuck on one value.
+
 Usage: python -m eval.verdict_backtest --store data/sierra.sqlite
 """
 
@@ -79,6 +85,8 @@ from fusion.fusion import (
     MAX_AGE_DAYS,
     STATUS_LABEL,
     STATUSES,
+    _is_blind,
+    _latest_per_station,
     _severity_to_status,
 )
 
@@ -99,6 +107,12 @@ TRACTION_FLOOR = {
 MAX_TRACTION_RAISE = 1
 
 MIN_CELL = 10
+
+# A live snowpack in melt season moves every day. Bare ground legitimately
+# reads the same for weeks, so readings under an inch are never flagged.
+STALL_READINGS = 7
+STALL_TOLERANCE_IN = 0.02
+STALL_MIN_SWE_IN = 1.0
 Z_95 = 1.959964
 
 GRADES = ["low", "moderate", "high"]
@@ -220,6 +234,40 @@ def sensor_near_pass_elevation(
     return False
 
 
+def stalled_sensors(
+    sensor_obs: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None
+) -> list[str]:
+    """Stations voting in the verdict whose reading has not moved in a week.
+
+    A diagnostic only: it explains misses and never changes a score. It was
+    added after the first run showed pillows stuck on one value.
+    """
+    voting = {
+        prov
+        for prov, o in _latest_per_station(sensor_obs, eval_date).items()
+        if not _is_blind(o, pass_elev_ft)
+    }
+    series: dict[str, list[dict[str, Any]]] = {}
+    for o in sensor_obs:
+        if (
+            o["metric"] == "swe_in"
+            and o["provenance"] in voting
+            and o["observed_date"] <= eval_date
+        ):
+            series.setdefault(o["provenance"], []).append(o)
+    stalled = []
+    for prov, rows in series.items():
+        rows.sort(key=lambda o: o["observed_date"])
+        last = [float(o["value"]) for o in rows[-STALL_READINGS:]]
+        if (
+            len(last) == STALL_READINGS
+            and max(last) - min(last) <= STALL_TOLERANCE_IN
+            and last[-1] >= STALL_MIN_SWE_IN
+        ):
+            stalled.append(prov)
+    return sorted(stalled)
+
+
 def season_of(iso_day: str) -> str:
     month = int(iso_day[5:7])
     if 4 <= month <= 6:
@@ -318,6 +366,11 @@ def backtest_pass(
                     ),
                     "satellite": components.get("satellite") is not None,
                     "other_reports": human is not None,
+                },
+                "diagnostics": {
+                    "stalled_sensors": stalled_sensors(
+                        sensor_obs, day, pass_info.get("elevation_ft")
+                    ),
                 },
                 "outcome": outcome,
                 "direction": direction,
@@ -471,6 +524,16 @@ def corpus_facts(rows: list[dict[str, Any]], reports_total: int) -> dict[str, An
     }
 
 
+def stalled_summary(rows: list[dict[str, Any]]) -> dict[str, int]:
+    fed = [r for r in rows if r["diagnostics"]["stalled_sensors"]]
+    return {
+        "reports": len(fed),
+        "exact": sum(1 for r in fed if r["outcome"] == "exact"),
+        "engine_more": sum(1 for r in fed if r["direction"] == "engine_more"),
+        "engine_less": sum(1 for r in fed if r["direction"] == "engine_less"),
+    }
+
+
 def build_results(
     rows: list[dict[str, Any]], reports_total: int, computed_on: str
 ) -> dict[str, Any]:
@@ -493,6 +556,7 @@ def build_results(
             "within_5_points": reports_needed(0.05),
         },
         **summarize(rows),
+        "stalled_sensors": stalled_summary(rows),
         "rows": rows,
     }
 
@@ -518,6 +582,7 @@ def web_payload(results: dict[str, Any]) -> dict[str, Any]:
             "traction_used": r["observed"]["traction_used"],
             "steps_apart": abs(r["engine"]["step"] - r["observed"]["step"]),
             "direction": r["direction"],
+            "stalled_sensor": bool(r["diagnostics"]["stalled_sensors"]),
             "quote": r["quote"],
         }
         for r in results["rows"]
@@ -545,6 +610,7 @@ def web_payload(results: dict[str, Any]) -> dict[str, Any]:
         },
         "confusion": results["confusion"],
         "thin_cells": results["thin_cells"],
+        "stalled_sensors": results["stalled_sensors"],
         "misses": misses,
         "no_verdict": no_verdict,
     }
@@ -571,6 +637,7 @@ def render_text(results: dict[str, Any]) -> str:
         f"  engine said more snow than found: {_fmt(o['engine_more'])}",
         f"  exact, snow word alone: {_fmt(results['overall_snow_only']['exact'])}",
         f"  confidence: {results['confidence_finding']['verdict']}",
+        f"  verdicts fed by a stalled sensor: {results['stalled_sensors']}",
     ]
     for name in ("by_confidence", "by_season", "by_year", "by_region"):
         lines.append(f"  {name}:")

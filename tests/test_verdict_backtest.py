@@ -15,6 +15,7 @@ from eval.verdict_backtest import (
     reports_needed,
     season_of,
     sensor_near_pass_elevation,
+    stalled_sensors,
     summarize,
     verdict_step,
     wilson_interval,
@@ -280,6 +281,35 @@ def test_sensor_near_pass_elevation_needs_a_fresh_reading_within_300_ft() -> Non
     assert not sensor_near_pass_elevation([], day, 11926)
 
 
+def week_of(values: list[float], last_day: int = 14, **kw: Any) -> list[dict[str, Any]]:
+    first = last_day - len(values) + 1
+    return [sensor(v, f"2023-07-{first + i:02d}", **kw) for i, v in enumerate(values)]
+
+
+def test_a_sensor_that_has_not_moved_in_a_week_is_flagged() -> None:
+    stuck = week_of([67.55, 67.55, 67.55, 67.54, 67.54, 67.54, 67.54], station="cdec:STL")
+    melting = week_of([9.1, 8.6, 8.0, 7.7, 7.1, 6.6, 6.0], station="cdec:CRL")
+    assert stalled_sensors(stuck + melting, "2023-07-15", 11926) == ["cdec:STL"]
+
+
+def test_a_bare_sensor_sitting_at_zero_is_not_stalled() -> None:
+    bare = week_of([0.0] * 7)
+    assert stalled_sensors(bare, "2023-07-15", 11926) == []
+
+
+def test_stalled_needs_a_full_week_and_a_vote_in_the_verdict() -> None:
+    short = week_of([20.0] * 6)
+    assert stalled_sensors(short, "2023-07-15", 11926) == []
+    stale = week_of([20.0] * 7)
+    assert stalled_sensors(stale, "2023-08-15", 11926) == []
+    assert stalled_sensors(stale, "2023-07-20", 11926) == ["cdec:CRL"]
+
+
+def test_rows_carry_the_stalled_sensor_flag() -> None:
+    rows = backtest_pass(PASS, week_of([20.0] * 7), [], [], [report("p1", day="2023-07-15")])
+    assert rows[0]["diagnostics"]["stalled_sensors"] == ["cdec:CRL"]
+
+
 def test_season_of() -> None:
     assert season_of("2023-04-01") == "early"
     assert season_of("2023-06-30") == "early"
@@ -403,6 +433,51 @@ def test_summary_splits_by_season_and_evidence() -> None:
     assert out["by_evidence"]["sensor_near_pass"]["yes"]["n"] == 10
     assert out["by_evidence"]["sensor_near_pass"]["no"]["exact"]["count"] == 0
     assert out["by_evidence"]["satellite"]["yes"]["engine_less"]["count"] == 10
+
+
+def test_results_and_web_payload_hold_no_author_or_site() -> None:
+    from eval.verdict_backtest import build_results, web_payload
+
+    rows = backtest_pass(
+        PASS,
+        week_of([20.0] * 7),
+        [],
+        [],
+        [
+            report("p1", author="Ann", day="2023-07-15", snow="patchy", traction="none"),
+            report("p2", author="Bo", day="2023-07-15", snow="deep", traction="none"),
+        ],
+    )
+    results = build_results(rows, 2, "2026-09-29")
+    assert results["corpus"]["reports_scored"] == 2
+    assert results["stalled_sensors"]["reports"] == 2
+    web = web_payload(results)
+    assert web["computed_on"] == "2026-09-29"
+    assert [m["pass"] for m in web["misses"]] == ["Glen Pass"]
+    miss = web["misses"][0]
+    assert miss["engine"] == "not_recommended" and miss["found"] == "snow_caution"
+    assert miss["direction"] == "engine_more" and miss["steps_apart"] == 2
+    assert miss["stalled_sensor"] is True
+    for blob in (repr(results), repr(web)):
+        assert "Ann" not in blob and "example.org" not in blob
+    assert "p1" not in repr(web)
+
+
+def test_serious_misses_are_listed_first() -> None:
+    from eval.verdict_backtest import build_results, web_payload
+
+    rows = backtest_pass(
+        PASS,
+        week_of([6.0, 5.6, 5.1, 4.7, 4.2, 3.8, 3.3]),
+        [],
+        [],
+        [
+            report("p1", author="Ann", day="2023-07-15", snow="none", traction="none"),
+            report("p2", author="Bo", day="2023-07-15", snow="deep", traction="none"),
+        ],
+    )
+    web = web_payload(build_results(rows, 2, "2026-09-29"))
+    assert [m["direction"] for m in web["misses"]] == ["engine_less", "engine_more"]
 
 
 def test_confidence_that_tracks_accuracy() -> None:
