@@ -70,9 +70,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.7, ease: EASE }}
             >
-              {data?.counts.passes.toLocaleString() ?? "1,252"} mountain passes, fused from
-              sensors, satellites and the people who were just there by agents that show their
-              work and say when they are not sure.
+              {data?.counts.passes.toLocaleString() ?? "1,252"} mountain passes, read every
+              morning from snow sensors and stream gauges, with forecasts, fire maps and road
+              reports alongside. Every verdict shows its work and says when it is not sure.
             </motion.p>
             <motion.div
               className={s.ctaRow}

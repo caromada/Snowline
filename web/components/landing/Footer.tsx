@@ -40,8 +40,8 @@ export default function Footer() {
               {brand.name}
             </p>
             <p className={s.body} style={{ maxWidth: "38ch" }}>
-              Mountain pass conditions for {brand.region.replaceAll(" · ", ", ")}, fused from
-              sensors, satellites and the people who were just there.
+              Mountain pass conditions for {brand.region.replaceAll(" · ", ", ")}, read every
+              morning from snow sensors and stream gauges.
             </p>
           </div>
           {COLUMNS.map((col) => (

@@ -6,22 +6,32 @@ import { useEffect, useState } from "react";
 import s from "@/app/landing.module.css";
 import PixelGlyph from "@/components/PixelGlyph";
 import { type LandingData, loadLanding, STATUS_LABEL } from "@/lib/landingData";
-import { boot, creek, iceAxe, pineSnow, satellite, snowstake, type Sprite } from "@/lib/pixel";
+import { flame } from "@/lib/fire";
+import { creek, iceAxe, pineSnow, road, snowstake, type Sprite } from "@/lib/pixel";
 import { statusColor } from "@/lib/theme";
 import Reveal from "./Reveal";
 import Signpost from "./Signpost";
 
-type Reader = { name: string; role: string; sprite: Sprite; stat: (d: LandingData | null) => string };
+type Reader = {
+  name: string;
+  role: string;
+  sprite: Sprite;
+  /** Whether this reader's output is fused into the verdict. */
+  feeds: boolean;
+  stat: (d: LandingData | null) => string;
+};
 
-// The six readers that feed every verdict. Each is a real stage of the
-// morning pipeline; the numbers beside them come from this morning's run.
+// The six readers of the morning pipeline, each a real stage of it; the
+// numbers beside them come from this morning's run. The first three are
+// fused into the verdict. The last three are shown beside it as issued and
+// never change the status, and the diagram draws them apart.
 const READERS: Reader[] = [
-  { name: "Sensor Watch", role: "snow telemetry", sprite: snowstake, stat: (d) => (d ? `${d.counts.snow_stations} sensors` : "...") },
-  { name: "Gauge Watch", role: "stream flow", sprite: creek, stat: (d) => (d ? `${d.counts.stream_gauges} gauges` : "...") },
-  { name: "Satellite Watch", role: "snow cover", sprite: satellite, stat: (d) => (d ? `${d.counts.passes.toLocaleString()} bowls` : "...") },
-  { name: "Report Reader", role: "language model", sprite: boot, stat: (d) => (d?.model.eval ? `${Math.round(d.model.eval.overall * 1000) / 10}% accurate` : "graded weekly") },
-  { name: "Snowline Estimator", role: "elevation model", sprite: iceAxe, stat: (d) => (d ? `${d.model.snowline_rise_ft_per_day} ft per day` : "...") },
-  { name: "Forecast Reader", role: "seven days out", sprite: pineSnow, stat: () => "at pass elevation" },
+  { name: "Sensor Watch", role: "snow sensors", sprite: snowstake, feeds: true, stat: (d) => (d ? `${d.counts.snow_stations} sensors` : "...") },
+  { name: "Snowline Estimator", role: "melt-out model", sprite: iceAxe, feeds: true, stat: (d) => (d ? `${d.model.snowline_rise_ft_per_day} ft per day` : "...") },
+  { name: "Gauge Watch", role: "stream flow", sprite: creek, feeds: true, stat: (d) => (d ? `${d.counts.stream_gauges} gauges` : "...") },
+  { name: "Forecast Reader", role: "seven days out", sprite: pineSnow, feeds: false, stat: () => "at pass elevation" },
+  { name: "Fire Watch", role: "fire and smoke", sprite: flame, feeds: false, stat: (d) => (d?.counts.fires ? `${d.counts.fires.toLocaleString()} fires mapped` : "mapped daily") },
+  { name: "Road Watch", role: "road reports", sprite: road, feeds: false, stat: () => "chain controls" },
 ];
 
 const W = 1000;
@@ -30,6 +40,9 @@ const X0 = 300;
 const XM = 620;
 const XV = 760;
 const YM = H / 2;
+// Where the context readers meet the verdict card: its side, below the
+// fused line, so they arrive beside the verdict and not through it.
+const YC = YM + 34;
 const ROW = (i: number) => 60 + i * 88;
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -83,12 +96,15 @@ export default function Fusion() {
       <div className={s.wrap}>
         <Reveal className={s.seasonsHead}>
           <Signpost label="How it works" />
-          <h2 className={`${s.display} ${s.h2}`}>Six readers. One trail. One verdict.</h2>
+          <h2 className={`${s.display} ${s.h2}`}>
+            Three readers set the verdict. Three stand beside it.
+          </h2>
           <p className={s.body}>
-            Every morning six agents read the mountain their own way. Fusion weighs each one by
-            how much it has earned and how fresh it is, says out loud when they disagree, and
-            grades its own confidence. What reaches you is one sentence per pass and the evidence
-            behind it.
+            Every morning six readers take in the mountain, each its own way. Snow sensors and
+            the snowline estimate set the status. Stream gauges add the creek below and count
+            toward confidence. The forecast, the fire map and the road reports sit beside the
+            verdict, shown as issued and never folded into it. What reaches you is one status
+            per pass, a confidence grade, and the readings behind both.
           </p>
         </Reveal>
 
@@ -97,11 +113,15 @@ export default function Fusion() {
             {READERS.map((r, i) => (
               <motion.path
                 key={r.name}
-                d={`M${X0} ${ROW(i)} C ${X0 + 170} ${ROW(i)}, ${XM - 120} ${YM}, ${XM} ${YM}`}
+                d={
+                  r.feeds
+                    ? `M${X0} ${ROW(i)} C ${X0 + 170} ${ROW(i)}, ${XM - 120} ${YM}, ${XM} ${YM}`
+                    : `M${X0} ${ROW(i)} C ${X0 + 200} ${ROW(i)}, ${XV - 170} ${YC}, ${XV} ${YC}`
+                }
                 fill="none"
-                stroke="var(--fern)"
-                strokeWidth="2"
-                strokeDasharray="6 7"
+                stroke={r.feeds ? "var(--fern)" : "var(--muted)"}
+                strokeWidth={r.feeds ? "2" : "1.25"}
+                strokeOpacity={r.feeds ? 1 : 0.45}
                 strokeLinecap="round"
                 {...draw(i)}
               />
@@ -142,6 +162,31 @@ export default function Fusion() {
               {node(r, i)}
             </motion.div>
           ))}
+          {(
+            [
+              ["set the verdict", XM - 40, YM - 58],
+              ["shown beside it", XV - 70, YC + 72],
+            ] as const
+          ).map(([label, x, y], k) => (
+            <motion.span
+              key={label}
+              className={s.mono}
+              style={{
+                position: "absolute",
+                left: `${(x / W) * 100}%`,
+                top: `${(y / H) * 100}%`,
+                transform: "translate(-50%, -50%)",
+                color: "var(--muted)",
+                whiteSpace: "nowrap",
+              }}
+              initial={reduce ? false : { opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 1.4 + k * 0.3 }}
+            >
+              {label}
+            </motion.span>
+          ))}
           {[0, 1, 2].map((k) => (
             <motion.span
               key={k}
@@ -170,7 +215,7 @@ export default function Fusion() {
         <div className={s.fusionMobile}>
           {READERS.map(node)}
           <div className={`${s.mono} ${s.fusionMobileArrow}`} aria-hidden="true">
-            ↓ weighed by trust and freshness
+            ↓ the first three set the verdict, the rest sit beside it
           </div>
           {verdictCard}
         </div>

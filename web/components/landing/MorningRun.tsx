@@ -19,20 +19,22 @@ function linesFor(d: LandingData): Line[] {
       hour12: false,
     });
   const known = d.passes.filter(([, , , st]) => st[st.length - 1] !== "4").length;
-  const eval_ = d.model.eval;
+  const fires = d.counts.fires ?? 0;
   return [
     { t: at(6.2), who: "Sensor Watch", what: `${d.counts.snow_stations} snow sensors read` },
     { t: at(5.4), who: "Gauge Watch", what: `${d.counts.stream_gauges} stream gauges read` },
-    { t: at(4.1), who: "Satellite Watch", what: `${d.counts.passes.toLocaleString()} pass bowls sampled` },
     {
-      t: at(3.3),
-      who: "Report Reader",
-      what: eval_ ? `trip reports parsed · ${Math.round(eval_.overall * 1000) / 10}% eval` : "trip reports parsed",
+      t: at(4.1),
+      who: "Fire Watch",
+      what: fires
+        ? `${fires.toLocaleString()} ${fires === 1 ? "fire" : "fires"} mapped, smoke read`
+        : "fire map and smoke read",
     },
+    { t: at(3.3), who: "Road Watch", what: "chain controls and road reports read" },
     { t: at(2.5), who: "Snowline Estimator", what: `${d.model.snowline_rise_ft_per_day} ft/day climb applied` },
     { t: at(1.6), who: "Forecast Reader", what: "7-day grids read at pass elevation" },
     { t: at(0.7), who: "Fusion", what: `${known.toLocaleString()} of ${d.counts.passes.toLocaleString()} passes with a verdict` },
-    { t: at(0), who: "Published", what: "all passes, all evidence, all sources", warm: true },
+    { t: at(0), who: "Published", what: "every pass, with the readings behind it", warm: true },
   ];
 }
 

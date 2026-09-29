@@ -10,7 +10,7 @@ const WHO: { name: string; photo: Photo; line: string; icon: Icon }[] = [
   { name: "Day hikers", photo: photos.dayhike, icon: Boot, line: "Is the loop snow-free yet, and is the creek crossable?" },
   { name: "Backpackers", photo: photos.summer, icon: Backpack, line: "Which passes on the route still hold snow, and how deep?" },
   { name: "Thru-hikers", photo: photos.thru, icon: Footprints, line: "The whole crest at once: what is melting out ahead of you." },
-  { name: "Climbers", photo: photos.aasgard, icon: Mountains, line: "Is the approach in, and what did the last party find in the chute?" },
+  { name: "Climbers", photo: photos.aasgard, icon: Mountains, line: "Is the approach still under snow, and how high has the snowline climbed?" },
   { name: "Skiers", photo: photos.winter, icon: PersonSimpleSki, line: "Fresh snow, the official danger rating, and whether you can drive there." },
 ];
 

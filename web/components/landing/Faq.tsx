@@ -9,19 +9,19 @@ const QA = [
   },
   {
     q: "Can I rely on it for safety?",
-    a: `No, and no single source should carry that weight. ${brand.name} is a planning aid that shows you what the sensors, satellites and recent parties saw, and how sure it is. Check official sources, carry the right gear, and make your own call at the base of the climb.`,
+    a: `No, and no single source should carry that weight. ${brand.name} is a planning aid that shows you what snow sensors and stream gauges measured, what the official sources report, and how sure it is. Check official sources, carry the right gear, and make your own call at the base of the climb.`,
   },
   {
     q: "Does it cover avalanches?",
-    a: "It is not an avalanche forecast. In winter we will show the official danger rating from your region's avalanche center, word for word with a link, never our own assessment.",
+    a: "It is not an avalanche forecast. Where a pass sits inside an avalanche center's forecast zone, it shows that center's official rating, word for word with a link, and says so when no rating has been issued. It never makes an assessment of its own.",
   },
   {
     q: "Where does the data come from?",
-    a: "Hundreds of snow sensors and stream gauges across the three states, read every morning, plus trip reports and satellite snow cover. Every sentence on a pass links back to the reading or the report behind it.",
+    a: "Hundreds of snow sensors and stream gauges across the three states, read every morning. Beside the verdict sit seven-day forecasts, fire maps, road reports and official avalanche ratings, each shown as issued. Trip reports are coming: people will be able to file one from the pass in the app, and each will be shown with its date.",
   },
   {
     q: "How fresh is it?",
-    a: "Sensor data refreshes every morning. Each fact shows how old it is, and older evidence counts for less.",
+    a: "Sensor data refreshes every morning. Each fact shows how old it is. An older reading lowers the confidence grade, and one more than ten days old is not used.",
   },
 ];
 

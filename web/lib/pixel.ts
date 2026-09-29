@@ -178,6 +178,26 @@ export const crossedPoles: Sprite = [
   "................",
 ];
 
+// Road: a highway running to the pass. Road reports and chain controls.
+export const road: Sprite = [
+  "................",
+  "......g..g......",
+  "......g..g......",
+  ".....g.aa.g.....",
+  ".....g.aa.g.....",
+  "....g......g....",
+  "....g......g....",
+  "...g...aa...g...",
+  "...g...aa...g...",
+  "..g....aa....g..",
+  "..g..........g..",
+  ".g............g.",
+  ".g.....aa.....g.",
+  "g......aa......g",
+  "g......aa......g",
+  "................",
+];
+
 // Tent: your saved passes.
 export const tent: Sprite = [
   "................",
