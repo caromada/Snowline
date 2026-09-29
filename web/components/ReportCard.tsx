@@ -11,6 +11,7 @@ export default function ReportCard({
   report,
   passName,
   from,
+  viewingPast = false,
   photoUrl,
   onRemove,
 }: {
@@ -18,6 +19,8 @@ export default function ReportCard({
   passName: string;
   /** The date "how long ago" counts from. */
   from: string;
+  /** True while the history slider is on a past date. */
+  viewingPast?: boolean;
   photoUrl: string | null;
   /** Present only on the reader's own reports. */
   onRemove?: () => Promise<void>;
@@ -46,7 +49,7 @@ export default function ReportCard({
       <header className={s.cardHead}>
         <p className={`mono ${s.when}`}>
           <span className={s.date}>{longDate(report.date_observed)}</span>
-          <span> · {agoInWords(report.date_observed, from)}</span>
+          <span> · {agoInWords(report.date_observed, from, viewingPast)}</span>
         </p>
         {onRemove && !asking && (
           <button type="button" className={`mono ${s.remove}`} onClick={() => setAsking(true)}>

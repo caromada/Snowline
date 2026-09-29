@@ -71,6 +71,12 @@ describe("agoInWords", () => {
   it("counts from the date being viewed, which can be before the report", () => {
     expect(agoInWords("2026-10-06", TODAY)).toBe("2 days later");
   });
+  it("does not call the past 'ago' when the history slider is on a past date", () => {
+    expect(agoInWords("2026-07-20", "2026-08-01", true)).toBe("12 days before Aug 1");
+    expect(agoInWords("2026-07-31", "2026-08-01", true)).toBe("1 day before Aug 1");
+    expect(agoInWords("2026-07-10", "2026-08-01", true)).toBe("3 weeks before Aug 1");
+    expect(agoInWords("2026-08-01", "2026-08-01", true)).toBe("on Aug 1");
+  });
 });
 
 describe("shortDate", () => {

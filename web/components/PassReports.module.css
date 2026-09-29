@@ -22,6 +22,10 @@
   border-left: 3px solid var(--fern);
   background: color-mix(in srgb, var(--fern) 14%, transparent);
 }
+.held {
+  border-left-color: var(--alpenglow);
+  background: color-mix(in srgb, var(--alpenglow) 8%, transparent);
+}
 .notice:focus-visible {
   outline: 2px solid var(--alpenglow);
   outline-offset: 2px;

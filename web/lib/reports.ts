@@ -57,17 +57,24 @@ export function dateChoices(today: string): { value: string; label: string }[] {
   });
 }
 
-/** How long before `from` the date was, in words. `from` is today, or the
- * date on the history slider. */
-export function agoInWords(date: string, from: string): string {
+function span(days: number): string {
+  if (days === 1) return "1 day";
+  if (days < 14) return `${days} days`;
+  if (days < 60) return `${Math.floor(days / 7)} weeks`;
+  if (days < 365) return `${Math.floor(days / 30)} months`;
+  return "over a year";
+}
+
+/** How long before `from` the date was, in words. `from` is today, or,
+ * with `viewingPast`, the date on the history slider: "ago" would then
+ * read as counted from the present, so the date is named instead. */
+export function agoInWords(date: string, from: string, viewingPast = false): string {
   const days = dayNumber(from) - dayNumber(date);
-  if (days < 0) return days === -1 ? "1 day later" : `${-days} days later`;
+  if (days < 0) return `${span(-days)} later`;
+  if (viewingPast) return days === 0 ? `on ${shortDate(from)}` : `${span(days)} before ${shortDate(from)}`;
   if (days === 0) return "today";
   if (days === 1) return "yesterday";
-  if (days < 14) return `${days} days ago`;
-  if (days < 60) return `${Math.floor(days / 7)} weeks ago`;
-  if (days < 365) return `${Math.floor(days / 30)} months ago`;
-  return "over a year ago";
+  return `${span(days)} ago`;
 }
 
 const FIELD_NAMES: Record<keyof ReportConditions, string> = {

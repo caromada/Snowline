@@ -195,20 +195,25 @@ export default function FileReport({
     }
   };
 
-  const dropPhoto = () => {
+  const forgetPhoto = () => {
     if (photo) URL.revokeObjectURL(photo.url);
     setPhoto(null);
     setPhotoError(null);
+  };
+
+  const dropPhoto = () => {
+    forgetPhoto();
     if (fileInput.current) fileInput.current.value = "";
   };
 
   const choosePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
+    forgetPhoto();
     if (!file) return;
-    dropPhoto();
     const problem = photoFileProblem(file);
     if (problem) {
       setPhotoError(problem);
+      event.target.value = "";
       return;
     }
     setPhotoBusy(true);

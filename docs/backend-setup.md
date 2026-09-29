@@ -91,6 +91,54 @@ Identical questions about the same pass and the same data are answered from
 a cache and cost nothing. Limits and model names live in
 `supabase/functions/_shared/config.ts`.
 
+## Reports
+
+Visitors file what they found on a pass: their words, a few taps, one
+photo. The pieces, in the order to deploy them:
+
+1. The table, the public view, the photo bucket and their policies
+   (`supabase/migrations/20261001000000_reports.sql`). It also adds a
+   `reports` count to the usage ledger.
+
+   ```bash
+   supabase db push
+   ```
+
+2. The function that files a report. It needs no new secrets: it uses the
+   same `ANTHROPIC_API_KEY`, `SITE_URL` and `LLM_BUDGET_USD` as the question
+   box, and spends from the same daily budget.
+
+   ```bash
+   supabase functions deploy file-report
+   ```
+
+3. Prove the policies with the publishable key, request by request:
+   `supabase/tests/reports-policies.md`. Do this before step 4.
+
+4. Push the site. Reports show wherever the question box shows: behind
+   `?preview=ask` until `NEXT_PUBLIC_BACKEND_LIVE=1` is set.
+
+The database comes first because the function writes to the table and the
+site reads the view; deployed in any other order, the newer piece fails
+until the older one arrives.
+
+| Limit | Value | Held by |
+|---|---|---|
+| Reports a person may file in a day (UTC) | 5 | the function, then a database trigger |
+| Reports per person per pass per day | 1 | the function, then two unique indexes |
+| How far back the day at the pass may be | 30 days, never the future | the function, then a database trigger |
+| Their words | 1,000 characters | the form, the function, a check constraint |
+| Water source name | 60 characters | the form, the function, a check constraint |
+| Photo as chosen | 15 MB | the form, before the file is read |
+| Photo as uploaded | 3 MB, JPEG only | the bucket |
+| Model spend a day | `LLM_BUDGET_USD`, shared with questions | the function |
+
+Who filed a report is never readable with the publishable key. The table is
+closed to it; the view has no user id; a published photo is stored under the
+report's id, not the person's.
+
+Reports do not feed the verdict.
+
 ## Tests
 
 ```bash

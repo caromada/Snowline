@@ -34,7 +34,7 @@ export default function PassReports({
   const [loaded, setLoaded] = useState<Loaded | null>(null);
   const [photos, setPhotos] = useState<Record<string, string>>({});
   const [showEarlier, setShowEarlier] = useState(false);
-  const [notice, setNotice] = useState<string | null>(null);
+  const [notice, setNotice] = useState<{ text: string; held: boolean } | null>(null);
   const noticeRef = useRef<HTMLParagraphElement>(null);
   const localPhotos = useRef<string[]>([]);
 
@@ -71,8 +71,8 @@ export default function PassReports({
     return () => held.forEach((url) => URL.revokeObjectURL(url));
   }, []);
 
-  const say = useCallback((text: string) => {
-    setNotice(text);
+  const say = useCallback((text: string, held = false) => {
+    setNotice({ text, held });
     requestAnimationFrame(() => noticeRef.current?.focus());
   }, []);
 
@@ -91,7 +91,7 @@ export default function PassReports({
       failed: false,
       reports: [report, ...(held && held.key === key ? held.reports : [])],
     }));
-    say(result.message ?? "Published. Your report is at the top of the list.");
+    say(result.message ?? "Published. Your report is at the top of the list.", result.hidden);
   };
 
   const remove = async (report: PassReport) => {
@@ -106,6 +106,7 @@ export default function PassReports({
         report={report}
         passName={name}
         from={until}
+        viewingPast={!isNow}
         photoUrl={report.photo_path ? (photos[report.photo_path] ?? null) : null}
         onRemove={report.mine ? () => remove(report) : undefined}
       />
@@ -122,8 +123,8 @@ export default function PassReports({
       )}
 
       {notice && (
-        <p ref={noticeRef} tabIndex={-1} role="status" className={s.notice}>
-          {notice}
+        <p ref={noticeRef} tabIndex={-1} role="status" className={`${s.notice} ${notice.held ? s.held : ""}`}>
+          {notice.text}
         </p>
       )}
 

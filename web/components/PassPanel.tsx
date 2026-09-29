@@ -296,7 +296,7 @@ export default function PassPanel({
           )}
 
           {ask && (
-            <PassReports slug={detail.pass.slug} name={detail.pass.name} evalDate={evalDate} isNow={isNow} />
+            <PassReports key={detail.pass.slug} slug={detail.pass.slug} name={detail.pass.name} evalDate={evalDate} isNow={isNow} />
           )}
 
           {detail.access && <GettingThere access={detail.access} onShow={onShow} />}
