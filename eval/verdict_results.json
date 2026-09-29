@@ -47,224 +47,224 @@
  },
  "overall": {
   "reports": 40,
-  "no_verdict": 0,
-  "n": 40,
+  "no_verdict": 1,
+  "n": 39,
   "exact": {
-   "count": 16,
-   "n": 40,
+   "count": 20,
+   "n": 39,
    "thin": false,
-   "rate": 0.4,
-   "low": 0.2635,
-   "high": 0.554
+   "rate": 0.5128,
+   "low": 0.362,
+   "high": 0.6613
   },
   "within_one": {
-   "count": 33,
-   "n": 40,
+   "count": 37,
+   "n": 39,
    "thin": false,
-   "rate": 0.825,
-   "low": 0.6805,
-   "high": 0.9125
+   "rate": 0.9487,
+   "low": 0.8311,
+   "high": 0.9858
   },
   "off_by_one": {
    "count": 17,
-   "n": 40,
+   "n": 39,
    "thin": false,
-   "rate": 0.425,
-   "low": 0.2851,
-   "high": 0.578
+   "rate": 0.4359,
+   "low": 0.293,
+   "high": 0.5902
   },
   "off_by_more": {
-   "count": 7,
-   "n": 40,
+   "count": 2,
+   "n": 39,
    "thin": false,
-   "rate": 0.175,
-   "low": 0.0875,
-   "high": 0.3195
+   "rate": 0.0513,
+   "low": 0.0142,
+   "high": 0.1689
   },
   "engine_less": {
-   "count": 5,
-   "n": 40,
+   "count": 8,
+   "n": 39,
    "thin": false,
-   "rate": 0.125,
-   "low": 0.0546,
-   "high": 0.2611
+   "rate": 0.2051,
+   "low": 0.1078,
+   "high": 0.3553
   },
   "engine_more": {
-   "count": 19,
-   "n": 40,
+   "count": 11,
+   "n": 39,
    "thin": false,
-   "rate": 0.475,
-   "low": 0.3294,
-   "high": 0.625
+   "rate": 0.2821,
+   "low": 0.1654,
+   "high": 0.4378
   },
   "engine_less_by_more_than_one": 0,
-  "engine_more_by_more_than_one": 7
+  "engine_more_by_more_than_one": 2
  },
  "overall_snow_only": {
   "reports": 40,
-  "no_verdict": 0,
-  "n": 40,
+  "no_verdict": 1,
+  "n": 39,
   "exact": {
-   "count": 12,
-   "n": 40,
+   "count": 15,
+   "n": 39,
    "thin": false,
-   "rate": 0.3,
-   "low": 0.1807,
-   "high": 0.4543
+   "rate": 0.3846,
+   "low": 0.2489,
+   "high": 0.541
   },
   "within_one": {
-   "count": 32,
-   "n": 40,
+   "count": 37,
+   "n": 39,
    "thin": false,
-   "rate": 0.8,
-   "low": 0.6524,
-   "high": 0.895
+   "rate": 0.9487,
+   "low": 0.8311,
+   "high": 0.9858
   },
   "off_by_one": {
-   "count": 20,
-   "n": 40,
+   "count": 22,
+   "n": 39,
    "thin": false,
-   "rate": 0.5,
-   "low": 0.352,
-   "high": 0.648
+   "rate": 0.5641,
+   "low": 0.4098,
+   "high": 0.707
   },
   "off_by_more": {
-   "count": 8,
-   "n": 40,
+   "count": 2,
+   "n": 39,
    "thin": false,
-   "rate": 0.2,
-   "low": 0.105,
-   "high": 0.3476
+   "rate": 0.0513,
+   "low": 0.0142,
+   "high": 0.1689
   },
   "engine_less": {
-   "count": 4,
-   "n": 40,
+   "count": 7,
+   "n": 39,
    "thin": false,
-   "rate": 0.1,
-   "low": 0.0396,
-   "high": 0.2305
+   "rate": 0.1795,
+   "low": 0.0898,
+   "high": 0.3267
   },
   "engine_more": {
-   "count": 24,
-   "n": 40,
+   "count": 17,
+   "n": 39,
    "thin": false,
-   "rate": 0.6,
-   "low": 0.446,
-   "high": 0.7365
+   "rate": 0.4359,
+   "low": 0.293,
+   "high": 0.5902
   },
   "engine_less_by_more_than_one": 0,
-  "engine_more_by_more_than_one": 8
+  "engine_more_by_more_than_one": 2
  },
  "by_confidence": {
   "low": {
-   "reports": 9,
-   "no_verdict": 0,
-   "n": 9,
+   "reports": 12,
+   "no_verdict": 1,
+   "n": 11,
    "exact": {
-    "count": 2,
-    "n": 9,
-    "thin": true,
-    "rate": null,
-    "low": null,
-    "high": null
+    "count": 6,
+    "n": 11,
+    "thin": false,
+    "rate": 0.5455,
+    "low": 0.2801,
+    "high": 0.7873
    },
    "within_one": {
-    "count": 5,
-    "n": 9,
-    "thin": true,
-    "rate": null,
-    "low": null,
-    "high": null
+    "count": 11,
+    "n": 11,
+    "thin": false,
+    "rate": 1.0,
+    "low": 0.7412,
+    "high": 1.0
    },
    "off_by_one": {
-    "count": 3,
-    "n": 9,
-    "thin": true,
-    "rate": null,
-    "low": null,
-    "high": null
+    "count": 5,
+    "n": 11,
+    "thin": false,
+    "rate": 0.4545,
+    "low": 0.2127,
+    "high": 0.7199
    },
    "off_by_more": {
-    "count": 4,
-    "n": 9,
-    "thin": true,
-    "rate": null,
-    "low": null,
-    "high": null
+    "count": 0,
+    "n": 11,
+    "thin": false,
+    "rate": 0.0,
+    "low": 0.0,
+    "high": 0.2588
    },
    "engine_less": {
-    "count": 1,
-    "n": 9,
-    "thin": true,
-    "rate": null,
-    "low": null,
-    "high": null
+    "count": 3,
+    "n": 11,
+    "thin": false,
+    "rate": 0.2727,
+    "low": 0.0975,
+    "high": 0.5656
    },
    "engine_more": {
-    "count": 6,
-    "n": 9,
-    "thin": true,
-    "rate": null,
-    "low": null,
-    "high": null
+    "count": 2,
+    "n": 11,
+    "thin": false,
+    "rate": 0.1818,
+    "low": 0.0514,
+    "high": 0.477
    },
    "engine_less_by_more_than_one": 0,
-   "engine_more_by_more_than_one": 4
+   "engine_more_by_more_than_one": 0
   },
   "moderate": {
-   "reports": 31,
+   "reports": 28,
    "no_verdict": 0,
-   "n": 31,
+   "n": 28,
    "exact": {
     "count": 14,
-    "n": 31,
+    "n": 28,
     "thin": false,
-    "rate": 0.4516,
-    "low": 0.2916,
-    "high": 0.6223
+    "rate": 0.5,
+    "low": 0.3263,
+    "high": 0.6737
    },
    "within_one": {
-    "count": 28,
-    "n": 31,
+    "count": 26,
+    "n": 28,
     "thin": false,
-    "rate": 0.9032,
-    "low": 0.751,
-    "high": 0.9665
+    "rate": 0.9286,
+    "low": 0.7735,
+    "high": 0.9802
    },
    "off_by_one": {
-    "count": 14,
-    "n": 31,
+    "count": 12,
+    "n": 28,
     "thin": false,
-    "rate": 0.4516,
-    "low": 0.2916,
-    "high": 0.6223
+    "rate": 0.4286,
+    "low": 0.2651,
+    "high": 0.6093
    },
    "off_by_more": {
-    "count": 3,
-    "n": 31,
+    "count": 2,
+    "n": 28,
     "thin": false,
-    "rate": 0.0968,
-    "low": 0.0335,
-    "high": 0.249
+    "rate": 0.0714,
+    "low": 0.0198,
+    "high": 0.2265
    },
    "engine_less": {
-    "count": 4,
-    "n": 31,
+    "count": 5,
+    "n": 28,
     "thin": false,
-    "rate": 0.129,
-    "low": 0.0513,
-    "high": 0.2885
+    "rate": 0.1786,
+    "low": 0.0788,
+    "high": 0.3559
    },
    "engine_more": {
-    "count": 13,
-    "n": 31,
+    "count": 9,
+    "n": 28,
     "thin": false,
-    "rate": 0.4194,
-    "low": 0.2642,
-    "high": 0.5923
+    "rate": 0.3214,
+    "low": 0.1793,
+    "high": 0.5066
    },
    "engine_less_by_more_than_one": 0,
-   "engine_more_by_more_than_one": 3
+   "engine_more_by_more_than_one": 2
   },
   "high": {
    "reports": 0,
@@ -323,8 +323,9 @@
   }
  },
  "confidence_finding": {
-  "verdict": "too_thin",
+  "verdict": "does_not_track",
   "grades_compared": [
+   "low",
    "moderate"
   ],
   "separable": false
@@ -387,58 +388,58 @@
   },
   "midsummer": {
    "reports": 19,
-   "no_verdict": 0,
-   "n": 19,
+   "no_verdict": 1,
+   "n": 18,
    "exact": {
-    "count": 5,
-    "n": 19,
+    "count": 9,
+    "n": 18,
     "thin": false,
-    "rate": 0.2632,
-    "low": 0.1181,
-    "high": 0.4879
+    "rate": 0.5,
+    "low": 0.2903,
+    "high": 0.7097
    },
    "within_one": {
-    "count": 12,
-    "n": 19,
+    "count": 16,
+    "n": 18,
     "thin": false,
-    "rate": 0.6316,
-    "low": 0.4104,
-    "high": 0.8085
+    "rate": 0.8889,
+    "low": 0.672,
+    "high": 0.969
    },
    "off_by_one": {
     "count": 7,
-    "n": 19,
+    "n": 18,
     "thin": false,
-    "rate": 0.3684,
-    "low": 0.1915,
-    "high": 0.5896
+    "rate": 0.3889,
+    "low": 0.2031,
+    "high": 0.6138
    },
    "off_by_more": {
-    "count": 7,
-    "n": 19,
+    "count": 2,
+    "n": 18,
     "thin": false,
-    "rate": 0.3684,
-    "low": 0.1915,
-    "high": 0.5896
+    "rate": 0.1111,
+    "low": 0.031,
+    "high": 0.328
    },
    "engine_less": {
-    "count": 4,
-    "n": 19,
+    "count": 7,
+    "n": 18,
     "thin": false,
-    "rate": 0.2105,
-    "low": 0.0851,
-    "high": 0.4333
+    "rate": 0.3889,
+    "low": 0.2031,
+    "high": 0.6138
    },
    "engine_more": {
-    "count": 10,
-    "n": 19,
+    "count": 2,
+    "n": 18,
     "thin": false,
-    "rate": 0.5263,
-    "low": 0.3171,
-    "high": 0.7267
+    "rate": 0.1111,
+    "low": 0.031,
+    "high": 0.328
    },
    "engine_less_by_more_than_one": 0,
-   "engine_more_by_more_than_one": 7
+   "engine_more_by_more_than_one": 2
   },
   "fall": {
    "reports": 0,
@@ -554,65 +555,65 @@
  "by_year": {
   "2023": {
    "reports": 36,
-   "no_verdict": 0,
-   "n": 36,
+   "no_verdict": 1,
+   "n": 35,
    "exact": {
-    "count": 15,
-    "n": 36,
+    "count": 16,
+    "n": 35,
     "thin": false,
-    "rate": 0.4167,
-    "low": 0.2714,
-    "high": 0.578
+    "rate": 0.4571,
+    "low": 0.3047,
+    "high": 0.6181
    },
    "within_one": {
-    "count": 32,
-    "n": 36,
+    "count": 33,
+    "n": 35,
     "thin": false,
-    "rate": 0.8889,
-    "low": 0.7469,
-    "high": 0.9559
+    "rate": 0.9429,
+    "low": 0.8139,
+    "high": 0.9842
    },
    "off_by_one": {
     "count": 17,
-    "n": 36,
+    "n": 35,
     "thin": false,
-    "rate": 0.4722,
-    "low": 0.3199,
-    "high": 0.6299
+    "rate": 0.4857,
+    "low": 0.3299,
+    "high": 0.6443
    },
    "off_by_more": {
-    "count": 4,
-    "n": 36,
+    "count": 2,
+    "n": 35,
     "thin": false,
-    "rate": 0.1111,
-    "low": 0.0441,
-    "high": 0.2531
+    "rate": 0.0571,
+    "low": 0.0158,
+    "high": 0.1861
    },
    "engine_less": {
-    "count": 5,
-    "n": 36,
+    "count": 8,
+    "n": 35,
     "thin": false,
-    "rate": 0.1389,
-    "low": 0.0608,
-    "high": 0.2866
+    "rate": 0.2286,
+    "low": 0.1207,
+    "high": 0.3902
    },
    "engine_more": {
-    "count": 16,
-    "n": 36,
+    "count": 11,
+    "n": 35,
     "thin": false,
-    "rate": 0.4444,
-    "low": 0.2954,
-    "high": 0.6042
+    "rate": 0.3143,
+    "low": 0.1855,
+    "high": 0.4798
    },
    "engine_less_by_more_than_one": 0,
-   "engine_more_by_more_than_one": 4
+   "engine_more_by_more_than_one": 2
   },
   "2026": {
    "reports": 4,
    "no_verdict": 0,
    "n": 4,
    "exact": {
-    "count": 1,
+    "count": 4,
     "n": 4,
     "thin": true,
     "rate": null,
@@ -620,7 +621,7 @@
     "high": null
    },
    "within_one": {
-    "count": 1,
+    "count": 4,
     "n": 4,
     "thin": true,
     "rate": null,
@@ -636,7 +637,7 @@
     "high": null
    },
    "off_by_more": {
-    "count": 3,
+    "count": 0,
     "n": 4,
     "thin": true,
     "rate": null,
@@ -652,7 +653,7 @@
     "high": null
    },
    "engine_more": {
-    "count": 3,
+    "count": 0,
     "n": 4,
     "thin": true,
     "rate": null,
@@ -660,64 +661,64 @@
     "high": null
    },
    "engine_less_by_more_than_one": 0,
-   "engine_more_by_more_than_one": 3
+   "engine_more_by_more_than_one": 0
   }
  },
  "by_region": {
   "Sierra Nevada": {
    "reports": 40,
-   "no_verdict": 0,
-   "n": 40,
+   "no_verdict": 1,
+   "n": 39,
    "exact": {
-    "count": 16,
-    "n": 40,
+    "count": 20,
+    "n": 39,
     "thin": false,
-    "rate": 0.4,
-    "low": 0.2635,
-    "high": 0.554
+    "rate": 0.5128,
+    "low": 0.362,
+    "high": 0.6613
    },
    "within_one": {
-    "count": 33,
-    "n": 40,
+    "count": 37,
+    "n": 39,
     "thin": false,
-    "rate": 0.825,
-    "low": 0.6805,
-    "high": 0.9125
+    "rate": 0.9487,
+    "low": 0.8311,
+    "high": 0.9858
    },
    "off_by_one": {
     "count": 17,
-    "n": 40,
+    "n": 39,
     "thin": false,
-    "rate": 0.425,
-    "low": 0.2851,
-    "high": 0.578
+    "rate": 0.4359,
+    "low": 0.293,
+    "high": 0.5902
    },
    "off_by_more": {
-    "count": 7,
-    "n": 40,
+    "count": 2,
+    "n": 39,
     "thin": false,
-    "rate": 0.175,
-    "low": 0.0875,
-    "high": 0.3195
+    "rate": 0.0513,
+    "low": 0.0142,
+    "high": 0.1689
    },
    "engine_less": {
-    "count": 5,
-    "n": 40,
+    "count": 8,
+    "n": 39,
     "thin": false,
-    "rate": 0.125,
-    "low": 0.0546,
-    "high": 0.2611
+    "rate": 0.2051,
+    "low": 0.1078,
+    "high": 0.3553
    },
    "engine_more": {
-    "count": 19,
-    "n": 40,
+    "count": 11,
+    "n": 39,
     "thin": false,
-    "rate": 0.475,
-    "low": 0.3294,
-    "high": 0.625
+    "rate": 0.2821,
+    "low": 0.1654,
+    "high": 0.4378
    },
    "engine_less_by_more_than_one": 0,
-   "engine_more_by_more_than_one": 7
+   "engine_more_by_more_than_one": 2
   }
  },
  "by_evidence": {
@@ -727,7 +728,7 @@
     "no_verdict": 0,
     "n": 4,
     "exact": {
-     "count": 1,
+     "count": 2,
      "n": 4,
      "thin": true,
      "rate": null,
@@ -735,7 +736,7 @@
      "high": null
     },
     "within_one": {
-     "count": 2,
+     "count": 3,
      "n": 4,
      "thin": true,
      "rate": null,
@@ -751,7 +752,7 @@
      "high": null
     },
     "off_by_more": {
-     "count": 2,
+     "count": 1,
      "n": 4,
      "thin": true,
      "rate": null,
@@ -767,7 +768,7 @@
      "high": null
     },
     "engine_more": {
-     "count": 3,
+     "count": 2,
      "n": 4,
      "thin": true,
      "rate": null,
@@ -775,174 +776,174 @@
      "high": null
     },
     "engine_less_by_more_than_one": 0,
-    "engine_more_by_more_than_one": 2
+    "engine_more_by_more_than_one": 1
    },
    "no": {
     "reports": 36,
-    "no_verdict": 0,
-    "n": 36,
+    "no_verdict": 1,
+    "n": 35,
     "exact": {
-     "count": 15,
-     "n": 36,
+     "count": 18,
+     "n": 35,
      "thin": false,
-     "rate": 0.4167,
-     "low": 0.2714,
-     "high": 0.578
+     "rate": 0.5143,
+     "low": 0.3557,
+     "high": 0.6701
     },
     "within_one": {
-     "count": 31,
-     "n": 36,
+     "count": 34,
+     "n": 35,
      "thin": false,
-     "rate": 0.8611,
-     "low": 0.7134,
-     "high": 0.9392
+     "rate": 0.9714,
+     "low": 0.8547,
+     "high": 0.9949
     },
     "off_by_one": {
      "count": 16,
-     "n": 36,
+     "n": 35,
      "thin": false,
-     "rate": 0.4444,
-     "low": 0.2954,
-     "high": 0.6042
+     "rate": 0.4571,
+     "low": 0.3047,
+     "high": 0.6181
     },
     "off_by_more": {
-     "count": 5,
-     "n": 36,
+     "count": 1,
+     "n": 35,
      "thin": false,
-     "rate": 0.1389,
-     "low": 0.0608,
-     "high": 0.2866
+     "rate": 0.0286,
+     "low": 0.0051,
+     "high": 0.1453
     },
     "engine_less": {
-     "count": 5,
-     "n": 36,
+     "count": 8,
+     "n": 35,
      "thin": false,
-     "rate": 0.1389,
-     "low": 0.0608,
-     "high": 0.2866
+     "rate": 0.2286,
+     "low": 0.1207,
+     "high": 0.3902
     },
     "engine_more": {
-     "count": 16,
-     "n": 36,
+     "count": 9,
+     "n": 35,
      "thin": false,
-     "rate": 0.4444,
-     "low": 0.2954,
-     "high": 0.6042
+     "rate": 0.2571,
+     "low": 0.1416,
+     "high": 0.4207
     },
     "engine_less_by_more_than_one": 0,
-    "engine_more_by_more_than_one": 5
+    "engine_more_by_more_than_one": 1
    }
   },
   "satellite": {
    "yes": {
-    "reports": 25,
+    "reports": 21,
     "no_verdict": 0,
-    "n": 25,
+    "n": 21,
     "exact": {
-     "count": 9,
-     "n": 25,
+     "count": 8,
+     "n": 21,
      "thin": false,
-     "rate": 0.36,
-     "low": 0.2025,
-     "high": 0.5548
+     "rate": 0.381,
+     "low": 0.2075,
+     "high": 0.5912
     },
     "within_one": {
-     "count": 20,
-     "n": 25,
+     "count": 19,
+     "n": 21,
      "thin": false,
-     "rate": 0.8,
-     "low": 0.6087,
-     "high": 0.9114
+     "rate": 0.9048,
+     "low": 0.7109,
+     "high": 0.9735
     },
     "off_by_one": {
      "count": 11,
-     "n": 25,
+     "n": 21,
      "thin": false,
-     "rate": 0.44,
-     "low": 0.2667,
-     "high": 0.6293
-    },
-    "off_by_more": {
-     "count": 5,
-     "n": 25,
-     "thin": false,
-     "rate": 0.2,
-     "low": 0.0886,
-     "high": 0.3913
-    },
-    "engine_less": {
-     "count": 1,
-     "n": 25,
-     "thin": false,
-     "rate": 0.04,
-     "low": 0.0071,
-     "high": 0.1954
-    },
-    "engine_more": {
-     "count": 15,
-     "n": 25,
-     "thin": false,
-     "rate": 0.6,
-     "low": 0.4074,
-     "high": 0.766
-    },
-    "engine_less_by_more_than_one": 0,
-    "engine_more_by_more_than_one": 5
-   },
-   "no": {
-    "reports": 15,
-    "no_verdict": 0,
-    "n": 15,
-    "exact": {
-     "count": 7,
-     "n": 15,
-     "thin": false,
-     "rate": 0.4667,
-     "low": 0.2481,
-     "high": 0.6988
-    },
-    "within_one": {
-     "count": 13,
-     "n": 15,
-     "thin": false,
-     "rate": 0.8667,
-     "low": 0.6212,
-     "high": 0.9626
-    },
-    "off_by_one": {
-     "count": 6,
-     "n": 15,
-     "thin": false,
-     "rate": 0.4,
-     "low": 0.1982,
-     "high": 0.6425
+     "rate": 0.5238,
+     "low": 0.3237,
+     "high": 0.7166
     },
     "off_by_more": {
      "count": 2,
-     "n": 15,
+     "n": 21,
      "thin": false,
-     "rate": 0.1333,
-     "low": 0.0374,
-     "high": 0.3788
+     "rate": 0.0952,
+     "low": 0.0265,
+     "high": 0.2891
     },
     "engine_less": {
      "count": 4,
-     "n": 15,
+     "n": 21,
      "thin": false,
-     "rate": 0.2667,
-     "low": 0.109,
-     "high": 0.5195
+     "rate": 0.1905,
+     "low": 0.0767,
+     "high": 0.4
     },
     "engine_more": {
-     "count": 4,
-     "n": 15,
+     "count": 9,
+     "n": 21,
      "thin": false,
-     "rate": 0.2667,
-     "low": 0.109,
-     "high": 0.5195
+     "rate": 0.4286,
+     "low": 0.2447,
+     "high": 0.6345
     },
     "engine_less_by_more_than_one": 0,
     "engine_more_by_more_than_one": 2
+   },
+   "no": {
+    "reports": 19,
+    "no_verdict": 1,
+    "n": 18,
+    "exact": {
+     "count": 12,
+     "n": 18,
+     "thin": false,
+     "rate": 0.6667,
+     "low": 0.4375,
+     "high": 0.8372
+    },
+    "within_one": {
+     "count": 18,
+     "n": 18,
+     "thin": false,
+     "rate": 1.0,
+     "low": 0.8241,
+     "high": 1.0
+    },
+    "off_by_one": {
+     "count": 6,
+     "n": 18,
+     "thin": false,
+     "rate": 0.3333,
+     "low": 0.1628,
+     "high": 0.5625
+    },
+    "off_by_more": {
+     "count": 0,
+     "n": 18,
+     "thin": false,
+     "rate": 0.0,
+     "low": 0.0,
+     "high": 0.1759
+    },
+    "engine_less": {
+     "count": 4,
+     "n": 18,
+     "thin": false,
+     "rate": 0.2222,
+     "low": 0.09,
+     "high": 0.4521
+    },
+    "engine_more": {
+     "count": 2,
+     "n": 18,
+     "thin": false,
+     "rate": 0.1111,
+     "low": 0.031,
+     "high": 0.328
+    },
+    "engine_less_by_more_than_one": 0,
+    "engine_more_by_more_than_one": 0
    }
   },
   "other_reports": {
@@ -951,7 +952,7 @@
     "no_verdict": 0,
     "n": 8,
     "exact": {
-     "count": 2,
+     "count": 3,
      "n": 8,
      "thin": true,
      "rate": null,
@@ -967,7 +968,7 @@
      "high": null
     },
     "off_by_one": {
-     "count": 6,
+     "count": 5,
      "n": 8,
      "thin": true,
      "rate": null,
@@ -983,7 +984,7 @@
      "high": null
     },
     "engine_less": {
-     "count": 0,
+     "count": 1,
      "n": 8,
      "thin": true,
      "rate": null,
@@ -991,7 +992,7 @@
      "high": null
     },
     "engine_more": {
-     "count": 6,
+     "count": 4,
      "n": 8,
      "thin": true,
      "rate": null,
@@ -1003,79 +1004,79 @@
    },
    "no": {
     "reports": 32,
-    "no_verdict": 0,
-    "n": 32,
+    "no_verdict": 1,
+    "n": 31,
     "exact": {
-     "count": 14,
-     "n": 32,
+     "count": 17,
+     "n": 31,
      "thin": false,
-     "rate": 0.4375,
-     "low": 0.2817,
-     "high": 0.6067
+     "rate": 0.5484,
+     "low": 0.3777,
+     "high": 0.7084
     },
     "within_one": {
-     "count": 25,
-     "n": 32,
+     "count": 29,
+     "n": 31,
      "thin": false,
-     "rate": 0.7812,
-     "low": 0.6125,
-     "high": 0.8898
+     "rate": 0.9355,
+     "low": 0.7928,
+     "high": 0.9821
     },
     "off_by_one": {
-     "count": 11,
-     "n": 32,
+     "count": 12,
+     "n": 31,
      "thin": false,
-     "rate": 0.3438,
-     "low": 0.2041,
-     "high": 0.5169
+     "rate": 0.3871,
+     "low": 0.2373,
+     "high": 0.5618
     },
     "off_by_more": {
-     "count": 7,
-     "n": 32,
+     "count": 2,
+     "n": 31,
      "thin": false,
-     "rate": 0.2188,
-     "low": 0.1102,
-     "high": 0.3875
+     "rate": 0.0645,
+     "low": 0.0179,
+     "high": 0.2072
     },
     "engine_less": {
-     "count": 5,
-     "n": 32,
+     "count": 7,
+     "n": 31,
      "thin": false,
-     "rate": 0.1562,
-     "low": 0.0686,
-     "high": 0.3175
+     "rate": 0.2258,
+     "low": 0.114,
+     "high": 0.3981
     },
     "engine_more": {
-     "count": 13,
-     "n": 32,
+     "count": 7,
+     "n": 31,
      "thin": false,
-     "rate": 0.4062,
-     "low": 0.2552,
-     "high": 0.5774
+     "rate": 0.2258,
+     "low": 0.114,
+     "high": 0.3981
     },
     "engine_less_by_more_than_one": 0,
-    "engine_more_by_more_than_one": 7
+    "engine_more_by_more_than_one": 2
    }
   }
  },
  "confusion": [
   [
-   1,
+   4,
    0,
    0,
-   3
+   0
   ],
   [
-   2,
+   5,
    4,
-   1,
-   4
+   0,
+   2
   ],
   [
    0,
    3,
-   2,
-   11
+   3,
+   9
   ],
   [
    0,
@@ -1085,7 +1086,6 @@
   ]
  ],
  "thin_cells": [
-  "by_confidence.low",
   "by_confidence.high",
   "by_season.fall",
   "by_season.winter",
@@ -1094,9 +1094,9 @@
   "by_evidence.other_reports.yes"
  ],
  "stalled_sensors": {
-  "reports": 10,
-  "exact": 2,
-  "engine_more": 8,
+  "reports": 1,
+  "exact": 1,
+  "engine_more": 0,
   "engine_less": 0
  },
  "rows": [
@@ -1419,10 +1419,9 @@
     "step": 3,
     "severity": 3.0,
     "confidence": "moderate",
-    "confidence_score": 4.5,
+    "confidence_score": 3.0,
     "streams": [
-     "sensor",
-     "satellite"
+     "sensor"
     ],
     "other_reports": 0,
     "crossing_override": false,
@@ -1430,13 +1429,11 @@
    },
    "evidence": {
     "sensor_near_pass": false,
-    "satellite": true,
+    "satellite": false,
     "other_reports": false
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
    "outcome": "exact",
    "direction": null,
@@ -1616,11 +1613,10 @@
     "status_label": "Deep snow or hazards",
     "step": 3,
     "severity": 3.0,
-    "confidence": "moderate",
-    "confidence_score": 3.5,
+    "confidence": "low",
+    "confidence_score": 2.0,
     "streams": [
-     "sensor",
-     "satellite"
+     "sensor"
     ],
     "other_reports": 0,
     "crossing_override": false,
@@ -1628,13 +1624,11 @@
    },
    "evidence": {
     "sensor_near_pass": false,
-    "satellite": true,
+    "satellite": false,
     "other_reports": false
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
    "outcome": "off_by_one",
    "direction": "engine_more",
@@ -1733,9 +1727,7 @@
     "other_reports": true
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
    "outcome": "off_by_one",
    "direction": "engine_more",
@@ -1981,9 +1973,7 @@
     "other_reports": true
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
    "outcome": "off_by_one",
    "direction": "engine_more",
@@ -2305,12 +2295,12 @@
     "label_snow_only": "Patchy snow"
    },
    "engine": {
-    "status": "not_recommended",
-    "status_label": "Deep snow or hazards",
-    "step": 3,
-    "severity": 2.85,
-    "confidence": "low",
-    "confidence_score": 1.8,
+    "status": "open",
+    "status_label": "Likely snow-free",
+    "step": 0,
+    "severity": 0.22,
+    "confidence": "moderate",
+    "confidence_score": 2.8,
     "streams": [
      "sensor",
      "satellite"
@@ -2325,14 +2315,12 @@
     "other_reports": false
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
-   "outcome": "off_by_more",
-   "direction": "engine_more",
-   "outcome_snow_only": "off_by_more",
-   "direction_snow_only": "engine_more",
+   "outcome": "off_by_one",
+   "direction": "engine_less",
+   "outcome_snow_only": "off_by_one",
+   "direction_snow_only": "engine_less",
    "quote": "Taboose Creek is running strong at the second crossing, knee high early",
    "demonstration": true
   },
@@ -2356,19 +2344,19 @@
     "label_snow_only": "Snow likely"
    },
    "engine": {
-    "status": "not_recommended",
-    "status_label": "Deep snow or hazards",
-    "step": 3,
-    "severity": 3.0,
-    "confidence": "moderate",
-    "confidence_score": 2.8,
+    "status": "snow_caution",
+    "status_label": "Patchy snow",
+    "step": 1,
+    "severity": 1.21,
+    "confidence": "low",
+    "confidence_score": 0.8,
     "streams": [
      "sensor",
      "satellite"
     ],
     "other_reports": 0,
     "crossing_override": false,
-    "conflicts": 0
+    "conflicts": 1
    },
    "evidence": {
     "sensor_near_pass": false,
@@ -2376,14 +2364,12 @@
     "other_reports": false
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
    "outcome": "off_by_one",
-   "direction": "engine_more",
+   "direction": "engine_less",
    "outcome_snow_only": "off_by_one",
-   "direction_snow_only": "engine_more",
+   "direction_snow_only": "engine_less",
    "quote": "the famous snowfield is down to maybe 80 feet with a boot trench you could push a stroller through",
    "demonstration": true
   },
@@ -2407,12 +2393,12 @@
     "label_snow_only": "Patchy snow"
    },
    "engine": {
-    "status": "traction_advised",
-    "status_label": "Snow likely",
-    "step": 2,
-    "severity": 1.93,
+    "status": "open",
+    "status_label": "Likely snow-free",
+    "step": 0,
+    "severity": 0.49,
     "confidence": "moderate",
-    "confidence_score": 3.5,
+    "confidence_score": 4.5,
     "streams": [
      "sensor",
      "satellite",
@@ -2420,7 +2406,7 @@
     ],
     "other_reports": 1,
     "crossing_override": false,
-    "conflicts": 2
+    "conflicts": 0
    },
    "evidence": {
     "sensor_near_pass": false,
@@ -2428,14 +2414,12 @@
     "other_reports": true
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
    "outcome": "off_by_one",
-   "direction": "engine_more",
+   "direction": "engine_less",
    "outcome_snow_only": "off_by_one",
-   "direction_snow_only": "engine_more",
+   "direction_snow_only": "engine_less",
    "quote": "The creek crossings were knee high at 8am",
    "demonstration": true
   },
@@ -2555,19 +2539,19 @@
     "label_snow_only": "Patchy snow"
    },
    "engine": {
-    "status": "not_recommended",
-    "status_label": "Deep snow or hazards",
-    "step": 3,
-    "severity": 2.64,
-    "confidence": "low",
-    "confidence_score": 1.0,
+    "status": "traction_advised",
+    "status_label": "Snow likely",
+    "step": 2,
+    "severity": 1.27,
+    "confidence": "moderate",
+    "confidence_score": 3.0,
     "streams": [
      "sensor",
      "reports"
     ],
     "other_reports": 1,
     "crossing_override": false,
-    "conflicts": 1
+    "conflicts": 0
    },
    "evidence": {
     "sensor_near_pass": false,
@@ -2575,13 +2559,11 @@
     "other_reports": true
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
-   "outcome": "off_by_one",
-   "direction": "engine_more",
-   "outcome_snow_only": "off_by_more",
+   "outcome": "exact",
+   "direction": null,
+   "outcome_snow_only": "off_by_one",
    "direction_snow_only": "engine_more",
    "quote": "snow is patchy at worst on every pass now",
    "demonstration": true
@@ -2606,15 +2588,13 @@
     "label_snow_only": "Snow likely"
    },
    "engine": {
-    "status": "snow_caution",
-    "status_label": "Patchy snow",
-    "step": 1,
-    "severity": 1.04,
-    "confidence": "moderate",
-    "confidence_score": 3.0,
-    "streams": [
-     "sensor"
-    ],
+    "status": "unknown",
+    "status_label": "Unknown",
+    "step": null,
+    "severity": null,
+    "confidence": "low",
+    "confidence_score": 0.0,
+    "streams": [],
     "other_reports": 0,
     "crossing_override": false,
     "conflicts": 0
@@ -2627,10 +2607,10 @@
    "diagnostics": {
     "stalled_sensors": []
    },
-   "outcome": "off_by_one",
-   "direction": "engine_less",
-   "outcome_snow_only": "off_by_one",
-   "direction_snow_only": "engine_less",
+   "outcome": "no_verdict",
+   "direction": null,
+   "outcome_snow_only": "no_verdict",
+   "direction_snow_only": null,
    "quote": "Palisade Creek crossing knee high",
    "demonstration": true
   },
@@ -2654,19 +2634,19 @@
     "label_snow_only": "Patchy snow"
    },
    "engine": {
-    "status": "not_recommended",
-    "status_label": "Deep snow or hazards",
-    "step": 3,
-    "severity": 2.88,
-    "confidence": "low",
-    "confidence_score": 0.8,
+    "status": "snow_caution",
+    "status_label": "Patchy snow",
+    "step": 1,
+    "severity": 0.95,
+    "confidence": "moderate",
+    "confidence_score": 2.8,
     "streams": [
      "sensor",
      "satellite"
     ],
     "other_reports": 0,
     "crossing_override": false,
-    "conflicts": 1
+    "conflicts": 0
    },
    "evidence": {
     "sensor_near_pass": false,
@@ -2674,14 +2654,12 @@
     "other_reports": false
    },
    "diagnostics": {
-    "stalled_sensors": [
-     "cdec:STL"
-    ]
+    "stalled_sensors": []
    },
-   "outcome": "off_by_more",
-   "direction": "engine_more",
-   "outcome_snow_only": "off_by_more",
-   "direction_snow_only": "engine_more",
+   "outcome": "exact",
+   "direction": null,
+   "outcome_snow_only": "exact",
+   "direction_snow_only": null,
    "quote": "West side holds patchy snow in the trees, pass is clear",
    "demonstration": true
   },
@@ -2705,32 +2683,31 @@
     "label_snow_only": "Patchy snow"
    },
    "engine": {
-    "status": "snow_caution",
-    "status_label": "Patchy snow",
-    "step": 1,
-    "severity": 0.68,
+    "status": "open",
+    "status_label": "Likely snow-free",
+    "step": 0,
+    "severity": 0.15,
     "confidence": "low",
-    "confidence_score": 0.8,
+    "confidence_score": 2.0,
     "streams": [
-     "sensor",
-     "satellite"
+     "sensor"
     ],
     "other_reports": 0,
     "crossing_override": false,
-    "conflicts": 1
+    "conflicts": 0
    },
    "evidence": {
     "sensor_near_pass": false,
-    "satellite": true,
+    "satellite": false,
     "other_reports": false
    },
    "diagnostics": {
     "stalled_sensors": []
    },
-   "outcome": "exact",
-   "direction": null,
-   "outcome_snow_only": "exact",
-   "direction_snow_only": null,
+   "outcome": "off_by_one",
+   "direction": "engine_less",
+   "outcome_snow_only": "off_by_one",
+   "direction_snow_only": "engine_less",
    "quote": "pass itself is clear, tiny patch on the west ramp you can avoid",
    "demonstration": true
   },
@@ -2757,11 +2734,10 @@
     "status": "snow_caution",
     "status_label": "Patchy snow",
     "step": 1,
-    "severity": 1.01,
-    "confidence": "moderate",
-    "confidence_score": 4.0,
+    "severity": 1.0,
+    "confidence": "low",
+    "confidence_score": 2.0,
     "streams": [
-     "sensor",
      "reports"
     ],
     "other_reports": 1,
@@ -2806,11 +2782,11 @@
     "status": "snow_caution",
     "status_label": "Patchy snow",
     "step": 1,
-    "severity": 1.02,
-    "confidence": "moderate",
-    "confidence_score": 3.0,
+    "severity": 1.16,
+    "confidence": "low",
+    "confidence_score": 1.5,
     "streams": [
-     "sensor"
+     "snowline"
     ],
     "other_reports": 0,
     "crossing_override": false,
@@ -2900,15 +2876,14 @@
     "label_snow_only": "Likely snow-free"
    },
    "engine": {
-    "status": "not_recommended",
-    "status_label": "Deep snow or hazards",
-    "step": 3,
-    "severity": 3.0,
-    "confidence": "moderate",
-    "confidence_score": 2.8,
+    "status": "open",
+    "status_label": "Likely snow-free",
+    "step": 0,
+    "severity": 0.11,
+    "confidence": "low",
+    "confidence_score": 2.0,
     "streams": [
-     "sensor",
-     "satellite"
+     "sensor"
     ],
     "other_reports": 0,
     "crossing_override": false,
@@ -2916,16 +2891,16 @@
    },
    "evidence": {
     "sensor_near_pass": true,
-    "satellite": true,
+    "satellite": false,
     "other_reports": false
    },
    "diagnostics": {
     "stalled_sensors": []
    },
-   "outcome": "off_by_more",
-   "direction": "engine_more",
-   "outcome_snow_only": "off_by_more",
-   "direction_snow_only": "engine_more",
+   "outcome": "exact",
+   "direction": null,
+   "outcome_snow_only": "exact",
+   "direction_snow_only": null,
    "quote": "completely snow free top to bottom",
    "demonstration": true
   },
@@ -2949,14 +2924,14 @@
     "label_snow_only": "Likely snow-free"
    },
    "engine": {
-    "status": "not_recommended",
-    "status_label": "Deep snow or hazards",
-    "step": 3,
-    "severity": 3.0,
+    "status": "open",
+    "status_label": "Likely snow-free",
+    "step": 0,
+    "severity": 0.0,
     "confidence": "low",
     "confidence_score": 0.5,
     "streams": [
-     "sensor"
+     "snowline"
     ],
     "other_reports": 0,
     "crossing_override": false,
@@ -2970,10 +2945,10 @@
    "diagnostics": {
     "stalled_sensors": []
    },
-   "outcome": "off_by_more",
-   "direction": "engine_more",
-   "outcome_snow_only": "off_by_more",
-   "direction_snow_only": "engine_more",
+   "outcome": "exact",
+   "direction": null,
+   "outcome_snow_only": "exact",
+   "direction_snow_only": null,
    "quote": "Zero snow anywhere near the trail, the north side chute of legend is just blocky talus",
    "demonstration": true
   },
@@ -2997,14 +2972,14 @@
     "label_snow_only": "Likely snow-free"
    },
    "engine": {
-    "status": "not_recommended",
-    "status_label": "Deep snow or hazards",
-    "step": 3,
-    "severity": 3.0,
+    "status": "open",
+    "status_label": "Likely snow-free",
+    "step": 0,
+    "severity": 0.0,
     "confidence": "low",
-    "confidence_score": 2.0,
+    "confidence_score": 0.5,
     "streams": [
-     "sensor"
+     "snowline"
     ],
     "other_reports": 0,
     "crossing_override": false,
@@ -3018,10 +2993,10 @@
    "diagnostics": {
     "stalled_sensors": []
    },
-   "outcome": "off_by_more",
-   "direction": "engine_more",
-   "outcome_snow_only": "off_by_more",
-   "direction_snow_only": "engine_more",
+   "outcome": "exact",
+   "direction": null,
+   "outcome_snow_only": "exact",
+   "direction_snow_only": null,
    "quote": "Snow free both sides, the chute is dry, Tyndall Creek is ankle deep",
    "demonstration": true
   },
