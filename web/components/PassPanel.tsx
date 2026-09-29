@@ -10,6 +10,7 @@ import type { Access, Fact, PassDetail } from "@/lib/types";
 import Byok from "./Byok";
 import Campfire from "./Campfire";
 import EvidenceLedger from "./EvidenceLedger";
+import FirePanel from "./FirePanel";
 import GettingThere from "./GettingThere";
 import PixelGlyph from "./PixelGlyph";
 import Vignette from "./Vignette";
@@ -271,6 +272,8 @@ export default function PassPanel({
               ))}
             </div>
           )}
+
+          {isNow && detail.fire && <FirePanel fire={detail.fire} />}
 
           {isNow && detail.forecast && (
             <ForecastStrip forecast={detail.forecast} from={evalDate} passFt={detail.pass.elevation_ft} />

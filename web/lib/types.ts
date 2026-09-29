@@ -185,6 +185,8 @@ export interface PassDetail {
   access?: Access;
   /** Seven days ahead at pass elevation, present only when freshly issued. */
   forecast?: Forecast;
+  /** Nearest active fire and smoke overhead, present only when freshly issued. */
+  fire?: import("./fireTypes").PassFire | null;
   /** Shared station curves, by metric: provenance ids to load on demand. */
   stations?: Record<string, string[]>;
 }
