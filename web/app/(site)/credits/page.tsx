@@ -48,8 +48,9 @@ export default function Credits() {
           </ul>
           <h2>Software</h2>
           <p>
-            Built with Next.js, MapLibre GL, maplibre-contour, Motion and Phosphor Icons. Trip
-            reports are read by Anthropic&apos;s Claude.
+            Built with Next.js, MapLibre GL, maplibre-contour, Motion and Phosphor Icons.
+            Questions asked about a pass are answered by Anthropic&apos;s Claude, from the
+            evidence on that pass.
           </p>
         </article>
       </div>

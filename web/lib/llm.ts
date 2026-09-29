@@ -126,9 +126,9 @@ export async function askPass(
   question: string,
 ): Promise<string> {
   const system =
-    "You answer questions about one Sierra Nevada pass using ONLY the evidence provided. " +
+    "You answer questions about one mountain pass using ONLY the evidence provided. " +
     "If the evidence does not answer the question, say so plainly. Two or three sentences, " +
-    "no speculation, cite which stream (sensor, satellite, report, gauge) backs each claim.";
+    "no speculation, and say which line of evidence backs each claim.";
   const { text } = await callClaude(
     apiKey,
     system,

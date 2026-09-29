@@ -5,7 +5,9 @@ import { type FormEvent, useEffect, useState } from "react";
 import { AskError, askPass, backend, type PassAnswer, rememberPass, SIGN_IN_BY_CODE } from "@/lib/backend";
 import s from "./AskPass.module.css";
 
-const EXAMPLES = ["Is there snow on the north side?", "What did the last party report?", "How cold does it get this week?"];
+// Each example is one the evidence on a pass can answer: the sensors, the
+// fire map and the forecast.
+const EXAMPLES = ["Is there snow at the pass?", "Is there a fire nearby?", "How cold does it get this week?"];
 const MAX = 300;
 
 // One question about the open pass, answered from that pass's evidence.
@@ -161,7 +163,7 @@ export default function AskPass({ slug, name, evalDate }: { slug: string; name: 
                 id="ask-question"
                 aria-label={`Question about ${name}`}
                 maxLength={MAX}
-                placeholder="Ask about snow, the crossing, the week ahead"
+                placeholder="Ask about snow, fire, the road, the week ahead"
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 className={s.input}

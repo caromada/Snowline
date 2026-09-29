@@ -179,7 +179,7 @@ export interface PassDetail {
   dates: string[];
   statuses: Record<string, FusedStatus>;
   ledger: LedgerEntry[];
-  /** Inline per-pass curves (the modeled satellite cover). */
+  /** Inline per-pass curves. Snow cover is empty until a real cover stream exists. */
   curves: Record<string, CurveSeries[]>;
   /** Nearest trailheads (with their parking) and campgrounds. */
   access?: Access;

@@ -1,7 +1,8 @@
 // The pass vignette: a 96x32 pixel scene generated from the fused data.
-// Snowline sits at the reported cover, the creek runs at the gauge level,
-// the sky shifts with the satellite's last clear pass. The fusion output
-// rendered as a tiny landscape.
+// Snow is drawn from what nearby sensors measured (or the snowline
+// estimate when they cannot see the pass), the creek runs at the gauge
+// level, and the sky lightens when the snow reading is a few days old at
+// most. It is a drawing of the evidence, not a picture of the pass.
 
 import { palette } from "./theme";
 import type { VignetteParams } from "./types";
@@ -60,8 +61,8 @@ export function drawVignette(
   const snowPhase = Math.max(0, Math.min(1, (phase - 0.55) / 0.3));
   const skyPhase = Math.max(0, Math.min(1, (phase - 0.85) / 0.15));
 
-  // Sky: deep pine, brightened toward snowmelt when the satellite has had
-  // a recent clear look.
+  // Sky: deep pine, brightened toward snowmelt when the snow evidence
+  // behind the scene was measured in the last few days.
   ctx.fillStyle = palette.deepPine;
   ctx.fillRect(0, 0, VIGNETTE_W, VIGNETTE_H);
   if (params.sky_fresh && skyPhase > 0) {

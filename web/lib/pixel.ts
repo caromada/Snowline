@@ -37,7 +37,8 @@ export const snowstake: Sprite = [
   "................",
 ];
 
-// Satellite: body with solar wings. Imagery stream.
+// Satellite: body with solar wings. Smoke is mapped from satellite; snow
+// cover from imagery is not a live stream.
 export const satellite: Sprite = [
   "................",
   "......g.........",
@@ -57,7 +58,7 @@ export const satellite: Sprite = [
   "................",
 ];
 
-// Boot: trip reports walk in on this.
+// Boot: trip reports walk in on this, once people can file them.
 export const boot: Sprite = [
   "................",
   "....ssss........",

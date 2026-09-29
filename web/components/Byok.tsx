@@ -5,7 +5,9 @@ import { askPass, extractReport, getStoredKey, setStoredKey } from "@/lib/llm";
 import type { Extraction, PassDetail } from "@/lib/types";
 
 // Bring-your-own-key features. Without a key this whole section is a single
-// quiet line; with one, the live model reads reports and answers questions.
+// quiet line; with one, the live model reads text the visitor pastes and
+// answers questions. What is pasted stays in the browser: it is never added
+// to a pass, and the product holds no trip reports of its own.
 export default function Byok({ detail, evalDate }: { detail: PassDetail; evalDate: string }) {
   const [key, setKey] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
@@ -73,8 +75,8 @@ export default function Byok({ detail, evalDate }: { detail: PassDetail; evalDat
       )}
       {!key && !editing && (
         <p className="mono" style={{ color: "var(--sage)", fontSize: 11, marginTop: 4 }}>
-          everything above works without one; a key adds paste-a-report extraction and
-          questions answered from this ledger. stored only in your browser.
+          everything above works without one; a key lets the model read a report you paste
+          and answer questions from this ledger. stored only in your browser.
         </p>
       )}
       {key && <PasteReport apiKey={key} />}
@@ -104,7 +106,8 @@ function PasteReport({ apiKey }: { apiKey: string }) {
   return (
     <div style={{ marginTop: 12 }}>
       <label className="mono" style={{ color: "var(--sage)", display: "block", marginBottom: 4 }}>
-        paste any trip report, watch it become evidence
+        paste a trip report of your own and the model reads it into fields. it stays in your
+        browser and changes nothing on this pass
       </label>
       <textarea
         value={text}
@@ -201,7 +204,7 @@ function AskPass({
           value={q}
           onChange={(e) => setQ(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && q.trim() && run()}
-          placeholder="do I need an ice axe this weekend?"
+          placeholder="is there snow at the pass this week?"
           style={{
             flex: 1,
             background: "var(--deep-pine)",
