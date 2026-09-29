@@ -529,6 +529,9 @@ def fuse(
     present = {k: c for k, c in components.items() if c is not None}
 
     if not present:
+        # The creek can still be read when the snow cannot, so its facts stay
+        # and the sentence claims no more than that snow evidence is missing.
+        creek = _facts(pass_info, None, None, None, crossing)
         return {
             "pass_slug": pass_info["slug"],
             "eval_date": eval_date,
@@ -545,12 +548,17 @@ def fuse(
                 if blind
                 else [
                     {
-                        "text": "No recent evidence for this pass in any stream.",
+                        "text": (
+                            "No recent snow evidence for this pass."
+                            if creek
+                            else "No recent evidence for this pass in any stream."
+                        ),
                         "stream": "none",
                         "refs": [],
                     }
                 ]
             )
+            + creek
             + [_fault_fact(f) for f in faulty],
         }
 

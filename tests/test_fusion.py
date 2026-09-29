@@ -140,6 +140,28 @@ def test_sensors_alone_give_a_plain_verdict_without_borrowed_streams() -> None:
     assert result["confidence_score"] == 3.0
 
 
+def test_nothing_on_file_says_so() -> None:
+    result = fuse(PASS, DATE, [], [], [], [])
+    assert [f["text"] for f in result["facts"]] == [
+        "No recent evidence for this pass in any stream."
+    ]
+
+
+def test_unknown_snow_does_not_hide_the_creek() -> None:
+    # No snow reading speaks for the pass, but the gauge below it is running.
+    result = fuse(PASS, DATE, [], [], gauge(300, "2023-06-14", swing=45), [])
+    assert result["status"] == "unknown"
+    assert result["confidence"] == "low"
+    facts = result["facts"]
+    assert facts[0] == {
+        "text": "No recent snow evidence for this pass.",
+        "stream": "none",
+        "refs": [],
+    }
+    assert [f["stream"] for f in facts] == ["none", "gauge"]
+    assert "Bubbs Creek gauge reads 300 cfs" in facts[1]["text"]
+
+
 def test_bare_summer_pass_is_open() -> None:
     result = fuse(
         PASS,
