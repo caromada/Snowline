@@ -2,6 +2,7 @@ from datetime import date, timedelta
 
 from fusion.fresh_snow import (
     DEPTH_MIN_IN,
+    FORECAST_MIN_IN,
     MAX_AGE_DAYS,
     SWE_MIN_IN,
     forecast_snow,
@@ -43,7 +44,8 @@ def station(name: str, data: list[dict], km: float = 6.0, ft: int | None = 9604)
 
 def test_thresholds_are_the_documented_ones() -> None:
     assert SWE_MIN_IN == 0.3
-    assert DEPTH_MIN_IN == 1.0
+    assert DEPTH_MIN_IN == 2.0
+    assert FORECAST_MIN_IN == 0.5
     assert MAX_AGE_DAYS == 2
 
 
@@ -135,6 +137,16 @@ def test_snow_water_rising_while_depth_does_not_is_not_called_new_snow() -> None
     out = fresh_snow(
         [station("Horse Meadow", rows({0: 8.6, 1: 8.0, 2: 8.0, 3: 8.0},
                                       {0: 30, 1: 30, 2: 31, 3: 31}))],
+        TODAY,
+    )
+    assert out is not None and out["stations"] == []
+
+
+def test_depth_rising_by_sensor_jitter_alone_does_not_confirm() -> None:
+    # Live on 2026-09-27: Pepper Creek, 2,140 ft, Washington. Rain and a jittery depth sensor.
+    out = fresh_snow(
+        [station("Pepper Creek", rows({0: 0.3, 1: 0.3, 2: 0.1, 3: 0.0},
+                                      {0: 1, 1: 1, 2: 0, 3: 0}), ft=2140)],
         TODAY,
     )
     assert out is not None and out["stations"] == []
@@ -268,6 +280,7 @@ def test_stale_missing_or_snowless_forecasts_say_nothing() -> None:
     assert forecast_snow(_forecast(1.0, 1.0, 1.0), old, TODAY) is None
     assert forecast_snow(None, TODAY.isoformat(), TODAY) is None
     assert forecast_snow(_forecast(0.0, 0.0, 0.0), TODAY.isoformat(), TODAY) is None
+    assert forecast_snow(_forecast(0.1, 0.2, 0.1), TODAY.isoformat(), TODAY) is None
     assert forecast_snow({"days": [{"date": day(0), "snowfall_in": None}]},
                          TODAY.isoformat(), TODAY) is None
     assert forecast_snow(_forecast(1.0), "not a date", TODAY) is None
