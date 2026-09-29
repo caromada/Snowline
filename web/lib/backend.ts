@@ -95,8 +95,9 @@ export async function askPass(slug: string, date: string, question: string): Pro
     // A refusal from the function carries its own sentence for the reader.
     const response = (error as { context?: Response }).context;
     if (response && typeof response.json === "function") {
-      const body = (await response.json().catch(() => null)) as { error?: string } | null;
-      throw new AskError(body?.error ?? "The question could not be sent.", response.status);
+      const body = (await response.json().catch(() => null)) as { error?: string; code?: string } | null;
+      const code = body?.code ? ` (${body.code})` : "";
+      throw new AskError(`${body?.error ?? "The question could not be sent."}${code}`, response.status);
     }
     throw new AskError("The question could not be sent. Check your connection.", 0);
   }

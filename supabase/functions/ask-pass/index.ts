@@ -137,13 +137,25 @@ Deno.serve(async (req: Request): Promise<Response> => {
     }
   } catch (error) {
     if (error instanceof Anthropic.RateLimitError) {
-      return json({ error: "Too many questions at once. Try again in a minute." }, 429);
+      return json({ error: "Too many questions at once. Try again in a minute.", code: "model_429" }, 429);
+    }
+    if (error instanceof Anthropic.AuthenticationError || error instanceof Anthropic.PermissionDeniedError) {
+      console.error(JSON.stringify({ event: "llm_error", status: error.status, message: error.message }));
+      return json(
+        { error: "The question service is not set up correctly yet.", code: `model_${error.status}` },
+        502,
+      );
     }
     if (error instanceof Anthropic.APIError) {
       console.error(JSON.stringify({ event: "llm_error", status: error.status, message: error.message }));
-      return json({ error: "The answer could not be written. Try again shortly." }, 502);
+      return json(
+        { error: "The answer could not be written. Try again shortly.", code: `model_${error.status ?? "network"}` },
+        502,
+      );
     }
-    throw error;
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(JSON.stringify({ event: "ask_error", message }));
+    return json({ error: "The answer could not be written. Try again shortly.", code: "internal" }, 500);
   } finally {
     if (spent.length) {
       const { error: recordError } = await supabase.rpc("record_question", {

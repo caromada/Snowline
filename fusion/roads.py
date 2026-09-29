@@ -37,7 +37,10 @@ CALTRANS_NO_CONTROLS = "R-0"
 _CALTRANS_CODE = re.compile(r"[A-Z]{1,3}-?\d?")
 _WSDOT_DATE = re.compile(r"/Date\((-?\d+)([+-]\d{4})?\)/")
 _WSDOT_ROAD = re.compile(r"\b(I-\d+|US \d+|SR \d+)\b")
-_NOTHING = {"", "none", "no restrictions", "no restriction", "not reported"}
+_NOTHING = {
+    "", "none", "no restrictions", "no restriction", "not reported",
+    "no current information available", "no current information",
+}
 
 
 def _text(value: object) -> str | None:
@@ -155,7 +158,9 @@ def parse_wsdot(doc: object) -> list[dict[str, Any]]:
                 "location": name,
                 "lat": position[0],
                 "lon": position[1],
-                "active": restricted or row.get("TravelAdvisoryActive") is True,
+                # The feed's own TravelAdvisoryActive flag is set on nearly every
+                # pass all summer; only the restriction text says anything.
+                "active": restricted,
                 "updated": _wsdot_date(row.get("DateUpdated")),
                 "lines": lines,
             }
@@ -245,6 +250,19 @@ def parse_tripcheck(reports: object, meta: object) -> list[dict[str, Any]]:
             record["roadside_snow_in"] = roadside
         out.append(record)
     return out
+
+
+def shape(doc: object, depth: int = 4) -> object:
+    """The key names and value types of a payload, for the log when a feed
+    does not match what the parser expects. Never the values themselves."""
+    if isinstance(doc, dict):
+        if depth == 0:
+            return "dict"
+        items = sorted(doc.items(), key=lambda kv: str(kv[0]))
+        return {str(k): shape(v, depth - 1) for k, v in items}
+    if isinstance(doc, list):
+        return [shape(doc[0], depth - 1)] if doc and depth else []
+    return type(doc).__name__
 
 
 def _norm(text: str) -> str:

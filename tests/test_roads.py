@@ -362,3 +362,58 @@ def test_restrictions_in_effect_are_never_crowded_out() -> None:
 def test_a_trail_pass_far_from_any_road_has_no_road_status() -> None:
     assert link_roads(GLEN, parse_caltrans(feed(
         cc("KIRKWOOD", "SR-88", "38.699970", "-120.080170")))) == []
+
+
+def test_wsdot_off_season_boilerplate_is_not_a_restriction() -> None:
+    # As the live feed read on 2026-09-29: the advisory flag is set on nearly
+    # every pass all summer, and says nothing about a restriction.
+    off_season = [
+        {
+            "DateUpdated": "/Date(1789368941000-0700)/",
+            "Latitude": 47.424,
+            "Longitude": -121.414,
+            "MountainPassName": "Snoqualmie Pass I-90",
+            "RestrictionOne": {
+                "RestrictionText": "No restrictions", "TravelDirection": "Eastbound",
+            },
+            "RestrictionTwo": {
+                "RestrictionText": "No restrictions", "TravelDirection": "Westbound",
+            },
+            "RoadCondition": "Traditionally weather and road conditions are reported on this "
+            "page from November 1 to April 1.",
+            "TravelAdvisoryActive": True,
+            "WeatherCondition": "",
+        },
+        {
+            "DateUpdated": "/Date(1781468366000-0700)/",
+            "Latitude": 48.5246,
+            "Longitude": -120.6528,
+            "MountainPassName": "North Cascade Hwy SR 20",
+            "RestrictionOne": {
+                "RestrictionText": "No current information available",
+                "TravelDirection": "Eastbound",
+            },
+            "RestrictionTwo": {
+                "RestrictionText": "No current information available",
+                "TravelDirection": "Westbound",
+            },
+            "RoadCondition": "SR 20 North Cascade Highway is open as of Sunday, June 14.",
+            "TravelAdvisoryActive": True,
+            "WeatherCondition": "",
+        },
+    ]
+    snoq, cascade = parse_wsdot(off_season)
+    assert snoq["active"] is False
+    assert cascade["active"] is False
+
+
+def test_shape_names_keys_and_never_values() -> None:
+    from fusion.roads import shape
+
+    doc = {"Reports": [{"Id": 7, "Location": {"Name": "Santiam Pass", "Lat": 44.4}}], "Count": 1}
+    assert shape(doc) == {
+        "Count": "int",
+        "Reports": [{"Id": "int", "Location": {"Lat": "float", "Name": "str"}}],
+    }
+    assert shape([]) == []
+    assert shape("secret-value") == "str"

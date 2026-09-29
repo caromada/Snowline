@@ -11,11 +11,12 @@ all, because an id without its description would have to be guessed.
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 from typing import Any
 
-from fusion.roads import parse_tripcheck
+from fusion.roads import parse_tripcheck, shape
 from ingest.http import FetchError, fetch_json
 from ingest.raw import Recorder
 from ingest.wsdot import redact
@@ -49,7 +50,12 @@ def fetch_statuses(record: Recorder | None = None) -> list[dict[str, Any]] | Non
     meta, reports = found[0][1], found[1][1]
     statuses = parse_tripcheck(reports, meta)
     if not statuses:
-        log.warning("tripcheck answered without any readable road report")
+        log.warning(
+            "tripcheck answered without any readable road report; reports look like %s "
+            "and metadata like %s",
+            json.dumps(shape(reports))[:1500],
+            json.dumps(shape(meta))[:1500],
+        )
         return None
     log.info(
         "tripcheck: %d road reports, %d with a driving restriction",
