@@ -14,6 +14,7 @@ import Campfire from "./Campfire";
 import EvidenceLedger from "./EvidenceLedger";
 import FirePanel from "./FirePanel";
 import GettingThere from "./GettingThere";
+import PassReports from "./PassReports";
 import PixelGlyph from "./PixelGlyph";
 import Vignette from "./Vignette";
 import WinterPanel from "./WinterPanel";
@@ -292,6 +293,10 @@ export default function PassPanel({
 
           {ask && (
             <AskPass slug={detail.pass.slug} name={detail.pass.name} evalDate={evalDate} />
+          )}
+
+          {ask && (
+            <PassReports slug={detail.pass.slug} name={detail.pass.name} evalDate={evalDate} isNow={isNow} />
           )}
 
           {detail.access && <GettingThere access={detail.access} onShow={onShow} />}
