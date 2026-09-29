@@ -300,3 +300,53 @@ export function mergeReport(filing: Filing, reading: Reading | "refused" | null)
   }
   return { ...merged, status: "visible", flag: null, tapped };
 }
+
+/** Where a published photo lives. The path is public, so it is built from
+ * the report's id and carries nothing of the person. */
+export function publishedPhotoPath(reportId: string): string {
+  return `published/${reportId}.jpg`;
+}
+
+export interface Refusal {
+  status: number;
+  code: string;
+  message: string;
+}
+
+/** What to tell the filer when the database turned the row away. The
+ * codes are the ones raised in the reports migration. */
+export function databaseRefusal(error: { code?: string; message?: string }): Refusal {
+  const said = error.message ?? "";
+  if (error.code === "RP001") {
+    return { status: 400, code: "date_in_future", message: "The date you were there cannot be in the future." };
+  }
+  if (error.code === "RP002") {
+    return {
+      status: 400,
+      code: "date_too_old",
+      message: `Reports are taken for the last ${REPORT_WINDOW_DAYS} days.`,
+    };
+  }
+  if (error.code === "RP003") {
+    return {
+      status: 429,
+      code: "daily_limit",
+      message: `You have filed ${REPORTS_PER_DAY} reports today, which is the daily limit. It resets at midnight UTC.`,
+    };
+  }
+  if (error.code === "23505" && said.includes("reports_one_per_pass_per_filing_day")) {
+    return {
+      status: 429,
+      code: "pass_limit",
+      message: "You have already filed a report for this pass today. One report per pass per day is the limit.",
+    };
+  }
+  if (error.code === "23505" && said.includes("reports_one_per_pass_per_day_there")) {
+    return {
+      status: 409,
+      code: "already_filed",
+      message: "You have already filed a report for this pass for that day. Remove it to file a different one.",
+    };
+  }
+  return { status: 500, code: "not_saved", message: "The report could not be saved. Try again shortly." };
+}

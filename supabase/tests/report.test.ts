@@ -7,9 +7,11 @@ import {
 } from "../functions/_shared/config.ts";
 import {
   type Filing,
+  databaseRefusal,
   mergeReport,
   pacificToday,
   parseReading,
+  publishedPhotoPath,
   type Reading,
   reportAllowance,
   validateFiling,
@@ -297,5 +299,44 @@ describe("mergeReport", () => {
   });
   it("hides text the model would not read", () => {
     expect(mergeReport(filing({ text }), "refused")).toMatchObject({ status: "hidden", flag: "unreadable" });
+  });
+});
+
+describe("databaseRefusal", () => {
+  it("names the cap the database held", () => {
+    expect(databaseRefusal({ code: "RP003", message: "five reports already filed today" })).toMatchObject({
+      status: 429,
+      code: "daily_limit",
+    });
+    expect(
+      databaseRefusal({
+        code: "23505",
+        message: 'duplicate key value violates unique constraint "reports_one_per_pass_per_filing_day"',
+      }),
+    ).toMatchObject({ status: 429, code: "pass_limit" });
+    expect(
+      databaseRefusal({
+        code: "23505",
+        message: 'duplicate key value violates unique constraint "reports_one_per_pass_per_day_there"',
+      }),
+    ).toMatchObject({ status: 409, code: "already_filed" });
+  });
+  it("names the date the database refused", () => {
+    expect(databaseRefusal({ code: "RP001", message: "" })).toMatchObject({ status: 400, code: "date_in_future" });
+    expect(databaseRefusal({ code: "RP002", message: "" })).toMatchObject({ status: 400, code: "date_too_old" });
+  });
+  it("says nothing of the database's own words for anything else", () => {
+    const refusal = databaseRefusal({ code: "42501", message: "permission denied for table reports" });
+    expect(refusal).toMatchObject({ status: 500, code: "not_saved" });
+    expect(refusal.message).not.toContain("permission");
+    expect(refusal.message).not.toContain("reports");
+  });
+});
+
+describe("publishedPhotoPath", () => {
+  it("names the report and no one else", () => {
+    expect(publishedPhotoPath("0b0e7c1e-6f1d-4d0a-9d55-3f6f5a1f0c11")).toBe(
+      "published/0b0e7c1e-6f1d-4d0a-9d55-3f6f5a1f0c11.jpg",
+    );
   });
 });

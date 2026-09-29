@@ -26,3 +26,6 @@ export const MAX_QUOTE_CHARS = 200;
 /** How far back the day someone was at the pass may be, in days. */
 export const REPORT_WINDOW_DAYS = 30;
 export const MAX_READING_TOKENS = 1024;
+export const PHOTO_BUCKET = "report-photos";
+/** The bucket refuses anything larger; the function checks again. */
+export const MAX_PHOTO_BYTES = 3 * 1024 * 1024;
