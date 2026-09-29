@@ -28,6 +28,7 @@ function markerElement(
   evalDate: string,
   selected: boolean,
   saved: boolean,
+  stop = 0,
 ): HTMLDivElement {
   const s = p.statuses[evalDate];
   const color = statusColor[s?.status ?? "unknown"] ?? palette.sage;
@@ -105,9 +106,21 @@ function markerElement(
     dotWrap.appendChild(c);
   }
 
+  if (stop) {
+    // A pass on the open trip plan wears its place in travel order.
+    const order = document.createElement("div");
+    order.className = "mono trip-stop";
+    order.textContent = String(stop);
+    order.style.cssText =
+      "position:absolute;left:-7px;top:-7px;min-width:15px;height:15px;padding:0 3px;" +
+      "display:grid;place-items:center;font-size:10px;font-weight:700;line-height:1;" +
+      `color:${palette.deepPine};background:${palette.alpenglow};box-shadow:0 0 0 1px ${palette.deepPine};`;
+    dotWrap.appendChild(order);
+  }
+
   const label = document.createElement("div");
   label.textContent = p.name.replace(/ Pass$/, "");
-  label.className = `display pass-label${selected ? " selected" : ""}${p.tier === "osm" ? " osm" : ""}`;
+  label.className = `display pass-label${selected || stop ? " selected" : ""}${p.tier === "osm" ? " osm" : ""}`;
   label.style.cssText =
     `font-size:${p.tier === "osm" ? 8 : 10}px;letter-spacing:0.14em;` +
     `color:${selected ? palette.alpenglow : p.tier === "osm" ? palette.sage : palette.granite};` +
@@ -250,6 +263,7 @@ export default function MapView({
   selected,
   access,
   focus,
+  trip,
   onSelect,
   onLocate,
 }: {
@@ -259,6 +273,8 @@ export default function MapView({
   access: Access | null;
   /** A point the panel asked to see; `n` changes on every request. */
   focus: { lat: number; lon: number; n: number } | null;
+  /** The passes of the open trip plan, in travel order; `n` changes with every plan. */
+  trip?: { slugs: string[]; n: number } | null;
   onSelect: (slug: string) => void;
   onLocate?: (pos: Position | null, error?: string) => void;
 }) {
@@ -426,6 +442,34 @@ export default function MapView({
     });
   }, [focus]);
 
+  // The trip planner covers the left half and the pass panel the right 430
+  // px, so the camera centers on what is left between them.
+  const tripOpen = !!trip;
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const wide = window.innerWidth > 640;
+    map.setPadding({
+      left: tripOpen && wide ? window.innerWidth / 2 : 0,
+      right: tripOpen && wide && selected ? Math.min(430, window.innerWidth) : 0,
+      top: 0,
+      bottom: 0,
+    });
+  }, [tripOpen, selected]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !trip) return;
+    const stops = trip.slugs.flatMap((slug) => passes.find((p) => p.slug === slug) ?? []);
+    if (!stops.length) return;
+    framedRef.current = true;
+    const bounds = new maplibregl.LngLatBounds();
+    for (const p of stops) bounds.extend([p.lon, p.lat]);
+    map.fitBounds(bounds, { padding: 70, maxZoom: 11, duration: reducedMotion() ? 0 : 800 });
+    // Reframes once per plan, not each time the index refreshes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trip]);
+
   useEffect(() => {
     const handler = () => setSavedVersion((v) => v + 1);
     window.addEventListener("sierra-saved-changed", handler);
@@ -444,12 +488,14 @@ export default function MapView({
     const asHtml = new Set(
       passes
         .filter((p) => p.tier === "featured" || p.slug === selected || savedSet.has(p.slug))
-        .map((p) => p.slug),
+        .map((p) => p.slug)
+        .concat(trip?.slugs ?? []),
     );
     const src = layerReady ? (map.getSource(PASS_SOURCE) as maplibregl.GeoJSONSource) : undefined;
     src?.setData(passCollection(passes, evalDate, asHtml));
     markersRef.current = passes.filter((p) => asHtml.has(p.slug)).map((p) => {
-      const el = markerElement(p, evalDate, p.slug === selected, savedSet.has(p.slug));
+      const stop = (trip?.slugs.indexOf(p.slug) ?? -1) + 1;
+      const el = markerElement(p, evalDate, p.slug === selected, savedSet.has(p.slug), stop);
       const activate = (e: Event) => {
         e.stopPropagation();
         onSelect(p.slug);
@@ -462,7 +508,7 @@ export default function MapView({
         .setLngLat([p.lon, p.lat])
         .addTo(map);
     });
-  }, [passes, evalDate, selected, onSelect, savedVersion, layerReady]);
+  }, [passes, evalDate, selected, onSelect, savedVersion, layerReady, trip]);
 
   return (
     <>

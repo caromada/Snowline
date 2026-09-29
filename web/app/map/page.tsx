@@ -10,6 +10,7 @@ import PassPanel from "@/components/PassPanel";
 import PassSearch from "@/components/PassSearch";
 import SafetyNotice from "@/components/SafetyNotice";
 import TimeControl from "@/components/TimeControl";
+import TripPlanner, { type TripOnMap } from "@/components/TripPlanner";
 import { brand } from "@/lib/brand";
 import { recallPass } from "@/lib/backend";
 import { dataUrl } from "@/lib/paths";
@@ -32,6 +33,7 @@ export default function Home() {
     setAccess(null);
   }, []);
   const [here, setHere] = useState<{ pos: Position | null; error: string | null } | null>(null);
+  const [trip, setTrip] = useState<TripOnMap | null>(null);
 
   useEffect(() => {
     fetch(dataUrl("passes.json"))
@@ -98,6 +100,7 @@ export default function Home() {
         selected={selected}
         access={access}
         focus={focus}
+        trip={trip}
         onSelect={onSelect}
         onLocate={onLocate}
       />
@@ -138,6 +141,14 @@ export default function Home() {
         onClose={() => setSelected(null)}
         onAccess={setAccess}
         onShow={onShow}
+      />
+      <TripPlanner
+        passes={index.passes}
+        position={here?.pos ?? null}
+        selected={selected}
+        onSelect={onSelect}
+        onShow={onShow}
+        onTrip={setTrip}
       />
       <SafetyNotice />
     </main>
