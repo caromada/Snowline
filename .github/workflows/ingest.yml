@@ -65,6 +65,12 @@ jobs:
       - name: Fetch NWS forecasts
         run: python -m ingest.nws || echo "::warning::NWS forecasts unavailable today"
 
+      # Fire perimeters and smoke degrade the same way: on an outage no
+      # facts are written, and the map file keeps its old date, which the
+      # app stops drawing once it is more than a day old.
+      - name: Fetch fire perimeters and smoke
+        run: python -m ingest.fire || echo "::warning::Fire and smoke data unavailable today"
+
       - name: Save HTTP cache
         if: always()
         uses: actions/cache/save@v6
