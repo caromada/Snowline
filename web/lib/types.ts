@@ -185,6 +185,8 @@ export interface PassDetail {
   access?: Access;
   /** Seven days ahead at pass elevation, present only when freshly issued. */
   forecast?: Forecast;
+  /** Official avalanche rating, new snow and road status; see winterTypes.ts. */
+  winter?: import("./winterTypes").Winter | null;
   /** Shared station curves, by metric: provenance ids to load on demand. */
   stations?: Record<string, string[]>;
 }
