@@ -27,13 +27,14 @@ from fusion.fresh_snow import WINDOWS, forecast_snow
 from fusion.winter import WINTER_PATH, pass_winter
 from gazetteer import load_passes
 from ingest import avalanche, caltrans, tripcheck, wsdot
+from ingest.raw import Recorder, collector, store_payloads
 from store import Store
 
 log = logging.getLogger(__name__)
 
 FORECAST_PATH = DATA_DIR / "forecast" / "passes.json"
 ROAD_SOURCES = ("caltrans", "wsdot", "tripcheck")
-SOURCES: dict[str, Callable[[], list[dict[str, Any]] | None]] = {
+SOURCES: dict[str, Callable[[Recorder], list[dict[str, Any]] | None]] = {
     "avalanche": avalanche.fetch_zones,
     "caltrans": caltrans.fetch_statuses,
     "wsdot": wsdot.fetch_statuses,
@@ -47,9 +48,11 @@ class NothingFetched(RuntimeError):
     """No source produced anything; there is no winter layer to write."""
 
 
-def _fetch(name: str, results: dict[str, str]) -> list[dict[str, Any]] | None:
+def _fetch(
+    name: str, results: dict[str, str], record: Recorder
+) -> list[dict[str, Any]] | None:
     try:
-        found = SOURCES[name]()
+        found = SOURCES[name](record)
     except Exception:  # one source's bug must not cost the other three
         log.exception("%s failed", name)
         results[name] = "failed"
@@ -106,9 +109,14 @@ def run(
 ) -> dict[str, Any]:
     today = today or datetime.now(PACIFIC).date()
     results: dict[str, str] = {}
-    zones = _fetch("avalanche", results)
-    roads = [s for name in ROAD_SOURCES for s in _fetch(name, results) or []]
+    record, payloads = collector()
+    zones = _fetch("avalanche", results, record)
+    roads = [s for name in ROAD_SOURCES for s in _fetch(name, results, record) or []]
 
+    try:
+        store_payloads(db_path, payloads)
+    except Exception:  # losing the audit copy must not lose the layer
+        log.exception("raw payloads could not be stored")
     try:
         stations = _stations_by_pass(db_path, today)
     except Exception:  # the store is one more source that may fail alone

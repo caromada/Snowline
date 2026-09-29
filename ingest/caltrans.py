@@ -14,6 +14,7 @@ from typing import Any
 
 from fusion.roads import parse_caltrans
 from ingest.http import FetchError, fetch_json
+from ingest.raw import Recorder
 
 log = logging.getLogger(__name__)
 
@@ -26,20 +27,23 @@ def district_url(district: int) -> str:
     return f"https://cwwp2.dot.ca.gov/data/d{district}/cc/ccStatusD{district:02d}.json"
 
 
-def fetch_district(district: int) -> list[dict[str, Any]] | None:
+def fetch_district(district: int, record: Recorder | None = None) -> list[dict[str, Any]] | None:
     """One district's control points, or None when its feed is down."""
+    url = district_url(district)
     try:
-        parsed, _, _ = fetch_json(district_url(district), timeout=TIMEOUT_S, cache=False)
+        parsed, raw, _ = fetch_json(url, timeout=TIMEOUT_S, cache=False)
     except (FetchError, ValueError) as exc:
         log.info("caltrans district %d unavailable: %s", district, exc)
         return None
+    if record:
+        record("caltrans", url, raw)
     return parse_caltrans(parsed)
 
 
-def fetch_statuses() -> list[dict[str, Any]] | None:
+def fetch_statuses(record: Recorder | None = None) -> list[dict[str, Any]] | None:
     """Every reachable district's control points; None when none answered."""
     with ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
-        results = list(pool.map(fetch_district, DISTRICTS))
+        results = list(pool.map(lambda d: fetch_district(d, record), DISTRICTS))
     down = [d for d, r in zip(DISTRICTS, results, strict=True) if r is None]
     statuses = [s for r in results if r for s in r]
     if len(down) == len(DISTRICTS):

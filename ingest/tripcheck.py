@@ -17,6 +17,7 @@ from typing import Any
 
 from fusion.roads import parse_tripcheck
 from ingest.http import FetchError, fetch_json
+from ingest.raw import Recorder
 from ingest.wsdot import redact
 
 log = logging.getLogger(__name__)
@@ -26,7 +27,7 @@ BASE = "https://api.odot.state.or.us/tripcheck"
 TIMEOUT_S = 45
 
 
-def fetch_statuses() -> list[dict[str, Any]] | None:
+def fetch_statuses(record: Recorder | None = None) -> list[dict[str, Any]] | None:
     key = os.environ.get(ENV_KEY, "").strip()
     if not key:
         log.info("tripcheck: %s is not set; skipping Oregon road reports", ENV_KEY)
@@ -34,12 +35,18 @@ def fetch_statuses() -> list[dict[str, Any]] | None:
     # The gateway takes the key as a query parameter as well as a header,
     # and ingest.http sends no custom headers.
     params = {"subscription-key": key}
+    found = []
     try:
-        meta, _, _ = fetch_json(f"{BASE}/RW/Metadata", params, timeout=TIMEOUT_S, cache=False)
-        reports, _, _ = fetch_json(f"{BASE}/RW/Reports", params, timeout=TIMEOUT_S, cache=False)
+        for path in ("/RW/Metadata", "/RW/Reports"):
+            parsed, raw, _ = fetch_json(BASE + path, params, timeout=TIMEOUT_S, cache=False)
+            found.append((path, parsed, raw))
     except (FetchError, ValueError) as exc:
         log.warning("tripcheck road reports unavailable: %s", redact(exc, key))
         return None
+    if record:
+        for path, _, raw in found:
+            record("tripcheck", BASE + path, raw)
+    meta, reports = found[0][1], found[1][1]
     statuses = parse_tripcheck(reports, meta)
     if not statuses:
         log.warning("tripcheck answered without any readable road report")

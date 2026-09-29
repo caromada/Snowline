@@ -13,6 +13,7 @@ from typing import Any
 
 from fusion.roads import parse_wsdot
 from ingest.http import FetchError, fetch_json
+from ingest.raw import Recorder
 
 log = logging.getLogger(__name__)
 
@@ -30,16 +31,18 @@ def redact(message: object, secret: str) -> str:
     return str(message).replace(secret, "[redacted]") if secret else str(message)
 
 
-def fetch_statuses() -> list[dict[str, Any]] | None:
+def fetch_statuses(record: Recorder | None = None) -> list[dict[str, Any]] | None:
     code = os.environ.get(ENV_KEY, "").strip()
     if not code:
         log.info("wsdot: %s is not set; skipping Washington pass reports", ENV_KEY)
         return None
     try:
-        parsed, _, _ = fetch_json(URL, {"AccessCode": code}, timeout=TIMEOUT_S, cache=False)
+        parsed, raw, _ = fetch_json(URL, {"AccessCode": code}, timeout=TIMEOUT_S, cache=False)
     except (FetchError, ValueError) as exc:
         log.warning("wsdot pass reports unavailable: %s", redact(exc, code))
         return None
+    if record:
+        record("wsdot", URL, raw)
     statuses = parse_wsdot(parsed)
     if not statuses:
         log.warning("wsdot answered without any readable pass report")

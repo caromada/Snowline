@@ -12,6 +12,7 @@ from typing import Any
 
 from fusion.avalanche import parse_zones
 from ingest.http import FetchError, fetch_json
+from ingest.raw import Recorder
 
 log = logging.getLogger(__name__)
 
@@ -19,13 +20,15 @@ MAP_LAYER_URL = "https://api.avalanche.org/v2/public/products/map-layer"
 TIMEOUT_S = 60
 
 
-def fetch_zones() -> list[dict[str, Any]] | None:
+def fetch_zones(record: Recorder | None = None) -> list[dict[str, Any]] | None:
     """Zones touching the region, or None when the layer is unavailable."""
     try:
-        parsed, _, _ = fetch_json(MAP_LAYER_URL, timeout=TIMEOUT_S, cache=False)
+        parsed, raw, _ = fetch_json(MAP_LAYER_URL, timeout=TIMEOUT_S, cache=False)
     except (FetchError, ValueError) as exc:
         log.warning("avalanche map layer unavailable: %s", exc)
         return None
+    if record:
+        record("avalanche", MAP_LAYER_URL, raw)
     zones = parse_zones(parsed)
     if not zones:
         log.warning("avalanche map layer held no zones in the region; treating it as down")

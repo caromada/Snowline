@@ -106,7 +106,7 @@ def _no_network(monkeypatch: pytest.MonkeyPatch) -> list[str]:
     calls: list[str] = []
 
     def fetcher(name: str, result: object):  # noqa: ANN202 - test helper factory
-        def fetch() -> object:
+        def fetch(record: object) -> object:
             calls.append(name)
             if isinstance(result, Exception):
                 raise result
@@ -151,7 +151,8 @@ def test_run_with_every_source_down_writes_nothing_and_reports_failure(
 ) -> None:
     _no_network(monkeypatch)
     monkeypatch.setattr(winter_ingest, "SOURCES", {
-        name: (lambda: None) for name in ("avalanche", "caltrans", "wsdot", "tripcheck")
+        name: (lambda record: None)
+        for name in ("avalanche", "caltrans", "wsdot", "tripcheck")
     })
     out = tmp_path / "winter" / "passes.json"
     with pytest.raises(winter_ingest.NothingFetched):
@@ -279,3 +280,46 @@ def test_each_caltrans_district_fails_alone(monkeypatch: pytest.MonkeyPatch) -> 
 def test_district_urls_pad_the_file_name_but_not_the_folder() -> None:
     assert caltrans.district_url(3) == "https://cwwp2.dot.ca.gov/data/d3/cc/ccStatusD03.json"
     assert caltrans.district_url(10) == "https://cwwp2.dot.ca.gov/data/d10/cc/ccStatusD10.json"
+
+
+def test_raw_payloads_are_kept_as_fetched_and_without_the_key(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    layer = json.dumps(FIXTURE)
+    passes = json.dumps(
+        [{"MountainPassName": "Stevens Pass US 2", "Latitude": 47.7462, "Longitude": -121.0859,
+          "RoadCondition": "Bare and dry."}]
+    )
+
+    def fake(url: str, params: dict[str, str] | None = None, **kwargs: object):  # noqa: ANN202
+        if "avalanche.org" in url:
+            return json.loads(layer), layer, False
+        if "wsdot" in url:
+            return json.loads(passes), passes, False
+        raise FetchError("500")
+
+    for module in (winter_ingest.avalanche, caltrans, wsdot, tripcheck):
+        monkeypatch.setattr(module, "fetch_json", fake)
+    monkeypatch.setenv("WSDOT_ACCESS_CODE", "test-code-123")
+    monkeypatch.delenv("TRIPCHECK_API_KEY", raising=False)
+    monkeypatch.setattr(winter_ingest, "load_passes", lambda: [DONNER])
+    monkeypatch.setattr(winter_ingest, "station_links", lambda store: {"cdec": {}, "snotel": {}})
+    db = tmp_path / "sierra.sqlite"
+    Store(db).close()
+
+    doc = winter_ingest.run(
+        today=TODAY, out_path=tmp_path / "out.json", db_path=db,
+        forecast_path=tmp_path / "absent.json",
+    )
+    assert doc["sources"]["avalanche"] == "ok" and doc["sources"]["caltrans"] == "unavailable"
+
+    store = Store(db)
+    rows = store.conn.execute("SELECT source, url, payload FROM raw_fetches ORDER BY id").fetchall()
+    store.close()
+    assert [(r["source"], r["url"]) for r in rows] == [
+        ("avalanche", winter_ingest.avalanche.MAP_LAYER_URL),
+        ("wsdot", wsdot.URL),
+    ]
+    assert rows[0]["payload"] == layer
+    assert rows[1]["payload"] == passes
+    assert all("test-code-123" not in r["url"] + r["payload"] for r in rows)

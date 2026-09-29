@@ -94,6 +94,13 @@ def test_caltrans_directions_at_one_place_share_one_entry() -> None:
     assert s["updated"] == "2027-01-14T04:00:00"
 
 
+def test_caltrans_repeats_of_the_same_line_collapse() -> None:
+    # Live: "DLI (Donner Lake Interchange)" is four control points, two each way.
+    place = ("DLI (Donner Lake Interchange)", "I-80", "39.32", "-120.29")
+    [s] = parse_caltrans(feed(cc(*place, "West"), cc(*place, "West"), cc(*place, "East")))
+    assert [ln["label"] for ln in s["lines"]] == ["West", "East"]
+
+
 def test_caltrans_drops_records_it_cannot_trust() -> None:
     good = cc("KIRKWOOD", "SR-88", "38.699970", "-120.080170")
     # Both shapes below are in the live District 7 feed.

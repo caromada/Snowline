@@ -94,9 +94,9 @@ def parse_caltrans(doc: object) -> list[dict[str, Any]]:
                 "lines": [],
             },
         )
-        record["lines"].append(
-            {"label": direction if direction != "*" else None, "code": code, "text": text}
-        )
+        line = {"label": direction if direction != "*" else None, "code": code, "text": text}
+        if line not in record["lines"]:
+            record["lines"].append(line)
         record["active"] = record["active"] or code != CALTRANS_NO_CONTROLS
         if updated and (record["updated"] is None or updated > record["updated"]):
             record["updated"] = updated
