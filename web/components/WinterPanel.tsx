@@ -2,20 +2,10 @@
 
 import { useState } from "react";
 import { pineSnow } from "@/lib/pixel";
-import type { AvalancheRating, DangerLevel, RoadStatus, Winter } from "@/lib/winterTypes";
+import { dangerScale } from "@/lib/theme";
+import type { AvalancheRating, RoadStatus, Winter } from "@/lib/winterTypes";
 import PixelGlyph from "./PixelGlyph";
 import styles from "./WinterPanel.module.css";
-
-// The North American Public Avalanche Danger Scale's own colors. They are
-// the one place the panel leaves the forest palette: the scale is a public
-// standard, and a rating shown in any other color is a different rating.
-const DANGER: Record<DangerLevel, { fill: string; ink: string }> = {
-  1: { fill: "#50b848", ink: "#0f1a14" },
-  2: { fill: "#fff200", ink: "#0f1a14" },
-  3: { fill: "#f7941e", ink: "#0f1a14" },
-  4: { fill: "#ed1c24", ink: "#ffffff" },
-  5: { fill: "#231f20", ink: "#ffffff" },
-};
 
 const WARNING: Record<NonNullable<AvalancheRating["warning"]>, string> = {
   warning: "Avalanche Warning",
@@ -72,7 +62,7 @@ function Avalanche({ rating, now }: { rating: AvalancheRating | null; now: numbe
   const until = rating.valid_until_utc ? Date.parse(rating.valid_until_utc) : NaN;
   const expired = rating.level !== null && !Number.isNaN(until) && until < now;
   const level = expired ? null : rating.level;
-  const colors = level ? DANGER[level] : null;
+  const colors = level ? dangerScale[level] : null;
   const untilText =
     rating.valid_until_utc && rating.timezone
       ? moment(rating.valid_until_utc, rating.timezone)

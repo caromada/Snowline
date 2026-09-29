@@ -62,3 +62,14 @@ export const motion = {
   contourRing: 600,
   glyphBounce: 80,
 } as const;
+
+// The North American Public Avalanche Danger Scale's own colors, by level.
+// The one exception to the seven: the scale is a public standard, and an
+// official rating shown in any other color would be a different rating.
+export const dangerScale = {
+  1: { fill: "#50B848", ink: palette.deepPine }, // Low
+  2: { fill: "#FFF200", ink: palette.deepPine }, // Moderate
+  3: { fill: "#F7941E", ink: palette.deepPine }, // Considerable
+  4: { fill: "#ED1C24", ink: "#FFFFFF" }, // High
+  5: { fill: "#231F20", ink: "#FFFFFF" }, // Extreme
+} as const;

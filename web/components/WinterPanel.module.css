@@ -1,5 +1,5 @@
 /* Winter section of the pass panel. Forest palette and sharp corners
-   throughout; the danger scale colors arrive inline from the component
+   throughout; the danger scale colors arrive inline from lib/theme.ts
    because they belong to the scale, not to this theme. */
 
 .winter {
