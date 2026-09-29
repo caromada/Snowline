@@ -281,15 +281,33 @@ def test_sensor_near_pass_elevation_needs_a_fresh_reading_within_300_ft() -> Non
     assert not sensor_near_pass_elevation([], day, 11926)
 
 
-def week_of(values: list[float], last_day: int = 14, **kw: Any) -> list[dict[str, Any]]:
+def week_of(
+    values: list[float], last_day: int = 14, month: int = 7, **kw: Any
+) -> list[dict[str, Any]]:
     first = last_day - len(values) + 1
-    return [sensor(v, f"2023-07-{first + i:02d}", **kw) for i, v in enumerate(values)]
+    return [sensor(v, f"2023-{month:02d}-{first + i:02d}", **kw) for i, v in enumerate(values)]
+
+
+# From June through September the engine itself rejects a sensor that has
+# not moved in a week, so it has no vote to flag. Outside melt season a flat
+# week can be real, the engine lets it vote, and the diagnostic still marks it.
 
 
 def test_a_sensor_that_has_not_moved_in_a_week_is_flagged() -> None:
-    stuck = week_of([67.55, 67.55, 67.55, 67.54, 67.54, 67.54, 67.54], station="cdec:STL")
+    stuck = week_of(
+        [67.55, 67.55, 67.55, 67.54, 67.54, 67.54, 67.54], month=5, station="cdec:STL"
+    )
+    melting = week_of([9.1, 8.6, 8.0, 7.7, 7.1, 6.6, 6.0], month=5, station="cdec:CRL")
+    assert stalled_sensors(stuck + melting, "2023-05-15", 11926) == ["cdec:STL"]
+
+
+def test_a_sensor_the_engine_rejects_has_no_vote_to_flag() -> None:
+    stuck = week_of([67.55] * 7, station="cdec:STL")
     melting = week_of([9.1, 8.6, 8.0, 7.7, 7.1, 6.6, 6.0], station="cdec:CRL")
-    assert stalled_sensors(stuck + melting, "2023-07-15", 11926) == ["cdec:STL"]
+    assert stalled_sensors(stuck + melting, "2023-07-15", 11926) == []
+    rows = backtest_pass(PASS, stuck + melting, [], [], [report("p1", day="2023-07-15")])
+    assert rows[0]["diagnostics"]["stalled_sensors"] == []
+    assert rows[0]["engine"]["severity"] == pytest.approx(1.2)
 
 
 def test_a_bare_sensor_sitting_at_zero_is_not_stalled() -> None:
@@ -298,15 +316,17 @@ def test_a_bare_sensor_sitting_at_zero_is_not_stalled() -> None:
 
 
 def test_stalled_needs_a_full_week_and_a_vote_in_the_verdict() -> None:
-    short = week_of([20.0] * 6)
-    assert stalled_sensors(short, "2023-07-15", 11926) == []
-    stale = week_of([20.0] * 7)
-    assert stalled_sensors(stale, "2023-08-15", 11926) == []
-    assert stalled_sensors(stale, "2023-07-20", 11926) == ["cdec:CRL"]
+    short = week_of([20.0] * 6, month=5)
+    assert stalled_sensors(short, "2023-05-15", 11926) == []
+    stale = week_of([20.0] * 7, month=5)
+    assert stalled_sensors(stale, "2023-06-15", 11926) == []
+    assert stalled_sensors(stale, "2023-05-20", 11926) == ["cdec:CRL"]
 
 
 def test_rows_carry_the_stalled_sensor_flag() -> None:
-    rows = backtest_pass(PASS, week_of([20.0] * 7), [], [], [report("p1", day="2023-07-15")])
+    rows = backtest_pass(
+        PASS, week_of([20.0] * 7, month=5), [], [], [report("p1", day="2023-05-15")]
+    )
     assert rows[0]["diagnostics"]["stalled_sensors"] == ["cdec:CRL"]
 
 
@@ -440,12 +460,12 @@ def test_results_and_web_payload_hold_no_author_or_site() -> None:
 
     rows = backtest_pass(
         PASS,
-        week_of([20.0] * 7),
+        week_of([20.0] * 7, month=5),
         [],
         [],
         [
-            report("p1", author="Ann", day="2023-07-15", snow="patchy", traction="none"),
-            report("p2", author="Bo", day="2023-07-15", snow="deep", traction="none"),
+            report("p1", author="Ann", day="2023-05-15", snow="patchy", traction="none"),
+            report("p2", author="Bo", day="2023-05-15", snow="deep", traction="none"),
         ],
     )
     results = build_results(rows, 2, "2026-09-29")

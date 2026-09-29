@@ -295,3 +295,146 @@ def test_melted_out_sensor_just_below_the_pass_votes_through_the_snowline() -> N
     # 200 ft below and long bare: within tolerance, a direct "clear" vote.
     rows = season(6519, "2023-05-01", "2023-07-15", station="snotel:near")
     assert fuse(PANHANDLE, "2023-07-15", rows, [], [], [])["status"] == "open"
+
+
+# -- readings that cannot be believed ----------------------------------------
+
+
+KEARSARGE = {"slug": "kearsarge", "name": "Kearsarge Pass", "elevation_ft": 11709, "creek": ""}
+
+
+def run_of(
+    values: list[float],
+    last_day: str,
+    station: str = "cdec:CRL",
+    name: str = "Charlotte Lake",
+    elev_ft: float = 10400,
+    km: float = 4.0,
+) -> list[dict[str, Any]]:
+    """One station's daily readings ending on last_day, oldest first."""
+    from datetime import date, timedelta
+
+    end = date.fromisoformat(last_day)
+    return [
+        {
+            "metric": "swe_in",
+            "observed_date": (end - timedelta(days=len(values) - 1 - i)).isoformat(),
+            "value": v,
+            "provenance": station,
+            "id": f"{station}:{i}",
+            "meta": {"distance_km": km, "station_elevation_ft": elev_ft, "station_name": name},
+        }
+        for i, v in enumerate(values)
+    ]
+
+
+def fact_text(result: dict[str, Any]) -> str:
+    return " ".join(f["text"] for f in result["facts"])
+
+
+def test_an_impossible_reading_does_not_vote() -> None:
+    # Charlotte Lake, August 2026: 391.82 in of water at 10,400 ft.
+    r = fuse(KEARSARGE, "2026-08-18", run_of([391.82] * 6, "2026-08-12"), [], [], [])
+    assert r["components"]["sensor"] is None
+    assert r["status"] == "unknown"
+
+
+def test_an_impossible_reading_is_named_in_the_facts() -> None:
+    r = fuse(KEARSARGE, "2026-08-18", run_of([391.82] * 6, "2026-08-12"), [], [], [])
+    text = fact_text(r)
+    assert "Charlotte Lake" in text and "391.8" in text and "left out" in text
+    assert chr(0x2014) not in text  # house style: no em dashes in copy
+
+
+def test_a_stuck_sensor_does_not_vote_beside_a_live_one() -> None:
+    stuck = run_of([67.55] * 10, "2023-07-08", station="cdec:STL", name="State Lakes")
+    live = run_of([6.1, 5.4, 4.8, 4.0, 3.1, 2.5], "2023-07-08", station="cdec:BSH", name="Bishop")
+    r = fuse(KEARSARGE, "2023-07-08", stuck + live, [], [], [])
+    assert r["components"]["sensor"]["stations"] == ["cdec:BSH"]
+    assert r["components"]["sensor"]["swe_in"] == 2.5
+    assert "State Lakes" in fact_text(r) and "2023-06-29" in fact_text(r)
+
+
+def test_a_sensor_stuck_today_does_not_vote_with_last_weeks_reading() -> None:
+    # Real readings until a week ago, then stuck. Every station counts in
+    # full in the average, so an old reading from a broken one must not.
+    series = run_of([30.2, 29.1, 28.0] + [27.4] * 7, "2023-07-08", station="cdec:STL")
+    r = fuse(KEARSARGE, "2023-07-08", series, [], [], [])
+    assert r["components"]["sensor"] is None
+
+
+def test_a_spike_today_silences_the_station_for_today_only() -> None:
+    series = run_of([14.2, 13.6, 32767.0], "2025-06-18")
+    assert fuse(KEARSARGE, "2025-06-18", series, [], [], [])["components"]["sensor"] is None
+    back = run_of([14.2, 13.6, 32767.0, 12.1], "2025-06-19")
+    r = fuse(KEARSARGE, "2025-06-19", back, [], [], [])
+    assert r["components"]["sensor"]["swe_in"] == 12.1
+    assert "left out" not in fact_text(r)
+
+
+def test_a_rejected_reading_is_kept_out_of_the_melt_trend() -> None:
+    # The trend starts from the oldest reading in the window: here a fault.
+    series = run_of([900.0, 9.5, 9.0, 8.5, 8.0], "2023-07-08")
+    sensor_part = fuse(KEARSARGE, "2023-07-08", series, [], [], [])["components"]["sensor"]
+    assert sensor_part["trend_in_per_day"] == -0.5
+
+
+def test_a_melted_out_sensor_reading_zero_for_weeks_still_votes() -> None:
+    near = run_of([0.0] * 21, "2023-08-01", elev_ft=11600)
+    r = fuse(KEARSARGE, "2023-08-01", near, [], [], [])
+    assert r["components"]["sensor"]["swe_in"] == 0.0
+    assert r["status"] == "open"
+
+
+def test_a_midwinter_pack_flat_for_a_week_still_votes() -> None:
+    r = fuse(KEARSARGE, "2024-01-20", run_of([21.4] * 9, "2024-01-20"), [], [], [])
+    assert r["components"]["sensor"]["swe_in"] == 21.4
+    assert r["status"] == "not_recommended"
+
+
+def test_judgement_uses_only_what_was_known_on_the_day() -> None:
+    # The run is obvious by July 8, but on July 3 it was four days old.
+    series = run_of([31.0, 29.5] + [27.4] * 9, "2023-07-08", station="cdec:STL")
+    early = fuse(KEARSARGE, "2023-07-03", series, [], [], [])
+    assert early["components"]["sensor"]["swe_in"] == 27.4
+    late = fuse(KEARSARGE, "2023-07-08", series, [], [], [])
+    assert late["components"]["sensor"] is None
+
+
+def test_a_stuck_stretch_cannot_date_a_melt_out() -> None:
+    # Stuck on 27.4 in for weeks, then reset to zero: the day of the reset
+    # is when the sensor was fixed, not when the snow went.
+    high = {"slug": "high", "name": "High Pass", "elevation_ft": 13000, "creek": ""}
+    series = run_of([27.4] * 30 + [0.0] * 10, "2023-08-01", station="cdec:STL", name="State Lakes")
+    r = fuse(high, "2023-08-01", series, [], [], [])
+    snowline = r["components"]["snowline"]
+    assert snowline is not None
+    assert snowline["melt_observed"] is False
+    assert "melted out by 2023-07-23" in fact_text(r)
+
+
+def test_modeled_satellite_from_a_rejected_reading_does_not_vote() -> None:
+    stuck = run_of([67.55] * 10, "2023-07-08", station="cdec:STL", name="State Lakes")
+    scene = sat(1.0, day="2023-07-06")
+    scene["meta"] = {"modeled": True, "from_station": "cdec:STL", "station_swe_in": 67.55}
+    r = fuse(KEARSARGE, "2023-07-08", stuck, [scene], [], [])
+    assert r["components"]["satellite"] is None
+    assert r["status"] == "unknown"
+
+
+def test_modeled_satellite_from_a_believed_reading_still_votes() -> None:
+    live = run_of([6.1, 5.4, 4.8, 4.0, 3.1, 2.5], "2023-07-08", station="cdec:BSH")
+    scene = sat(0.4, day="2023-07-06")
+    scene["meta"] = {"modeled": True, "from_station": "cdec:BSH", "station_swe_in": 4.0}
+    r = fuse(KEARSARGE, "2023-07-08", live, [scene], [], [])
+    assert r["components"]["satellite"]["cover_frac"] == 0.4
+
+
+def test_latest_per_station_leaves_out_stations_that_cannot_be_believed() -> None:
+    # The verdict backtest reads the voting stations through this helper.
+    from fusion.fusion import _latest_per_station
+
+    stuck = run_of([67.55] * 10, "2023-07-08", station="cdec:STL")
+    live = run_of([6.1, 5.4, 4.8, 4.0, 3.1, 2.5], "2023-07-08", station="cdec:BSH")
+    faulty = run_of([391.82] * 3, "2023-07-08", station="cdec:CRL")
+    assert sorted(_latest_per_station(stuck + live + faulty, "2023-07-08")) == ["cdec:BSH"]
