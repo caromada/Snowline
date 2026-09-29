@@ -118,6 +118,10 @@ export default function PassPanel({
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setSaved(loadSaved());
     setAsk(backendLive());
+    // The account can change the list from outside this panel.
+    const onSaved = () => setSaved(loadSaved());
+    window.addEventListener("sierra-saved-changed", onSaved);
+    return () => window.removeEventListener("sierra-saved-changed", onSaved);
   }, []);
 
   useEffect(() => {
