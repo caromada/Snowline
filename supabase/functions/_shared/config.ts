@@ -18,3 +18,11 @@ export const MAX_ANSWER_TOKENS = 1024;
 /** Ledger entries older than this, relative to the date viewed, are not evidence. */
 export const LEDGER_WINDOW_DAYS = 30;
 export const LEDGER_MAX_LINES = 12;
+
+export const REPORTS_PER_DAY = 5;
+export const MAX_REPORT_CHARS = 1000;
+export const MAX_WATER_SOURCE_CHARS = 60;
+export const MAX_QUOTE_CHARS = 200;
+/** How far back the day someone was at the pass may be, in days. */
+export const REPORT_WINDOW_DAYS = 30;
+export const MAX_READING_TOKENS = 1024;
