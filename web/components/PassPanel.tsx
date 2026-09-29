@@ -15,6 +15,7 @@ import EvidenceLedger from "./EvidenceLedger";
 import FirePanel from "./FirePanel";
 import GettingThere from "./GettingThere";
 import PixelGlyph from "./PixelGlyph";
+import SeasonPanel from "./SeasonPanel";
 import Vignette from "./Vignette";
 import WinterPanel from "./WinterPanel";
 
@@ -287,6 +288,8 @@ export default function PassPanel({
           {isNow && detail.forecast && (
             <ForecastStrip forecast={detail.forecast} from={evalDate} passFt={detail.pass.elevation_ft} />
           )}
+
+          {isNow && detail.season && <SeasonPanel season={detail.season} />}
 
           {isNow && detail.winter && <WinterPanel winter={detail.winter} />}
 
