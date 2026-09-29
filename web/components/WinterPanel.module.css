@@ -1,0 +1,188 @@
+/* Winter section of the pass panel. Forest palette and sharp corners
+   throughout; the danger scale colors arrive inline from lib/theme.ts
+   because they belong to the scale, not to this theme. */
+
+.winter {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 16%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--sage);
+}
+
+.sub {
+  margin-top: 16px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--sage);
+}
+
+.plain {
+  margin-top: 6px;
+  color: var(--granite);
+}
+
+.meta {
+  margin-top: 3px;
+  color: var(--sage);
+}
+
+.meta a,
+.fine a {
+  color: var(--snowmelt);
+}
+
+.fine {
+  margin-top: 10px;
+  color: var(--sage);
+  font-size: 11px;
+}
+
+.avalanche {
+  margin-top: 8px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 8px 14px;
+  border: 1px solid color-mix(in srgb, var(--granite) 45%, transparent);
+  border-radius: 0;
+  margin-bottom: 8px;
+}
+
+.unrated {
+  background: color-mix(in srgb, var(--granite) 8%, transparent);
+  color: var(--granite);
+}
+
+.level {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.word {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.warning {
+  margin-top: 10px;
+  padding: 7px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--deep-pine);
+  background: var(--alpenglow);
+}
+
+.advice {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--granite);
+  background: color-mix(in srgb, var(--granite) 6%, transparent);
+}
+
+.advice blockquote {
+  color: var(--granite);
+  quotes: "\201C" "\201D";
+}
+
+.advice blockquote::before {
+  content: open-quote;
+}
+
+.advice blockquote::after {
+  content: close-quote;
+}
+
+.advice figcaption {
+  margin-top: 6px;
+  color: var(--sage);
+  font-size: 11px;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 7px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--granite);
+  border: 1px solid color-mix(in srgb, var(--granite) 45%, transparent);
+  border-radius: 0;
+  transition: background-color 120ms linear, color 120ms linear;
+}
+
+.link:hover {
+  color: var(--deep-pine);
+  background: var(--granite);
+}
+
+.roads,
+.lines {
+  list-style: none;
+}
+
+.road {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-left: 3px solid color-mix(in srgb, var(--granite) 30%, transparent);
+  background: color-mix(in srgb, var(--granite) 5%, transparent);
+}
+
+.road.active {
+  border-left-color: var(--alpenglow);
+  background: color-mix(in srgb, var(--alpenglow) 8%, transparent);
+}
+
+.roadName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--granite);
+  overflow-wrap: anywhere;
+}
+
+.roadName :global(.mono) {
+  color: var(--snowmelt);
+}
+
+.lines {
+  margin-top: 6px;
+}
+
+.lines li {
+  margin-top: 3px;
+  color: var(--granite);
+}
+
+.lineLabel {
+  margin-right: 8px;
+  font-size: 9px;
+  color: var(--sage);
+}
+
+.code {
+  margin-right: 8px;
+  padding: 1px 5px;
+  color: var(--granite);
+  border: 1px solid color-mix(in srgb, var(--granite) 35%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}

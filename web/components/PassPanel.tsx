@@ -16,6 +16,7 @@ import FirePanel from "./FirePanel";
 import GettingThere from "./GettingThere";
 import PixelGlyph from "./PixelGlyph";
 import Vignette from "./Vignette";
+import WinterPanel from "./WinterPanel";
 
 const SAVED_KEY = "sierra-pass-report:saved";
 
@@ -282,6 +283,8 @@ export default function PassPanel({
           {isNow && detail.forecast && (
             <ForecastStrip forecast={detail.forecast} from={evalDate} passFt={detail.pass.elevation_ft} />
           )}
+
+          {isNow && detail.winter && <WinterPanel winter={detail.winter} />}
 
           <p style={{ marginTop: 12, color: "var(--sage)", fontStyle: "italic" }}>
             {detail.pass.aspect_note}
