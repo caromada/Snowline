@@ -1,0 +1,60 @@
+.fire {
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-left: 3px solid color-mix(in srgb, var(--granite) 45%, transparent);
+  background: color-mix(in srgb, var(--granite) 6%, transparent);
+}
+.fire.burning {
+  border-left-color: var(--alpenglow);
+  background: color-mix(in srgb, var(--alpenglow) 8%, transparent);
+}
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--sage);
+}
+.burning .head {
+  color: var(--alpenglow);
+}
+.line {
+  margin-top: 6px;
+  color: var(--granite);
+}
+.meta {
+  margin-top: 2px;
+  color: var(--sage);
+}
+.link {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--snowmelt);
+  text-underline-offset: 3px;
+  transition: color 200ms;
+}
+.link:hover,
+.link:focus-visible {
+  color: var(--granite);
+}
+.sources {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 16%, transparent);
+  color: var(--sage);
+}
+.sources a {
+  color: inherit;
+  text-underline-offset: 3px;
+  transition: color 200ms;
+}
+.sources a:hover,
+.sources a:focus-visible {
+  color: var(--granite);
+}
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .sources a {
+    transition: none;
+  }
+}

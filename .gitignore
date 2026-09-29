@@ -15,6 +15,7 @@ data/sierra.sqlite
 data/raw/
 .claude/skills/
 data/forecast/
+data/fire/
 data/rebuild_pending.json
 .claude/worktrees/
 supabase/.temp/

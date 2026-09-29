@@ -12,6 +12,7 @@ import { setupContours } from "@/lib/contours";
 import { buildMapStyle } from "@/lib/mapStyle";
 import { palette, statusColor } from "@/lib/theme";
 import type { Access, PassIndexEntry } from "@/lib/types";
+import FireLayer from "./FireLayer";
 import { loadSaved } from "./PassPanel";
 
 const CONTOUR_TILES = setupContours(maplibregl);
@@ -487,6 +488,7 @@ export default function MapView({
         >
           {relief ? "2D" : "3D"}
         </button>
+        <FireLayer mapRef={mapRef} ready={layerReady} evalDate={evalDate} />
       </div>
     </>
   );

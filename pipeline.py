@@ -136,6 +136,7 @@ def export(store: Store | None = None) -> None:
 
     reports_by_pass = _reports_by_pass(store)
     forecasts = _load_forecasts(today)
+    fire = _load_fire(today)
     access = load_access()
 
     # Sensor rows are stored once per station; passes join to them through
@@ -216,6 +217,7 @@ def export(store: Store | None = None) -> None:
             # per-pass modeled satellite curve rides inline.
             "curves": {"snow_cover_frac": _curve(satellite_obs, "snow_cover_frac")},
             "forecast": forecasts.get(slug),
+            "fire": fire.get(slug),
             "access": link_access(
                 p, access["trailheads"], access["campgrounds"], access["parking"]
             ),
@@ -297,6 +299,23 @@ def _load_forecasts(today: str) -> dict[str, Any]:
         log.warning("forecast file issued %s is stale; skipping forecasts", issued)
         return {}
     return {slug: {**f, "issued_for": doc["issued_for"]} for slug, f in doc["passes"].items()}
+
+
+FIRE_PATH = Path(__file__).resolve().parent / "data" / "fire" / "passes.json"
+
+
+def _load_fire(today: str) -> dict[str, Any]:
+    """Fire and smoke facts from ingest.fire, under the forecast's rule:
+    issued today or yesterday, or not shown at all."""
+    if not FIRE_PATH.exists():
+        return {}
+    doc = json.loads(FIRE_PATH.read_text())
+    issued = date.fromisoformat(doc.get("issued_for", "1970-01-01"))
+    if (date.fromisoformat(today) - issued).days > 1:
+        log.warning("fire file issued %s is stale; skipping fire and smoke", issued)
+        return {}
+    dates = {"issued_for": doc["issued_for"], "smoke_date": doc.get("smoke_date")}
+    return {slug: {**f, **dates} for slug, f in doc["passes"].items()}
 
 
 LANDING_STATUS_KEYS = ["open", "snow_caution", "traction_advised", "not_recommended", "unknown"]
