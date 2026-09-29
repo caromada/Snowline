@@ -63,7 +63,7 @@ describe("syncLine", () => {
   });
   it("never uses an em dash", () => {
     for (const status of ["idle", "checking", "in_step", "waiting", "offline"] as const) {
-      for (const n of [0, 1, 2]) expect(syncLine(status, n)).not.toContain("—");
+      for (const n of [0, 1, 2]) expect(syncLine(status, n)).not.toContain(String.fromCharCode(0x2014));
     }
   });
 });
