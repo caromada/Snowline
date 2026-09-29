@@ -21,6 +21,7 @@ from config import DB_PATH, EXTRACTIONS_CACHE, WEB_DATA_DIR
 from extraction.extractor import post_hash
 from extraction.resolve import resolve_post
 from fusion import fuse
+from fusion.winter import load_winter
 from gazetteer import load_passes
 from gazetteer.access import link_access, load_access
 from ingest.forums import load_corpus
@@ -136,6 +137,7 @@ def export(store: Store | None = None) -> None:
 
     reports_by_pass = _reports_by_pass(store)
     forecasts = _load_forecasts(today)
+    winter = load_winter(today)
     access = load_access()
 
     # Sensor rows are stored once per station; passes join to them through
@@ -216,6 +218,7 @@ def export(store: Store | None = None) -> None:
             # per-pass modeled satellite curve rides inline.
             "curves": {"snow_cover_frac": _curve(satellite_obs, "snow_cover_frac")},
             "forecast": forecasts.get(slug),
+            "winter": winter.get(slug),
             "access": link_access(
                 p, access["trailheads"], access["campgrounds"], access["parking"]
             ),

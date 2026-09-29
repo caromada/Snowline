@@ -65,6 +65,14 @@ jobs:
       - name: Fetch NWS forecasts
         run: python -m ingest.nws || echo "::warning::NWS forecasts unavailable today"
 
+      # Avalanche ratings, new snow and road status. Each source inside
+      # degrades alone; Washington and Oregon roads wait on their keys.
+      - name: Fetch winter conditions
+        env:
+          WSDOT_ACCESS_CODE: ${{ secrets.WSDOT_ACCESS_CODE }}
+          TRIPCHECK_API_KEY: ${{ secrets.TRIPCHECK_API_KEY }}
+        run: python -m ingest.winter || echo "::warning::Winter conditions unavailable today"
+
       - name: Save HTTP cache
         if: always()
         uses: actions/cache/save@v6
