@@ -95,6 +95,51 @@ def test_agreeing_dense_evidence_is_high_confidence() -> None:
     assert {"sensor", "satellite", "report", "gauge"} <= streams
 
 
+def test_modeled_cover_never_reads_as_a_satellite_look() -> None:
+    result = fuse(PASS, DATE, [sensor(12.0)], [sat(0.8)], [], [])
+    fact = next(f for f in result["facts"] if f["stream"] == "satellite")
+    assert "satellite" not in fact["text"].lower().replace("no satellite", "")
+    assert fact["text"].startswith("Modeled snow cover is 80%")
+    assert "no satellite saw the pass" in fact["text"]
+
+
+def test_a_real_scene_still_reads_as_one() -> None:
+    scene = {**sat(0.8), "provenance": "satellite:viirs", "meta": {}}
+    result = fuse(PASS, DATE, [sensor(12.0)], [scene], [], [])
+    fact = next(f for f in result["facts"] if f["stream"] == "satellite")
+    assert fact["text"] == (
+        "Satellite shows 80% snow cover in the pass bowl, last clear look 2d ago."
+    )
+
+
+def test_conflicts_name_modeled_cover_for_what_it_is() -> None:
+    modeled = fuse(PASS, DATE, [sensor(1.0)], [sat(0.9)], [], [])
+    assert modeled["conflicts"] == [
+        "Modeled snow cover suggests more snow than sensors do (severity 2.7 vs 0.2)."
+    ]
+    scene = {**sat(0.9), "provenance": "satellite:viirs", "meta": {}}
+    real = fuse(PASS, DATE, [sensor(1.0)], [scene], [], [])
+    assert real["conflicts"] == [
+        "Satellite suggests more snow than sensors do (severity 2.7 vs 0.2)."
+    ]
+    flipped = fuse(PASS, DATE, [sensor(14.0)], [{**scene, "value": 0.1}], [], [])
+    assert flipped["conflicts"] == [
+        "Sensors suggest more snow than satellite does (severity 2.8 vs 0.3)."
+    ]
+
+
+def test_sensors_alone_give_a_plain_verdict_without_borrowed_streams() -> None:
+    result = fuse(PASS, DATE, [sensor(48.0)], [], gauge(300, "2023-06-14"), [])
+    assert result["status"] == "not_recommended"
+    assert result["confidence"] == "moderate"
+    assert result["conflicts"] == []
+    assert [f["stream"] for f in result["facts"]] == ["sensor", "gauge"]
+    assert result["components"]["satellite"] is None
+    assert result["components"]["reports"] is None
+    # One stream cannot disagree with itself, and cannot reach "high" alone.
+    assert result["confidence_score"] == 3.0
+
+
 def test_bare_summer_pass_is_open() -> None:
     result = fuse(
         PASS,
