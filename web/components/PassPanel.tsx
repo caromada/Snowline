@@ -7,6 +7,8 @@ import { offlineSupported, removeOffline, saveForOffline } from "@/lib/offline";
 import { passFile } from "@/lib/paths";
 import { glyphByStatus, tent } from "@/lib/pixel";
 import type { Access, Fact, PassDetail } from "@/lib/types";
+import { BACKEND_LIVE } from "@/lib/backend";
+import AskPass from "./AskPass";
 import Byok from "./Byok";
 import Campfire from "./Campfire";
 import EvidenceLedger from "./EvidenceLedger";
@@ -280,13 +282,17 @@ export default function PassPanel({
             {detail.pass.aspect_note}
           </p>
 
+          {BACKEND_LIVE && (
+            <AskPass slug={detail.pass.slug} name={detail.pass.name} evalDate={evalDate} />
+          )}
+
           {detail.access && <GettingThere access={detail.access} onShow={onShow} />}
 
           <div ref={ledgerRef}>
             <EvidenceLedger ledger={detail.ledger} curves={detail.curves} evalDate={evalDate} />
           </div>
 
-          <Byok detail={detail} evalDate={evalDate} />
+          {!BACKEND_LIVE && <Byok detail={detail} evalDate={evalDate} />}
         </div>
       )}
     </aside>

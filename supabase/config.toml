@@ -1,0 +1,6 @@
+project_id = "uiduywomodjjsrlxtjnr"
+
+# The function checks the caller's session itself, so it works with the
+# project's current signing keys.
+[functions.ask-pass]
+verify_jwt = false
