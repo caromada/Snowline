@@ -18,3 +18,12 @@ export const MAX_ANSWER_TOKENS = 1024;
 /** Ledger entries older than this, relative to the date viewed, are not evidence. */
 export const LEDGER_WINDOW_DAYS = 30;
 export const LEDGER_MAX_LINES = 12;
+
+/** Road reports per pass given to the model: restrictions first, then nearest. */
+export const ROAD_MAX_LINES = 4;
+
+/**
+ * Bumped whenever the evidence lines change shape, so an answer cached
+ * against the old numbering is never served against the new one.
+ */
+export const EVIDENCE_VERSION = "2";
