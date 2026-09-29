@@ -49,6 +49,11 @@ def fetch_statuses(record: Recorder | None = None) -> list[dict[str, Any]] | Non
             record("tripcheck", BASE + path, raw)
     meta, reports = found[0][1], found[1][1]
     statuses = parse_tripcheck(reports, meta)
+    listed = reports.get("road-weather-reports") if isinstance(reports, dict) else None
+    if not statuses and listed == []:
+        # Out of season the feed is well formed and simply empty.
+        log.info("tripcheck: no road reports posted")
+        return []
     if not statuses:
         log.warning(
             "tripcheck answered without any readable road report; reports look like %s "
