@@ -79,6 +79,13 @@ jobs:
           TRIPCHECK_API_KEY: ${{ secrets.TRIPCHECK_API_KEY }}
         run: python -m ingest.winter || echo "::warning::Winter conditions unavailable today"
 
+      # What rangers and road crews published, quoted as written. Each page
+      # degrades alone; park alerts wait on their key.
+      - name: Fetch official reports
+        env:
+          NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
+        run: python -m ingest.official || echo "::warning::Official reports unavailable today"
+
       - name: Save HTTP cache
         if: always()
         uses: actions/cache/save@v6

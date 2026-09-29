@@ -17,6 +17,7 @@ data/raw/
 data/forecast/
 data/fire/
 data/winter/
+data/official/
 data/rebuild_pending.json
 .claude/worktrees/
 supabase/.temp/

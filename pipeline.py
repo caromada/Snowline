@@ -21,6 +21,7 @@ from config import DB_PATH, EXTRACTIONS_CACHE, WEB_DATA_DIR
 from extraction.extractor import post_hash
 from extraction.resolve import resolve_post
 from fusion import fuse
+from fusion.official import load_official
 from fusion.winter import load_winter
 from gazetteer import load_passes
 from gazetteer.access import link_access, load_access
@@ -139,6 +140,7 @@ def export(store: Store | None = None) -> None:
     forecasts = _load_forecasts(today)
     fire = _load_fire(today)
     winter = load_winter(today)
+    official = load_official(today)
     access = load_access()
 
     # Sensor rows are stored once per station; passes join to them through
@@ -221,6 +223,7 @@ def export(store: Store | None = None) -> None:
             "forecast": forecasts.get(slug),
             "fire": fire.get(slug),
             "winter": winter.get(slug),
+            "official": official.get(slug),
             "access": link_access(
                 p, access["trailheads"], access["campgrounds"], access["parking"]
             ),
