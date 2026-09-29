@@ -19,36 +19,38 @@ August 31 keeps its place in the order without being given a date.
 
 Thresholds, measured against the store (311 stations, 2023 to 2026):
 
-- Sensor faults. A quarter of one network's station-seasons carry a fault:
+- Sensor faults. Three in ten of one network's station-seasons carry one:
   stuck readings, bare-ground offsets that last all summer, and drift.
   The rules were set so the better kept network passes them: of its
-  773 station-seasons none lingered under THIN_PACK_IN past 20 days and
-  none rose more than 6 times at that level, against 79 and 2 of the other
-  network's 395. A flagged season is left out, by name, never repaired.
-  With the rules on, 2023 is the latest melt-out at all 50 Sierra Nevada
-  stations that have a date for each of 2023, 2024 and 2025.
+  773 station-seasons none lingered under THIN_PACK_IN past 20 days, none
+  rose more than 6 times at that level and none held through a summer
+  month, against 79, 2 and 21 of the other network's 395. A flagged season
+  is left out, by name, never repaired. With the rules on, 2023 is the
+  latest melt-out at every California and Nevada station that has a date
+  for each of 2023, 2024 and 2025.
 - DISAGREE_DAYS. Stations sharing a pass differ in "days against the
-  earlier seasons" by 8 days at the median and by 21 or less in 93% of 174
+  earlier seasons" by 8 days at the median and by 21 or less in 93% of
   pairs (2026). Inside that, the pass gets the range the stations span;
   beyond it they are telling different stories and each is given its own.
 - The pass window. The engine's SNOWLINE_RISE_FT_PER_DAY is the slow edge
   and FAST_RISE_FT_PER_DAY the fast one: between stations 1,500 to 2,500 ft
-  apart the middle half of climbs ran 39 to 100 ft a day (best fit 56).
+  apart the middle half of climbs ran 39 to 100 ft a day (best fit 55).
   WINDOW_PAD_DAYS is the scatter left once elevation is accounted for:
-  stations near the same pass differ by 23 days either way at the 10th and
-  90th percentile, whatever the distance between them. Tested by hiding
-  each station in turn and estimating it from its neighbours (2,270
-  station-seasons), the window held the true date 89% of the time, 82%
-  from a single neighbour, at a median width of 54 days. That is the width
-  the evidence supports. The test is station against station: no pass
-  has a sensor, so how well a wind-scoured or corniced pass follows a
-  pillow in a sheltered flat is not measured by anything here.
-- WINDOW_MAX_GAP_FT. The test has 51 cases beyond it.
+  stations near the same pass differ by about 23 days either way at the
+  10th and 90th percentile, whatever the distance between them. Tested by
+  hiding each station in turn and estimating it from its neighbours (some
+  2,400 station-seasons), the window held the true date 89% of the time,
+  83% from a single neighbour, at a median width of 54 days. That is the
+  width the evidence supports. The test is station against station: no
+  pass has a sensor, so how well a wind-scoured or corniced pass follows
+  a pillow in a sheltered flat is not measured by anything here.
+- WINDOW_MAX_GAP_FT. The test has some 50 cases beyond it.
 """
 
 from __future__ import annotations
 
 import math
+import re
 from collections.abc import Callable
 from datetime import date, timedelta
 from typing import Any
@@ -90,6 +92,10 @@ MAX_STEP_IN_PER_DAY = MAX_GAIN_IN_PER_DAY
 THIN_PACK_IN = 3.0
 LINGER_MAX_DAYS = 28
 WANDER_MAX_RISES = 8
+# From June on every pack in these ranges is melting. One of any depth that
+# loses less than SUMMER_MIN_LOSS_IN over LINGER_MAX_DAYS is a stuck reading.
+SUMMER_FROM_MMDD = "06-01"
+SUMMER_MIN_LOSS_IN = 1.0
 # A record that starts later than this may have missed the season's peak.
 PEAK_START_SLACK_DAYS = 7
 
@@ -159,6 +165,21 @@ def _lingers(series: list[dict[str, Any]]) -> bool:
     return False
 
 
+def _holds_through_summer(series: list[dict[str, Any]]) -> bool:
+    run: list[dict[str, Any]] = []
+    for o in series:
+        if o["observed_date"][5:] < SUMMER_FROM_MMDD or float(o["value"]) < MELTED_OUT_SWE_IN:
+            run = []
+            continue
+        run.append(o)
+        while _days(o["observed_date"], run[0]["observed_date"]) > LINGER_MAX_DAYS:
+            run.pop(0)
+        if _days(o["observed_date"], run[0]["observed_date"]) >= LINGER_MAX_DAYS - 2:
+            if float(run[0]["value"]) - float(o["value"]) < SUMMER_MIN_LOSS_IN:
+                return True
+    return False
+
+
 def _wanders(series: list[dict[str, Any]]) -> bool:
     rises = 0
     for a, b in zip(series, series[1:], strict=False):
@@ -217,6 +238,9 @@ def station_season(rows: list[dict[str, Any]], year: int, today: date) -> dict[s
     if _wanders(series):
         out["reason"] = "wandering"
         return out
+    if _holds_through_summer(series):
+        out["reason"] = "stuck"
+        return out
 
     melt = _first_melt_out(series)
     bare_at_start = melt is not None and not melt[1] and melt[0] == series[0]["observed_date"]
@@ -252,8 +276,16 @@ def station_season(rows: list[dict[str, Any]], year: int, today: date) -> dict[s
             out["status"] = "snow"
         else:
             out["reason"] = "quiet"
+    elif current:
+        out["reason"] = "unconfirmed"
     else:
-        out["reason"] = "unconfirmed" if current else "quiet"
+        # Some pillows stop reporting once they melt out. The engine reads
+        # "melted out, then silent" as a melt-out, so the season does too.
+        ended = _melt_out_date(series)
+        if ended and ended[1]:
+            out.update(status="melted", melt_out=ended[0], melt_out_day=season_day(ended[0]))
+        else:
+            out["reason"] = "quiet"
     return out
 
 
@@ -264,6 +296,7 @@ REASON_TEXT = {
     "erratic": "readings jump by more than snow can",
     "residual": "the sensor kept a reading on bare ground",
     "wandering": "the sensor drifted on bare ground",
+    "stuck": "the reading held through the summer",
     "quiet": "stopped reporting before melt-out",
     "gap": "a hole in the record hides the melt-out",
     "unconfirmed": "bare for less than a week so far",
@@ -373,6 +406,12 @@ def _median(values: list[float]) -> float | None:
     return None if math.isinf(m) else m
 
 
+def _plain_name(name: str) -> str:
+    """Some stations are listed with their operator's initials or network
+    ("Horse Meadow (Nrcs)"); panel copy names the place, not the agency."""
+    return re.sub(r"\s+snotel$", "", re.sub(r"\s*\([^)]*\)\s*$", "", name), flags=re.I)
+
+
 def _stations(sensor_obs: list[dict[str, Any]], today: date) -> list[dict[str, Any]]:
     """The pass's stations, nearest first, each site once, with a season
     record for every year on file."""
@@ -396,7 +435,7 @@ def _stations(sensor_obs: list[dict[str, Any]], today: date) -> list[dict[str, A
         found.append(
             {
                 "provenance": prov,
-                "name": meta.get("station_name") or prov,
+                "name": _plain_name(str(meta.get("station_name") or prov)),
                 "elevation_ft": round(float(elevation)) if elevation is not None else None,
                 "distance_km": float(km) if km is not None else math.inf,
                 "distance_mi": round(float(km) / KM_PER_MI, 1) if km is not None else None,
@@ -588,8 +627,11 @@ def _peak_fact(
     fullest = max(len(st["peak_years"]) for st in ranked)
     years = next(st["peak_years"] for st in ranked if len(st["peak_years"]) == fullest)
     group = [st for st in ranked if st["peak_years"] == years]
-    whose = "this year's" if this_year else f"the {season}"
-    subject = f"{whose} highest snow water on or after April 1"
+    subject = (
+        "this year's highest snow water on or after April 1"
+        if this_year
+        else f"the highest snow water on or after April 1 in {season}"
+    )
     seasons = _seasons_phrase(years, [*on_file, season], earlier=False)
     peaks = [{s["year"]: s for s in st["seasons"]} for st in group]
     if len(group) == 1:

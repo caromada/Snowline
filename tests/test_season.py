@@ -113,8 +113,9 @@ def test_an_april_storm_on_bare_ground_does_not_become_the_melt_out() -> None:
 
 
 def test_snow_still_there_on_august_31_is_not_given_a_date() -> None:
-    s = station_season(curve(2023, None, peak=12.0), 2023, TODAY)
+    s = station_season(curve(2023, "09-30", peak=70.0), 2023, TODAY)
     assert s["status"] == "snow"
+    assert s["last_swe_in"] == 11.5
     assert s["melt_out"] is None
 
 
@@ -142,6 +143,13 @@ def test_bare_for_under_a_week_is_not_yet_a_melt_out() -> None:
 def test_a_pillow_that_goes_quiet_after_melting_out_keeps_its_date() -> None:
     rows = curve(2025, "05-21", end="06-02")
     assert station_season(rows, 2025, TODAY)["melt_out"] == "2025-05-21"
+
+
+def test_a_pillow_that_goes_quiet_two_days_after_melting_out_keeps_its_date() -> None:
+    rows = curve(2025, "05-21", end="05-22")
+    s = station_season(rows, 2025, TODAY)
+    assert (s["status"], s["melt_out"]) == ("melted", "2025-05-21")
+    assert (s["melt_out"], True) == _melt_out_date(rows)
 
 
 def test_a_pillow_that_goes_quiet_under_snow_is_unusable() -> None:
@@ -195,6 +203,14 @@ def test_a_pillow_drifting_up_and_down_on_bare_ground_is_unusable() -> None:
     rows = [{**r, "value": drift.get(r["observed_date"], r["value"])} for r in rows]
     s = station_season(rows, 2026, TODAY)
     assert (s["status"], s["reason"]) == ("unusable", "wandering")
+
+
+def test_a_reading_that_holds_through_a_summer_month_is_stuck() -> None:
+    rows = curve(2026, "08-31", peak=30.0, floor=5.1)
+    rows = [{**r, "value": 5.1} if r["observed_date"] >= "2026-06-20" else r for r in rows]
+    s = station_season(rows, 2026, TODAY)
+    assert (s["status"], s["reason"]) == ("unusable", "stuck")
+    assert s["peak_swe_in"] is None
 
 
 def test_a_deep_pack_holding_steady_is_not_a_residual() -> None:
@@ -672,6 +688,9 @@ def test_in_winter_the_last_season_is_named_by_its_year() -> None:
     )
     assert "this year" not in texts(s)
     assert "in 2026" in fact(s, "pass_window")["text"]
+    assert fact(s, "peak")["text"].startswith(
+        "At Alder Flat (8,600 ft), the highest snow water on or after April 1 in 2026 was 30.0 in"
+    )
 
 
 def test_the_chart_is_the_nearest_station_with_its_melt_out_marks() -> None:
@@ -755,6 +774,17 @@ def test_copy_never_claims_a_norm_names_an_agency_or_uses_a_dash() -> None:
         copy = texts(s) + " ".join(e["detail"] for f in s["facts"] for e in f["evidence"])
         for word in BANNED:
             assert word not in copy.lower(), (word, copy)
+
+
+def test_a_station_listed_with_its_operator_is_named_without_it() -> None:
+    obs = station("Horse Meadow (Nrcs)", 8557, LATE) + station(
+        "Palisades Tahoe Snotel", 8200, LATE_TOO, km=9.0
+    )
+    s = pass_season(PASS, obs, TODAY)
+    assert s is not None
+    assert [st["name"] for st in s["stations"]] == ["Horse Meadow", "Palisades Tahoe"]
+    assert "Horse Meadow (8,557 ft) and Palisades Tahoe (8,200 ft)" in texts(s)
+    assert s["chart"]["name"] == "Horse Meadow"
 
 
 def test_every_statement_carries_the_stations_it_rests_on() -> None:
