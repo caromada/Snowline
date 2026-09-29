@@ -153,7 +153,7 @@ def headline(days: list[dict[str, Any]], pass_elevation_ft: float, today: date) 
         d = max(stormy, key=lambda d: d["thunder_chance"])
         facts.append(
             f"Thunderstorms possible {_day_name(d['date'], today)} "
-            f"({d['thunder_chance']}% chance); exposed passes are no place to be in lightning."
+            f"({d['thunder_chance']}% chance); the pass is exposed terrain."
         )
     windy = [d for d in days if d["gust_mph"] >= GUST_MIN_MPH]
     if windy and len(facts) < 2:

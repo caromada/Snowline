@@ -4,9 +4,6 @@
 import type { NearestFire } from "./fireTypes";
 import type { Sprite } from "./pixel";
 
-export const FIRE_SOURCE_URL =
-  "https://data-nifc.opendata.arcgis.com/datasets/nifc::wfigs-current-interagency-fire-perimeters/about";
-export const SMOKE_SOURCE_URL = "https://www.ospo.noaa.gov/products/land/hms.html";
 
 // Flame with a pale core. The only sprite drawn mostly in alpenglow.
 export const flame: Sprite = [

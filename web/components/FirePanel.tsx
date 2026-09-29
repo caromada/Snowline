@@ -1,12 +1,12 @@
 "use client";
 
-import { FIRE_SOURCE_URL, SMOKE_SOURCE_URL, fireSentence, flame, shortDate } from "@/lib/fire";
+import { fireSentence, flame, shortDate } from "@/lib/fire";
 import type { PassFire } from "@/lib/fireTypes";
 import styles from "./FirePanel.module.css";
 import PixelGlyph from "./PixelGlyph";
 
-// The nearest active fire and any smoke over the pass, as the agencies
-// mapped them. Distances are straight lines to the perimeter's edge.
+// The nearest active fire and any smoke over the pass, as officially
+// mapped. Distances are straight lines to the perimeter's edge.
 export default function FirePanel({ fire }: { fire: PassFire }) {
   const near = fire.fire;
   if (!near && !fire.smoke) return null;
@@ -45,25 +45,6 @@ export default function FirePanel({ fire }: { fire: PassFire }) {
           </div>
         </>
       )}
-      <p className={`mono ${styles.sources}`}>
-        {near && (
-          <>
-            perimeters:{" "}
-            <a href={FIRE_SOURCE_URL} target="_blank" rel="noreferrer">
-              National Interagency Fire Center
-            </a>
-          </>
-        )}
-        {near && fire.smoke && " · "}
-        {fire.smoke && (
-          <>
-            smoke:{" "}
-            <a href={SMOKE_SOURCE_URL} target="_blank" rel="noreferrer">
-              NOAA Hazard Mapping System
-            </a>
-          </>
-        )}
-      </p>
     </section>
   );
 }

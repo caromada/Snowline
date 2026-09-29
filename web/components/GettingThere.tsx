@@ -155,7 +155,7 @@ export default function GettingThere({
         </>
       )}
       <p className="mono" style={{ color: "var(--sage)", marginTop: 10 }}>
-        Roads to high trailheads can be gated or under snow. Check the road before you drive.
+        Roads to high trailheads can be gated or under snow well after the trail melts out.
       </p>
     </section>
   );
