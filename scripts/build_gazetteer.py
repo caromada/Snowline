@@ -10,8 +10,9 @@ Two tiers merge here:
 
 Polygons are octagonal buffers around the saddle, sized to cover the
 approach bowls that satellite sampling cares about. Featured entries win
-alias collisions and absorb OSM nodes of the same name or the same saddle.
-Named neighbours (Army Pass beside New Army Pass) stay passes of their own.
+alias collisions and absorb the OSM nodes that mark the same saddle. Named
+neighbours (Army Pass beside New Army Pass) and distant namesakes (Mono Pass
+in Bloody Canyon) stay passes of their own.
 """
 
 from __future__ import annotations
@@ -218,6 +219,8 @@ PASSES: list[dict] = [
         "name": "Sawtooth Pass",
         "elevation_ft": 11630,
         "near": (36.4528, -118.5561),
+        # Glacier Pass is its own saddle 0.7 km off (osm tier, "glacier-pass").
+        # The alias stays so the words land here and not in the Pasayten.
         "aliases": ["sawtooth", "sawtooth pass", "glacier pass"],
         "creek": "Monarch Creek",
         "aspect_note": "loose and steep out of Mineral King, miserable in snow",
@@ -463,6 +466,7 @@ def resolve_west(osm_nodes: list[dict]) -> list[dict]:
                 "creek": "",
                 "aspect_note": entry["aspect_note"],
                 "state": entry["state"],
+                "osm_id": node["osm_id"],
             }
         )
     return out
@@ -511,6 +515,11 @@ def resolve_sierra(
 # the nearest real neighbour is 0.39 km off (Historic Donner Summit).
 DUPLICATE_KM = 0.3
 
+# A node that shares a featured pass's name this close to it is the same
+# saddle mapped twice. Farther off it is a namesake, a pass of its own: the
+# nearest one is 48 km away (Elk Pass, south of the Goat Rocks).
+SAME_NAME_KM = 5.0
+
 
 def _slugify(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
@@ -523,17 +532,23 @@ def load_osm_nodes(path: Path) -> list[dict]:
 
 
 def merge_osm(featured: list[dict], osm_nodes: list[dict]) -> list[dict]:
-    """OSM entries that are not duplicates of a featured pass, slug-deduped."""
+    """OSM entries that are not duplicates of a featured pass, slug-deduped.
+
+    Nodes keep their order in the file within a name, so the first of a set
+    of namesakes holds the bare slug and the rest carry their OSM id.
+    """
     merged: list[dict] = []
     taken = {p["slug"] for p in featured}
-    names = {p["name"].lower() for p in featured}
+    featured_ids = {p["osm_id"] for p in featured}
     for node in sorted(osm_nodes, key=lambda n: n["name"]):
         if node["elevation_ft"] is None:
             continue
-        if node["name"].lower() in names:
+        if node["osm_id"] in featured_ids:
             continue
+        name = node["name"].lower()
         if any(
-            haversine_km(node["lat"], node["lon"], p["lat"], p["lon"]) < DUPLICATE_KM
+            haversine_km(node["lat"], node["lon"], p["lat"], p["lon"])
+            < (SAME_NAME_KM if p["name"].lower() == name else DUPLICATE_KM)
             for p in featured
         ):
             continue

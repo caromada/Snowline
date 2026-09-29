@@ -1991,6 +1991,7 @@
 "creek": "",
 "aspect_note": "a 2,200 ft talus gully from Colchuck Lake into the Enchantments",
 "state": "WA",
+"osm_id": 3160872080,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2048,6 +2049,7 @@
 "creek": "",
 "aspect_note": "short switchbacks from the end of the Cascade River Road; Sahale Arm above",
 "state": "WA",
+"osm_id": 4278630830,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2105,6 +2107,7 @@
 "creek": "",
 "aspect_note": "PCT high ground above Rainy Pass and Highway 20",
 "state": "WA",
+"osm_id": 1948156471,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2162,6 +2165,7 @@
 "creek": "",
 "aspect_note": "Highway 20 PCT crossing, trailhead for Cutthroat and Maple Pass",
 "state": "WA",
+"osm_id": 47098274,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2220,6 +2224,7 @@
 "creek": "",
 "aspect_note": "PCT trailhead at the top of a high dirt road into the Pasayten",
 "state": "WA",
+"osm_id": 1410710233,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2275,6 +2280,7 @@
 "creek": "",
 "aspect_note": "",
 "state": "WA",
+"osm_id": 1692807553,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2332,6 +2338,7 @@
 "creek": "",
 "aspect_note": "gateway into the northern Picket Range country",
 "state": "WA",
+"osm_id": 1907973046,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2389,6 +2396,7 @@
 "creek": "",
 "aspect_note": "remote North Cascades crossing facing the Challenger Glacier",
 "state": "WA",
+"osm_id": 5311166686,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2447,6 +2455,7 @@
 "creek": "",
 "aspect_note": "the Spider Glacier gully below it holds snow most of the summer",
 "state": "WA",
+"osm_id": 1907866645,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2504,6 +2513,7 @@
 "creek": "",
 "aspect_note": "Glacier Peak Wilderness, the far side of the Spider Gap loop",
 "state": "WA",
+"osm_id": 10968792266,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2561,6 +2571,7 @@
 "creek": "",
 "aspect_note": "PCT in the Glacier Peak Wilderness; the north side holds snow late",
 "state": "WA",
+"osm_id": 3790988198,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2618,6 +2629,7 @@
 "creek": "",
 "aspect_note": "PCT meadow pass on the flank of Glacier Peak",
 "state": "WA",
+"osm_id": 3048631504,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2675,6 +2687,7 @@
 "creek": "",
 "aspect_note": "Highway 2 PCT crossing",
 "state": "WA",
+"osm_id": 46992450,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2732,6 +2745,7 @@
 "creek": "",
 "aspect_note": "I-90 PCT crossing, start of the Kendall Katwalk",
 "state": "WA",
+"osm_id": 35831495,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2789,6 +2803,7 @@
 "creek": "",
 "aspect_note": "Highway 410 PCT crossing on the east edge of Mount Rainier",
 "state": "WA",
+"osm_id": 4100669834,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2846,6 +2861,7 @@
 "creek": "",
 "aspect_note": "high point of the Wonderland Trail; snowfields linger into August",
 "state": "WA",
+"osm_id": 331233217,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2903,6 +2919,7 @@
 "creek": "",
 "aspect_note": "PCT through the Goat Rocks, south of the Knife's Edge",
 "state": "WA",
+"osm_id": 4100154201,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -2960,6 +2977,7 @@
 "creek": "",
 "aspect_note": "PCT at the north end of the Goat Rocks",
 "state": "WA",
+"osm_id": 1608227821,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3017,6 +3035,7 @@
 "creek": "",
 "aspect_note": "PCT on the northwest side of Mount Hood",
 "state": "OR",
+"osm_id": 985822238,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3074,6 +3093,7 @@
 "creek": "",
 "aspect_note": "Highway 20 PCT crossing near Mount Washington",
 "state": "OR",
+"osm_id": 2146868986,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3131,6 +3151,7 @@
 "creek": "",
 "aspect_note": "Highway 242 across the lava fields, closed to cars in winter",
 "state": "OR",
+"osm_id": 5373275217,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3188,6 +3209,7 @@
 "creek": "",
 "aspect_note": "Highway 58 PCT crossing",
 "state": "OR",
+"osm_id": 10175893821,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3245,6 +3267,7 @@
 "creek": "",
 "aspect_note": "Wallowa Mountains, above Glacier Lake in the Lakes Basin country",
 "state": "OR",
+"osm_id": 3105697930,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3302,6 +3325,7 @@
 "creek": "",
 "aspect_note": "head of the West Fork Wallowa River",
 "state": "OR",
+"osm_id": 3105697931,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3359,6 +3383,7 @@
 "creek": "",
 "aspect_note": "long switchbacks above the West Fork Wallowa",
 "state": "OR",
+"osm_id": 3105704965,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3416,6 +3441,7 @@
 "creek": "",
 "aspect_note": "historic crossing near the PCT north of Lake Tahoe",
 "state": "CA",
+"osm_id": 10156906942,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3473,6 +3499,7 @@
 "creek": "",
 "aspect_note": "Desolation Wilderness",
 "state": "CA",
+"osm_id": 502849356,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3530,6 +3557,7 @@
 "creek": "",
 "aspect_note": "Highway 88 PCT crossing",
 "state": "CA",
+"osm_id": 451145130,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3587,6 +3615,7 @@
 "creek": "",
 "aspect_note": "Highway 4 PCT crossing",
 "state": "CA",
+"osm_id": 86296007,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3644,6 +3673,7 @@
 "creek": "",
 "aspect_note": "Highway 108 PCT crossing, the second-highest road pass in the Sierra",
 "state": "CA",
+"osm_id": 86282200,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3701,6 +3731,7 @@
 "creek": "",
 "aspect_note": "PCT at the northern boundary of Yosemite",
 "state": "CA",
+"osm_id": 968491721,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3758,6 +3789,7 @@
 "creek": "",
 "aspect_note": "PCT through the canyon country of northern Yosemite",
 "state": "CA",
+"osm_id": 968380506,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3815,6 +3847,7 @@
 "creek": "",
 "aspect_note": "head of Matterhorn Canyon below the Sawtooth Ridge",
 "state": "CA",
+"osm_id": 1745088093,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3872,6 +3905,7 @@
 "creek": "",
 "aspect_note": "on the southern boundary of Yosemite",
 "state": "CA",
+"osm_id": 1755691015,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -3929,6 +3963,7 @@
 "creek": "",
 "aspect_note": "San Gorgonio Wilderness, on the way to Southern California's highest summit",
 "state": "CA",
+"osm_id": 2970178991,
 "tier": "featured",
 "polygon": {
 "type": "Polygon",
@@ -17334,6 +17369,65 @@
 }
 },
 {
+"slug": "cottonwood-pass",
+"name": "Cottonwood Pass",
+"elevation_ft": 4823,
+"lat": 48.24651,
+"lon": -117.52695,
+"aliases": [
+"cottonwood pass",
+"cottonwood"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "WA",
+"osm_id": 9813758255,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-117.519472,
+48.248573
+],
+[
+-117.523853,
+48.25149
+],
+[
+-117.530047,
+48.25149
+],
+[
+-117.534428,
+48.248573
+],
+[
+-117.534428,
+48.244447
+],
+[
+-117.530047,
+48.24153
+],
+[
+-117.523853,
+48.24153
+],
+[
+-117.519472,
+48.244447
+],
+[
+-117.519472,
+48.248573
+]
+]
+]
+}
+},
+{
 "slug": "cougar-gap",
 "name": "Cougar Gap",
 "elevation_ft": 4501,
@@ -23338,6 +23432,65 @@
 }
 },
 {
+"slug": "elk-pass",
+"name": "Elk Pass",
+"elevation_ft": 4080,
+"lat": 46.287262,
+"lon": -121.967151,
+"aliases": [
+"elk pass",
+"elk"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "WA",
+"osm_id": 5063098828,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-121.959945,
+46.289325
+],
+[
+-121.964166,
+46.292242
+],
+[
+-121.970136,
+46.292242
+],
+[
+-121.974357,
+46.289325
+],
+[
+-121.974357,
+46.285199
+],
+[
+-121.970136,
+46.282282
+],
+[
+-121.964166,
+46.282282
+],
+[
+-121.959945,
+46.285199
+],
+[
+-121.959945,
+46.289325
+]
+]
+]
+}
+},
+{
 "slug": "elkhorn-summit",
 "name": "Elkhorn Summit",
 "elevation_ft": 7392,
@@ -27401,6 +27554,65 @@
 }
 },
 {
+"slug": "glacier-pass",
+"name": "Glacier Pass",
+"elevation_ft": 11329,
+"lat": 36.464247,
+"lon": -118.567698,
+"aliases": [
+"glacier pass",
+"glacier"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "CA",
+"osm_id": 2382073727,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-118.561506,
+36.46631
+],
+[
+-118.565133,
+36.469227
+],
+[
+-118.570263,
+36.469227
+],
+[
+-118.57389,
+36.46631
+],
+[
+-118.57389,
+36.462184
+],
+[
+-118.570263,
+36.459267
+],
+[
+-118.565133,
+36.459267
+],
+[
+-118.561506,
+36.462184
+],
+[
+-118.561506,
+36.46631
+]
+]
+]
+}
+},
+{
 "slug": "glacier-ridge-pass",
 "name": "Glacier Ridge Pass",
 "elevation_ft": 11823,
@@ -28750,6 +28962,183 @@
 [
 -118.762156,
 37.334208
+]
+]
+]
+}
+},
+{
+"slug": "granite-pass",
+"name": "Granite Pass",
+"elevation_ft": 4035,
+"lat": 34.811456,
+"lon": -115.609137,
+"aliases": [
+"granite pass",
+"granite"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "CA",
+"osm_id": 8439967849,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-115.603072,
+34.813519
+],
+[
+-115.606625,
+34.816436
+],
+[
+-115.611649,
+34.816436
+],
+[
+-115.615202,
+34.813519
+],
+[
+-115.615202,
+34.809393
+],
+[
+-115.611649,
+34.806476
+],
+[
+-115.606625,
+34.806476
+],
+[
+-115.603072,
+34.809393
+],
+[
+-115.603072,
+34.813519
+]
+]
+]
+}
+},
+{
+"slug": "granite-pass-3762174267",
+"name": "Granite Pass",
+"elevation_ft": 3412,
+"lat": 48.113712,
+"lon": -121.629115,
+"aliases": [
+"granite pass",
+"granite"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "WA",
+"osm_id": 3762174267,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-121.621657,
+48.115775
+],
+[
+-121.626026,
+48.118692
+],
+[
+-121.632204,
+48.118692
+],
+[
+-121.636573,
+48.115775
+],
+[
+-121.636573,
+48.111649
+],
+[
+-121.632204,
+48.108732
+],
+[
+-121.626026,
+48.108732
+],
+[
+-121.621657,
+48.111649
+],
+[
+-121.621657,
+48.115775
+]
+]
+]
+}
+},
+{
+"slug": "granite-pass-5229890652",
+"name": "Granite Pass",
+"elevation_ft": 6319,
+"lat": 48.570734,
+"lon": -120.686842,
+"aliases": [
+"granite pass",
+"granite"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "WA",
+"osm_id": 5229890652,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-120.679316,
+48.572797
+],
+[
+-120.683725,
+48.575714
+],
+[
+-120.689959,
+48.575714
+],
+[
+-120.694368,
+48.572797
+],
+[
+-120.694368,
+48.568671
+],
+[
+-120.689959,
+48.565754
+],
+[
+-120.683725,
+48.565754
+],
+[
+-120.679316,
+48.568671
+],
+[
+-120.679316,
+48.572797
 ]
 ]
 ]
@@ -45880,6 +46269,65 @@
 }
 },
 {
+"slug": "mono-pass",
+"name": "Mono Pass",
+"elevation_ft": 10600,
+"lat": 37.855592,
+"lon": -119.21664,
+"aliases": [
+"mono pass",
+"mono"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "CA",
+"osm_id": 1744921256,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-119.210333,
+37.857655
+],
+[
+-119.214028,
+37.860572
+],
+[
+-119.219252,
+37.860572
+],
+[
+-119.222947,
+37.857655
+],
+[
+-119.222947,
+37.853529
+],
+[
+-119.219252,
+37.850612
+],
+[
+-119.214028,
+37.850612
+],
+[
+-119.210333,
+37.853529
+],
+[
+-119.210333,
+37.857655
+]
+]
+]
+}
+},
+{
 "slug": "monument-pass",
 "name": "Monument Pass",
 "elevation_ft": 8812,
@@ -46109,6 +46557,65 @@
 [
 -118.846598,
 37.5648
+]
+]
+]
+}
+},
+{
+"slug": "mosquito-pass",
+"name": "Mosquito Pass",
+"elevation_ft": 10488,
+"lat": 37.185775,
+"lon": -118.853507,
+"aliases": [
+"mosquito pass",
+"mosquito"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "CA",
+"osm_id": 8694412401,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-118.847257,
+37.187838
+],
+[
+-118.850918,
+37.190755
+],
+[
+-118.856096,
+37.190755
+],
+[
+-118.859757,
+37.187838
+],
+[
+-118.859757,
+37.183712
+],
+[
+-118.856096,
+37.180795
+],
+[
+-118.850918,
+37.180795
+],
+[
+-118.847257,
+37.183712
+],
+[
+-118.847257,
+37.187838
 ]
 ]
 ]
@@ -50471,6 +50978,65 @@
 }
 },
 {
+"slug": "parker-pass",
+"name": "Parker Pass",
+"elevation_ft": 6447,
+"lat": 35.955566,
+"lon": -118.62957,
+"aliases": [
+"parker pass",
+"parker"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "CA",
+"osm_id": 94571287,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-118.623418,
+35.957629
+],
+[
+-118.627022,
+35.960546
+],
+[
+-118.632118,
+35.960546
+],
+[
+-118.635722,
+35.957629
+],
+[
+-118.635722,
+35.953503
+],
+[
+-118.632118,
+35.950586
+],
+[
+-118.627022,
+35.950586
+],
+[
+-118.623418,
+35.953503
+],
+[
+-118.623418,
+35.957629
+]
+]
+]
+}
+},
+{
 "slug": "parrish-gap",
 "name": "Parrish Gap",
 "elevation_ft": 518,
@@ -51997,6 +52563,65 @@
 [
 -120.49129,
 48.763574
+]
+]
+]
+}
+},
+{
+"slug": "piute-pass",
+"name": "Piute Pass",
+"elevation_ft": 10013,
+"lat": 38.241033,
+"lon": -119.510441,
+"aliases": [
+"piute pass",
+"piute"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "CA",
+"osm_id": 9870554338,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-119.504101,
+38.243096
+],
+[
+-119.507815,
+38.246013
+],
+[
+-119.513067,
+38.246013
+],
+[
+-119.516781,
+38.243096
+],
+[
+-119.516781,
+38.23897
+],
+[
+-119.513067,
+38.236053
+],
+[
+-119.507815,
+38.236053
+],
+[
+-119.504101,
+38.23897
+],
+[
+-119.504101,
+38.243096
 ]
 ]
 ]
@@ -60945,6 +61570,65 @@
 [
 -118.967377,
 37.460124
+]
+]
+]
+}
+},
+{
+"slug": "silver-pass",
+"name": "Silver Pass",
+"elevation_ft": 6508,
+"lat": 48.805491,
+"lon": -120.66282,
+"aliases": [
+"silver pass",
+"silver"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "WA",
+"osm_id": 3577850111,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-120.655259,
+48.807554
+],
+[
+-120.659688,
+48.810471
+],
+[
+-120.665952,
+48.810471
+],
+[
+-120.670381,
+48.807554
+],
+[
+-120.670381,
+48.803428
+],
+[
+-120.665952,
+48.800511
+],
+[
+-120.659688,
+48.800511
+],
+[
+-120.655259,
+48.803428
+],
+[
+-120.655259,
+48.807554
 ]
 ]
 ]
@@ -73125,6 +73809,124 @@
 [
 -118.442284,
 36.912714
+]
+]
+]
+}
+},
+{
+"slug": "white-pass",
+"name": "White Pass",
+"elevation_ft": 11703,
+"lat": 36.962142,
+"lon": -118.534401,
+"aliases": [
+"white pass",
+"white"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "CA",
+"osm_id": 7951660531,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-118.528169,
+36.964205
+],
+[
+-118.53182,
+36.967122
+],
+[
+-118.536982,
+36.967122
+],
+[
+-118.540633,
+36.964205
+],
+[
+-118.540633,
+36.960079
+],
+[
+-118.536982,
+36.957162
+],
+[
+-118.53182,
+36.957162
+],
+[
+-118.528169,
+36.960079
+],
+[
+-118.528169,
+36.964205
+]
+]
+]
+}
+},
+{
+"slug": "white-pass-297629103",
+"name": "White Pass",
+"elevation_ft": 4469,
+"lat": 46.638706,
+"lon": -121.389284,
+"aliases": [
+"white pass",
+"white"
+],
+"creek": "",
+"aspect_note": "",
+"tier": "osm",
+"state": "WA",
+"osm_id": 297629103,
+"polygon": {
+"type": "Polygon",
+"coordinates": [
+[
+[
+-121.382031,
+46.640769
+],
+[
+-121.38628,
+46.643686
+],
+[
+-121.392288,
+46.643686
+],
+[
+-121.396537,
+46.640769
+],
+[
+-121.396537,
+46.636643
+],
+[
+-121.392288,
+46.633726
+],
+[
+-121.38628,
+46.633726
+],
+[
+-121.382031,
+46.636643
+],
+[
+-121.382031,
+46.640769
 ]
 ]
 ]

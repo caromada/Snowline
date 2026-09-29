@@ -5,9 +5,18 @@ import pytest
 
 from gazetteer import get_pass, load_passes, resolve
 from ingest.geo import haversine_km
-from scripts.build_gazetteer import DUPLICATE_KM, PASSES, merge_osm, resolve_sierra
+from scripts.build_gazetteer import (
+    DUPLICATE_KM,
+    PASSES,
+    SAME_NAME_KM,
+    merge_osm,
+    resolve_sierra,
+    resolve_west,
+)
 
-OSM_PATH = Path(__file__).resolve().parent.parent / "gazetteer" / "osm_passes.json"
+ROOT = Path(__file__).resolve().parent.parent
+OSM_PATH = ROOT / "gazetteer" / "osm_passes.json"
+EXPORTED = ROOT / "web" / "public" / "data" / "pass"
 
 MONO = {
     "slug": "mono",
@@ -145,3 +154,119 @@ def test_no_osm_entry_duplicates_a_featured_pass() -> None:
         assert p["osm_id"] not in featured_ids
         for f in featured:
             assert haversine_km(p["lat"], p["lon"], f["lat"], f["lon"]) >= DUPLICATE_KM
+
+
+def test_a_distant_namesake_is_its_own_pass() -> None:
+    featured = resolve_sierra([MONO], [ROCK_CREEK, BLOODY_CANYON])
+    [bloody] = merge_osm(featured, [ROCK_CREEK, BLOODY_CANYON])
+    assert bloody["osm_id"] == 1744921256
+    assert bloody["name"] == "Mono Pass"
+    assert bloody["slug"] == "mono-pass"
+    assert bloody["tier"] == "osm"
+
+
+def test_namesakes_of_one_featured_pass_get_slugs_apart() -> None:
+    featured = resolve_sierra([MONO], [ROCK_CREEK])
+    far = _node(7, "Mono Pass", 34.8115, -115.6091, 4035)
+    merged = merge_osm(featured, [ROCK_CREEK, BLOODY_CANYON, far])
+    assert [m["slug"] for m in merged] == ["mono-pass", "mono-pass-7"]
+
+
+def test_the_featured_node_is_dropped_by_its_osm_id() -> None:
+    featured = resolve_sierra([MONO], [ROCK_CREEK])
+    moved = {**ROCK_CREEK, "name": "Mono Pass (Rock Creek)", "lat": 37.4354943}
+    assert haversine_km(moved["lat"], moved["lon"], 37.4254943, -118.772644) > 1.0
+    assert merge_osm(featured, [moved]) == []
+
+
+def test_west_featured_passes_carry_their_osm_id() -> None:
+    nodes = json.loads(OSM_PATH.read_text())["nodes"]
+    by_id = {n["osm_id"]: n for n in nodes}
+    west = {p["slug"]: p for p in resolve_west(nodes)}
+    for p in west.values():
+        assert by_id[p["osm_id"]]["name"] == p["name"]
+        assert round(by_id[p["osm_id"]]["lat"], 6) == p["lat"]
+    assert west["glacier-pasayten"]["osm_id"] == 1692807553
+    assert west["glacier-wallowa"]["osm_id"] == 3105697930
+
+
+def test_a_second_node_for_the_same_saddle_is_dropped() -> None:
+    featured = resolve_sierra([MONO], [ROCK_CREEK])
+    again = _node(8, "Mono pass", 37.4434943, -118.772644, 12050)
+    assert 1.5 < haversine_km(again["lat"], again["lon"], 37.4254943, -118.772644) < 2.5
+    assert merge_osm(featured, [ROCK_CREEK, again]) == []
+
+
+def test_another_name_at_that_distance_is_kept() -> None:
+    featured = resolve_sierra([MONO], [ROCK_CREEK])
+    summit = _node(9, "Summit Pass", 37.4434943, -118.772644, 12050)
+    assert [m["slug"] for m in merge_osm(featured, [ROCK_CREEK, summit])] == ["summit-pass"]
+
+
+# Passes that share a name with a featured pass and nothing else.
+NAMESAKES = {
+    "mono-pass": 1744921256,  # Bloody Canyon
+    "piute-pass": 9870554338,
+    "parker-pass": 94571287,
+    "granite-pass": 8439967849,
+    "granite-pass-3762174267": 3762174267,
+    "granite-pass-5229890652": 5229890652,
+    "silver-pass": 3577850111,
+    "cottonwood-pass": 9813758255,
+    "elk-pass": 5063098828,
+    "white-pass": 7951660531,
+    "white-pass-297629103": 297629103,
+    "mosquito-pass": 8694412401,
+    "glacier-pass": 2382073727,  # Mineral King
+}
+
+
+@pytest.mark.parametrize(("slug", "osm_id"), NAMESAKES.items())
+def test_a_namesake_is_on_the_map_under_its_own_slug(slug: str, osm_id: int) -> None:
+    p = get_pass(slug)
+    assert p is not None
+    assert p["osm_id"] == osm_id
+    assert p["tier"] == "osm"
+
+
+def test_the_featured_pass_still_answers_to_the_shared_name() -> None:
+    assert resolve("Mono Pass") == "mono"
+    assert resolve("crossed mono pass out of rock creek") == "mono"
+    assert resolve("Piute Pass") == "piute"
+    assert resolve("Granite Pass") == "granite"
+    assert resolve("White Pass") == "white-glacier-peak"
+    assert resolve("Elk Pass") == "elk-goat-rocks"
+
+
+def test_glacier_pass_in_free_text_lands_beside_mineral_king() -> None:
+    # Sawtooth keeps the alias: without it the words go to the Pasayten
+    # Glacier Pass in Washington, not to the Mineral King one 0.7 km away.
+    assert resolve("Glacier Pass") == "sawtooth"
+    glacier, sawtooth = get_pass("glacier-pass"), get_pass("sawtooth")
+    assert glacier is not None and sawtooth is not None
+    km = haversine_km(glacier["lat"], glacier["lon"], sawtooth["lat"], sawtooth["lon"])
+    assert DUPLICATE_KM < km < 1.0
+
+
+def test_every_featured_pass_names_its_osm_node() -> None:
+    featured = [p for p in load_passes() if p["tier"] == "featured"]
+    ids = [p["osm_id"] for p in featured]
+    assert len(set(ids)) == len(featured)
+
+
+def test_no_osm_entry_is_a_second_node_for_a_featured_saddle() -> None:
+    passes = load_passes()
+    featured = [p for p in passes if p["tier"] == "featured"]
+    for p in passes:
+        if p["tier"] != "osm":
+            continue
+        for f in featured:
+            if f["name"].lower() == p["name"].lower():
+                assert haversine_km(p["lat"], p["lon"], f["lat"], f["lon"]) >= SAME_NAME_KM
+
+
+def test_every_exported_pass_is_still_in_the_gazetteer() -> None:
+    slugs = {p["slug"] for p in load_passes()}
+    exported = {f.stem for f in EXPORTED.glob("*.json")}
+    assert exported
+    assert exported <= slugs
