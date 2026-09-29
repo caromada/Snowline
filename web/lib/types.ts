@@ -189,6 +189,8 @@ export interface PassDetail {
   fire?: import("./fireTypes").PassFire | null;
   /** Official avalanche rating, new snow and road status; see winterTypes.ts. */
   winter?: import("./winterTypes").Winter | null;
+  /** What land managers published about this pass, quoted; see officialTypes.ts. */
+  official?: import("./officialTypes").Official | null;
   /** Shared station curves, by metric: provenance ids to load on demand. */
   stations?: Record<string, string[]>;
 }
