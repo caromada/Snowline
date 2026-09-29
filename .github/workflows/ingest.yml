@@ -27,7 +27,9 @@ jobs:
         id: keys
         run: |
           echo "month=$(date -u +%Y-%m)" >> "$GITHUB_OUTPUT"
-          echo "code=${{ hashFiles('gazetteer/passes.json', 'ingest/**', 'store/**', 'scripts/backfill.py') }}" >> "$GITHUB_OUTPUT"
+          # Only what shapes the sensor rows. Forecast, satellite and forum
+          # code live in ingest/ too, and must not wipe the store.
+          echo "code=${{ hashFiles('gazetteer/passes.json', 'ingest/snotel.py', 'ingest/cdec.py', 'ingest/usgs.py', 'ingest/directory.py', 'ingest/geo.py', 'store/**', 'scripts/backfill.py') }}" >> "$GITHUB_OUTPUT"
 
       # The HTTP cache is what "cached fallback" falls back to. Without it
       # every run starts cold and one slow upstream kills the job.
@@ -40,11 +42,15 @@ jobs:
 
       # The store carries over between runs so a normal day only fetches the
       # trailing window. It rebuilds from scratch monthly (picking up USGS
-      # provisional-data revisions) and whenever ingest code or passes change.
+      # provisional-data revisions) and whenever sensor ingest code or passes
+      # change. rebuild_pending.json rides along: it names the windows an
+      # interrupted rebuild still owes.
       - name: Restore sensor store
         uses: actions/cache/restore@v6
         with:
-          path: data/sierra.sqlite
+          path: |
+            data/sierra.sqlite
+            data/rebuild_pending.json
           key: store-v1-${{ steps.keys.outputs.code }}-${{ steps.keys.outputs.month }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: store-v1-${{ steps.keys.outputs.code }}-${{ steps.keys.outputs.month }}-
 
@@ -66,10 +72,15 @@ jobs:
           path: data/cache
           key: http-v1-${{ github.run_id }}-${{ github.run_attempt }}
 
+      # Saved even when the ingest failed, so a rebuild that lost one stream
+      # keeps the other twelve minutes of work and resumes next run.
       - name: Save sensor store
+        if: always() && hashFiles('data/sierra.sqlite') != ''
         uses: actions/cache/save@v6
         with:
-          path: data/sierra.sqlite
+          path: |
+            data/sierra.sqlite
+            data/rebuild_pending.json
           key: store-v1-${{ steps.keys.outputs.code }}-${{ steps.keys.outputs.month }}-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Extract any new forum posts

@@ -12,19 +12,27 @@ succeeds. A stream whose upstream is down keeps its previous rows and the
 others carry on, so one flaky server degrades the report instead of killing
 the run. Overlapping runs never duplicate rows.
 
-Exit status: 1 if a full rebuild lost any stream (the result would have
-holes that persist until the next rebuild), or if every stream failed.
-A daily run with some streams down exits 0 with a warning per stream.
+A stream that fails is retried after a pause, since most upstream outages
+last a minute or two. If a rebuild still ends with holes, the windows that
+are missing are written beside the store; the next run pulls only those
+instead of starting over.
+
+Exit status: 1 if a rebuild still has holes (publishing would bake them into
+every export), or if every stream failed. A daily run with some streams down
+exits 0 with a warning per stream.
 """
 
 from __future__ import annotations
 
+import json
 import logging
 import sys
+import time
 from collections.abc import Callable
 from datetime import UTC, date, datetime, timedelta
+from pathlib import Path
 
-from config import DB_PATH
+from config import DATA_DIR, DB_PATH
 from ingest import cdec, snotel, usgs
 from ingest.http import FetchError
 from store import Store
@@ -36,7 +44,15 @@ SEASON_START = "04-01"
 SEASON_END = "08-31"
 DAILY_LOOKBACK_DAYS = 10
 
+# Pauses before each retry of a failed stream, in seconds.
+RETRY_PAUSES_S = (60, 180, 300)
+PENDING_PATH = DATA_DIR / "rebuild_pending.json"
+
 IngestFn = Callable[[Store, str, str], int]
+# (begin, end, streams to pull or None for all)
+Window = tuple[str, str, set[str] | None]
+# (begin, end, stream label) that could not be pulled
+Failure = tuple[str, str, str]
 
 # (label, stream column, ingest steps). The USGS daily and 15-minute pulls
 # both write stream "usgs", so they succeed or roll back together.
@@ -83,12 +99,17 @@ def daily_window(store: Store, today: date | None = None) -> tuple[str, str] | N
     return begin.isoformat(), today.isoformat()
 
 
-def run(begin: str, end: str, store: Store | None = None) -> tuple[dict[str, int], list[str]]:
-    """Ingest one window for every stream. Returns (row counts, failed streams)."""
+def run(
+    begin: str, end: str, store: Store | None = None, only: set[str] | None = None
+) -> tuple[dict[str, int], list[str]]:
+    """Ingest one window, for every stream or only the named ones.
+    Returns (row counts, failed streams)."""
     store = store or Store(DB_PATH)
     counts: dict[str, int] = {}
     failed: list[str] = []
     for label, stream, steps in STREAMS:
+        if only is not None and label not in only:
+            continue
         mark = store.max_observation_id()
         try:
             total = sum(step(store, begin, end) for step in steps)
@@ -111,35 +132,102 @@ def run(begin: str, end: str, store: Store | None = None) -> tuple[dict[str, int
     return counts, failed
 
 
+def ingest_windows(
+    store: Store,
+    windows: list[Window],
+    sleep: Callable[[float], None] = time.sleep,
+    pauses: tuple[float, ...] = RETRY_PAUSES_S,
+) -> tuple[set[str], list[Failure]]:
+    """Pull every window, then retry whatever failed after each pause.
+    Returns (streams that landed at least once, what is still missing)."""
+    ok: set[str] = set()
+    failures: list[Failure] = []
+    for begin, end, only in windows:
+        counts, failed = run(begin, end, store, only)
+        ok.update(counts)
+        failures.extend((begin, end, label) for label in failed)
+        print(f"{begin}..{end}: {counts}" + (f" failed: {failed}" if failed else ""))
+    for pause in pauses:
+        if not failures:
+            break
+        log.warning("%d pulls failed; retrying in %.0fs", len(failures), pause)
+        sleep(pause)
+        still: list[Failure] = []
+        for begin, end, label in failures:
+            counts, failed = run(begin, end, store, {label})
+            ok.update(counts)
+            if failed:
+                still.append((begin, end, label))
+            else:
+                print(f"{begin}..{end}: {counts} recovered on retry")
+        failures = still
+    return ok, failures
+
+
+def load_pending(path: Path = PENDING_PATH) -> list[Failure]:
+    """Windows a previous rebuild could not fill."""
+    if not path.exists():
+        return []
+    return [(b, e, label) for b, e, label in json.loads(path.read_text())]
+
+
+def save_pending(path: Path, failures: list[Failure]) -> None:
+    if failures:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(failures))
+    else:
+        path.unlink(missing_ok=True)
+
+
+def plan(
+    store: Store, pending_path: Path = PENDING_PATH, today: date | None = None
+) -> tuple[str, list[Window]]:
+    """What a --daily run should do: finish an interrupted rebuild, pull the
+    trailing window, or rebuild every season from an empty store."""
+    pending = load_pending(pending_path)
+    if pending:
+        return "resume", [(b, e, {label}) for b, e, label in pending]
+    window = daily_window(store, today)
+    if window:
+        return "daily", [(window[0], window[1], None)]
+    return "rebuild", [(b, e, None) for b, e in season_windows(today)]
+
+
 def main() -> None:
     logging.basicConfig(level=logging.INFO)
     store = Store(DB_PATH)
     args = sys.argv[1:]
-    full = True
+    mode = "rebuild"
     if len(args) == 2:
-        windows = [(args[0], args[1])]
-        full = False
+        mode, windows = "window", [(args[0], args[1], None)]
     elif args == ["--daily"]:
-        window = daily_window(store)
-        windows = [window] if window else season_windows()
-        full = window is None
-        print("mode:", "full rebuild" if full else f"daily {window[0]}..{window[1]}")
+        mode, windows = plan(store)
+        print("mode:", mode, *(f"{b}..{e}" for b, e, _ in windows))
     else:
-        windows = season_windows()
+        windows = [(b, e, None) for b, e in season_windows()]
 
-    all_failed: set[str] = set()
-    streams_ok: set[str] = set()
-    for begin, end in windows:
-        counts, failed = run(begin, end, store)
-        all_failed.update(failed)
-        streams_ok.update(counts)
-        print(f"{begin}..{end}: {counts}" + (f" failed: {failed}" if failed else ""))
+    streams_ok, failures = ingest_windows(store, windows)
+    rebuilding = mode in ("rebuild", "resume")
+    if rebuilding:
+        save_pending(PENDING_PATH, failures)
+    if mode == "resume" and not failures:
+        # The holes are filled; bring the store up to today like any other day.
+        window = daily_window(store)
+        if window:
+            ok, late = ingest_windows(store, [(window[0], window[1], None)])
+            streams_ok |= ok
+            failures = late
+            rebuilding = False
 
-    for label in sorted(all_failed):
+    for label in sorted({label for _, _, label in failures}):
         # GitHub Actions renders these as yellow annotations on the run.
         print(f"::warning::{label} upstream unavailable; its previous rows were kept")
-    if full and all_failed:
-        print(f"::error::full rebuild incomplete, missing {sorted(all_failed)}; not publishing")
+    if rebuilding and failures:
+        missing = sorted({label for _, _, label in failures})
+        print(
+            f"::error::rebuild incomplete, missing {missing}; not publishing. "
+            "The next run resumes with only what is missing."
+        )
         sys.exit(1)
     if not streams_ok:
         print("::error::every sensor stream failed")
