@@ -1,5 +1,7 @@
 "use client";
 
+import ForecastStrip from "./ForecastStrip";
+import { niceDate } from "./TimeControl";
 import { useEffect, useRef, useState } from "react";
 import { offlineSupported, removeOffline, saveForOffline } from "@/lib/offline";
 import { passFile } from "@/lib/paths";
@@ -150,6 +152,7 @@ export default function PassPanel({
   };
 
   const status = detail?.statuses[evalDate];
+  const isNow = !!detail && evalDate === detail.dates[detail.dates.length - 1];
   const isSaved = slug ? saved.includes(slug) : false;
 
   return (
@@ -163,8 +166,14 @@ export default function PassPanel({
                 {detail.pass.name}
               </h2>
               <div className="mono" style={{ color: "var(--sage)", marginTop: 2 }}>
-                {detail.pass.elevation_ft.toLocaleString()} ft · {evalDate}
+                {detail.pass.elevation_ft.toLocaleString()} ft ·{" "}
+                {isNow ? `today, ${niceDate(evalDate, false)}` : niceDate(evalDate)}
               </div>
+              {!isNow && (
+                <div className="display" style={{ fontSize: 10, color: "var(--alpenglow)", marginTop: 4 }}>
+                  Past conditions, not current
+                </div>
+              )}
               {offline && offline.slug === slug && (
                 <div className="mono" role="status" style={{ color: "var(--sage)", marginTop: 2 }}>
                   {offline.text}
@@ -253,6 +262,10 @@ export default function PassPanel({
                 </p>
               ))}
             </div>
+          )}
+
+          {isNow && detail.forecast && (
+            <ForecastStrip forecast={detail.forecast} from={evalDate} passFt={detail.pass.elevation_ft} />
           )}
 
           <p style={{ marginTop: 12, color: "var(--sage)", fontStyle: "italic" }}>

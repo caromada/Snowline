@@ -264,3 +264,120 @@ main:has(.pass-panel.open) .maplibregl-ctrl-bottom-right {
     bottom: calc(150px + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* Time control: the map lives in the present; history is one tap away. */
+.time-control {
+  width: 300px;
+  max-width: calc(100vw - 32px);
+  padding: 10px 14px;
+  background: color-mix(in srgb, var(--moss) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--granite) 20%, transparent);
+}
+.time-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.time-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+}
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: #6fbf8a;
+  animation: live-pulse 2200ms ease-out infinite;
+}
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--fern) 60%, transparent); }
+  70% { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.time-button {
+  font-size: 10px;
+  padding: 7px 10px;
+  color: var(--granite);
+  border: 1px solid color-mix(in srgb, var(--granite) 35%, transparent);
+  transition: border-color 200ms, background-color 200ms;
+}
+.time-button:hover {
+  border-color: var(--granite);
+}
+.time-button-warm {
+  color: var(--deep-pine, #0f1a14);
+  background: var(--alpenglow);
+  border-color: var(--alpenglow);
+}
+.past-banner {
+  position: absolute;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 8px 8px 14px;
+  max-width: calc(100vw - 32px);
+  color: var(--granite);
+  background: color-mix(in srgb, var(--moss) 94%, transparent);
+  border: 1px solid var(--alpenglow);
+}
+.past-banner b {
+  color: var(--alpenglow);
+  font-weight: 600;
+}
+.past-banner button {
+  font-size: 10px;
+  padding: 7px 10px;
+  white-space: nowrap;
+  color: #0f1a14;
+  background: var(--alpenglow);
+}
+.map-legend {
+  bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+}
+main:has(.time-control.expanded) .map-legend {
+  bottom: calc(142px + env(safe-area-inset-bottom, 0px));
+}
+@media (max-width: 640px) {
+  .past-banner {
+    top: calc(104px + env(safe-area-inset-top, 0px));
+  }
+}
+
+/* The week ahead in the pass panel. */
+.forecast-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(98px, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.forecast-day {
+  display: grid;
+  gap: 3px;
+  padding: 8px;
+  border: 1px solid color-mix(in srgb, var(--granite) 16%, transparent);
+  background: color-mix(in srgb, var(--granite) 5%, transparent);
+  font-size: 10px;
+  white-space: nowrap;
+}
+.forecast-temp {
+  font-size: 13px;
+  color: var(--granite);
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
+}
+.time-control {
+  position: absolute;
+  left: 16px;
+  z-index: 20;
+}

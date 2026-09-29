@@ -9,7 +9,7 @@ import NearbyPasses from "@/components/NearbyPasses";
 import PassPanel from "@/components/PassPanel";
 import PassSearch from "@/components/PassSearch";
 import SafetyNotice from "@/components/SafetyNotice";
-import SeasonScrubber from "@/components/SeasonScrubber";
+import TimeControl from "@/components/TimeControl";
 import { brand } from "@/lib/brand";
 import { dataUrl } from "@/lib/paths";
 import type { PassIndex } from "@/lib/types";
@@ -33,14 +33,9 @@ export default function Home() {
         const params = new URLSearchParams(window.location.search);
         const wantDate = params.get("date");
         const wantPass = params.get("pass");
-        // Open on the heart of the 2023 melt: the season's most interesting week.
-        setEvalDate(
-          wantDate && d.dates.includes(wantDate)
-            ? wantDate
-            : d.dates.includes("2023-06-15")
-              ? "2023-06-15"
-              : d.dates[0],
-        );
+        // The map opens on the present. A link can still pin a past date.
+        const latest = d.dates[d.dates.length - 1];
+        setEvalDate(wantDate && d.dates.includes(wantDate) ? wantDate : latest);
         if (wantPass && d.passes.some((p) => p.slug === wantPass)) setSelected(wantPass);
       })
       .catch(() => {});
@@ -57,9 +52,13 @@ export default function Home() {
     const url = new URL(window.location.href);
     if (selected) url.searchParams.set("pass", selected);
     else url.searchParams.delete("pass");
-    url.searchParams.set("date", evalDate);
+    // Only the past goes in the address: a shared link to today stays on
+    // today tomorrow.
+    const latest = index?.dates[index.dates.length - 1];
+    if (evalDate === latest) url.searchParams.delete("date");
+    else url.searchParams.set("date", evalDate);
     window.history.replaceState(null, "", url);
-  }, [selected, evalDate]);
+  }, [selected, evalDate, index]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -116,7 +115,7 @@ export default function Home() {
         />
       )}
       <MapLegend />
-      <SeasonScrubber dates={index.dates} value={evalDate} onChange={setEvalDate} />
+      <TimeControl dates={index.dates} value={evalDate} onChange={setEvalDate} />
       <PassPanel slug={selected} evalDate={evalDate} onClose={() => setSelected(null)} />
       <SafetyNotice />
     </main>

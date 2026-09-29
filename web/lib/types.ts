@@ -112,6 +112,24 @@ export interface CurveSeries {
   points: [string, number][];
 }
 
+export interface ForecastDay {
+  date: string;
+  high_f: number | null;
+  low_f: number | null;
+  snow_level_ft: number | null;
+  precip_chance: number | null;
+  snowfall_in: number | null;
+  thunder_chance: number | null;
+  gust_mph: number | null;
+}
+
+export interface Forecast {
+  days: ForecastDay[];
+  facts: string[];
+  grid_elevation_ft: number;
+  issued_for: string;
+}
+
 export interface PassDetail {
   pass: {
     slug: string;
@@ -128,6 +146,8 @@ export interface PassDetail {
   ledger: LedgerEntry[];
   /** Inline per-pass curves (the modeled satellite cover). */
   curves: Record<string, CurveSeries[]>;
+  /** Seven days ahead at pass elevation, present only when freshly issued. */
+  forecast?: Forecast;
   /** Shared station curves, by metric: provenance ids to load on demand. */
   stations?: Record<string, string[]>;
 }

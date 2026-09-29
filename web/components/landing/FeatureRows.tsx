@@ -11,7 +11,7 @@ const ROWS = [
     body: "One status and a confidence grade per pass. Every sentence links to the sensor curve, the satellite pass or the exact quote from someone who was just there. When the streams disagree, it says so.",
     shot: "/landing/app-phone.webp",
     alt: "Glen Pass in the app: status, confidence and evidence",
-    href: `${MAP_PATH}?pass=glen&date=2023-06-15`,
+    href: `${MAP_PATH}?pass=glen`,
     cta: "See Glen Pass",
   },
   {
