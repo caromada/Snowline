@@ -32,7 +32,7 @@ const PLATFORMS = [
 export default function AppPage() {
   return (
     <>
-      <section className={s.pageHero} style={{ minHeight: "58dvh" }}>
+      <section className={`${s.pageHero} ${s.heroDark}`} style={{ minHeight: "58dvh" }}>
         <div className={s.heroScrim} aria-hidden="true" />
         <Reveal className={`${s.wrap} ${s.pageHeroInner}`}>
           <h1 className={`${s.display} ${s.h1}`}>In your pocket at the trailhead.</h1>

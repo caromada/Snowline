@@ -16,8 +16,8 @@ export interface LandingData {
     stream_gauges: number;
     seasons: number;
   };
-  /** [lon, lat, featured, one status digit per date] */
-  passes: [number, number, 0 | 1, string][];
+  /** [lon, lat, featured, one status digit per date, slug, name, state] */
+  passes: [number, number, 0 | 1, string, string, string, string][];
   featured_today: {
     slug: string;
     name: string;

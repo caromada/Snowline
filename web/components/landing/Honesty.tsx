@@ -30,7 +30,7 @@ export default function Honesty() {
           </p>
           {st && words && (
             <div className={s.modelVoice}>
-              <span className={s.mono} style={{ color: "var(--sage)" }}>
+              <span className={s.mono} style={{ color: "var(--muted)" }}>
                 Aasgard Pass, {DATE}, in the model&apos;s words
               </span>
               <p>&ldquo;{words.text}&rdquo;</p>

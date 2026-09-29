@@ -305,11 +305,13 @@ def _landing(
 ) -> dict[str, Any]:
     """Compact data for the marketing page: ~1/20th of the full index.
 
-    Each pass is [lon, lat, featured, statuses], statuses one digit per date
-    (an index into status_keys), so the melt-out map can animate every pass
-    through every season from a single small file.
+    Each pass is [lon, lat, featured, statuses, slug, name, state], statuses
+    one digit per date (an index into status_keys), so the melt-out map can
+    animate every pass through every season, and the homepage search can find
+    any pass by name, from a single small file.
     """
     code = {k: str(i) for i, k in enumerate(LANDING_STATUS_KEYS)}
+    gaz_state = {g["slug"]: g.get("state", "") for g in load_passes()}
     today = dates[-1]
     stations = {
         stream: len({link["provenance"] for links in by_pass.values() for link in links})
@@ -344,6 +346,9 @@ def _landing(
                 round(p["lat"], 4),
                 1 if p["tier"] == "featured" else 0,
                 "".join(code.get(p["statuses"][d]["status"], "4") for d in dates),
+                p["slug"],
+                p["name"],
+                gaz_state.get(p["slug"], ""),
             ]
             for p in passes_out
         ],

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import s from "@/app/landing.module.css";
+import Reveal from "./Reveal";
 import PixelGlyph from "@/components/PixelGlyph";
 import { type LandingData, loadLanding } from "@/lib/landingData";
 import {
@@ -97,7 +97,6 @@ const AGENTS: Agent[] = [
 ];
 
 export default function Agents() {
-  const reduce = useReducedMotion();
   const [data, setData] = useState<LandingData | null>(null);
   useEffect(() => {
     loadLanding().then(setData).catch(() => {});
@@ -112,14 +111,7 @@ export default function Agents() {
         </p>
         <ul className={s.agentGrid}>
           {AGENTS.map((a, i) => (
-            <motion.li
-              key={a.name}
-              className={`${s.agent} ${a.live ? "" : s.agentSoon}`}
-              initial={reduce ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, delay: (i % 3) * 0.07, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <Reveal as="li" key={a.name} className={`${s.agent} ${a.live ? "" : s.agentSoon}`} delay={(i % 3) * 0.07}>
               <div className={s.agentHead}>
                 <PixelGlyph sprite={a.sprite} scale={2} title="" />
                 <span className={`${s.seasonTag} ${a.live ? s.tagLive : s.tagSoon}`}>
@@ -127,12 +119,12 @@ export default function Agents() {
                 </span>
               </div>
               <h3 className={`${s.display} ${s.h3}`}>{a.name}</h3>
-              <span className={s.mono} style={{ color: "var(--sage)" }}>
+              <span className={s.mono} style={{ color: "var(--muted)" }}>
                 {a.role}
               </span>
               <p>{a.does}</p>
               <span className={`${s.mono} ${s.agentStat}`}>{a.stat(data)}</span>
-            </motion.li>
+            </Reveal>
           ))}
         </ul>
       </div>

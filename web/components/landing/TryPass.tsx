@@ -130,7 +130,7 @@ export default function TryPass() {
                 <div className={s.verdictScene}>
                   <div>
                     <h3 className={`${s.display} ${s.h3}`}>{pass.name}</h3>
-                    <p className={s.mono} style={{ color: "var(--sage)", marginTop: 4 }}>
+                    <p className={s.mono} style={{ color: "var(--muted)", marginTop: 4 }}>
                       {pass.elevation_ft.toLocaleString()} ft · {date}
                     </p>
                   </div>
@@ -167,7 +167,7 @@ export default function TryPass() {
             </AnimatePresence>
           )}
           <div className={s.verdictFoot}>
-            <span className={s.mono} style={{ color: "var(--sage)" }}>
+            <span className={s.mono} style={{ color: "var(--muted)" }}>
               Every sentence links to its source on the map.
             </span>
             <a

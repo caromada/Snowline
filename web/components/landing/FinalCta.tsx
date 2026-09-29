@@ -7,7 +7,7 @@ import Reveal from "./Reveal";
 
 export default function FinalCta({ title = "See every pass, right now." }: { title?: string }) {
   return (
-    <section className={s.final}>
+    <section className={`${s.final} ${s.heroDark}`}>
       <Pic photo={photos.whitney} />
       <Reveal className={`${s.wrap} ${s.finalInner}`}>
         <h2 className={`${s.display} ${s.h2}`}>{title}</h2>

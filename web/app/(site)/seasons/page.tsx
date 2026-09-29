@@ -48,7 +48,7 @@ const DETAIL: Record<string, { lede: string; items: [string, string][] }> = {
 export default function Seasons() {
   return (
     <>
-      <section className={s.pageHero} style={{ minHeight: "56dvh" }}>
+      <section className={`${s.pageHero} ${s.heroDark}`} style={{ minHeight: "56dvh" }}>
         <div className={s.heroScrim} aria-hidden="true" />
         <Reveal className={`${s.wrap} ${s.pageHeroInner}`}>
           <h1 className={`${s.display} ${s.h1}`}>Every season, one question.</h1>
@@ -61,7 +61,7 @@ export default function Seasons() {
       {SEASONS.map((season) => {
         const d = DETAIL[season.name];
         return (
-          <section key={season.name} className={s.chapter} id={season.name.toLowerCase()}>
+          <section key={season.name} className={`${s.chapter} ${s.heroDark}`} id={season.name.toLowerCase()}>
             <Pic photo={season.photo} />
             <div className={`${s.wrap} ${s.chapterInner}`}>
               <Reveal>

@@ -16,7 +16,7 @@ export default function PageHero({
   position?: string;
 }) {
   return (
-    <section className={s.pageHero}>
+    <section className={`${s.pageHero} ${s.heroDark}`}>
       <Pic photo={photo} className={s.heroPhoto} style={{ objectPosition: position }} priority />
       <div className={s.heroScrim} aria-hidden="true" />
       <Reveal className={`${s.wrap} ${s.pageHeroInner}`}>

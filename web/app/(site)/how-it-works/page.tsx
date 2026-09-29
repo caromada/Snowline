@@ -109,7 +109,7 @@ export default function HowItWorks() {
           <div className={s.tiles}>
             {(["sensor", "satellite", "report"] as const).map((k, i) => (
               <Reveal key={k} className={s.tile} delay={i * 0.06}>
-                <span className={s.mono} style={{ color: "var(--sage)" }}>
+                <span className={s.mono} style={{ color: "var(--muted)" }}>
                   {k === "report" ? "trip reports" : k === "sensor" ? "sensors" : "satellite"}
                 </span>
                 <span className={s.tileValue}>{model.priors[k].toFixed(2)}</span>
@@ -120,7 +120,7 @@ export default function HowItWorks() {
               </Reveal>
             ))}
             <Reveal className={s.tile} delay={0.18}>
-              <span className={s.mono} style={{ color: "var(--sage)" }}>
+              <span className={s.mono} style={{ color: "var(--muted)" }}>
                 snowline climb
               </span>
               <span className={s.tileValue}>{model.snowline_rise_ft_per_day} ft/day</span>
@@ -156,7 +156,7 @@ export default function HowItWorks() {
             </p>
             {snowlineFact && (
               <div className={s.modelVoice}>
-                <span className={s.mono} style={{ color: "var(--sage)" }}>
+                <span className={s.mono} style={{ color: "var(--muted)" }}>
                   Aasgard Pass, June 15, 2023
                 </span>
                 <p>&ldquo;{snowlineFact.text}&rdquo;</p>
@@ -182,7 +182,7 @@ export default function HowItWorks() {
             <div className={s.tiles}>
               {Object.entries(model.eval.fields).map(([k, v], i) => (
                 <Reveal key={k} className={s.tile} delay={(i % 4) * 0.05}>
-                  <span className={s.mono} style={{ color: "var(--sage)" }}>
+                  <span className={s.mono} style={{ color: "var(--muted)" }}>
                     {FIELD_NAMES[k] ?? k}
                   </span>
                   <span className={s.tileValue} style={v < 0.75 ? { color: "var(--alpenglow)" } : undefined}>

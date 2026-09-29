@@ -8,40 +8,13 @@ import { useEffect, useRef, useState } from "react";
 // static file sidesteps all of that.
 maplibregl.setWorkerUrl("/maplibre-gl-worker.mjs");
 import { drawSprite, glyphByStatus, tent as tentSprite } from "@/lib/pixel";
-import mlcontour from "maplibre-contour";
-import { buildMapStyle, TERRAIN_TILES } from "@/lib/mapStyle";
+import { setupContours } from "@/lib/contours";
+import { buildMapStyle } from "@/lib/mapStyle";
 import { palette, statusColor } from "@/lib/theme";
 import type { PassIndexEntry } from "@/lib/types";
 import { loadSaved } from "./PassPanel";
 
-// One DEM source feeds the contour generator; isolines are computed in a
-// web worker from the same terrain tiles the hillshade uses.
-const demSource = new mlcontour.DemSource({
-  url: TERRAIN_TILES,
-  encoding: "terrarium",
-  maxzoom: 13,
-  // Dev-mode React Refresh instrumentation breaks the stringified worker; the
-  // production bundle runs isolines off the main thread.
-  worker: process.env.NODE_ENV === "production",
-  cacheSize: 100,
-  timeoutMs: 10_000,
-});
-demSource.setupMaplibre(maplibregl);
-
-const CONTOUR_TILES = demSource.contourProtocolUrl({
-  multiplier: 3.28084,
-  // zoom: [minor, index] interval in feet, USGS-quad style up close.
-  thresholds: {
-    9: [500, 2000],
-    11: [200, 1000],
-    12: [100, 500],
-    13: [80, 400],
-    14: [40, 200],
-  },
-  contourLayer: "contours",
-  elevationKey: "ele",
-  levelKey: "level",
-});
+const CONTOUR_TILES = setupContours(maplibregl);
 
 // The whole West Coast: Cascades to the San Jacintos.
 export const WEST_COAST_BOUNDS: [[number, number], [number, number]] = [
@@ -357,6 +330,14 @@ export default function MapView({
     };
     const ro = new ResizeObserver(refit);
     ro.observe(containerRef.current);
+    // A region link opens the map framed on that range instead of the coast.
+    const q = new URLSearchParams(window.location.search);
+    const lat = Number(q.get("lat"));
+    const lon = Number(q.get("lon"));
+    if (Number.isFinite(lat) && Number.isFinite(lon) && q.has("lat") && q.has("lon")) {
+      framedRef.current = true;
+      map.jumpTo({ center: [lon, lat], zoom: Number(q.get("zoom")) || 8 });
+    }
     map.on("load", refit);
     map.on("load", () => {
       addPassLayer(map, (slug) => onSelectRef.current(slug));

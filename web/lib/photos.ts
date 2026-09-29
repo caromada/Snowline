@@ -94,6 +94,16 @@ export const photos = {
     license: "Public domain",
     source: "https://commons.wikimedia.org/wiki/File:Recreation_hiking_Timberline_trail,_Mt_Hood_National_Forest_(37000793146).jpg",
   },
+  thru: {
+    key: "thru",
+    alt: "A backpacker on the Pacific Crest Trail in Oregon",
+    width: 4000,
+    height: 2666,
+    sizes: [1280, 2560],
+    credit: "mypubliclands",
+    license: "Public domain",
+    source: "https://commons.wikimedia.org/wiki/File:Pacific_Crest_National_Scenic_Trail,_Oregon_(35931928183).jpg",
+  },
 } satisfies Record<string, Photo>;
 
 export function photoSrc(p: Photo, w: number = p.sizes[p.sizes.length - 1]): string {

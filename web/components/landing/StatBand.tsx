@@ -57,7 +57,7 @@ export default function StatBand() {
                 {Array.from({ length: cells }, (_, i) => (
                   <motion.span
                     key={i}
-                    style={{ background: i < pct ? statusColor.traction_advised : "color-mix(in srgb, var(--granite) 16%, transparent)" }}
+                    style={{ background: i < pct ? statusColor.traction_advised : "color-mix(in srgb, var(--ink) 16%, transparent)" }}
                     initial={reduce ? false : { opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
