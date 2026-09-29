@@ -40,7 +40,7 @@ const DETAIL: Record<string, { lede: string; items: [string, string][] }> = {
     items: [
       ["Fresh snow", "24 and 72 hour new-snow totals from the nearest stations."],
       ["Avalanche danger", "The official rating from your avalanche center, word for word, with a link. Never ours."],
-      ["Chain controls", "Chain requirements on California and Washington highways, in the highway agency's own words."],
+      ["Chain controls", "Chain requirements on the highways near a pass, in the highway agency's own words."],
     ],
   },
 };

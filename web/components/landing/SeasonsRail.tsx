@@ -33,7 +33,7 @@ export const SEASONS: Season[] = [
     name: "Winter",
     photo: photos.winter,
     live: true,
-    lines: ["New snow at the nearest sensors", "Official avalanche rating by zone", "Chain controls on California and Washington highways"],
+    lines: ["New snow at the nearest sensors", "Official avalanche rating by zone", "Chain controls on highway passes"],
   },
 ];
 

@@ -71,9 +71,9 @@ export default function HowItWorks() {
     {
       glyph: road,
       name: "Road reports",
-      what: "Chain controls and pass reports on California and Washington highways, in the highway agency's own words.",
+      what: "Chain controls and pass reports on the highways near a pass, in the highway agency's own words.",
       strong: "Whether you can drive to the trailhead at all.",
-      blind: "Agencies change them through the day. Oregon highways are not covered yet.",
+      blind: "Agencies change them through the day, and post little or nothing out of season.",
     },
     {
       glyph: tent,
