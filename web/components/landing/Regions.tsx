@@ -7,6 +7,7 @@ import { MAP_PATH } from "@/lib/paths";
 import { type Photo, photos } from "@/lib/photos";
 import Pic from "./Pic";
 import Reveal from "./Reveal";
+import Signpost from "./Signpost";
 
 type Region = { name: string; photo: Photo; box: [number, number, number, number]; center: [number, number] };
 
@@ -33,7 +34,8 @@ export default function Regions() {
     <section className={s.section} id="regions">
       <div className={s.wrap}>
         <Reveal className={s.seasonsHead}>
-          <h2 className={`${s.display} ${s.h2}`}>Explore by range</h2>
+          <Signpost label="Explore by range" dir="left" />
+          <h2 className={`${s.display} ${s.h2}`}>Pick a range. The map opens there.</h2>
           <p className={s.body}>Every named pass and saddle from the southern Kern to the Canadian line.</p>
         </Reveal>
         <div className={s.regionGrid}>
@@ -44,7 +46,7 @@ export default function Regions() {
                   <Pic photo={r.photo} sizes="(max-width: 900px) 100vw, 33vw" />
                 </div>
                 <div className={s.regionMeta}>
-                  <h3 className={`${s.display} ${s.h3}`}>{r.name}</h3>
+                  <h3 className={`${s.display} ${s.h3} ${s.regionBoard}`}>{r.name}</h3>
                   <span className={s.mono}>{data ? `${count(r).toLocaleString()} passes` : "..."}</span>
                 </div>
               </a>

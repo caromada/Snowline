@@ -2,9 +2,11 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import s from "@/app/landing.module.css";
 import { MAP_PATH } from "@/lib/paths";
 import Reveal from "./Reveal";
+import Signpost from "./Signpost";
 
 const ROWS = [
   {
+    sign: "The verdict",
     title: "Read the verdict, and where it came from.",
     body: "One status and a confidence grade per pass. Every sentence links to the sensor curve, the satellite pass or the exact quote from someone who was just there. When the streams disagree, it says so.",
     shot: "/landing/app-phone.webp",
@@ -13,6 +15,7 @@ const ROWS = [
     cta: "See Glen Pass",
   },
   {
+    sign: "Nearby",
     title: "The nearest passes, from where you stand.",
     body: "One tap drops your position and lists the five closest passes with their conditions and distance. Standing at a junction with a choice to make, this is the whole point.",
     shot: "/landing/phone-nearby.webp",
@@ -21,6 +24,7 @@ const ROWS = [
     cta: "Open the map",
   },
   {
+    sign: "No signal",
     title: "Works where the signal doesn't.",
     body: "Tap the tent on any pass and it comes with you: the verdict, the readings and the map around it, stored on your phone for the trailhead. Install it to your home screen and it opens full screen.",
     shot: "/landing/phone-offline.webp",
@@ -37,6 +41,7 @@ export default function FeatureRows() {
         {ROWS.map((r, i) => (
           <Reveal key={r.title} className={`${s.featureRow} ${i % 2 ? s.featureRowFlip : ""}`}>
             <div className={s.featureCopy}>
+              <Signpost label={r.sign} dir={i % 2 ? "left" : "right"} />
               <h2 className={`${s.display} ${s.h2}`}>{r.title}</h2>
               <p className={s.body}>{r.body}</p>
               <a href={r.href} className={`${s.btn} ${s.btnGhost}`}>

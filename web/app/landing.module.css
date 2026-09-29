@@ -2098,3 +2098,640 @@
     gap: 10px;
   }
 }
+
+/* ---------------------------------------------------------------------
+   Trail system: signposts, the live band, the fusion trail, scene strips,
+   the snowline scrubber, the spine, changelog and plans.
+   --------------------------------------------------------------------- */
+
+/* Signpost: a fingerboard on a post, the section marker everywhere. */
+.signpost {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 22px;
+  transform-origin: 8px 100%;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.signpost:hover {
+  transform: rotate(-2deg);
+}
+.signpostBoard {
+  display: inline-block;
+  padding: 7px 22px 7px 12px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pine);
+  background: var(--alpenglow);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+}
+.signpostLeft .signpostBoard {
+  padding: 7px 12px 7px 22px;
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%);
+}
+.signpostLeft {
+  transform-origin: 20px 100%;
+}
+.signpostPost {
+  display: block;
+  width: 3px;
+  height: 18px;
+  margin-left: 7px;
+  background: color-mix(in srgb, var(--ink) 55%, var(--alpenglow));
+}
+.signpostLeft .signpostPost {
+  margin-left: 19px;
+}
+
+/* Live band: freshness ticking, real counts, the sun where it really is. */
+.live {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.liveInner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 120px;
+  align-items: center;
+  gap: clamp(20px, 4vw, 56px);
+  padding-block: 20px;
+}
+.liveFresh {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.liveDot {
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 45%, transparent);
+  animation: pulse 2200ms ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 45%, transparent); }
+  70% { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.liveItems {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0;
+}
+.liveItem {
+  display: grid;
+  gap: 4px;
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+}
+.liveItem dd {
+  margin: 0;
+}
+.liveLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.liveNum {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.liveArc {
+  width: 120px;
+  height: 64px;
+  color: color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.liveSun {
+  animation: spin 40s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@media (max-width: 1000px) {
+  .liveInner {
+    grid-template-columns: 1fr;
+  }
+  .liveArc {
+    display: none;
+  }
+  .liveItems {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Fusion: six readers on the left, dashed trails merging into one verdict. */
+.fusionStage {
+  position: relative;
+  aspect-ratio: 1000 / 560;
+  margin-top: 48px;
+}
+.fusionSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.fusionNodeWrap {
+  position: absolute;
+  transform: translateY(-50%);
+}
+.fusionNode {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px 12px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.fusionNode > span {
+  color: var(--muted);
+}
+.fusionNodeName {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.fusionNodeRole {
+  color: var(--muted);
+  margin-top: 3px;
+}
+.fusionPrint {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(90deg);
+  color: var(--ink);
+}
+.fusionVerdictWrap {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 24%;
+}
+.fusionVerdict {
+  display: grid;
+  gap: 6px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border-left: 5px solid var(--alpenglow);
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 24px 60px -30px color-mix(in srgb, var(--pine) 45%, transparent);
+}
+.fusionVerdictKicker {
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+.fusionVerdictName {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.2rem, 1.7vw, 1.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.fusionVerdictStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+.fusionVerdictMeta {
+  color: var(--muted);
+}
+.fusionMobile {
+  display: none;
+}
+@media (max-width: 760px) {
+  .fusionStage {
+    display: none;
+  }
+  .fusionMobile {
+    display: grid;
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .fusionMobileArrow {
+    padding: 10px 0;
+    color: var(--muted);
+    text-align: center;
+  }
+}
+
+/* Scene strips: three flat layers sliding at different speeds. */
+.scene {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.sceneLayer {
+  position: absolute;
+  inset: -30px 0;
+  width: 100%;
+  height: calc(100% + 60px);
+}
+.sceneForest {
+  background: linear-gradient(to bottom, var(--bg), color-mix(in srgb, var(--bg) 70%, var(--tint)));
+}
+.sceneForest .sceneBack { fill: color-mix(in srgb, var(--fern) 30%, var(--bg)); }
+.sceneForest .sceneMid { fill: color-mix(in srgb, var(--fern) 62%, var(--bg)); }
+.sceneForest .sceneFront { fill: color-mix(in srgb, var(--pine) 82%, var(--bg)); }
+.sceneAlpine {
+  background: linear-gradient(to bottom, var(--bg), color-mix(in srgb, var(--snowmelt) 14%, var(--bg)));
+}
+.sceneAlpine .sceneBack { fill: color-mix(in srgb, var(--granite) 70%, var(--bg)); }
+.sceneAlpine .sceneFront { fill: color-mix(in srgb, var(--ink) 62%, var(--granite)); }
+.sceneAlpine .sceneCap { fill: color-mix(in srgb, var(--surface) 88%, var(--snowmelt)); }
+.sceneAlpine .sceneSun { fill: color-mix(in srgb, var(--alpenglow) 60%, var(--bg)); }
+.sceneDesert {
+  background: linear-gradient(to bottom, var(--bg), color-mix(in srgb, var(--alpenglow) 22%, var(--bg)));
+}
+.sceneDesert .sceneBack { fill: color-mix(in srgb, var(--alpenglow) 40%, var(--granite)); }
+.sceneDesert .sceneFront { fill: color-mix(in srgb, var(--pine) 55%, var(--alpenglow)); }
+.sceneDesert .sceneSun { fill: var(--alpenglow); }
+.flake {
+  position: absolute;
+  top: -8px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 90%, var(--snowmelt));
+  opacity: 0.85;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes fall {
+  from { transform: translate(0, 0); }
+  50% { transform: translate(14px, 100px); }
+  to { transform: translate(-6px, 200px); }
+}
+@media (max-width: 700px) {
+  .scene { height: 120px; }
+}
+
+/* Snowline scrubber: the crest profile with the line that moves. */
+.snowlineStage {
+  margin-top: 40px;
+  padding: 18px 18px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.snowlineSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+.snowlineGrid {
+  stroke: color-mix(in srgb, var(--ink) 12%, transparent);
+  stroke-width: 1;
+  stroke-dasharray: 2 5;
+}
+.snowlineAxis {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  fill: var(--muted);
+}
+.snowlineRidge {
+  fill: color-mix(in srgb, var(--granite) 55%, var(--bg));
+}
+.snowlineSnow {
+  fill: color-mix(in srgb, var(--surface) 80%, var(--snowmelt));
+}
+.snowlineLine {
+  stroke: var(--snowmelt);
+  stroke-width: 1.5;
+  stroke-dasharray: 8 6;
+}
+.snowlineLabel {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  fill: var(--snowmelt);
+}
+.snowlineDot {
+  stroke: var(--surface);
+  stroke-width: 1.5;
+}
+.snowlineControls {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px 28px;
+  margin-top: 16px;
+}
+.snowlineDate {
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-variant-numeric: tabular-nums;
+  min-width: 11ch;
+}
+.snowlineRange {
+  width: 100%;
+  accent-color: var(--snowmelt);
+}
+.snowlineLegend {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--muted);
+}
+.snowlineLegend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.snowlineLegend b {
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 700px) {
+  .snowlineControls {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Region names on fingerboards. */
+.regionBoard {
+  position: relative;
+  padding-right: 14px;
+}
+.regionBoard::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--alpenglow);
+  border-right: 2px solid var(--alpenglow);
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.region:hover .regionBoard::after {
+  transform: translate(4px, -50%) rotate(45deg);
+}
+
+/* Audience cards: an icon that steps when you hover. */
+.whoHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.whoIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  color: var(--pine);
+  background: var(--alpenglow);
+}
+.who:hover .whoIcon svg {
+  animation: step 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes step {
+  0% { transform: translateY(0) rotate(0); }
+  35% { transform: translateY(-5px) rotate(-8deg); }
+  70% { transform: translateY(0) rotate(4deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+/* The spine: a dashed trail in the left gutter, walked by a hiker. */
+.spine {
+  position: fixed;
+  left: 26px;
+  top: 130px;
+  bottom: 40px;
+  width: 16px;
+  z-index: 30;
+  display: none;
+}
+.spineTrack {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 2px dashed color-mix(in srgb, var(--ink) 28%, transparent);
+}
+.spineTick {
+  position: absolute;
+  left: 2px;
+  width: 12px;
+  height: 2px;
+  background: color-mix(in srgb, var(--ink) 45%, transparent);
+}
+.spineHiker {
+  position: absolute;
+  left: -3px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-top: -11px;
+  color: var(--pine);
+  background: var(--alpenglow);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--bg);
+}
+@media (min-width: 1440px) {
+  .spine {
+    display: block;
+  }
+}
+
+/* Changelog: dated mile markers. */
+.changelog {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.changeList {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 26px;
+  position: relative;
+}
+.changeList::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  border-left: 2px dashed color-mix(in srgb, var(--ink) 25%, transparent);
+}
+.changeItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 16px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.changeMark {
+  position: absolute;
+  left: -26px;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  background: var(--alpenglow);
+  border: 3px solid var(--bg);
+}
+.changeDate {
+  color: var(--muted);
+  white-space: nowrap;
+}
+.changeTitle {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+@media (max-width: 900px) {
+  .changelog {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Plans: two columns, the free one framed. */
+.priceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+.priceCardHi {
+  display: grid;
+}
+.priceCard {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 26px;
+  padding: 28px;
+  background: var(--surface);
+}
+.priceGrid > .priceCard {
+  border: 1px solid var(--line);
+  padding: 34px;
+}
+.priceHead {
+  display: grid;
+  gap: 8px;
+  min-height: 118px;
+  align-content: start;
+}
+.priceTag {
+  color: var(--alpenglow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.priceName {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+}
+.priceAmount {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+.priceUnit {
+  margin-left: 10px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.priceSoon {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.priceList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+.priceList li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--ink) 88%, transparent);
+}
+.priceList svg {
+  margin-top: 4px;
+  color: var(--green);
+}
+.priceCard .btn {
+  justify-self: start;
+}
+@media (max-width: 760px) {
+  .priceGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liveDot,
+  .liveSun,
+  .flake,
+  .who:hover .whoIcon svg {
+    animation: none;
+  }
+  .signpost:hover {
+    transform: none;
+  }
+}
+@media (max-width: 700px) {
+  .snowlineAxis,
+  .snowlineLabel {
+    font-size: 24px;
+  }
+  .snowlineDot {
+    r: 8;
+    stroke-width: 2.5;
+  }
+  .snowlineLine {
+    stroke-width: 3;
+  }
+  .snowlineStage {
+    padding: 10px 8px 16px;
+  }
+}

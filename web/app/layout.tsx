@@ -1,14 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Source_Serif_4, Space_Grotesk } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import ServiceWorker from "@/components/ServiceWorker";
 import { brand } from "@/lib/brand";
 import { palette } from "@/lib/theme";
 import "./globals.css";
 
-const grotesk = Space_Grotesk({
+// Display face with optical sizing: tight and characterful at headline
+// sizes, open at label sizes, from one variable file.
+const grotesk = Bricolage_Grotesque({
   variable: "--font-grotesk",
   subsets: ["latin"],
-  weight: ["500", "600"],
+  weight: "variable",
+  axes: ["opsz"],
 });
 
 const serif = Source_Serif_4({
