@@ -616,12 +616,17 @@ def web_payload(results: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _pct(x: float) -> str:
+    # Halves round up, as on the page, so the two never print different numbers.
+    return f"{math.floor(x * 100 + 0.5)}%"
+
+
 def _fmt(cell: dict[str, Any]) -> str:
     if cell["thin"]:
         return f"{cell['count']} of {cell['n']} (too few to give a rate)"
     return (
-        f"{cell['count']} of {cell['n']} = {cell['rate']:.0%} "
-        f"(95% interval {cell['low']:.0%} to {cell['high']:.0%})"
+        f"{cell['count']} of {cell['n']} = {_pct(cell['rate'])} "
+        f"(95% interval {_pct(cell['low'])} to {_pct(cell['high'])})"
     )
 
 
