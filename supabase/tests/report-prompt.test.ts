@@ -64,8 +64,8 @@ describe("REPORT_SYSTEM", () => {
 
 describe("copy", () => {
   it("has no em dashes", () => {
-    expect(REPORT_SYSTEM).not.toContain("—");
-    expect(FILED_HIDDEN_MESSAGE).not.toContain("—");
+    expect(REPORT_SYSTEM).not.toContain(String.fromCharCode(0x2014));
+    expect(FILED_HIDDEN_MESSAGE).not.toContain(String.fromCharCode(0x2014));
   });
 });
 

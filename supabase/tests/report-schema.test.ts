@@ -75,6 +75,6 @@ describe("the reports migration", () => {
     expect(sql).toMatch(/values \('report-photos', 'report-photos', false,/);
   });
   it("has no em dashes", () => {
-    expect(sql).not.toContain("—");
+    expect(sql).not.toContain(String.fromCharCode(0x2014));
   });
 });
