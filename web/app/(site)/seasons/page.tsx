@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import s from "@/app/landing.module.css";
 import FinalCta from "@/components/landing/FinalCta";
 import Reveal from "@/components/landing/Reveal";
+import Pic from "@/components/landing/Pic";
 import { SEASONS } from "@/components/landing/SeasonsRail";
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ const DETAIL: Record<string, { lede: string; items: [string, string][] }> = {
     items: [
       ["Fire perimeters", "Active fires near each pass from national interagency data, with a link to the closure."],
       ["Smoke from above", "Satellite-mapped smoke over your route, by density."],
-      ["Storms at elevation", "Thunderstorm odds from the National Weather Service at pass height."],
+      ["Storms at elevation", "Thunderstorm odds at pass height, seven days out."],
     ],
   },
   Fall: {
@@ -61,7 +62,7 @@ export default function Seasons() {
         const d = DETAIL[season.name];
         return (
           <section key={season.name} className={s.chapter} id={season.name.toLowerCase()}>
-            <img src={season.photo.src} alt={season.photo.alt} width={season.photo.width} height={season.photo.height} loading="lazy" />
+            <Pic photo={season.photo} />
             <div className={`${s.wrap} ${s.chapterInner}`}>
               <Reveal>
                 <span className={`${s.seasonTag} ${season.live ? s.tagLive : s.tagSoon}`}>

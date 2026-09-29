@@ -2,6 +2,7 @@ import s from "@/app/landing.module.css";
 import { ConfidenceDial } from "@/components/PassPanel";
 import { passAtBuild } from "@/lib/buildData";
 import { photos } from "@/lib/photos";
+import Pic from "./Pic";
 import Reveal from "./Reveal";
 
 const DATE = "2023-06-15";
@@ -16,14 +17,7 @@ export default function Honesty() {
         <Reveal>
           <div className={s.collar}>
             <div className={`${s.collarInner} ${s.honestPhoto}`}>
-              <img
-                className={s.photo}
-                src={photos.aasgard.src}
-                alt={photos.aasgard.alt}
-                width={photos.aasgard.width}
-                height={photos.aasgard.height}
-                loading="lazy"
-              />
+              <Pic photo={photos.aasgard} className={s.photo} sizes="(max-width: 900px) 100vw, 50vw" />
             </div>
           </div>
         </Reveal>

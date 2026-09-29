@@ -4,6 +4,7 @@ import FinalCta from "@/components/landing/FinalCta";
 import PageHero from "@/components/landing/PageHero";
 import Reveal from "@/components/landing/Reveal";
 import { brand } from "@/lib/brand";
+import Pic from "@/components/landing/Pic";
 import { photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
@@ -59,7 +60,7 @@ export default function About() {
           <Reveal delay={0.1}>
             <div className={s.collar}>
               <div className={`${s.collarInner} ${s.manifestoPhoto}`}>
-                <img className={s.photo} src={photos.fall.src} alt={photos.fall.alt} width={photos.fall.width} height={photos.fall.height} loading="lazy" />
+                <Pic photo={photos.fall} className={s.photo} sizes="(max-width: 900px) 100vw, 50vw" />
               </div>
             </div>
           </Reveal>

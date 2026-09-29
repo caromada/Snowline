@@ -1,4 +1,4 @@
-# Sierra Pass Report
+# Snowline
 
 ![demo](docs/demo.gif)
 

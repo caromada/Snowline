@@ -187,9 +187,6 @@ export default function MeltOut() {
             <canvas ref={canvasRef} role="img" aria-label={`Status of every pass on ${date}`} />
           </div>
         </div>
-        <p className={`${s.mono} ${s.meltCredit}`}>
-          Terrain: AWS Open Data. Map data: OpenStreetMap contributors.
-        </p>
       </div>
     </div>
   );

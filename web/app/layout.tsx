@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     "Mountain pass conditions for Washington, Oregon and California: sensors, satellite " +
     "and trip reports fused with honest confidence.",
-  appleWebApp: { capable: true, title: "Pass Report", statusBarStyle: "black-translucent" },
+  appleWebApp: { capable: true, title: brand.shortName, statusBarStyle: "black-translucent" },
   icons: {
     icon: [{ url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" }],
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],

@@ -38,9 +38,8 @@ export default function Privacy() {
           <h2>Who else sees requests</h2>
           <p>
             Like any website, loading the page sends standard request data (such as your IP
-            address and browser type) to our host, Vercel. Map tiles come from OpenFreeMap and
-            Amazon Web Services, and photos from Wikimedia, which see the same kind of request data
-            for the tiles and images they serve.
+            address and browser type) to our hosting provider and to the servers that serve map
+            tiles, which see the same kind of request data.
           </p>
           <h2>Questions</h2>
           <p>

@@ -35,14 +35,14 @@ export default function HowItWorks() {
     {
       glyph: glyphBySource.sensor,
       name: "Snow sensors",
-      what: `${counts.snow_stations} SNOTEL stations and California snow pillows weighing the snowpack every day.`,
+      what: `${counts.snow_stations} snow sensors weighing the snowpack every day.`,
       strong: "Precise, daily, and hard to argue with.",
       blind: "They sit in flats, often thousands of feet below the passes that matter.",
     },
     {
       glyph: glyphBySource.gauge,
       name: "Stream gauges",
-      what: `${counts.stream_gauges} USGS gauges on the creeks below the passes.`,
+      what: `${counts.stream_gauges} stream gauges on the creeks below the passes.`,
       strong: "Flow answers the crossing question, and the afternoon swing shows melt in action.",
       blind: "A gauge sees the whole basin, not the one ford you care about.",
     },

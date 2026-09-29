@@ -17,7 +17,7 @@ const QA = [
   },
   {
     q: "Where does the data come from?",
-    a: "USDA SNOTEL stations, California's CDEC snow pillows and USGS stream gauges, read every morning, plus trip reports and satellite snow cover. Every sentence on a pass links back to the reading or the report behind it.",
+    a: "Hundreds of snow sensors and stream gauges across the three states, read every morning, plus trip reports and satellite snow cover. Every sentence on a pass links back to the reading or the report behind it.",
   },
   {
     q: "How fresh is it?",

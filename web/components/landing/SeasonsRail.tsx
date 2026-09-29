@@ -1,5 +1,6 @@
 import s from "@/app/landing.module.css";
 import { type Photo, photos } from "@/lib/photos";
+import Pic from "./Pic";
 import Reveal from "./Reveal";
 
 export type Season = {
@@ -50,7 +51,7 @@ export default function SeasonsRail() {
         <div className={s.seasonRail}>
           {SEASONS.map((season, i) => (
             <Reveal key={season.name} as="article" className={s.season} delay={i * 0.08}>
-              <img src={season.photo.src} alt={season.photo.alt} width={season.photo.width} height={season.photo.height} loading="lazy" />
+              <Pic photo={season.photo} sizes="(max-width: 900px) 80vw, 25vw" />
               <span className={`${s.seasonTag} ${season.live ? s.tagLive : s.tagSoon}`}>
                 {season.live ? "Live now" : "Coming"}
               </span>

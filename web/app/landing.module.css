@@ -1371,3 +1371,157 @@
     gap: 10px;
   }
 }
+
+/* Headline highlight: the one warm word, underpainted like a marker. */
+.hilite {
+  color: var(--deep-pine);
+  background: var(--alpenglow);
+  padding: 0 0.12em;
+  box-decoration-break: clone;
+}
+
+/* Agents: the morning shift. Three across, sharp cells, live chips. */
+.agentGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 44px;
+}
+.agent {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 22px;
+  border: 1px solid color-mix(in srgb, var(--granite) 16%, transparent);
+  background: color-mix(in srgb, var(--moss) 60%, transparent);
+  transition:
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.agent:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--alpenglow) 55%, transparent);
+}
+.agent p {
+  font-family: var(--font-serif), Georgia, serif;
+  color: color-mix(in srgb, var(--granite) 82%, transparent);
+  line-height: 1.55;
+  min-height: 4.6em;
+}
+.agentSoon {
+  opacity: 0.72;
+}
+.agentHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.agentStat {
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 12%, transparent);
+  color: var(--alpenglow);
+}
+@media (max-width: 900px) {
+  .agentGrid {
+    grid-template-columns: 1fr;
+  }
+  .agent p {
+    min-height: 0;
+  }
+}
+
+/* Stat band: the big number and its three tiles. */
+.statBand {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+.statBig .count {
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  color: var(--alpenglow);
+}
+.statTiles {
+  display: grid;
+  gap: 10px;
+}
+.statTile {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+}
+.statNum {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  line-height: 1;
+  color: var(--granite);
+  font-variant-numeric: tabular-nums;
+}
+.statUnit {
+  margin-left: 10px;
+  font-size: 0.4em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  gap: 3px;
+}
+.matrix span {
+  aspect-ratio: 1;
+  display: block;
+}
+@media (max-width: 900px) {
+  .statBand {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Numbered steps beside a photo. */
+.steps {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+.stepsPhoto {
+  aspect-ratio: 4 / 5;
+}
+.stepList {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin-top: 28px;
+}
+.step {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 14%, transparent);
+}
+.step:last-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--granite) 14%, transparent);
+}
+.stepNum {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 16px;
+  color: var(--deep-pine);
+  background: var(--alpenglow);
+}
+@media (max-width: 900px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .stepsPhoto {
+    aspect-ratio: 4 / 3;
+  }
+}

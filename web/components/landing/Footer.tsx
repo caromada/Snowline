@@ -66,10 +66,7 @@ export default function Footer() {
         <p className={`${s.mono} ${s.disclaimer}`}>
           {brand.name} is a planning aid, not a safety tool. Conditions in the mountains change by
           the hour; snow, ice, moving water, fire and avalanches can kill. Check the official
-          sources for your route, carry the right gear, and make your own call. Snow data: USDA
-          NRCS SNOTEL and California DWR CDEC. Stream flow: USGS. Map data: OpenStreetMap
-          contributors, OpenFreeMap, AWS Terrain Tiles. Photos: Wikimedia Commons contributors,
-          credited on the credits page.
+          sources for your route, carry the right gear, and make your own call.
         </p>
       </div>
     </footer>

@@ -27,7 +27,7 @@ export default function Credits() {
           <h2>Photography</h2>
           <ul>
             {Object.values(photos).map((p) => (
-              <li key={p.src}>
+              <li key={p.key}>
                 <a href={p.source} style={{ color: "var(--snowmelt)" }}>
                   {p.alt}
                 </a>

@@ -9,6 +9,7 @@ import { brand } from "@/lib/brand";
 import { type LandingData, loadLanding } from "@/lib/landingData";
 import { MAP_PATH } from "@/lib/paths";
 import { photos } from "@/lib/photos";
+import Pic from "./Pic";
 import { glyphByStatus } from "@/lib/pixel";
 
 type Contours = { viewBox: string; major: string[]; minor: string[] };
@@ -128,20 +129,13 @@ export default function Hero() {
       .catch(() => {});
   }, []);
 
-  const lines = ["Know the pass", "before you go."];
+  const lines = ["Know the snowline", "before you go."];
   let word = 0;
 
   return (
     <section ref={heroRef} className={s.hero}>
       <motion.div className={s.heroMedia} style={{ y: mediaY }}>
-        <img
-          className={s.heroPhoto}
-          src={photos.hero.src}
-          alt={photos.hero.alt}
-          width={photos.hero.width}
-          height={photos.hero.height}
-          fetchPriority="high"
-        />
+        <Pic photo={photos.hero} className={s.heroPhoto} priority />
       </motion.div>
       {contours && (
         <svg
@@ -188,7 +182,7 @@ export default function Hero() {
                   return (
                     <motion.span
                       key={w + n}
-                      className={s.headlineWord}
+                      className={`${s.headlineWord} ${w === "snowline" ? s.hilite : ""}`}
                       initial={reduce ? false : { y: "110%" }}
                       animate={{ y: 0 }}
                       transition={{ duration: 1, delay: 0.15 + n * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -206,9 +200,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            Live snow and water readings for {data?.counts.passes.toLocaleString() ?? "1,252"}{" "}
-            mountain passes in {brand.region.replaceAll(" · ", ", ").replace(/, (?=[^,]*$)/, " and ")}.
-            Honest about what it knows.
+            {data?.counts.passes.toLocaleString() ?? "1,252"} mountain passes in{" "}
+            {brand.region.replaceAll(" · ", ", ").replace(/, (?=[^,]*$)/, " and ")}, read every
+            morning by AI agents that show their work and say when they are not sure.
           </motion.p>
           <motion.div
             className={s.ctaRow}
