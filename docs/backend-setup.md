@@ -67,8 +67,8 @@ The built-in mail service delivers only to the project owner's address and
 does not allow template changes, so until a custom sender is set up:
 
 - only the owner can sign in, and
-- the question box is shown only in a browser that has opened the map with
-  `?preview=ask` (`?preview=off` hides it again).
+- the question box and the account menu are shown only in a browser that
+  has opened the map with `?preview=ask` (`?preview=off` hides them again).
 
 ## Before the public can sign in
 
@@ -78,7 +78,8 @@ does not allow template changes, so until a custom sender is set up:
    `<p>Your code: {{ .Token }}</p>` so the email carries the six-digit code
    the installed app needs.
 4. In Vercel, set `NEXT_PUBLIC_BACKEND_LIVE=1` and `NEXT_PUBLIC_EMAIL_CODE=1`
-   and redeploy. The question box then shows for everyone.
+   and redeploy. The question box and the account menu then show for
+   everyone.
 
 ## Limits
 
@@ -90,6 +91,78 @@ does not allow template changes, so until a custom sender is set up:
 Identical questions about the same pass and the same data are answered from
 a cache and cost nothing. Limits and model names live in
 `supabase/functions/_shared/config.ts`.
+
+| Plan | Watches held at once |
+|---|---|
+| Free | 20 |
+| Plus | 200 |
+
+The database enforces the watch limit itself, in the `watches` migration.
+A test keeps the numbers there and in the config the same.
+
+## Saved passes and the account
+
+Saved passes stay in the browser, as before. Signed in, the list is also
+kept in `saved_passes`, and the two are merged by the rules in
+`web/lib/savedSync.ts`. The account holds no record of passes that were
+removed. Each device remembers, under `snowline:saved-sync`, the rows it
+last saw and the changes it has yet to send.
+
+## Watches
+
+`watches` holds what a person has asked to hear about. Nothing sends
+notices yet. `supabase/functions/_shared/watches.ts` decides which watches
+fire between two daily exports of a pass and writes the sentence for each.
+
+After applying a migration, run the checks in `supabase/tests/policies.md`.
+
+## Reports
+
+Visitors file what they found on a pass: their words, a few taps, one
+photo. The pieces, in the order to deploy them:
+
+1. The table, the public view, the photo bucket and their policies
+   (`supabase/migrations/20261001000000_reports.sql`). It also adds a
+   `reports` count to the usage ledger.
+
+   ```bash
+   supabase db push
+   ```
+
+2. The function that files a report. It needs no new secrets: it uses the
+   same `ANTHROPIC_API_KEY`, `SITE_URL` and `LLM_BUDGET_USD` as the question
+   box, and spends from the same daily budget.
+
+   ```bash
+   supabase functions deploy file-report
+   ```
+
+3. Prove the policies with the publishable key, request by request:
+   `supabase/tests/reports-policies.md`. Do this before step 4.
+
+4. Push the site. Reports show wherever the question box shows: behind
+   `?preview=ask` until `NEXT_PUBLIC_BACKEND_LIVE=1` is set.
+
+The database comes first because the function writes to the table and the
+site reads the view; deployed in any other order, the newer piece fails
+until the older one arrives.
+
+| Limit | Value | Held by |
+|---|---|---|
+| Reports a person may file in a day (UTC) | 5 | the function, then a database trigger |
+| Reports per person per pass per day | 1 | the function, then two unique indexes |
+| How far back the day at the pass may be | 30 days, never the future | the function, then a database trigger |
+| Their words | 1,000 characters | the form, the function, a check constraint |
+| Water source name | 60 characters | the form, the function, a check constraint |
+| Photo as chosen | 15 MB | the form, before the file is read |
+| Photo as uploaded | 3 MB, JPEG only | the bucket |
+| Model spend a day | `LLM_BUDGET_USD`, shared with questions | the function |
+
+Who filed a report is never readable with the publishable key. The table is
+closed to it; the view has no user id; a published photo is stored under the
+report's id, not the person's.
+
+Reports do not feed the verdict.
 
 ## Tests
 
