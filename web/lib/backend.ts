@@ -7,9 +7,52 @@ const URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://uiduywomodjjsrlxtjn
 const PUBLISHABLE_KEY =
   process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? "sb_publishable_7J1NtXIO2AuMjVjMw7Ub1Q_mGbl2mhz";
 
-/** Off until the database and functions are deployed; the app then falls
- * back to the bring-your-own-key panel. */
-export const BACKEND_LIVE = process.env.NEXT_PUBLIC_BACKEND_LIVE === "1";
+const PREVIEW_KEY = "snowline:preview-ask";
+
+/** The question box shows for everyone once NEXT_PUBLIC_BACKEND_LIVE=1 is
+ * set at build time. Until sign-in email can reach the public, it shows
+ * only in a browser that has opened the map with ?preview=ask (and hides
+ * again with ?preview=off). */
+export function backendLive(): boolean {
+  if (process.env.NEXT_PUBLIC_BACKEND_LIVE === "1") return true;
+  if (typeof window === "undefined") return false;
+  try {
+    const want = new URLSearchParams(window.location.search).get("preview");
+    if (want === "ask") window.localStorage.setItem(PREVIEW_KEY, "1");
+    if (want === "off") window.localStorage.removeItem(PREVIEW_KEY);
+    return window.localStorage.getItem(PREVIEW_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+/** The email carries a six-digit code only once a custom mail sender and
+ * template are set up; until then sign-in is by the link alone. */
+export const SIGN_IN_BY_CODE = process.env.NEXT_PUBLIC_EMAIL_CODE === "1";
+
+const RETURN_KEY = "snowline:return-pass";
+const RETURN_WINDOW_MS = 30 * 60_000;
+
+/** The sign-in link lands on the map; remember which pass was open. */
+export function rememberPass(slug: string): void {
+  try {
+    window.localStorage.setItem(RETURN_KEY, JSON.stringify({ slug, at: Date.now() }));
+  } catch {
+    // Without storage the link still signs in; the pass just is not reopened.
+  }
+}
+
+export function recallPass(): string | null {
+  try {
+    const raw = window.localStorage.getItem(RETURN_KEY);
+    if (!raw) return null;
+    window.localStorage.removeItem(RETURN_KEY);
+    const { slug, at } = JSON.parse(raw) as { slug: string; at: number };
+    return Date.now() - at < RETURN_WINDOW_MS ? slug : null;
+  } catch {
+    return null;
+  }
+}
 
 let client: SupabaseClient | null = null;
 

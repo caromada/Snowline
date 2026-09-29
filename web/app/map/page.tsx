@@ -11,6 +11,7 @@ import PassSearch from "@/components/PassSearch";
 import SafetyNotice from "@/components/SafetyNotice";
 import TimeControl from "@/components/TimeControl";
 import { brand } from "@/lib/brand";
+import { recallPass } from "@/lib/backend";
 import { dataUrl } from "@/lib/paths";
 import type { Access, PassIndex } from "@/lib/types";
 
@@ -43,7 +44,9 @@ export default function Home() {
         // The map opens on the present. A link can still pin a past date.
         const latest = d.dates[d.dates.length - 1];
         setEvalDate(wantDate && d.dates.includes(wantDate) ? wantDate : latest);
-        if (wantPass && d.passes.some((p) => p.slug === wantPass)) setSelected(wantPass);
+        // A sign-in link lands here bare; reopen the pass it was sent from.
+        const open = wantPass ?? recallPass();
+        if (open && d.passes.some((p) => p.slug === open)) setSelected(open);
       })
       .catch(() => {});
   }, []);

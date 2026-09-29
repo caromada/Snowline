@@ -7,7 +7,7 @@ import { offlineSupported, removeOffline, saveForOffline } from "@/lib/offline";
 import { passFile } from "@/lib/paths";
 import { glyphByStatus, tent } from "@/lib/pixel";
 import type { Access, Fact, PassDetail } from "@/lib/types";
-import { BACKEND_LIVE } from "@/lib/backend";
+import { backendLive } from "@/lib/backend";
 import AskPass from "./AskPass";
 import Byok from "./Byok";
 import Campfire from "./Campfire";
@@ -109,12 +109,14 @@ export default function PassPanel({
   const [fetched, setFetched] = useState<{ slug: string; data: PassDetail } | null>(null);
   const [saved, setSaved] = useState<string[]>([]);
   const [offline, setOffline] = useState<{ slug: string; text: string } | null>(null);
+  const [ask, setAsk] = useState(false);
   const ledgerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Hydration-safe localStorage read: the server render can't know it.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setSaved(loadSaved());
+    setAsk(backendLive());
   }, []);
 
   useEffect(() => {
@@ -285,7 +287,7 @@ export default function PassPanel({
             {detail.pass.aspect_note}
           </p>
 
-          {BACKEND_LIVE && (
+          {ask && (
             <AskPass slug={detail.pass.slug} name={detail.pass.name} evalDate={evalDate} />
           )}
 
@@ -295,7 +297,7 @@ export default function PassPanel({
             <EvidenceLedger ledger={detail.ledger} curves={detail.curves} evalDate={evalDate} />
           </div>
 
-          {!BACKEND_LIVE && <Byok detail={detail} evalDate={evalDate} />}
+          {!ask && <Byok detail={detail} evalDate={evalDate} />}
         </div>
       )}
     </aside>

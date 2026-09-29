@@ -57,24 +57,28 @@ Deploy the function.
 supabase functions deploy ask-pass
 ```
 
-## Sign-in by email code
+## Sign-in by email
 
-In the Supabase dashboard:
+In the Supabase dashboard, under Authentication, URL Configuration: set the
+Site URL to the live site and add `https://spr-me-599cefb9.vercel.app/map/`
+to the redirect list. The sign-in email carries a link that lands there.
 
-1. Authentication, URL Configuration: set Site URL to the live site and add
-   `https://spr-me-599cefb9.vercel.app/map/` to the redirect list.
-2. Authentication, Emails, Magic Link: add `{{ .Token }}` to the message so
-   the email carries the six-digit code as well as the link. The code is
-   what works inside the installed app.
-3. Before launch, set up a custom mail sender. The built-in one is limited
-   to a few emails an hour and is meant for testing.
+The built-in mail service delivers only to the project owner's address and
+does not allow template changes, so until a custom sender is set up:
 
-## Turning it on
+- only the owner can sign in, and
+- the question box is shown only in a browser that has opened the map with
+  `?preview=ask` (`?preview=off` hides it again).
 
-The app shows the question box only when `NEXT_PUBLIC_BACKEND_LIVE=1` is
-set at build time. Add it in Vercel (Project, Settings, Environment
-Variables) once the steps above are done, then redeploy. Until then the app
-keeps the bring-your-own-key panel.
+## Before the public can sign in
+
+1. Own a domain and set up a mail sender for it (any SMTP provider).
+2. Authentication, Emails, SMTP Settings: enter the sender's details.
+3. Authentication, Emails, Templates, Magic Link: add
+   `<p>Your code: {{ .Token }}</p>` so the email carries the six-digit code
+   the installed app needs.
+4. In Vercel, set `NEXT_PUBLIC_BACKEND_LIVE=1` and `NEXT_PUBLIC_EMAIL_CODE=1`
+   and redeploy. The question box then shows for everyone.
 
 ## Limits
 

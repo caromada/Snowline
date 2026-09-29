@@ -2,14 +2,15 @@
 
 import type { Session } from "@supabase/supabase-js";
 import { type FormEvent, useEffect, useState } from "react";
-import { AskError, askPass, backend, type PassAnswer } from "@/lib/backend";
+import { AskError, askPass, backend, type PassAnswer, rememberPass, SIGN_IN_BY_CODE } from "@/lib/backend";
 import s from "./AskPass.module.css";
 
 const EXAMPLES = ["Is there snow on the north side?", "What did the last party report?", "How cold does it get this week?"];
 const MAX = 300;
 
 // One question about the open pass, answered from that pass's evidence.
-// Signing in is by email code: no password to keep.
+// Signing in is by email: a link, and a code once the mail sender carries
+// one. No password to keep.
 export default function AskPass({ slug, name, evalDate }: { slug: string; name: string; evalDate: string }) {
   const [session, setSession] = useState<Session | null>(null);
   const [ready, setReady] = useState(false);
@@ -54,12 +55,19 @@ export default function AskPass({ slug, name, evalDate }: { slug: string; name: 
     if (busy) return;
     setBusy(true);
     setError(null);
+    rememberPass(slug);
     const { error: sendError } = await backend().auth.signInWithOtp({
       email: email.trim(),
       options: { emailRedirectTo: `${window.location.origin}/map/` },
     });
     setBusy(false);
-    if (sendError) setError("That email could not be sent. Check the address and try again.");
+    if (sendError) {
+      setError(
+        sendError.status === 429
+          ? "Too many sign-in emails just now. Wait a few minutes and try again."
+          : "That email could not be sent. Check the address and try again.",
+      );
+    }
     else setSentTo(email.trim());
   };
 
@@ -86,7 +94,8 @@ export default function AskPass({ slug, name, evalDate }: { slug: string; name: 
       {ready && !session && !sentTo && (
         <form onSubmit={sendCode} className={s.form}>
           <label htmlFor="ask-email" className={`mono ${s.hint}`}>
-            Sign in with your email to ask. We send a code, no password.
+            Sign in with your email to ask. We send a sign-in {SIGN_IN_BY_CODE ? "code" : "link"}, no
+            password.
           </label>
           <div className={s.row}>
             <input
@@ -100,13 +109,25 @@ export default function AskPass({ slug, name, evalDate }: { slug: string; name: 
               className={`mono ${s.input}`}
             />
             <button className={`display ${s.go}`} disabled={busy}>
-              {busy ? "Sending" : "Send code"}
+              {busy ? "Sending" : SIGN_IN_BY_CODE ? "Send code" : "Send link"}
             </button>
           </div>
         </form>
       )}
 
-      {ready && !session && sentTo && (
+      {ready && !session && sentTo && !SIGN_IN_BY_CODE && (
+        <div className={s.form}>
+          <p className={`mono ${s.hint}`} role="status">
+            Check {sentTo} for an email from us and tap the link in it. It opens the map signed
+            in, on this pass.
+          </p>
+          <button type="button" className={`mono ${s.link}`} onClick={() => setSentTo(null)}>
+            use a different email
+          </button>
+        </div>
+      )}
+
+      {ready && !session && sentTo && SIGN_IN_BY_CODE && (
         <form onSubmit={verify} className={s.form}>
           <label htmlFor="ask-code" className={`mono ${s.hint}`}>
             Enter the code we sent to {sentTo}, or tap the link in that email.
