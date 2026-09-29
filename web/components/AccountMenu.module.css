@@ -1,0 +1,201 @@
+/* Top right of the map. Above the pass panel in the stack, so on a phone
+   the open menu lies over the bottom sheet rather than under it. */
+.account {
+  position: absolute;
+  top: calc(14px + env(safe-area-inset-top, 0px));
+  right: 16px;
+  z-index: 35;
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+}
+
+@media (min-width: 641px) {
+  /* The pass panel covers the right 430px; the control steps out to its
+     left, as the map tools do. */
+  main:has(:global(.pass-panel.open)) .account {
+    right: calc(min(430px, 100%) + 16px);
+  }
+  /* The past-conditions banner owns the top center and wraps to two lines
+     on a narrow window. With it showing, the control sits below its tallest
+     form so the two can never meet. */
+  main:has(:global(.past-banner)) .account {
+    top: calc(76px + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (max-width: 360px) {
+  /* On the narrowest phones the title runs the full width of the top row;
+     the control takes the search row instead. */
+  .account {
+    top: calc(62px + env(safe-area-inset-top, 0px));
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  /* Between the panel and the title there is no room left; the control
+     waits for the panel to close. */
+  main:has(:global(.pass-panel.open)) .account {
+    display: none;
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  font-size: 10px;
+  color: var(--granite);
+  background: color-mix(in srgb, var(--moss) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--granite) 35%, transparent);
+  transition: border-color 200ms;
+}
+.toggle:hover,
+.toggle[aria-expanded="true"] {
+  border-color: var(--granite);
+}
+
+.mark {
+  width: 7px;
+  height: 7px;
+  background: var(--fern);
+}
+.markWaiting {
+  background: var(--alpenglow);
+}
+
+.menu {
+  width: min(320px, calc(100vw - 32px));
+  max-height: calc(100dvh - 120px - env(safe-area-inset-top, 0px));
+  overflow-y: auto;
+  padding: 14px 16px 16px;
+  color: var(--granite);
+  background: var(--moss);
+  border: 1px solid color-mix(in srgb, var(--granite) 25%, transparent);
+}
+
+.head {
+  font-size: 12px;
+  color: var(--sage);
+}
+.sub {
+  margin-top: 16px;
+  padding-top: 12px;
+  font-size: 10px;
+  color: var(--sage);
+  border-top: 1px solid color-mix(in srgb, var(--granite) 14%, transparent);
+}
+
+.email {
+  margin-top: 6px;
+  color: var(--granite);
+  overflow-wrap: anywhere;
+}
+
+.facts {
+  display: grid;
+  gap: 4px;
+  margin-top: 10px;
+}
+.facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.facts dt {
+  color: var(--sage);
+}
+.facts dd {
+  color: var(--granite);
+  text-align: right;
+}
+
+.note {
+  margin-top: 8px;
+  color: var(--sage);
+}
+
+.list {
+  list-style: none;
+  margin-top: 6px;
+}
+.pass {
+  display: grid;
+  gap: 1px;
+  width: 100%;
+  padding: 8px 0;
+  text-align: left;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 14%, transparent);
+}
+.list li:first-child .pass {
+  border-top: none;
+}
+.name {
+  color: var(--granite);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--granite) 30%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 200ms;
+}
+.pass:hover .name,
+.pass[aria-current="true"] .name {
+  text-decoration-color: var(--alpenglow);
+}
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  background: currentColor;
+}
+.open {
+  color: var(--fern);
+}
+.snow {
+  color: var(--snowmelt);
+}
+.warm {
+  color: var(--alpenglow);
+}
+.unknown {
+  color: var(--sage);
+}
+
+.soon {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 8px 10px;
+  color: var(--sage);
+  text-align: left;
+  border: 1px dashed color-mix(in srgb, var(--granite) 25%, transparent);
+}
+.soon:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.out {
+  margin-top: 12px;
+  padding: 7px 10px;
+  font-size: 10px;
+  color: var(--granite);
+  border: 1px solid color-mix(in srgb, var(--granite) 35%, transparent);
+  transition: border-color 200ms, color 200ms;
+}
+.out:hover {
+  color: var(--alpenglow);
+  border-color: var(--alpenglow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .name,
+  .out {
+    transition: none;
+  }
+}

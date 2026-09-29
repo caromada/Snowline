@@ -67,8 +67,8 @@ The built-in mail service delivers only to the project owner's address and
 does not allow template changes, so until a custom sender is set up:
 
 - only the owner can sign in, and
-- the question box is shown only in a browser that has opened the map with
-  `?preview=ask` (`?preview=off` hides it again).
+- the question box and the account menu are shown only in a browser that
+  has opened the map with `?preview=ask` (`?preview=off` hides them again).
 
 ## Before the public can sign in
 
@@ -78,7 +78,8 @@ does not allow template changes, so until a custom sender is set up:
    `<p>Your code: {{ .Token }}</p>` so the email carries the six-digit code
    the installed app needs.
 4. In Vercel, set `NEXT_PUBLIC_BACKEND_LIVE=1` and `NEXT_PUBLIC_EMAIL_CODE=1`
-   and redeploy. The question box then shows for everyone.
+   and redeploy. The question box and the account menu then show for
+   everyone.
 
 ## Limits
 
@@ -90,6 +91,30 @@ does not allow template changes, so until a custom sender is set up:
 Identical questions about the same pass and the same data are answered from
 a cache and cost nothing. Limits and model names live in
 `supabase/functions/_shared/config.ts`.
+
+| Plan | Watches held at once |
+|---|---|
+| Free | 20 |
+| Plus | 200 |
+
+The database enforces the watch limit itself, in the `watches` migration.
+A test keeps the numbers there and in the config the same.
+
+## Saved passes and the account
+
+Saved passes stay in the browser, as before. Signed in, the list is also
+kept in `saved_passes`, and the two are merged by the rules in
+`web/lib/savedSync.ts`. The account holds no record of passes that were
+removed. Each device remembers, under `snowline:saved-sync`, the rows it
+last saw and the changes it has yet to send.
+
+## Watches
+
+`watches` holds what a person has asked to hear about. Nothing sends
+notices yet. `supabase/functions/_shared/watches.ts` decides which watches
+fire between two daily exports of a pass and writes the sentence for each.
+
+After applying a migration, run the checks in `supabase/tests/policies.md`.
 
 ## Tests
 

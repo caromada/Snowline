@@ -12,6 +12,9 @@ export const PRICE_PER_MTOK: Record<string, [number, number]> = {
 
 export const FREE_QUESTIONS_PER_DAY = 5;
 export const PLUS_QUESTIONS_PER_DAY = 100;
+/** The database enforces these two itself; see the watches migration. */
+export const FREE_WATCHES = 20;
+export const PLUS_WATCHES = 200;
 export const MAX_QUESTION_CHARS = 300;
 export const MAX_ANSWER_TOKENS = 1024;
 
