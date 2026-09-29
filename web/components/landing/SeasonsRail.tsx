@@ -55,7 +55,7 @@ export default function SeasonsRail() {
               <span className={`${s.seasonTag} ${season.live ? s.tagLive : s.tagSoon}`}>
                 {season.live ? "Live now" : "Coming"}
               </span>
-              <h3 className={`${s.display} ${s.h2}`}>{season.name}</h3>
+              <h3 className={s.railTitle}>{season.name}</h3>
               <ul>
                 {season.lines.map((l) => (
                   <li key={l}>{l}</li>

@@ -25,7 +25,7 @@ export default function Audience() {
           {WHO.map((w, i) => (
             <Reveal key={w.name} as="article" className={s.season} delay={i * 0.06}>
               <Pic photo={w.photo} sizes="(max-width: 900px) 80vw, 30vw" />
-              <h3 className={`${s.display} ${s.h2}`}>{w.name}</h3>
+              <h3 className={s.railTitle}>{w.name}</h3>
               <p style={{ color: "color-mix(in srgb, var(--granite) 88%, transparent)" }}>{w.line}</p>
             </Reveal>
           ))}

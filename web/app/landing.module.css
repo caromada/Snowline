@@ -1525,3 +1525,15 @@
     aspect-ratio: 4 / 3;
   }
 }
+
+/* Rail card titles: sized to the card, never clipped. */
+.railTitle {
+  font-family: var(--font-grotesk), system-ui, sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.02;
+  font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+  color: var(--granite);
+  overflow-wrap: anywhere;
+}
