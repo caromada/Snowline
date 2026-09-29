@@ -1,14 +1,18 @@
 """Build gazetteer/passes.json: the whole Sierra.
 
 Two tiers merge here:
-- featured: the hand-curated High Sierra passes with aliases, creek names,
-  and aspect notes (coordinates approximate saddle locations, within ~1 km)
+- featured: the hand-curated passes with aliases, creek names, and aspect
+  notes. Their positions and elevations come from the OpenStreetMap node
+  that carries the same name; the hand-entered "near" point only picks
+  between namesakes, and sits up to 11 km from the saddle it names.
 - osm: every other named mountain pass and saddle in the range, pulled from
   OpenStreetMap (gazetteer/osm_passes.json, via scripts.fetch_osm_passes)
 
 Polygons are octagonal buffers around the saddle, sized to cover the
 approach bowls that satellite sampling cares about. Featured entries win
-alias collisions and absorb OSM duplicates by proximity.
+alias collisions and absorb the OSM nodes that mark the same saddle. Named
+neighbours (Army Pass beside New Army Pass) and distant namesakes (Mono Pass
+in Bloody Canyon) stay passes of their own.
 """
 
 from __future__ import annotations
@@ -20,13 +24,15 @@ from pathlib import Path
 
 from ingest.geo import haversine_km
 
+# The High Sierra featured tier. "near" is a rough hand-entered position, good
+# only for choosing between same-named passes (resolve_sierra below).
+# "elevation_ft" is used only when the OpenStreetMap node carries none.
 PASSES: list[dict] = [
     {
         "slug": "kearsarge",
         "name": "Kearsarge Pass",
         "elevation_ft": 11709,
-        "lat": 36.7728,
-        "lon": -118.3736,
+        "near": (36.7728, -118.3736),
         "aliases": ["kearsarge", "kearsage", "kersarge", "kearsarge pass", "onion valley pass"],
         "creek": "Independence Creek / Bubbs Creek",
         "aspect_note": "north side holds snow late; east approach from Onion Valley",
@@ -35,8 +41,7 @@ PASSES: list[dict] = [
         "slug": "bishop",
         "name": "Bishop Pass",
         "elevation_ft": 11972,
-        "lat": 37.1049,
-        "lon": -118.5570,
+        "near": (37.1049, -118.5570),
         "aliases": ["bishop", "bishop pass", "south lake pass"],
         "creek": "South Fork Bishop Creek",
         "aspect_note": "long north-facing ramp above Bishop Lake holds snow",
@@ -45,8 +50,7 @@ PASSES: list[dict] = [
         "slug": "piute",
         "name": "Piute Pass",
         "elevation_ft": 11423,
-        "lat": 37.2262,
-        "lon": -118.6812,
+        "near": (37.2262, -118.6812),
         "aliases": ["piute", "piute pass", "paiute pass", "paiute"],
         "creek": "North Fork Bishop Creek / Piute Creek",
         "aspect_note": "gentle grade, melts early relative to neighbors",
@@ -55,8 +59,7 @@ PASSES: list[dict] = [
         "slug": "mono",
         "name": "Mono Pass",
         "elevation_ft": 12060,
-        "lat": 37.3743,
-        "lon": -118.7817,
+        "near": (37.3743, -118.7817),
         "aliases": ["mono", "mono pass", "mono pass (rock creek)"],
         "creek": "Rock Creek",
         "aspect_note": "the Rock Creek Mono Pass, not the Bloody Canyon one",
@@ -65,8 +68,7 @@ PASSES: list[dict] = [
         "slug": "duck",
         "name": "Duck Pass",
         "elevation_ft": 10797,
-        "lat": 37.5432,
-        "lon": -118.9450,
+        "near": (37.5432, -118.9450),
         "aliases": ["duck", "duck pass", "duck lake pass"],
         "creek": "Mammoth Creek / Duck Creek",
         "aspect_note": "lowest of the set, first to open most years",
@@ -75,8 +77,7 @@ PASSES: list[dict] = [
         "slug": "taboose",
         "name": "Taboose Pass",
         "elevation_ft": 11417,
-        "lat": 37.0058,
-        "lon": -118.4266,
+        "near": (37.0058, -118.4266),
         "aliases": ["taboose", "taboose pass"],
         "creek": "Taboose Creek",
         "aspect_note": "brutal east approach, snow lingers in the upper bowl",
@@ -85,8 +86,7 @@ PASSES: list[dict] = [
         "slug": "sawmill",
         "name": "Sawmill Pass",
         "elevation_ft": 11347,
-        "lat": 36.9297,
-        "lon": -118.3891,
+        "near": (36.9297, -118.3891),
         "aliases": ["sawmill", "sawmill pass"],
         "creek": "Sawmill Creek",
         "aspect_note": "dry east side, snow mostly on the west ramp",
@@ -95,8 +95,7 @@ PASSES: list[dict] = [
         "slug": "baxter",
         "name": "Baxter Pass",
         "elevation_ft": 12290,
-        "lat": 36.8757,
-        "lon": -118.3620,
+        "near": (36.8757, -118.3620),
         "aliases": ["baxter", "baxter pass"],
         "creek": "North Fork Oak Creek",
         "aspect_note": "high, rarely traveled, reports are sparse",
@@ -105,8 +104,7 @@ PASSES: list[dict] = [
         "slug": "shepherd",
         "name": "Shepherd Pass",
         "elevation_ft": 12050,
-        "lat": 36.6931,
-        "lon": -118.3572,
+        "near": (36.6931, -118.3572),
         "aliases": ["shepherd", "shepherd pass", "shepherds pass", "shepherd's pass"],
         "creek": "Shepherd Creek / Symmes Creek",
         "aspect_note": "notorious north-facing headwall chute, ice axe terrain into July",
@@ -115,8 +113,7 @@ PASSES: list[dict] = [
         "slug": "glen",
         "name": "Glen Pass",
         "elevation_ft": 11926,
-        "lat": 36.7854,
-        "lon": -118.4166,
+        "near": (36.7854, -118.4166),
         "aliases": [
             "glen",
             "glen pass",
@@ -131,8 +128,7 @@ PASSES: list[dict] = [
         "slug": "muir",
         "name": "Muir Pass",
         "elevation_ft": 11955,
-        "lat": 37.1119,
-        "lon": -118.6712,
+        "near": (37.1119, -118.6712),
         "aliases": ["muir", "muir pass", "the hut pass", "muir hut"],
         "creek": "Evolution Creek / Middle Fork Kings",
         "aspect_note": "miles of gentle snow basin on both sides, slow but not steep",
@@ -141,8 +137,7 @@ PASSES: list[dict] = [
         "slug": "mather",
         "name": "Mather Pass",
         "elevation_ft": 12100,
-        "lat": 37.0479,
-        "lon": -118.5084,
+        "near": (37.0479, -118.5084),
         "aliases": ["mather", "mather pass", "the golden staircase pass"],
         "creek": "Palisade Creek / South Fork Kings",
         "aspect_note": "steep south-side snow ramp early season",
@@ -151,8 +146,7 @@ PASSES: list[dict] = [
         "slug": "pinchot",
         "name": "Pinchot Pass",
         "elevation_ft": 12130,
-        "lat": 36.9394,
-        "lon": -118.4139,
+        "near": (36.9394, -118.4139),
         "aliases": ["pinchot", "pinchot pass"],
         "creek": "Woods Creek / South Fork Kings",
         "aspect_note": "broad and moderate, crossings below matter more than the pass",
@@ -161,8 +155,7 @@ PASSES: list[dict] = [
         "slug": "forester",
         "name": "Forester Pass",
         "elevation_ft": 13153,
-        "lat": 36.6935,
-        "lon": -118.3735,
+        "near": (36.6935, -118.3735),
         "aliases": ["forester", "forester pass", "forrester pass", "forrester"],
         "creek": "Tyndall Creek / Bubbs Creek",
         "aspect_note": "highest point on the PCT, the north-side chute is the crux",
@@ -171,8 +164,7 @@ PASSES: list[dict] = [
         "slug": "donohue",
         "name": "Donohue Pass",
         "elevation_ft": 11056,
-        "lat": 37.7607,
-        "lon": -119.2477,
+        "near": (37.7607, -119.2477),
         "aliases": ["donohue", "donohue pass", "donahue pass", "donahue"],
         "creek": "Rush Creek / Lyell Fork",
         "aspect_note": "Yosemite boundary, broad snow flats on the Lyell side",
@@ -181,8 +173,7 @@ PASSES: list[dict] = [
         "slug": "cottonwood",
         "name": "Cottonwood Pass",
         "elevation_ft": 11160,
-        "lat": 36.4432,
-        "lon": -118.2237,
+        "near": (36.4432, -118.2237),
         "aliases": ["cottonwood", "cottonwood pass", "horseshoe meadows pass"],
         "creek": "Cottonwood Creek",
         "aspect_note": "gentle grade from Horseshoe Meadows, one of the first to open",
@@ -191,9 +182,8 @@ PASSES: list[dict] = [
         "slug": "new-army",
         "name": "New Army Pass",
         "elevation_ft": 12315,
-        "lat": 36.4570,
-        "lon": -118.2230,
-        "aliases": ["new army", "new army pass", "army pass"],
+        "near": (36.4570, -118.2230),
+        "aliases": ["new army", "new army pass"],
         "creek": "Cottonwood Creek / Rock Creek (south)",
         "aspect_note": "north-facing switchbacks ice over early and late in season",
     },
@@ -201,8 +191,7 @@ PASSES: list[dict] = [
         "slug": "trail-crest",
         "name": "Trail Crest",
         "elevation_ft": 13645,
-        "lat": 36.5622,
-        "lon": -118.2932,
+        "near": (36.5622, -118.2932),
         "aliases": ["trail crest", "whitney trail crest", "the crest on whitney"],
         "creek": "Lone Pine Creek",
         "aspect_note": "the ninety-nine switchbacks and their cables hold ice into July",
@@ -211,8 +200,7 @@ PASSES: list[dict] = [
         "slug": "colby",
         "name": "Colby Pass",
         "elevation_ft": 12000,
-        "lat": 36.5728,
-        "lon": -118.4440,
+        "near": (36.5728, -118.4440),
         "aliases": ["colby", "colby pass"],
         "creek": "Kern-Kaweah River",
         "aspect_note": "remote Kaweah headwaters, reports are rare",
@@ -221,8 +209,7 @@ PASSES: list[dict] = [
         "slug": "franklin",
         "name": "Franklin Pass",
         "elevation_ft": 11760,
-        "lat": 36.4166,
-        "lon": -118.5530,
+        "near": (36.4166, -118.5530),
         "aliases": ["franklin", "franklin pass"],
         "creek": "Franklin Creek / Rattlesnake Creek",
         "aspect_note": "sandy south side melts early, north side holds",
@@ -231,8 +218,9 @@ PASSES: list[dict] = [
         "slug": "sawtooth",
         "name": "Sawtooth Pass",
         "elevation_ft": 11630,
-        "lat": 36.4528,
-        "lon": -118.5561,
+        "near": (36.4528, -118.5561),
+        # Glacier Pass is its own saddle 0.7 km off (osm tier, "glacier-pass").
+        # The alias stays so the words land here and not in the Pasayten.
         "aliases": ["sawtooth", "sawtooth pass", "glacier pass"],
         "creek": "Monarch Creek",
         "aspect_note": "loose and steep out of Mineral King, miserable in snow",
@@ -241,8 +229,7 @@ PASSES: list[dict] = [
         "slug": "kaweah-gap",
         "name": "Kaweah Gap",
         "elevation_ft": 10700,
-        "lat": 36.5540,
-        "lon": -118.5480,
+        "near": (36.5540, -118.5480),
         "aliases": ["kaweah gap", "kaweah", "hamilton lakes gap"],
         "creek": "Hamilton Creek / Big Arroyo",
         "aspect_note": "the High Sierra Trail crux, cirque holds snow above Precipice Lake",
@@ -251,8 +238,7 @@ PASSES: list[dict] = [
         "slug": "elizabeth",
         "name": "Elizabeth Pass",
         "elevation_ft": 11375,
-        "lat": 36.6222,
-        "lon": -118.6222,
+        "near": (36.6222, -118.6222),
         "aliases": ["elizabeth", "elizabeth pass"],
         "creek": "Lone Pine Creek (Kings) / Deadman Canyon",
         "aspect_note": "steep snowfinger on the Deadman Canyon side lingers",
@@ -261,8 +247,7 @@ PASSES: list[dict] = [
         "slug": "granite",
         "name": "Granite Pass",
         "elevation_ft": 10673,
-        "lat": 36.9140,
-        "lon": -118.5450,
+        "near": (36.9140, -118.5450),
         "aliases": ["granite", "granite pass"],
         "creek": "Dougherty Creek / Copper Creek",
         "aspect_note": "long dry climb out of Cedar Grove, snow only up top",
@@ -271,8 +256,7 @@ PASSES: list[dict] = [
         "slug": "hell-for-sure",
         "name": "Hell For Sure Pass",
         "elevation_ft": 11297,
-        "lat": 37.0470,
-        "lon": -118.8150,
+        "near": (37.0470, -118.8150),
         "aliases": ["hell for sure", "hell for sure pass", "hell-for-sure"],
         "creek": "Fleming Creek / Goddard Canyon",
         "aspect_note": "Red Mountain Basin approach, better than the name suggests",
@@ -281,8 +265,7 @@ PASSES: list[dict] = [
         "slug": "lamarck-col",
         "name": "Lamarck Col",
         "elevation_ft": 12880,
-        "lat": 37.1728,
-        "lon": -118.6620,
+        "near": (37.1728, -118.6620),
         "aliases": ["lamarck", "lamarck col", "the col"],
         "creek": "North Fork Bishop Creek / Darwin Canyon",
         "aspect_note": "cross-country into Darwin Canyon, permanent snowfield on the east",
@@ -291,8 +274,7 @@ PASSES: list[dict] = [
         "slug": "pine-creek",
         "name": "Pine Creek Pass",
         "elevation_ft": 11120,
-        "lat": 37.3230,
-        "lon": -118.7380,
+        "near": (37.3230, -118.7380),
         "aliases": ["pine creek", "pine creek pass"],
         "creek": "Pine Creek / French Canyon",
         "aspect_note": "tungsten mine road start, gentle pass into French Canyon",
@@ -301,8 +283,7 @@ PASSES: list[dict] = [
         "slug": "italy",
         "name": "Italy Pass",
         "elevation_ft": 12350,
-        "lat": 37.3640,
-        "lon": -118.7830,
+        "near": (37.3640, -118.7830),
         "aliases": ["italy", "italy pass", "lake italy pass"],
         "creek": "Pine Creek / Hilgard Branch",
         "aspect_note": "talus cross-country over the crest to Lake Italy",
@@ -311,8 +292,7 @@ PASSES: list[dict] = [
         "slug": "selden",
         "name": "Selden Pass",
         "elevation_ft": 10910,
-        "lat": 37.3066,
-        "lon": -118.8652,
+        "near": (37.3066, -118.8652),
         "aliases": ["selden", "selden pass", "seldon", "seldon pass"],
         "creek": "Bear Creek / Sallie Keyes",
         "aspect_note": "mellow JMT pass, crossings below matter more than the top",
@@ -321,8 +301,7 @@ PASSES: list[dict] = [
         "slug": "silver",
         "name": "Silver Pass",
         "elevation_ft": 10895,
-        "lat": 37.4680,
-        "lon": -118.9230,
+        "near": (37.4680, -118.9230),
         "aliases": ["silver", "silver pass"],
         "creek": "Silver Pass Creek / Fish Creek",
         "aspect_note": "the north-side creek crossing under the pass is the sting",
@@ -331,8 +310,7 @@ PASSES: list[dict] = [
         "slug": "mcgee",
         "name": "McGee Pass",
         "elevation_ft": 11895,
-        "lat": 37.5120,
-        "lon": -118.8510,
+        "near": (37.5120, -118.8510),
         "aliases": ["mcgee", "mcgee pass", "mc gee pass"],
         "creek": "McGee Creek / Fish Creek",
         "aspect_note": "red slate country, long approach up McGee Creek",
@@ -341,8 +319,7 @@ PASSES: list[dict] = [
         "slug": "parker",
         "name": "Parker Pass",
         "elevation_ft": 11100,
-        "lat": 37.8390,
-        "lon": -119.1990,
+        "near": (37.8390, -119.1990),
         "aliases": ["parker", "parker pass"],
         "creek": "Parker Pass Creek / Rush Creek",
         "aspect_note": "broad alpine plateau south of Tioga, gentle travel",
@@ -351,8 +328,7 @@ PASSES: list[dict] = [
         "slug": "vogelsang",
         "name": "Vogelsang Pass",
         "elevation_ft": 10700,
-        "lat": 37.7910,
-        "lon": -119.3420,
+        "near": (37.7910, -119.3420),
         "aliases": ["vogelsang", "vogelsang pass"],
         "creek": "Fletcher Creek / Lewis Creek",
         "aspect_note": "Yosemite high country, opens earlier than the crest passes",
@@ -490,12 +466,59 @@ def resolve_west(osm_nodes: list[dict]) -> list[dict]:
                 "creek": "",
                 "aspect_note": entry["aspect_note"],
                 "state": entry["state"],
+                "osm_id": node["osm_id"],
             }
         )
     return out
 
 
-DUPLICATE_KM = 1.5
+# The hand-entered positions sit up to 11 km from the saddle they name, and
+# the nearest namesake beyond that is 65 km off (Mono Pass, Bloody Canyon).
+ANCHOR_KM = 15.0
+
+
+def resolve_sierra(
+    entries: list[dict], osm_nodes: list[dict], max_km: float = ANCHOR_KM
+) -> list[dict]:
+    """Move each hand-curated pass onto the nearest OSM node of the same name."""
+    out: list[dict] = []
+    for entry in entries:
+        lat, lon = entry["near"]
+        name = entry["name"].lower()
+        best: tuple[float, dict] | None = None
+        for node in osm_nodes:
+            if node["name"].lower() != name:
+                continue
+            km = haversine_km(lat, lon, node["lat"], node["lon"])
+            if km <= max_km and (best is None or km < best[0]):
+                best = (km, node)
+        if best is None:
+            raise ValueError(
+                f"no OSM node named {entry['name']} within {max_km:g} km of {lat}, {lon}"
+            )
+        node = best[1]
+        hand = {k: v for k, v in entry.items() if k != "near"}
+        out.append(
+            {
+                **hand,
+                "elevation_ft": node["elevation_ft"] or entry["elevation_ft"],
+                "lat": round(node["lat"], 6),
+                "lon": round(node["lon"], 6),
+                "osm_id": node["osm_id"],
+            }
+        )
+    return out
+
+
+# A differently named node this close to a featured pass is the same saddle
+# under another name. Featured positions are exact, so the radius is small:
+# the nearest real neighbour is 0.39 km off (Historic Donner Summit).
+DUPLICATE_KM = 0.3
+
+# A node that shares a featured pass's name this close to it is the same
+# saddle mapped twice. Farther off it is a namesake, a pass of its own: the
+# nearest one is 48 km away (Elk Pass, south of the Goat Rocks).
+SAME_NAME_KM = 5.0
 
 
 def _slugify(name: str) -> str:
@@ -509,17 +532,23 @@ def load_osm_nodes(path: Path) -> list[dict]:
 
 
 def merge_osm(featured: list[dict], osm_nodes: list[dict]) -> list[dict]:
-    """OSM entries that are not duplicates of a featured pass, slug-deduped."""
+    """OSM entries that are not duplicates of a featured pass, slug-deduped.
+
+    Nodes keep their order in the file within a name, so the first of a set
+    of namesakes holds the bare slug and the rest carry their OSM id.
+    """
     merged: list[dict] = []
     taken = {p["slug"] for p in featured}
-    names = {p["name"].lower() for p in featured}
+    featured_ids = {p["osm_id"] for p in featured}
     for node in sorted(osm_nodes, key=lambda n: n["name"]):
         if node["elevation_ft"] is None:
             continue
-        if node["name"].lower() in names:
+        if node["osm_id"] in featured_ids:
             continue
+        name = node["name"].lower()
         if any(
-            haversine_km(node["lat"], node["lon"], p["lat"], p["lon"]) < DUPLICATE_KM
+            haversine_km(node["lat"], node["lon"], p["lat"], p["lon"])
+            < (SAME_NAME_KM if p["name"].lower() == name else DUPLICATE_KM)
             for p in featured
         ):
             continue
@@ -552,9 +581,9 @@ def merge_osm(featured: list[dict], osm_nodes: list[dict]) -> list[dict]:
 def main() -> None:
     root = Path(__file__).resolve().parent.parent / "gazetteer"
     osm_nodes = load_osm_nodes(root / "osm_passes.json")
-    featured = [{**p, "state": "CA", "tier": "featured"} for p in PASSES] + [
-        {**p, "tier": "featured"} for p in resolve_west(osm_nodes)
-    ]
+    featured = [
+        {**p, "state": "CA", "tier": "featured"} for p in resolve_sierra(PASSES, osm_nodes)
+    ] + [{**p, "tier": "featured"} for p in resolve_west(osm_nodes)]
     entries = featured + merge_osm(featured, osm_nodes)
     features = []
     for p in entries:
