@@ -4,3 +4,6 @@ project_id = "uiduywomodjjsrlxtjnr"
 # project's current signing keys.
 [functions.ask-pass]
 verify_jwt = false
+
+[functions.file-report]
+verify_jwt = false

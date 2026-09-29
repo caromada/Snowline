@@ -27,6 +27,7 @@ from datetime import date as _date
 from typing import Any
 
 from extraction.calibrate import calibrated_severity
+from fusion.plausibility import screen_swe
 
 # Stream reliability priors.
 PRIOR = {"sensor": 0.9, "satellite": 0.65, "report": 0.75}
@@ -112,20 +113,61 @@ def _severity_to_status(severity: float) -> str:
     return "not_recommended"
 
 
-def _latest_per_station(
+def _in_sensor_window(eval_date: str, observed: str) -> bool:
+    return 0 <= _age_days(eval_date, observed) <= MAX_AGE_DAYS["sensor"]
+
+
+def _screen_sensors(
     sensor_obs: list[dict[str, Any]], eval_date: str
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    """Sort SWE readings into (believed, rejected, faulty), as of the eval date.
+
+    Rejection follows fusion.plausibility, judged on each station's series
+    up to the eval date. `faulty` holds one rejection per station whose
+    newest reading is rejected and recent enough to have voted. Such a
+    station falls silent: its older readings inside the sensor window are
+    dropped from `believed` too, because every station counts in full in
+    the average and last week's number from a sensor that is broken today
+    is not evidence about today. Readings from before the window stay, so a
+    melt-out the station recorded while it worked can still be dated.
+    """
+    by_station: dict[str, list[dict[str, Any]]] = {}
+    for o in sensor_obs:
+        if o["metric"] == "swe_in" and o["observed_date"] <= eval_date:
+            by_station.setdefault(o["provenance"], []).append(o)
+    believed: list[dict[str, Any]] = []
+    rejected: list[dict[str, Any]] = []
+    faulty: list[dict[str, Any]] = []
+    for series in by_station.values():
+        series.sort(key=lambda o: o["observed_date"])
+        kept, thrown = screen_swe(series)
+        rejected.extend(thrown)
+        if thrown and thrown[-1]["reading"] is series[-1]:
+            kept = [o for o in kept if not _in_sensor_window(eval_date, o["observed_date"])]
+            if _in_sensor_window(eval_date, series[-1]["observed_date"]):
+                faulty.append(thrown[-1])
+        believed.extend(kept)
+    return believed, rejected, faulty
+
+
+def _newest_in_window(
+    believed: list[dict[str, Any]], eval_date: str
 ) -> dict[str, dict[str, Any]]:
     latest: dict[str, dict[str, Any]] = {}
-    for o in sensor_obs:
-        if o["metric"] != "swe_in":
-            continue
-        age = _age_days(eval_date, o["observed_date"])
-        if age < 0 or age > MAX_AGE_DAYS["sensor"]:
+    for o in believed:
+        if not _in_sensor_window(eval_date, o["observed_date"]):
             continue
         prev = latest.get(o["provenance"])
         if prev is None or o["observed_date"] > prev["observed_date"]:
             latest[o["provenance"]] = o
     return latest
+
+
+def _latest_per_station(
+    sensor_obs: list[dict[str, Any]], eval_date: str
+) -> dict[str, dict[str, Any]]:
+    """Each station's newest believable reading inside the sensor window."""
+    return _newest_in_window(_screen_sensors(sensor_obs, eval_date)[0], eval_date)
 
 
 def _elevation_gap(o: dict[str, Any], pass_elev_ft: float | None) -> float | None:
@@ -142,10 +184,10 @@ def _is_blind(o: dict[str, Any], pass_elev_ft: float | None) -> bool:
 
 
 def _blind_sensors(
-    sensor_obs: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None
+    believed: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None
 ) -> dict[str, Any] | None:
     """Melted-out stations too far below the pass to say anything about it."""
-    blind = [o for o in _latest_per_station(sensor_obs, eval_date).values()
+    blind = [o for o in _newest_in_window(believed, eval_date).values()
              if _is_blind(o, pass_elev_ft)]
     if not blind:
         return None
@@ -191,18 +233,20 @@ def _melt_out_date(series: list[dict[str, Any]]) -> tuple[str, bool] | None:
 
 
 def _snowline_estimate(
-    sensor_obs: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None
+    believed: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None
 ) -> dict[str, Any] | None:
     """Snowline inferred from melt-out dates, or None.
 
     Two kinds of station qualify: ones reporting now but blind to the pass
     (melted out far below it), and ones that melted out and then went quiet
-    earlier this season.
+    earlier this season. Only believed readings are read, so a sensor that
+    sat stuck and was then reset to zero dates its melt-out as "by", not
+    "on", the day of the reset.
     """
     if pass_elev_ft is None:
         return None
     by_station: dict[str, list[dict[str, Any]]] = {}
-    for o in sensor_obs:
+    for o in believed:
         if (
             o["metric"] == "swe_in"
             and o["observed_date"] <= eval_date
@@ -257,7 +301,7 @@ def _snowline_estimate(
 
 
 def _sensor_component(
-    sensor_obs: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None = None
+    believed: list[dict[str, Any]], eval_date: str, pass_elev_ft: float | None = None
 ) -> dict[str, Any] | None:
     """Latest SWE per station within window, weighted by distance and elevation.
 
@@ -265,7 +309,7 @@ def _sensor_component(
     """
     latest = {
         prov: o
-        for prov, o in _latest_per_station(sensor_obs, eval_date).items()
+        for prov, o in _newest_in_window(believed, eval_date).items()
         if not _is_blind(o, pass_elev_ft)
     }
     if not latest:
@@ -287,10 +331,10 @@ def _sensor_component(
     # Melt trend: compare each station's earliest in-window reading.
     trend = None
     per_station_first: dict[str, dict[str, Any]] = {}
-    for o in sensor_obs:
-        if o["metric"] != "swe_in" or o["provenance"] not in latest:
+    for o in believed:
+        if o["provenance"] not in latest:
             continue
-        if 0 <= _age_days(eval_date, o["observed_date"]) <= MAX_AGE_DAYS["sensor"]:
+        if _in_sensor_window(eval_date, o["observed_date"]):
             prev = per_station_first.get(o["provenance"])
             if prev is None or o["observed_date"] < prev["observed_date"]:
                 per_station_first[o["provenance"]] = o
@@ -312,6 +356,24 @@ def _sensor_component(
         "stations": sorted(latest),
         "refs": [o.get("id") for o in latest.values()],
     }
+
+
+def _trusted_scenes(
+    satellite_obs: list[dict[str, Any]], rejected: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Satellite rows, less the modeled ones built on a rejected reading.
+
+    Modeled cover is derived from one station's SWE on the same day and says
+    so in its meta. When that reading is thrown out, so is the scene.
+    """
+    thrown = {(r["reading"]["provenance"], r["reading"]["observed_date"]) for r in rejected}
+    if not thrown:
+        return satellite_obs
+    return [
+        o
+        for o in satellite_obs
+        if ((o.get("meta") or {}).get("from_station"), o["observed_date"]) not in thrown
+    ]
 
 
 def _satellite_component(
@@ -446,14 +508,15 @@ def fuse(
     reports: list[dict[str, Any]],
 ) -> dict[str, Any]:
     """Fuse all evidence for one pass on one date."""
-    sensor = _sensor_component(sensor_obs, eval_date, pass_info.get("elevation_ft"))
-    blind = _blind_sensors(sensor_obs, eval_date, pass_info.get("elevation_ft"))
+    believed, rejected, faulty = _screen_sensors(sensor_obs, eval_date)
+    sensor = _sensor_component(believed, eval_date, pass_info.get("elevation_ft"))
+    blind = _blind_sensors(believed, eval_date, pass_info.get("elevation_ft"))
     snowline = (
-        _snowline_estimate(sensor_obs, eval_date, pass_info.get("elevation_ft"))
+        _snowline_estimate(believed, eval_date, pass_info.get("elevation_ft"))
         if sensor is None
         else None
     )
-    satellite = _satellite_component(satellite_obs, eval_date)
+    satellite = _satellite_component(_trusted_scenes(satellite_obs, rejected), eval_date)
     human = _report_component(reports, eval_date)
     crossing = _crossing_component(reports, gauge_obs, eval_date)
 
@@ -477,15 +540,18 @@ def fuse(
             "components": components,
             "crossing": crossing,
             "conflicts": [],
-            "facts": [_blind_fact(pass_info, blind)]
-            if blind
-            else [
-                {
-                    "text": "No recent evidence for this pass in any stream.",
-                    "stream": "none",
-                    "refs": [],
-                }
-            ],
+            "facts": (
+                [_blind_fact(pass_info, blind)]
+                if blind
+                else [
+                    {
+                        "text": "No recent evidence for this pass in any stream.",
+                        "stream": "none",
+                        "refs": [],
+                    }
+                ]
+            )
+            + [_fault_fact(f) for f in faulty],
         }
 
     wsum = sum(c["weight"] for c in present.values())
@@ -561,8 +627,31 @@ def fuse(
         "conflicts": conflicts,
         "facts": _facts(pass_info, sensor, satellite, human, crossing)
         + ([_snowline_fact(snowline)] if snowline else [])
-        + ([_blind_fact(pass_info, blind)] if blind and not snowline else []),
+        + ([_blind_fact(pass_info, blind)] if blind and not snowline else [])
+        + [_fault_fact(f) for f in faulty],
     }
+
+
+def _fault_fact(fault: dict[str, Any]) -> dict[str, Any]:
+    """Say which sensor was left out and why, so its absence is not silent."""
+    reading = fault["reading"]
+    meta = reading.get("meta") or {}
+    name = meta.get("station_name") or reading["provenance"]
+    elev = meta.get("station_elevation_ft")
+    where = f" ({round(float(elev)):,} ft)" if elev is not None else ""
+    value = round(float(reading["value"]), 1)
+    if fault["reason"] == "ceiling":
+        text = (
+            f"{name}{where} reports {value} in of water, more than any snowpack "
+            f"holds. It is left out as a sensor fault."
+        )
+    else:
+        text = (
+            f"{name}{where} has read {value} in since {fault['since']} without "
+            f"moving. A snowpack in melt season changes every day, so it is left "
+            f"out as a stuck sensor."
+        )
+    return {"text": text, "stream": "sensor", "refs": [reading.get("id")]}
 
 
 def _snowline_fact(sl: dict[str, Any]) -> dict[str, Any]:

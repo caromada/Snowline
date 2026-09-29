@@ -10,7 +10,7 @@ import Sparkline from "./Sparkline";
 // Station curves are shared across passes, so each loads once per visit.
 const stationCache = new Map<string, Promise<StationCurves | null>>();
 
-function loadStation(provenance: string): Promise<StationCurves | null> {
+export function loadStation(provenance: string): Promise<StationCurves | null> {
   let p = stationCache.get(provenance);
   if (!p) {
     p = fetch(stationFile(provenance))

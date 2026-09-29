@@ -12,6 +12,9 @@ export const PRICE_PER_MTOK: Record<string, [number, number]> = {
 
 export const FREE_QUESTIONS_PER_DAY = 5;
 export const PLUS_QUESTIONS_PER_DAY = 100;
+/** The database enforces these two itself; see the watches migration. */
+export const FREE_WATCHES = 20;
+export const PLUS_WATCHES = 200;
 export const MAX_QUESTION_CHARS = 300;
 export const MAX_ANSWER_TOKENS = 1024;
 
@@ -27,3 +30,14 @@ export const ROAD_MAX_LINES = 4;
  * against the old numbering is never served against the new one.
  */
 export const EVIDENCE_VERSION = "2";
+
+export const REPORTS_PER_DAY = 5;
+export const MAX_REPORT_CHARS = 1000;
+export const MAX_WATER_SOURCE_CHARS = 60;
+export const MAX_QUOTE_CHARS = 200;
+/** How far back the day someone was at the pass may be, in days. */
+export const REPORT_WINDOW_DAYS = 30;
+export const MAX_READING_TOKENS = 1024;
+export const PHOTO_BUCKET = "report-photos";
+/** The bucket refuses anything larger; the function checks again. */
+export const MAX_PHOTO_BYTES = 3 * 1024 * 1024;

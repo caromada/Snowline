@@ -1,0 +1,232 @@
+/* Season section of the pass panel. Forest palette, sharp corners. Earlier
+   seasons wear snowmelt and this season alpenglow: the one pair in the set
+   that stays apart for red-green color blindness. Line weight, mark size and
+   the year labels carry the same distinction without color. */
+
+.season {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 16%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--sage);
+}
+
+.sub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--sage);
+}
+
+.statement {
+  margin-top: 10px;
+}
+
+.estimate,
+.disagree {
+  padding: 8px 12px;
+  border-left: 3px solid color-mix(in srgb, var(--granite) 45%, transparent);
+  background: color-mix(in srgb, var(--granite) 6%, transparent);
+}
+
+.disagree {
+  border-left-color: var(--alpenglow);
+  background: color-mix(in srgb, var(--alpenglow) 8%, transparent);
+}
+
+.flag {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 10px;
+  color: var(--sage);
+}
+
+.disagree .flag {
+  color: var(--alpenglow);
+}
+
+.plain {
+  color: var(--granite);
+}
+
+.meta {
+  color: var(--sage);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.evidence {
+  margin-top: 4px;
+  color: var(--sage);
+}
+
+.evidence summary {
+  cursor: pointer;
+  width: fit-content;
+  color: var(--sage);
+  transition: color 120ms linear;
+}
+
+.evidence summary:hover,
+.evidence summary:focus-visible {
+  color: var(--granite);
+}
+
+.evidence ul {
+  list-style: none;
+  margin-top: 4px;
+}
+
+.evidence li {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 6px 0;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 14%, transparent);
+}
+
+.station {
+  color: var(--granite);
+}
+
+.detail {
+  color: var(--granite);
+  overflow-wrap: anywhere;
+}
+
+.figure {
+  margin-top: 18px;
+}
+
+.frame {
+  margin-top: 8px;
+}
+
+.plot {
+  display: block;
+  touch-action: pan-y;
+}
+
+.axisText,
+.yearLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  fill: var(--sage);
+}
+
+.yearLabel {
+  fill: var(--granite);
+  stroke: var(--moss);
+  stroke-width: 3px;
+  paint-order: stroke;
+}
+
+.grid {
+  stroke: color-mix(in srgb, var(--granite) 14%, transparent);
+  stroke-width: 1px;
+}
+
+.baseline {
+  stroke: color-mix(in srgb, var(--granite) 45%, transparent);
+  stroke-width: 1px;
+}
+
+.crosshair {
+  stroke: color-mix(in srgb, var(--granite) 60%, transparent);
+  stroke-width: 1px;
+}
+
+.lineEarlier,
+.lineCurrent {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.lineEarlier {
+  stroke: var(--snowmelt);
+  stroke-width: 1.5px;
+}
+
+.lineCurrent {
+  stroke: var(--alpenglow);
+  stroke-width: 2px;
+}
+
+/* The ring in the panel color keeps a mark legible where lines cross it. */
+.markEarlier,
+.markCurrent {
+  stroke: var(--moss);
+  stroke-width: 2px;
+  paint-order: stroke;
+}
+
+.markEarlier {
+  fill: var(--snowmelt);
+}
+
+.markCurrent {
+  fill: var(--alpenglow);
+}
+
+.readout {
+  min-height: 18px;
+  margin-top: 2px;
+  color: var(--sage);
+}
+
+.table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+  color: var(--granite);
+}
+
+.table th,
+.table td {
+  padding: 4px 8px 4px 0;
+  text-align: left;
+  font-weight: 400;
+  vertical-align: top;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 14%, transparent);
+}
+
+.table thead th {
+  border-top: none;
+  color: var(--sage);
+}
+
+.table tbody th {
+  white-space: nowrap;
+}
+
+.current th,
+.current td {
+  color: var(--granite);
+  font-weight: 700;
+}
+
+.key {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.fine {
+  margin-top: 12px;
+  color: var(--sage);
+  font-size: 11px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evidence summary {
+    transition: none;
+  }
+}

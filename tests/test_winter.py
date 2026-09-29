@@ -323,3 +323,22 @@ def test_raw_payloads_are_kept_as_fetched_and_without_the_key(
     assert rows[0]["payload"] == layer
     assert rows[1]["payload"] == passes
     assert all("test-code-123" not in r["url"] + r["payload"] for r in rows)
+
+
+def test_an_empty_oregon_feed_is_an_answer_not_an_outage(
+    monkeypatch: pytest.MonkeyPatch, caplog: pytest.LogCaptureFixture
+) -> None:
+    # As the live feed read on 2026-09-29: well formed, nothing posted.
+    org = {"organization-name": "ODOT"}
+
+    def fake(url: str, params: dict[str, str], **kwargs: object) -> tuple[object, str, bool]:
+        if url.endswith("/RW/Metadata"):
+            return {"organization-information": org, "road-weather-items": {}}, "{}", False
+        return {"organization-information": org, "road-weather-reports": []}, "{}", False
+
+    monkeypatch.setattr(tripcheck, "fetch_json", fake)
+    monkeypatch.setenv("TRIPCHECK_API_KEY", "test-key-456")
+    with caplog.at_level(logging.INFO):
+        assert tripcheck.fetch_statuses() == []
+    assert "no road reports posted" in caplog.text
+    assert "test-key-456" not in caplog.text

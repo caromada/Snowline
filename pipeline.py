@@ -29,6 +29,7 @@ from config import DB_PATH, EXTRACTIONS_CACHE, WEB_DATA_DIR, demo_streams
 from extraction.extractor import post_hash
 from extraction.resolve import resolve_post
 from fusion import fuse
+from fusion.season import pass_season
 from fusion.winter import load_winter
 from gazetteer import load_passes
 from gazetteer.access import link_access, load_access
@@ -273,6 +274,7 @@ def export(store: Store | None = None) -> None:
             "forecast": forecasts.get(slug),
             "fire": fire.get(slug),
             "winter": winter.get(slug),
+            "season": pass_season(p, sensor_obs, date.fromisoformat(today)),
             "access": link_access(
                 p, access["trailheads"], access["campgrounds"], access["parking"]
             ),

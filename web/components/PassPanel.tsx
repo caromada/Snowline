@@ -14,7 +14,9 @@ import Campfire from "./Campfire";
 import EvidenceLedger from "./EvidenceLedger";
 import FirePanel from "./FirePanel";
 import GettingThere from "./GettingThere";
+import PassReports from "./PassReports";
 import PixelGlyph from "./PixelGlyph";
+import SeasonPanel from "./SeasonPanel";
 import Vignette from "./Vignette";
 import WinterPanel from "./WinterPanel";
 
@@ -118,6 +120,10 @@ export default function PassPanel({
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setSaved(loadSaved());
     setAsk(backendLive());
+    // The account can change the list from outside this panel.
+    const onSaved = () => setSaved(loadSaved());
+    window.addEventListener("sierra-saved-changed", onSaved);
+    return () => window.removeEventListener("sierra-saved-changed", onSaved);
   }, []);
 
   useEffect(() => {
@@ -284,6 +290,8 @@ export default function PassPanel({
             <ForecastStrip forecast={detail.forecast} from={evalDate} passFt={detail.pass.elevation_ft} />
           )}
 
+          {isNow && detail.season && <SeasonPanel season={detail.season} />}
+
           {isNow && detail.winter && <WinterPanel winter={detail.winter} />}
 
           <p style={{ marginTop: 12, color: "var(--sage)", fontStyle: "italic" }}>
@@ -292,6 +300,10 @@ export default function PassPanel({
 
           {ask && (
             <AskPass slug={detail.pass.slug} name={detail.pass.name} evalDate={evalDate} />
+          )}
+
+          {ask && (
+            <PassReports key={detail.pass.slug} slug={detail.pass.slug} name={detail.pass.name} evalDate={evalDate} isNow={isNow} />
           )}
 
           {detail.access && <GettingThere access={detail.access} onShow={onShow} />}
