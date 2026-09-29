@@ -134,6 +134,7 @@ def export(store: Store | None = None) -> None:
     ingest_modeled(store, f"{FIRST_SEASON_YEAR}-04-01", today)
 
     reports_by_pass = _reports_by_pass(store)
+    forecasts = _load_forecasts(today)
 
     # Sensor rows are stored once per station; passes join to them through
     # the link tables at read time, annotated with their own distance.
@@ -212,6 +213,7 @@ def export(store: Store | None = None) -> None:
             # they live once under data/station/ and load on demand; only the
             # per-pass modeled satellite curve rides inline.
             "curves": {"snow_cover_frac": _curve(satellite_obs, "snow_cover_frac")},
+            "forecast": forecasts.get(slug),
             "stations": {
                 "swe_in": sorted({o["provenance"] for o in sensor_obs}),
                 "discharge_cfs": sorted(
@@ -271,6 +273,25 @@ def export(store: Store | None = None) -> None:
         len(dates),
         len(station_curves),
     )
+
+
+FORECAST_PATH = Path(__file__).resolve().parent / "data" / "forecast" / "passes.json"
+
+
+def _load_forecasts(today: str) -> dict[str, Any]:
+    """NWS forecasts from ingest.nws, only if issued today or yesterday.
+
+    A stale forecast is worse than none, so an old or missing file means the
+    panel simply shows no forecast.
+    """
+    if not FORECAST_PATH.exists():
+        return {}
+    doc = json.loads(FORECAST_PATH.read_text())
+    issued = date.fromisoformat(doc.get("issued_for", "1970-01-01"))
+    if (date.fromisoformat(today) - issued).days > 1:
+        log.warning("forecast file issued %s is stale; skipping forecasts", issued)
+        return {}
+    return {slug: {**f, "issued_for": doc["issued_for"]} for slug, f in doc["passes"].items()}
 
 
 LANDING_STATUS_KEYS = ["open", "snow_caution", "traction_advised", "not_recommended", "unknown"]

@@ -14,3 +14,4 @@ web/out/
 data/sierra.sqlite
 data/raw/
 .claude/skills/
+data/forecast/

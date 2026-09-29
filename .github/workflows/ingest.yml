@@ -54,6 +54,11 @@ jobs:
       - name: Ingest sensor data
         run: python -m scripts.backfill --daily
 
+      # Forecasts degrade independently: if the NWS is down, passes simply
+      # show no forecast today.
+      - name: Fetch NWS forecasts
+        run: python -m ingest.nws || echo "::warning::NWS forecasts unavailable today"
+
       - name: Save HTTP cache
         if: always()
         uses: actions/cache/save@v6

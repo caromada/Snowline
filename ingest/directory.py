@@ -52,6 +52,7 @@ def station_directory(
     fetch_live: Callable[[], list[dict[str, Any]]],
     snapshot_dir: Path = STATIONS_DIR,
     now: datetime | None = None,
+    max_age_days: float = DIRECTORY_MAX_AGE_DAYS,
 ) -> list[dict[str, Any]]:
     """Resolve a station directory: memo, then fresh snapshot, then live."""
     key = (name, snapshot_dir)
@@ -62,7 +63,7 @@ def station_directory(
     path = snapshot_dir / f"{name}.json"
     snapshot, fetched_at = _load(path)
 
-    if snapshot and fetched_at and now - fetched_at < timedelta(days=DIRECTORY_MAX_AGE_DAYS):
+    if snapshot and fetched_at and now - fetched_at < timedelta(days=max_age_days):
         _memo[key] = snapshot
         return snapshot
 
