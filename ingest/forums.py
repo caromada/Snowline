@@ -1,12 +1,13 @@
 """Trip report ingestion.
 
-Live scrapers exist for the three real sources and follow the same
-raw-first contract as the sensor modules. The public demo ships with a
-curated corpus instead (data/corpus/posts.jsonl, provenance
-"corpus:curated"): realistic posts written for this project, because
-re-scraping years-old forum threads is neither reproducible nor polite to
-the forums. Point the scrapers at live URLs and everything downstream is
-identical.
+The repo ships a curated corpus (data/corpus/posts.jsonl, provenance
+"corpus:curated"): posts written for this project, not by anyone who stood
+on a pass. They are samples. Every post loaded here is stamped with that
+provenance, and the pipeline leaves samples out of verdicts unless the demo
+switch is on (see config.demo_streams and ingest.samples).
+
+The scrapers below follow the same raw-first contract as the sensor
+modules. They are not run by the daily ingest.
 """
 
 from __future__ import annotations
@@ -18,6 +19,7 @@ from typing import Any
 
 from config import ROOT
 from ingest.http import fetch_text
+from ingest.samples import SAMPLE_PROVENANCE
 from store import Store
 
 log = logging.getLogger(__name__)
@@ -26,11 +28,14 @@ CORPUS_PATH = ROOT / "data" / "corpus" / "posts.jsonl"
 
 
 def load_corpus(path: Path | None = None) -> list[dict[str, Any]]:
-    """The curated demo corpus. Each post: id, source, url, author, posted_date, title, text."""
+    """The curated sample corpus, every post stamped as a sample.
+
+    Each post: id, provenance, source, url, author, posted_date, title, text.
+    """
     posts = []
     for line in (path or CORPUS_PATH).read_text().splitlines():
         if line.strip():
-            posts.append(json.loads(line))
+            posts.append({**json.loads(line), "provenance": SAMPLE_PROVENANCE})
     return posts
 
 
