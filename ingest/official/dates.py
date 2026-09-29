@@ -33,9 +33,9 @@ _ANY = re.compile(rf"(?<![\w/])(?:{_NUMERIC}|{_WORDED}|{_ISO})(?![\d/])", re.IGN
 _WHOLE = re.compile(
     rf"(?:{_NUMERIC}|{_WORDED}|{_ISO}(?:[ T][\d:.]+)?)", re.IGNORECASE
 )
-_LEADING = re.compile(rf"{_NUMERIC}\s*[-–—:]?\s*(?P<rest>.*)", re.DOTALL)
+_LEADING = re.compile(rf"{_NUMERIC}\s*[-\u2013\u2014:]?\s*(?P<rest>.*)", re.DOTALL)
 _LEADING_NO_YEAR = re.compile(
-    r"(?P<m>\d{1,2})/(?P<d>\d{1,2})\s*[-–—:]\s*(?P<rest>.*)", re.DOTALL
+    r"(?P<m>\d{1,2})/(?P<d>\d{1,2})\s*[-\u2013\u2014:]\s*(?P<rest>.*)", re.DOTALL
 )
 
 

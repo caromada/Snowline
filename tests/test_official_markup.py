@@ -143,6 +143,8 @@ def test_a_dated_line_gives_its_date_and_the_words_after_it() -> None:
         date(2025, 7, 24), "The trail becomes more challenging.")
     assert leading_date("6/17/26- Trail along Ruby Creek is not accessible to stock.") == (
         date(2026, 6, 17), "Trail along Ruby Creek is not accessible to stock.")
+    for dash in (chr(0x2013), chr(0x2014)):  # en and em dash, as editors autocorrect them
+        assert leading_date(f"08/13/2026 {dash} Snow free.") == (date(2026, 8, 13), "Snow free.")
     assert leading_date("General: Trail is generally snow-free in spring.") is None
     assert leading_date("09/21/2026 -") is None
 
