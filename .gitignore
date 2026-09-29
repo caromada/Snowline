@@ -16,3 +16,5 @@ data/raw/
 .claude/skills/
 data/forecast/
 data/rebuild_pending.json
+.claude/worktrees/
+supabase/.temp/
