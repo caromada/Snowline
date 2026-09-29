@@ -70,8 +70,6 @@ def parse(html: str, fetched_at: datetime) -> list[Report]:
     return out
 
 
-def fetch(client: Client) -> list[Report] | None:
+def fetch(client: Client) -> dict[str, list[Report] | None]:
     got = client.get(PAGE.source, URL, {"roadnumber": ",".join(HIGHWAYS)})
-    if got is None:
-        return None
-    return parse(got.text, got.fetched_at)
+    return {PAGE.source: parse(got.text, got.fetched_at) if got else None}

@@ -187,12 +187,13 @@ def test_the_key_never_reaches_the_log_or_the_store(
     })
     with caplog.at_level(logging.INFO):
         client = web.client(lambda *row: kept.append(row))  # type: ignore[arg-type]
-        assert nps_alerts.fetch(client) is None
+        assert nps_alerts.fetch(client) == {"nps-alerts": None}
     assert "s3cr3t-key" not in caplog.text
     assert "[redacted]" in caplog.text
 
     web.pages["https://developer.nps.gov/api/v1/alerts"] = '{"data": []}'
-    assert nps_alerts.fetch(web.client(lambda *row: kept.append(row))) == []  # type: ignore[arg-type]
+    again = web.client(lambda *row: kept.append(row))  # type: ignore[arg-type]
+    assert nps_alerts.fetch(again) == {"nps-alerts": []}
     assert kept == [("nps-alerts", "https://developer.nps.gov/api/v1/alerts", '{"data": []}')]
 
 
@@ -202,7 +203,7 @@ def test_without_a_key_the_alerts_are_skipped_with_one_line(
     monkeypatch.delenv("NPS_API_KEY", raising=False)
     web = Web({})
     with caplog.at_level(logging.INFO):
-        assert nps_alerts.fetch(web.client()) is None
+        assert nps_alerts.fetch(web.client()) == {"nps-alerts": None}
     assert web.calls == []
     assert caplog.text.count("NPS_API_KEY") == 1
 

@@ -69,13 +69,10 @@ def parse(html: str, page: BulletinPage, fetched_at: datetime) -> list[Report]:
     return out
 
 
-def fetch(client: Client) -> list[Report] | None:
-    found: list[Report] = []
-    answered = False
+def fetch(client: Client) -> dict[str, list[Report] | None]:
+    """source -> its reports, or None for a page that could not be read."""
+    found: dict[str, list[Report] | None] = {}
     for source, page in PAGES.items():
         got = client.get(source, page.url)
-        if got is None:
-            continue
-        answered = True
-        found.extend(parse(got.text, page, got.fetched_at))
-    return found if answered else None
+        found[source] = parse(got.text, page, got.fetched_at) if got else None
+    return found

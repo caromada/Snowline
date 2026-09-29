@@ -101,15 +101,13 @@ def parse(doc: object, fetched_at: datetime) -> list[Report]:
     return out
 
 
-def fetch(client: Client) -> list[Report] | None:
+def fetch(client: Client) -> dict[str, list[Report] | None]:
     key = os.environ.get(ENV_KEY, "").strip()
     if not key:
         log.info("nps alerts: %s is not set; skipping park alerts", ENV_KEY)
-        return None
+        return {SOURCE: None}
     # The gateway takes the key as a query parameter as well as a header,
     # and ingest.http sends no custom headers.
     params = {"parkCode": ",".join(PARKS), "limit": str(LIMIT), "api_key": key}
     got = client.get_json(SOURCE, URL, params, secret=key)
-    if got is None:
-        return None
-    return parse(got.parsed, got.fetched_at)
+    return {SOURCE: parse(got.parsed, got.fetched_at) if got else None}
