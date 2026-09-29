@@ -1,0 +1,319 @@
+{
+ "pass": {
+  "slug": "badger-pass",
+  "name": "Badger Pass",
+  "elevation_ft": 7477,
+  "lat": 37.666089,
+  "lon": -119.654078,
+  "creek": "",
+  "aspect_note": "",
+  "aliases": [
+   "badger pass",
+   "badger"
+  ]
+ },
+ "dates": [
+  "2026-07-01",
+  "2026-07-15",
+  "2026-08-01",
+  "2026-09-29"
+ ],
+ "statuses": {
+  "2026-07-01": {
+   "pass_slug": "badger-pass",
+   "eval_date": "2026-07-01",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 3.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      490039
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 150 cfs and dropping.",
+     "stream": "gauge",
+     "refs": []
+    },
+    {
+     "text": "The nearest snow sensor has melted out, but Gin Flat (7,050 ft) sits at least 427 ft below the pass: it cannot tell whether the pass still holds snow.",
+     "stream": "sensor",
+     "refs": [
+      489933
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.375,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 7477
+   }
+  },
+  "2026-07-15": {
+   "pass_slug": "badger-pass",
+   "eval_date": "2026-07-15",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 3.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      490053
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 147 cfs and dropping.",
+     "stream": "gauge",
+     "refs": []
+    },
+    {
+     "text": "The nearest snow sensor has melted out, but Gin Flat (7,050 ft) sits at least 427 ft below the pass: it cannot tell whether the pass still holds snow.",
+     "stream": "sensor",
+     "refs": [
+      489946
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.3675,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 7477
+   }
+  },
+  "2026-08-01": {
+   "pass_slug": "badger-pass",
+   "eval_date": "2026-08-01",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 3.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      490070
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 38 cfs and dropping.",
+     "stream": "gauge",
+     "refs": []
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.096,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 7477
+   }
+  },
+  "2026-09-29": {
+   "pass_slug": "badger-pass",
+   "eval_date": "2026-09-29",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.02,
+   "confidence": "moderate",
+   "confidence_score": 3.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.1 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      585014
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 5 cfs and dropping.",
+     "stream": "gauge",
+     "refs": []
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.005,
+    "snowline_frac": 0.99575,
+    "creek_level": 0.013175,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 7477
+   }
+  }
+ },
+ "ledger": [],
+ "curves": {},
+ "forecast": {
+  "days": [
+   {
+    "date": "2026-09-29",
+    "high_f": 63,
+    "low_f": 45,
+    "snow_level_ft": 9100.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 21
+   },
+   {
+    "date": "2026-09-30",
+    "high_f": 68,
+    "low_f": 51,
+    "snow_level_ft": 11100.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 16
+   },
+   {
+    "date": "2026-10-01",
+    "high_f": 71,
+    "low_f": 54,
+    "snow_level_ft": 11700.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 15
+   },
+   {
+    "date": "2026-10-02",
+    "high_f": 70,
+    "low_f": 55,
+    "snow_level_ft": 11300.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 15
+   },
+   {
+    "date": "2026-10-03",
+    "high_f": 70,
+    "low_f": 55,
+    "snow_level_ft": 11500.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 14
+   },
+   {
+    "date": "2026-10-04",
+    "high_f": 67,
+    "low_f": 54,
+    "snow_level_ft": 11700.0,
+    "precip_chance": 4,
+    "snowfall_in": 0.0,
+    "thunder_chance": 4,
+    "gust_mph": 15
+   },
+   {
+    "date": "2026-10-05",
+    "high_f": 65,
+    "low_f": 55,
+    "snow_level_ft": 12000.0,
+    "precip_chance": 2,
+    "snowfall_in": 0.0,
+    "thunder_chance": 2,
+    "gust_mph": 12
+   }
+  ],
+  "facts": [
+   "No snow or storms in the forecast this week; highs near 68\u00b0F at pass elevation."
+  ],
+  "source": "https://forecast.weather.gov/MapClick.php?lat=37.6661&lon=-119.6541",
+  "grid_elevation_ft": 7254,
+  "issued_for": "2026-09-29"
+ },
+ "fire": {
+  "fire": {
+   "name": "Dome Fire",
+   "acres": 5259,
+   "percent_contained": 31,
+   "discovered": "2026-09-15",
+   "updated": "2026-09-29",
+   "distance_mi": 1.6,
+   "direction": "southeast",
+   "inside": false
+  },
+  "smoke": "light",
+  "issued_for": "2026-09-29",
+  "smoke_date": "2026-09-29"
+ },
+ "winter": {
+  "avalanche": null,
+  "fresh_snow": {
+   "as_of": "2026-09-29",
+   "stations_checked": 1,
+   "stations": [],
+   "forecast": null,
+   "facts": [
+    "No new snow measured at the 1 nearby station in the 72 hours to Sep 29."
+   ]
+  },
+  "issued_for": "2026-09-29",
+  "fetched_at": "2026-09-29T20:40:13+00:00"
+ },
+ "access": {
+  "trailheads": [
+   {
+    "name": "Dewey Point Ridge Trailhead",
+    "lat": 37.6723621,
+    "lon": -119.6561105,
+    "elevation_ft": 7369,
+    "distance_mi": 0.4,
+    "gain_ft": 108,
+    "parking": {}
+   },
+   {
+    "name": "Dewey Point Meadow Trailhead",
+    "lat": 37.6740161,
+    "lon": -119.6514486,
+    "elevation_ft": 7314,
+    "distance_mi": 0.6,
+    "gain_ft": 163,
+    "parking": {}
+   }
+  ],
+  "campgrounds": [
+   {
+    "name": "Bridalveil Creek Campground",
+    "lat": 37.663291,
+    "lon": -119.6212005,
+    "fee": true,
+    "website": "https://www.nps.gov/yose/planyourvisit/bvcamp.htm",
+    "reservation": "no",
+    "sites": 115,
+    "distance_mi": 1.8
+   },
+   {
+    "name": "Camp 4",
+    "lat": 37.7422539,
+    "lon": -119.6025451,
+    "website": "https://www.nps.gov/yose/planyourvisit/camp4.htm",
+    "sites": 35,
+    "distance_mi": 6.0
+   }
+  ]
+ },
+ "stations": {}
+}

@@ -1,0 +1,279 @@
+{
+ "pass": {
+  "slug": "glen",
+  "name": "Glen Pass",
+  "elevation_ft": 11926,
+  "lat": 36.7854,
+  "lon": -118.4166,
+  "creek": "Bubbs Creek / Woods Creek",
+  "aspect_note": "steep north-side switchbacks hold a snowfield deep into season",
+  "aliases": [
+   "glen",
+   "glen pass",
+   "glenn pass",
+   "the pass after rae lakes",
+   "pass after rae lakes"
+  ]
+ },
+ "dates": [
+  "2026-07-01",
+  "2026-07-15",
+  "2026-08-01",
+  "2026-09-29"
+ ],
+ "statuses": {
+  "2026-07-01": {
+   "pass_slug": "glen",
+   "eval_date": "2026-07-01",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "low",
+   "confidence_score": 0.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "State Lakes (10,400 ft) melted out on 2026-05-01; at a typical 40 ft a day that puts the snowline estimate near 12,800 ft, above the pass: likely melted out, though no sensor sees it directly.",
+     "stream": "sensor",
+     "refs": [
+      484381
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.0,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 11926
+   }
+  },
+  "2026-07-15": {
+   "pass_slug": "glen",
+   "eval_date": "2026-07-15",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "low",
+   "confidence_score": 0.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "State Lakes (10,400 ft) melted out on 2026-05-01; at a typical 40 ft a day that puts the snowline estimate near 13,400 ft, above the pass: likely melted out, though no sensor sees it directly.",
+     "stream": "sensor",
+     "refs": [
+      484395
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.0,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 11926
+   }
+  },
+  "2026-08-01": {
+   "pass_slug": "glen",
+   "eval_date": "2026-08-01",
+   "status": "not_recommended",
+   "status_label": "Deep snow or hazards",
+   "severity": 3.0,
+   "confidence": "low",
+   "confidence_score": 2.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 391.8 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      483584
+     ]
+    },
+    {
+     "text": "Snow sensors nearby have melted out, but Upper Tyndall Creek (11,500 ft), State Lakes (10,400 ft) sit at least 426 ft below the pass: they cannot tell whether the pass still holds snow.",
+     "stream": "sensor",
+     "refs": [
+      483702,
+      484409
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 1.0,
+    "snowline_frac": 0.15000000000000002,
+    "creek_level": 0.0,
+    "sky_fresh": false,
+    "status": "not_recommended",
+    "elevation_ft": 11926
+   }
+  },
+  "2026-09-29": {
+   "pass_slug": "glen",
+   "eval_date": "2026-09-29",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "low",
+   "confidence_score": 0.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "State Lakes (10,400 ft) melted out on 2026-05-01; at a typical 40 ft a day that puts the snowline estimate above the highest terrain: likely melted out, though no sensor sees it directly.",
+     "stream": "sensor",
+     "refs": [
+      584656
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.0,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 11926
+   }
+  }
+ },
+ "ledger": [],
+ "curves": {},
+ "forecast": {
+  "days": [
+   {
+    "date": "2026-09-29",
+    "high_f": 48,
+    "low_f": 27,
+    "snow_level_ft": 9300.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 31
+   },
+   {
+    "date": "2026-09-30",
+    "high_f": 56,
+    "low_f": 33,
+    "snow_level_ft": 9400.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 12
+   },
+   {
+    "date": "2026-10-01",
+    "high_f": 58,
+    "low_f": 37,
+    "snow_level_ft": 11400.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 10
+   },
+   {
+    "date": "2026-10-02",
+    "high_f": 58,
+    "low_f": 38,
+    "snow_level_ft": 11800.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 10
+   },
+   {
+    "date": "2026-10-03",
+    "high_f": 55,
+    "low_f": 38,
+    "snow_level_ft": 11600.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 12
+   },
+   {
+    "date": "2026-10-04",
+    "high_f": 53,
+    "low_f": 37,
+    "snow_level_ft": 11800.0,
+    "precip_chance": 7,
+    "snowfall_in": 0.0,
+    "thunder_chance": 4,
+    "gust_mph": 14
+   },
+   {
+    "date": "2026-10-05",
+    "high_f": 51,
+    "low_f": 35,
+    "snow_level_ft": 12000.0,
+    "precip_chance": 6,
+    "snowfall_in": 0.0,
+    "thunder_chance": 5,
+    "gust_mph": 10
+   }
+  ],
+  "facts": [
+   "No snow or storms in the forecast this week; highs near 54\u00b0F at pass elevation."
+  ],
+  "source": "https://forecast.weather.gov/MapClick.php?lat=36.7854&lon=-118.4166",
+  "grid_elevation_ft": 11565,
+  "issued_for": "2026-09-29"
+ },
+ "fire": null,
+ "winter": {
+  "avalanche": null,
+  "fresh_snow": {
+   "as_of": "2026-09-29",
+   "stations_checked": 2,
+   "stations": [],
+   "forecast": null,
+   "facts": [
+    "No new snow measured at the 2 nearby stations in the 72 hours to Sep 29."
+   ]
+  },
+  "issued_for": "2026-09-29",
+  "fetched_at": "2026-09-29T20:40:13+00:00"
+ },
+ "access": {
+  "trailheads": [
+   {
+    "name": "Onion Valley Trailhead",
+    "lat": 36.7724976,
+    "lon": -118.3411219,
+    "elevation_ft": 9202,
+    "distance_mi": 4.3,
+    "gain_ft": 2724,
+    "parking": {}
+   },
+   {
+    "name": "Baxter Pass Trailhead",
+    "lat": 36.8447387,
+    "lon": -118.2976323,
+    "elevation_ft": 6026,
+    "distance_mi": 7.8,
+    "gain_ft": 5900,
+    "parking": {}
+   }
+  ],
+  "campgrounds": [
+   {
+    "name": "Onion Valley Campground",
+    "lat": 36.7714827,
+    "lon": -118.3405073,
+    "website": "https://www.fs.usda.gov/recarea/inyo/recarea/?recid=20682",
+    "operator": "United States Forest Service",
+    "distance_mi": 4.3
+   },
+   {
+    "name": "Wheelbarrow Camp",
+    "lat": 36.7130362,
+    "lon": -118.3720025,
+    "backcountry": true,
+    "distance_mi": 5.6
+   }
+  ]
+ },
+ "stations": {}
+}
