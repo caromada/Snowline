@@ -2,7 +2,7 @@
 Washington, Oregon and California from OpenStreetMap.
 
 Only places within reach of a pass are kept, and trailheads that OSM gives
-no elevation get one from the USGS point-query service. The result is cached
+no elevation get one from the terrain tiles the map is drawn from. The result is cached
 to gazetteer/osm_access.json (committed), so the daily build never touches
 Overpass.
 
@@ -29,7 +29,8 @@ from gazetteer.access import (
     _within,
     parse_element,
 )
-from scripts.fetch_osm_passes import STATES, USER_AGENT, epqs_elevation_ft
+from ingest.terrain import elevation_ft
+from scripts.fetch_osm_passes import STATES, USER_AGENT
 
 log = logging.getLogger(__name__)
 
@@ -126,7 +127,7 @@ def main() -> None:
     log.info("filling %d trailhead elevations", len(missing))
     with ThreadPoolExecutor(max_workers=8) as pool:
         for th, ft in zip(
-            missing, pool.map(lambda t: epqs_elevation_ft(t["lat"], t["lon"]), missing), strict=True
+            missing, pool.map(lambda t: elevation_ft(t["lat"], t["lon"]), missing), strict=True
         ):
             if ft is not None:
                 th["elevation_ft"] = ft
