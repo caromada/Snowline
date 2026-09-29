@@ -15,4 +15,5 @@ data/sierra.sqlite
 data/raw/
 .claude/skills/
 data/forecast/
+data/winter/
 data/rebuild_pending.json
