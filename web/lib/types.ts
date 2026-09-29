@@ -191,6 +191,8 @@ export interface PassDetail {
   winter?: import("./winterTypes").Winter | null;
   /** What land managers published about this pass, quoted; see officialTypes.ts. */
   official?: import("./officialTypes").Official | null;
+  /** This melt season against the earlier seasons on file; see seasonTypes.ts. */
+  season?: import("./seasonTypes").Season | null;
   /** Shared station curves, by metric: provenance ids to load on demand. */
   stations?: Record<string, string[]>;
 }

@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
+import AccountMenu from "@/components/AccountMenu";
 import Campfire from "@/components/Campfire";
 import MapLegend from "@/components/MapLegend";
 import type { Position } from "@/components/MapView";
@@ -138,6 +139,12 @@ export default function Home() {
         onClose={() => setSelected(null)}
         onAccess={setAccess}
         onShow={onShow}
+      />
+      <AccountMenu
+        passes={index.passes}
+        latest={index.dates[index.dates.length - 1]}
+        selected={selected}
+        onSelect={onSelect}
       />
       <SafetyNotice />
     </main>

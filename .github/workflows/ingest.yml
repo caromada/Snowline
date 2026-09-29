@@ -17,7 +17,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      # The branch as it stands when the job starts, not as it stood when the
+      # run was queued: an earlier run may have pushed its export since.
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
@@ -116,11 +120,20 @@ jobs:
           fi
       - name: Fuse and export
         run: python pipeline.py
+      # The public scorecard. It reads the store the export just used and
+      # must never fail the run: on any error the page keeps yesterday's
+      # numbers and the date they were computed.
+      - name: Backtest the verdicts
+        run: python -m eval.verdict_backtest --store data/sierra.sqlite || echo "::warning::Verdict backtest failed; the scorecard keeps its last numbers"
       - name: Commit refreshed exports
         run: |
           git config user.name "sierra-pass-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add web/public/data data/extractions data/stations
+          git add web/public/data data/extractions data/stations eval/verdict_results.json
           git diff --cached --quiet || git commit -m "Daily ingest $(date -u +%F)"
-          git pull --rebase --quiet
-          git push
+          # The export is regenerated whole every run, so if someone pushed
+          # exported files in the meantime, this run's fresher copy wins.
+          # In a rebase "theirs" is the commit being replayed: this one.
+          git fetch --quiet origin "${GITHUB_REF_NAME}"
+          git rebase --quiet -X theirs "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

@@ -14,6 +14,10 @@ Two halves:
    adjustment, on a 3-day revisit cycle with deterministic cloud gaps.
    Every such row carries provenance "satellite:modeled" and the UI labels
    it modeled cover. Nothing pretends to be a real scene.
+
+   A reading the fusion engine would not believe (fusion.plausibility)
+   models no scene: cover derived from a sensor stuck on 390 in of water
+   would carry the fault into a second stream and let it vote twice.
 """
 
 from __future__ import annotations
@@ -23,6 +27,7 @@ import logging
 from typing import Any
 
 from fusion.fusion import BLIND_GAP_FT, MELTED_OUT_SWE_IN
+from fusion.plausibility import fault_at
 from gazetteer import load_passes
 from ingest.geo import point_in_ring
 from store import Store
@@ -76,6 +81,39 @@ def modeled_cover_frac(swe_in: float, pass_elev_ft: float, station_elev_ft: floa
     return round(min(1.0, max(0.0, effective / SWE_FULL_COVER_IN)), 3)
 
 
+def modeled_scenes(
+    p: dict[str, Any], swe_rows: list[dict[str, Any]]
+) -> list[tuple[str, float, dict[str, Any]]]:
+    """(date, cover fraction, source reading) for each usable revisit.
+
+    `swe_rows` is one station's SWE curve. Pure: no store, no clock.
+
+    Each reading is judged as it looked on its own day, so a scene exists
+    for exactly the days the engine would have believed the sensor. The
+    first days of a stuck run therefore still model scenes; the engine
+    drops those itself once the run gives the sensor away. Faulty days are
+    skipped without shifting the revisit cycle.
+    """
+    curve = {r["observed_date"]: r for r in swe_rows}
+    series = [curve[d] for d in sorted(curve)]
+    scenes: list[tuple[str, float, dict[str, Any]]] = []
+    for i, row in enumerate(series):
+        date = row["observed_date"]
+        if i % REVISIT_DAYS != 0:
+            continue
+        if _cloudy(p["slug"], date):
+            continue
+        if fault_at(series, i) is not None:
+            continue
+        elev = row["meta"].get("station_elevation_ft") or p["elevation_ft"]
+        if p["elevation_ft"] - elev > BLIND_GAP_FT and row["value"] < MELTED_OUT_SWE_IN:
+            # A melted-out station far below the pass cannot stand in for
+            # a scene of it; emitting 0% cover here would be a fabrication.
+            continue
+        scenes.append((date, modeled_cover_frac(row["value"], p["elevation_ft"], elev), row))
+    return scenes
+
+
 def ingest_modeled(store: Store, begin: str, end: str) -> int:
     """Demo observations on the revisit cycle, derived from sensor SWE.
 
@@ -105,20 +143,7 @@ def ingest_modeled(store: Store, begin: str, end: str) -> int:
                 break
         if not swe_rows:
             continue
-        curve = {r["observed_date"]: r for r in swe_rows}
-        dates = sorted(curve)
-        for i, date in enumerate(dates):
-            if i % REVISIT_DAYS != 0:
-                continue
-            if _cloudy(p["slug"], date):
-                continue
-            row = curve[date]
-            elev = row["meta"].get("station_elevation_ft") or p["elevation_ft"]
-            if p["elevation_ft"] - elev > BLIND_GAP_FT and row["value"] < MELTED_OUT_SWE_IN:
-                # A melted-out station far below the pass cannot stand in for
-                # a scene of it; emitting 0% cover here would be a fabrication.
-                continue
-            frac = modeled_cover_frac(row["value"], p["elevation_ft"], elev)
+        for date, frac, row in modeled_scenes(p, swe_rows):
             store.add_observation(
                 p["slug"], "satellite", "snow_cover_frac", date, frac, "frac",
                 "satellite:modeled", None,
