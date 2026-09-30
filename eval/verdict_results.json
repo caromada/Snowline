@@ -157,111 +157,111 @@
  },
  "by_confidence": {
   "low": {
-   "reports": 12,
+   "reports": 11,
    "no_verdict": 1,
-   "n": 11,
+   "n": 10,
    "exact": {
     "count": 6,
-    "n": 11,
+    "n": 10,
     "thin": false,
-    "rate": 0.5455,
-    "low": 0.2801,
-    "high": 0.7873
+    "rate": 0.6,
+    "low": 0.3127,
+    "high": 0.8318
    },
    "within_one": {
-    "count": 11,
-    "n": 11,
+    "count": 10,
+    "n": 10,
     "thin": false,
     "rate": 1.0,
-    "low": 0.7412,
+    "low": 0.7225,
     "high": 1.0
    },
    "off_by_one": {
-    "count": 5,
-    "n": 11,
+    "count": 4,
+    "n": 10,
     "thin": false,
-    "rate": 0.4545,
-    "low": 0.2127,
-    "high": 0.7199
+    "rate": 0.4,
+    "low": 0.1682,
+    "high": 0.6873
    },
    "off_by_more": {
     "count": 0,
-    "n": 11,
+    "n": 10,
     "thin": false,
     "rate": 0.0,
     "low": 0.0,
-    "high": 0.2588
+    "high": 0.2775
    },
    "engine_less": {
     "count": 3,
-    "n": 11,
+    "n": 10,
     "thin": false,
-    "rate": 0.2727,
-    "low": 0.0975,
-    "high": 0.5656
+    "rate": 0.3,
+    "low": 0.1078,
+    "high": 0.6032
    },
    "engine_more": {
-    "count": 2,
-    "n": 11,
+    "count": 1,
+    "n": 10,
     "thin": false,
-    "rate": 0.1818,
-    "low": 0.0514,
-    "high": 0.477
+    "rate": 0.1,
+    "low": 0.0179,
+    "high": 0.4042
    },
    "engine_less_by_more_than_one": 0,
    "engine_more_by_more_than_one": 0
   },
   "moderate": {
-   "reports": 28,
+   "reports": 29,
    "no_verdict": 0,
-   "n": 28,
+   "n": 29,
    "exact": {
     "count": 14,
-    "n": 28,
+    "n": 29,
     "thin": false,
-    "rate": 0.5,
-    "low": 0.3263,
-    "high": 0.6737
+    "rate": 0.4828,
+    "low": 0.3139,
+    "high": 0.6557
    },
    "within_one": {
-    "count": 26,
-    "n": 28,
+    "count": 27,
+    "n": 29,
     "thin": false,
-    "rate": 0.9286,
-    "low": 0.7735,
-    "high": 0.9802
+    "rate": 0.931,
+    "low": 0.7804,
+    "high": 0.9809
    },
    "off_by_one": {
-    "count": 12,
-    "n": 28,
+    "count": 13,
+    "n": 29,
     "thin": false,
-    "rate": 0.4286,
-    "low": 0.2651,
-    "high": 0.6093
+    "rate": 0.4483,
+    "low": 0.2841,
+    "high": 0.6245
    },
    "off_by_more": {
     "count": 2,
-    "n": 28,
+    "n": 29,
     "thin": false,
-    "rate": 0.0714,
-    "low": 0.0198,
-    "high": 0.2265
+    "rate": 0.069,
+    "low": 0.0191,
+    "high": 0.2196
    },
    "engine_less": {
     "count": 5,
-    "n": 28,
+    "n": 29,
     "thin": false,
-    "rate": 0.1786,
-    "low": 0.0788,
-    "high": 0.3559
+    "rate": 0.1724,
+    "low": 0.076,
+    "high": 0.3455
    },
    "engine_more": {
-    "count": 9,
-    "n": 28,
+    "count": 10,
+    "n": 29,
     "thin": false,
-    "rate": 0.3214,
-    "low": 0.1793,
-    "high": 0.5066
+    "rate": 0.3448,
+    "low": 0.1994,
+    "high": 0.5265
    },
    "engine_less_by_more_than_one": 0,
    "engine_more_by_more_than_one": 2
@@ -724,28 +724,28 @@
  "by_evidence": {
   "sensor_near_pass": {
    "yes": {
-    "reports": 4,
+    "reports": 6,
     "no_verdict": 0,
-    "n": 4,
+    "n": 6,
     "exact": {
      "count": 2,
-     "n": 4,
+     "n": 6,
      "thin": true,
      "rate": null,
      "low": null,
      "high": null
     },
     "within_one": {
-     "count": 3,
-     "n": 4,
+     "count": 5,
+     "n": 6,
      "thin": true,
      "rate": null,
      "low": null,
      "high": null
     },
     "off_by_one": {
-     "count": 1,
-     "n": 4,
+     "count": 3,
+     "n": 6,
      "thin": true,
      "rate": null,
      "low": null,
@@ -753,23 +753,23 @@
     },
     "off_by_more": {
      "count": 1,
-     "n": 4,
+     "n": 6,
      "thin": true,
      "rate": null,
      "low": null,
      "high": null
     },
     "engine_less": {
-     "count": 0,
-     "n": 4,
+     "count": 1,
+     "n": 6,
      "thin": true,
      "rate": null,
      "low": null,
      "high": null
     },
     "engine_more": {
-     "count": 2,
-     "n": 4,
+     "count": 3,
+     "n": 6,
      "thin": true,
      "rate": null,
      "low": null,
@@ -779,56 +779,56 @@
     "engine_more_by_more_than_one": 1
    },
    "no": {
-    "reports": 36,
+    "reports": 34,
     "no_verdict": 1,
-    "n": 35,
+    "n": 33,
     "exact": {
      "count": 18,
-     "n": 35,
+     "n": 33,
      "thin": false,
-     "rate": 0.5143,
-     "low": 0.3557,
-     "high": 0.6701
+     "rate": 0.5455,
+     "low": 0.3799,
+     "high": 0.7016
     },
     "within_one": {
-     "count": 34,
-     "n": 35,
+     "count": 32,
+     "n": 33,
      "thin": false,
-     "rate": 0.9714,
-     "low": 0.8547,
-     "high": 0.9949
+     "rate": 0.9697,
+     "low": 0.8468,
+     "high": 0.9946
     },
     "off_by_one": {
-     "count": 16,
-     "n": 35,
+     "count": 14,
+     "n": 33,
      "thin": false,
-     "rate": 0.4571,
-     "low": 0.3047,
-     "high": 0.6181
+     "rate": 0.4242,
+     "low": 0.2724,
+     "high": 0.5919
     },
     "off_by_more": {
      "count": 1,
-     "n": 35,
+     "n": 33,
      "thin": false,
-     "rate": 0.0286,
-     "low": 0.0051,
-     "high": 0.1453
+     "rate": 0.0303,
+     "low": 0.0054,
+     "high": 0.1532
     },
     "engine_less": {
-     "count": 8,
-     "n": 35,
+     "count": 7,
+     "n": 33,
      "thin": false,
-     "rate": 0.2286,
-     "low": 0.1207,
-     "high": 0.3902
+     "rate": 0.2121,
+     "low": 0.1068,
+     "high": 0.3775
     },
     "engine_more": {
-     "count": 9,
-     "n": 35,
+     "count": 8,
+     "n": 33,
      "thin": false,
-     "rate": 0.2571,
-     "low": 0.1416,
-     "high": 0.4207
+     "rate": 0.2424,
+     "low": 0.1283,
+     "high": 0.4102
     },
     "engine_less_by_more_than_one": 0,
     "engine_more_by_more_than_one": 1
@@ -836,111 +836,111 @@
   },
   "satellite": {
    "yes": {
-    "reports": 21,
+    "reports": 22,
     "no_verdict": 0,
-    "n": 21,
+    "n": 22,
     "exact": {
-     "count": 8,
-     "n": 21,
+     "count": 9,
+     "n": 22,
      "thin": false,
-     "rate": 0.381,
-     "low": 0.2075,
-     "high": 0.5912
+     "rate": 0.4091,
+     "low": 0.2326,
+     "high": 0.6127
     },
     "within_one": {
-     "count": 19,
-     "n": 21,
+     "count": 20,
+     "n": 22,
      "thin": false,
-     "rate": 0.9048,
-     "low": 0.7109,
-     "high": 0.9735
+     "rate": 0.9091,
+     "low": 0.7219,
+     "high": 0.9747
     },
     "off_by_one": {
      "count": 11,
-     "n": 21,
+     "n": 22,
      "thin": false,
-     "rate": 0.5238,
-     "low": 0.3237,
-     "high": 0.7166
+     "rate": 0.5,
+     "low": 0.3072,
+     "high": 0.6928
     },
     "off_by_more": {
      "count": 2,
-     "n": 21,
+     "n": 22,
      "thin": false,
-     "rate": 0.0952,
-     "low": 0.0265,
-     "high": 0.2891
+     "rate": 0.0909,
+     "low": 0.0253,
+     "high": 0.2781
     },
     "engine_less": {
-     "count": 4,
-     "n": 21,
+     "count": 3,
+     "n": 22,
      "thin": false,
-     "rate": 0.1905,
-     "low": 0.0767,
-     "high": 0.4
+     "rate": 0.1364,
+     "low": 0.0475,
+     "high": 0.3333
     },
     "engine_more": {
-     "count": 9,
-     "n": 21,
+     "count": 10,
+     "n": 22,
      "thin": false,
-     "rate": 0.4286,
-     "low": 0.2447,
-     "high": 0.6345
+     "rate": 0.4545,
+     "low": 0.2692,
+     "high": 0.6534
     },
     "engine_less_by_more_than_one": 0,
     "engine_more_by_more_than_one": 2
    },
    "no": {
-    "reports": 19,
+    "reports": 18,
     "no_verdict": 1,
-    "n": 18,
+    "n": 17,
     "exact": {
-     "count": 12,
-     "n": 18,
+     "count": 11,
+     "n": 17,
      "thin": false,
-     "rate": 0.6667,
-     "low": 0.4375,
-     "high": 0.8372
+     "rate": 0.6471,
+     "low": 0.413,
+     "high": 0.8269
     },
     "within_one": {
-     "count": 18,
-     "n": 18,
+     "count": 17,
+     "n": 17,
      "thin": false,
      "rate": 1.0,
-     "low": 0.8241,
+     "low": 0.8157,
      "high": 1.0
     },
     "off_by_one": {
      "count": 6,
-     "n": 18,
+     "n": 17,
      "thin": false,
-     "rate": 0.3333,
-     "low": 0.1628,
-     "high": 0.5625
+     "rate": 0.3529,
+     "low": 0.1731,
+     "high": 0.587
     },
     "off_by_more": {
      "count": 0,
-     "n": 18,
+     "n": 17,
      "thin": false,
      "rate": 0.0,
      "low": 0.0,
-     "high": 0.1759
+     "high": 0.1843
     },
     "engine_less": {
-     "count": 4,
-     "n": 18,
+     "count": 5,
+     "n": 17,
      "thin": false,
-     "rate": 0.2222,
-     "low": 0.09,
-     "high": 0.4521
+     "rate": 0.2941,
+     "low": 0.1328,
+     "high": 0.5313
     },
     "engine_more": {
-     "count": 2,
-     "n": 18,
+     "count": 1,
+     "n": 17,
      "thin": false,
-     "rate": 0.1111,
-     "low": 0.031,
-     "high": 0.328
+     "rate": 0.0588,
+     "low": 0.0105,
+     "high": 0.2698
     },
     "engine_less_by_more_than_one": 0,
     "engine_more_by_more_than_one": 0
@@ -1094,8 +1094,8 @@
   "by_evidence.other_reports.yes"
  ],
  "stalled_sensors": {
-  "reports": 1,
-  "exact": 1,
+  "reports": 2,
+  "exact": 2,
   "engine_more": 0,
   "engine_less": 0
  },
@@ -1301,7 +1301,7 @@
    "post_id": "p24",
    "pass_slug": "piute",
    "pass_name": "Piute Pass",
-   "elevation_ft": 11423,
+   "elevation_ft": 11417,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-05",
@@ -1350,7 +1350,7 @@
    "post_id": "p25",
    "pass_slug": "mather",
    "pass_name": "Mather Pass",
-   "elevation_ft": 12100,
+   "elevation_ft": 12082,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-06",
@@ -1371,9 +1371,10 @@
     "step": 3,
     "severity": 3.0,
     "confidence": "moderate",
-    "confidence_score": 3.0,
+    "confidence_score": 3.8,
     "streams": [
-     "sensor"
+     "sensor",
+     "satellite"
     ],
     "other_reports": 0,
     "crossing_override": false,
@@ -1381,11 +1382,13 @@
    },
    "evidence": {
     "sensor_near_pass": false,
-    "satellite": false,
+    "satellite": true,
     "other_reports": false
    },
    "diagnostics": {
-    "stalled_sensors": []
+    "stalled_sensors": [
+     "cdec:STL"
+    ]
    },
    "outcome": "exact",
    "direction": null,
@@ -1398,7 +1401,7 @@
    "post_id": "p27",
    "pass_slug": "pinchot",
    "pass_name": "Pinchot Pass",
-   "elevation_ft": 12130,
+   "elevation_ft": 12105,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-07",
@@ -1446,7 +1449,7 @@
    "post_id": "p26",
    "pass_slug": "mono",
    "pass_name": "Mono Pass",
-   "elevation_ft": 12060,
+   "elevation_ft": 12073,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-08",
@@ -1495,7 +1498,7 @@
    "post_id": "p28",
    "pass_slug": "duck",
    "pass_name": "Duck Pass",
-   "elevation_ft": 10797,
+   "elevation_ft": 10801,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-09",
@@ -1593,7 +1596,7 @@
    "post_id": "p38",
    "pass_slug": "sawmill",
    "pass_name": "Sawmill Pass",
-   "elevation_ft": 11347,
+   "elevation_ft": 11309,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-11",
@@ -1613,18 +1616,19 @@
     "status_label": "Deep snow or hazards",
     "step": 3,
     "severity": 3.0,
-    "confidence": "low",
-    "confidence_score": 2.0,
+    "confidence": "moderate",
+    "confidence_score": 2.8,
     "streams": [
-     "sensor"
+     "sensor",
+     "satellite"
     ],
     "other_reports": 0,
     "crossing_override": false,
     "conflicts": 0
    },
    "evidence": {
-    "sensor_near_pass": false,
-    "satellite": false,
+    "sensor_near_pass": true,
+    "satellite": true,
     "other_reports": false
    },
    "diagnostics": {
@@ -1809,7 +1813,7 @@
     "status": "not_recommended",
     "status_label": "Deep snow or hazards",
     "step": 3,
-    "severity": 2.58,
+    "severity": 2.59,
     "confidence": "moderate",
     "confidence_score": 3.0,
     "streams": [
@@ -1838,7 +1842,7 @@
    "post_id": "p06",
    "pass_slug": "piute",
    "pass_name": "Piute Pass",
-   "elevation_ft": 11423,
+   "elevation_ft": 11417,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-19",
@@ -1986,7 +1990,7 @@
    "post_id": "p37",
    "pass_slug": "donohue",
    "pass_name": "Donohue Pass",
-   "elevation_ft": 11056,
+   "elevation_ft": 11066,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-24",
@@ -2035,7 +2039,7 @@
    "post_id": "p08",
    "pass_slug": "shepherd",
    "pass_name": "Shepherd Pass",
-   "elevation_ft": 12050,
+   "elevation_ft": 12028,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-25",
@@ -2084,7 +2088,7 @@
    "post_id": "p09",
    "pass_slug": "mather",
    "pass_name": "Mather Pass",
-   "elevation_ft": 12100,
+   "elevation_ft": 12082,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-06-27",
@@ -2103,19 +2107,20 @@
     "status": "snow_caution",
     "status_label": "Patchy snow",
     "step": 1,
-    "severity": 0.64,
+    "severity": 0.75,
     "confidence": "moderate",
-    "confidence_score": 3.0,
+    "confidence_score": 2.5,
     "streams": [
-     "sensor"
+     "sensor",
+     "satellite"
     ],
     "other_reports": 0,
     "crossing_override": false,
-    "conflicts": 0
+    "conflicts": 1
    },
    "evidence": {
     "sensor_near_pass": false,
-    "satellite": false,
+    "satellite": true,
     "other_reports": false
    },
    "diagnostics": {
@@ -2200,7 +2205,7 @@
     "status": "not_recommended",
     "status_label": "Deep snow or hazards",
     "step": 3,
-    "severity": 2.87,
+    "severity": 2.88,
     "confidence": "moderate",
     "confidence_score": 3.5,
     "streams": [
@@ -2230,7 +2235,7 @@
    "post_id": "p12",
    "pass_slug": "mono",
    "pass_name": "Mono Pass",
-   "elevation_ft": 12060,
+   "elevation_ft": 12073,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-04",
@@ -2249,7 +2254,7 @@
     "status": "snow_caution",
     "status_label": "Patchy snow",
     "step": 1,
-    "severity": 1.0,
+    "severity": 0.99,
     "confidence": "moderate",
     "confidence_score": 3.5,
     "streams": [
@@ -2279,7 +2284,7 @@
    "post_id": "p13",
    "pass_slug": "taboose",
    "pass_name": "Taboose Pass",
-   "elevation_ft": 11417,
+   "elevation_ft": 11414,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-06",
@@ -2298,20 +2303,19 @@
     "status": "open",
     "status_label": "Likely snow-free",
     "step": 0,
-    "severity": 0.22,
+    "severity": 0.13,
     "confidence": "moderate",
-    "confidence_score": 2.8,
+    "confidence_score": 3.0,
     "streams": [
-     "sensor",
-     "satellite"
+     "sensor"
     ],
     "other_reports": 0,
     "crossing_override": false,
-    "conflicts": 1
+    "conflicts": 0
    },
    "evidence": {
     "sensor_near_pass": false,
-    "satellite": true,
+    "satellite": false,
     "other_reports": false
    },
    "diagnostics": {
@@ -2347,7 +2351,7 @@
     "status": "snow_caution",
     "status_label": "Patchy snow",
     "step": 1,
-    "severity": 1.21,
+    "severity": 1.23,
     "confidence": "low",
     "confidence_score": 0.8,
     "streams": [
@@ -2377,7 +2381,7 @@
    "post_id": "p39",
    "pass_slug": "taboose",
    "pass_name": "Taboose Pass",
-   "elevation_ft": 11417,
+   "elevation_ft": 11414,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-09",
@@ -2396,12 +2400,11 @@
     "status": "open",
     "status_label": "Likely snow-free",
     "step": 0,
-    "severity": 0.49,
+    "severity": 0.17,
     "confidence": "moderate",
-    "confidence_score": 4.5,
+    "confidence_score": 4.0,
     "streams": [
      "sensor",
-     "satellite",
      "reports"
     ],
     "other_reports": 1,
@@ -2410,7 +2413,7 @@
    },
    "evidence": {
     "sensor_near_pass": false,
-    "satellite": true,
+    "satellite": false,
     "other_reports": true
    },
    "diagnostics": {
@@ -2427,7 +2430,7 @@
    "post_id": "p15",
    "pass_slug": "duck",
    "pass_name": "Duck Pass",
-   "elevation_ft": 10797,
+   "elevation_ft": 10801,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-11",
@@ -2475,7 +2478,7 @@
    "post_id": "p16",
    "pass_slug": "donohue",
    "pass_name": "Donohue Pass",
-   "elevation_ft": 11056,
+   "elevation_ft": 11066,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-12",
@@ -2618,7 +2621,7 @@
    "post_id": "p17",
    "pass_slug": "baxter",
    "pass_name": "Baxter Pass",
-   "elevation_ft": 12290,
+   "elevation_ft": 12283,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-16",
@@ -2667,7 +2670,7 @@
    "post_id": "p19",
    "pass_slug": "sawmill",
    "pass_name": "Sawmill Pass",
-   "elevation_ft": 11347,
+   "elevation_ft": 11309,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-21",
@@ -2686,7 +2689,7 @@
     "status": "open",
     "status_label": "Likely snow-free",
     "step": 0,
-    "severity": 0.15,
+    "severity": 0.4,
     "confidence": "low",
     "confidence_score": 2.0,
     "streams": [
@@ -2697,7 +2700,7 @@
     "conflicts": 0
    },
    "evidence": {
-    "sensor_near_pass": false,
+    "sensor_near_pass": true,
     "satellite": false,
     "other_reports": false
    },
@@ -2763,7 +2766,7 @@
    "post_id": "p30",
    "pass_slug": "piute",
    "pass_name": "Piute Pass",
-   "elevation_ft": 11423,
+   "elevation_ft": 11417,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-26",
@@ -2811,7 +2814,7 @@
    "post_id": "p32",
    "pass_slug": "shepherd",
    "pass_name": "Shepherd Pass",
-   "elevation_ft": 12050,
+   "elevation_ft": 12028,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2023-07-28",
@@ -2830,7 +2833,7 @@
     "status": "open",
     "status_label": "Likely snow-free",
     "step": 0,
-    "severity": 0.37,
+    "severity": 0.36,
     "confidence": "moderate",
     "confidence_score": 3.5,
     "streams": [
@@ -3004,7 +3007,7 @@
    "post_id": "p40",
    "pass_slug": "duck",
    "pass_name": "Duck Pass",
-   "elevation_ft": 10797,
+   "elevation_ft": 10801,
    "state": "CA",
    "region": "Sierra Nevada",
    "date": "2026-08-24",

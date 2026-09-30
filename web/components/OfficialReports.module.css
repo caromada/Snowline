@@ -1,0 +1,88 @@
+/* Official reports section of the pass panel. Forest palette and sharp
+   corners throughout. The quoted words are set in the body serif so they
+   read as somebody's writing; everything around them is Snowline's and is
+   set in the mono and display faces. */
+
+.official {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, var(--granite) 16%, transparent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--sage);
+}
+
+.reports {
+  list-style: none;
+}
+
+.report {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--fern);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--granite) 5%, transparent);
+}
+
+.unit {
+  color: var(--granite);
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  margin-top: 3px;
+  color: var(--sage);
+  overflow-wrap: anywhere;
+}
+
+.words {
+  margin-top: 8px;
+  color: var(--granite);
+  /* The agency's line breaks are part of what it published. */
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  quotes: "\201C" "\201D";
+}
+
+.words::before {
+  content: open-quote;
+}
+
+.words::after {
+  content: close-quote;
+}
+
+.fine {
+  margin-top: 8px;
+  color: var(--sage);
+  font-size: 11px;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 7px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--granite);
+  border: 1px solid color-mix(in srgb, var(--granite) 45%, transparent);
+  border-radius: 0;
+  transition: background-color 120ms linear, color 120ms linear;
+}
+
+.link:hover {
+  color: var(--deep-pine);
+  background: var(--granite);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}

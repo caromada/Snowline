@@ -29,6 +29,7 @@ from config import DB_PATH, EXTRACTIONS_CACHE, WEB_DATA_DIR, demo_streams
 from extraction.extractor import post_hash
 from extraction.resolve import resolve_post
 from fusion import fuse
+from fusion.official import load_official
 from fusion.season import pass_season
 from fusion.winter import load_winter
 from gazetteer import load_passes
@@ -191,6 +192,7 @@ def export(store: Store | None = None) -> None:
     forecasts = _load_forecasts(today)
     fire = _load_fire(today)
     winter = load_winter(today)
+    official = load_official(today)
     access = load_access()
 
     # Sensor rows are stored once per station; passes join to them through
@@ -274,6 +276,7 @@ def export(store: Store | None = None) -> None:
             "forecast": forecasts.get(slug),
             "fire": fire.get(slug),
             "winter": winter.get(slug),
+            "official": official.get(slug),
             "season": pass_season(p, sensor_obs, date.fromisoformat(today)),
             "access": link_access(
                 p, access["trailheads"], access["campgrounds"], access["parking"]
