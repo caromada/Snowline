@@ -1,7 +1,7 @@
 [project]
 name = "sierra-pass-report"
 version = "0.1.0"
-description = "Fusion engine for Sierra Nevada pass conditions: sensors + satellite + LLM-read trip reports"
+description = "Snowline: West Coast mountain pass conditions from snow sensors and stream gauges, with forecasts, fire, road and avalanche reports alongside"
 requires-python = ">=3.12"
 dependencies = ["requests>=2.31", "urllib3>=2.3"]
 

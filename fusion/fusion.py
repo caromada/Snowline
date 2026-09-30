@@ -773,7 +773,7 @@ def _facts(
     if crossing["flow_cfs"] is not None:
         trend = f" and {crossing['flow_trend']}" if crossing["flow_trend"] else ""
         melt = (
-            " Strong afternoon melt pulse, cross early."
+            " Strong afternoon melt pulse: flow rises through the day."
             if crossing["active_melt"]
             else ""
         )

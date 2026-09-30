@@ -1,30 +1,30 @@
 [
   {
-    "date": "2026-09-28",
-    "title": "Ship the approved redesign: dark terrain hero on a light page"
+    "date": "2026-09-29",
+    "title": "Merge branch 'worktree-agent-ab40f2c427b601e8d'"
   },
   {
-    "date": "2026-09-28",
-    "title": "Size rail card titles to the card so long names never clip"
+    "date": "2026-09-29",
+    "title": "Merge branch 'worktree-agent-a8b69c4449924b0be'"
   },
   {
-    "date": "2026-09-28",
-    "title": "Rename to Snowline and redesign the marketing site"
+    "date": "2026-09-29",
+    "title": "Merge branch 'main' into worktree-agent-ab40f2c427b601e8d"
   },
   {
-    "date": "2026-09-28",
-    "title": "Add seven-day forecasts at every pass"
+    "date": "2026-09-29",
+    "title": "Use the shared sign-in in the planner and place its control clear of the account menu"
   },
   {
-    "date": "2026-09-28",
-    "title": "Add the marketing site and move the map to /map/"
+    "date": "2026-09-29",
+    "title": "Name no state in the road copy"
   },
   {
-    "date": "2026-09-28",
-    "title": "Describe conditions instead of giving instructions"
+    "date": "2026-09-29",
+    "title": "Merge branch 'worktree-agent-ae47c82a103be9c03'"
   },
   {
-    "date": "2026-09-28",
-    "title": "Never let a melted-out sensor below a pass vote clear"
+    "date": "2026-09-29",
+    "title": "Keep the creek reading when the snow is unknown"
   }
 ]

@@ -242,7 +242,7 @@ def test_first_timer_terror_scores_below_thru_hiker_terror() -> None:
 def test_active_melt_flag_from_diurnal_swing() -> None:
     result = fuse(PASS, DATE, [], [], gauge(500, "2023-06-14", swing=50), [report()])
     assert result["crossing"]["active_melt"] is True
-    assert any("cross early" in f["text"].lower() for f in result["facts"])
+    assert any("melt pulse" in f["text"].lower() for f in result["facts"])
 
 
 AASGARD = {"slug": "aasgard", "name": "Aasgard Pass", "elevation_ft": 7841, "creek": ""}
