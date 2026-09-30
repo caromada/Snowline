@@ -1,13 +1,14 @@
 "use client";
 
-import type { Session } from "@supabase/supabase-js";
-import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { backend, backendLive } from "@/lib/backend";
+import { type FormEvent, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { backendLive } from "@/lib/backend";
 import { pacificToday } from "@/lib/fire";
 import { buildPlan, datesLabel } from "@/lib/plan";
-import { loadDetails, MAX_TRIP_CHARS, openPlan, PLAN_ID, PlanError, planLink, planTrip, recentPlans } from "@/lib/planApi";
-import type { PlanPass, PlanReply, RecentPlan, TripPlan, UnderstoodTrip } from "@/lib/planTypes";
+import { loadDetails, openPlan, PLAN_ID, PlanError, planLink, planTrip, recentPlans } from "@/lib/planApi";
+import { MAX_TRIP_CHARS, type PlanPass, type PlanReply, type RecentPlan, type TripPlan, type UnderstoodTrip } from "@/lib/planTypes";
 import type { PassIndexEntry } from "@/lib/types";
+import { useSession } from "@/lib/useSession";
+import SignIn from "./SignIn";
 import TripPlanView from "./TripPlanView";
 import s from "./TripPlanner.module.css";
 
@@ -32,16 +33,7 @@ interface Shown {
   shared: boolean;
 }
 
-// Type a trip, get one page: every pass on it with its verdict and the
-// evidence behind it. The model only reads the text; code builds the page.
-export default function TripPlanner({
-  passes,
-  position,
-  selected,
-  onSelect,
-  onShow,
-  onTrip,
-}: {
+interface Props {
   passes: PassIndexEntry[];
   /** Where the visitor is, only if they used the map's locate control. */
   position: { lat: number; lon: number } | null;
@@ -49,11 +41,22 @@ export default function TripPlanner({
   onSelect: (slug: string) => void;
   onShow: (lat: number, lon: number) => void;
   onTrip: (trip: TripOnMap | null) => void;
-}) {
-  const [live, setLive] = useState(false);
+}
+
+const never = () => () => {};
+
+// Nothing here renders, and the backend client is never created, until the
+// preview switch or the build flag says the backend is live.
+export default function TripPlanner(props: Props) {
+  const live = useSyncExternalStore(never, backendLive, () => false);
+  return live ? <Planner {...props} /> : null;
+}
+
+// Type a trip, get one page: every pass on it with its verdict and the
+// evidence behind it. The model only reads the text; code builds the page.
+function Planner({ passes, position, selected, onSelect, onShow, onTrip }: Props) {
+  const { session, ready } = useSession();
   const [open, setOpen] = useState(false);
-  const [session, setSession] = useState<Session | null>(null);
-  const [ready, setReady] = useState(false);
   const [text, setText] = useState("");
   const [share, setShare] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -67,26 +70,14 @@ export default function TripPlanner({
   const boxRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    // Hydration-safe: the preview switch lives in the address and in storage.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setLive(backendLive());
     const want = new URLSearchParams(window.location.search).get("plan");
     if (want && PLAN_ID.test(want)) {
+      // A plan's link opens the planner; the address is only readable here.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLinked(want);
       setOpen(true);
     }
   }, []);
-
-  useEffect(() => {
-    if (!live) return;
-    const auth = backend().auth;
-    auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setReady(true);
-    });
-    const { data } = auth.onAuthStateChange((_event, next) => setSession(next));
-    return () => data.subscription.unsubscribe();
-  }, [live]);
 
   const nameCounts = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -206,28 +197,10 @@ export default function TripPlanner({
     }
   };
 
-  // Sign-in lives in the question box of a pass panel. This opens a pass and
-  // brings that box into view; it knows nothing else about how sign-in works.
-  const toSignIn = () => {
-    const slug = selected ?? passes.find((p) => p.tier === "featured")?.slug ?? passes[0]?.slug;
-    if (!slug) return;
-    onSelect(slug);
-    let tries = 0;
-    const seek = window.setInterval(() => {
-      const box = document.querySelector("section[aria-label='Ask about this pass']");
-      if (box || ++tries > 40) window.clearInterval(seek);
-      if (!box) return;
-      box.scrollIntoView({ block: "center" });
-      box.querySelector<HTMLInputElement>("input")?.focus({ preventScroll: true });
-    }, 100);
-  };
-
   const openPass = (pass: PlanPass) => {
     onSelect(pass.slug);
     onShow(pass.lat, pass.lon);
   };
-
-  if (!live) return null;
 
   const dates = shown ? datesLabel(shown.plan.trip, shown.plan.today) : null;
 
@@ -259,12 +232,9 @@ export default function TripPlanner({
           {!ready && <p className={`mono ${s.meta}`}>...</p>}
 
           {ready && !session && (
-            <p className={s.signin}>
-              <button className={s.signinLink} onClick={toSignIn}>
-                Sign in to plan a trip
-              </button>
-              <span className={`mono ${s.meta}`}> Sign-in is by email, in the question box on any pass.</span>
-            </p>
+            <div className={s.signin}>
+              <SignIn id="trip" prompt="Sign in to plan a trip." returnTo={selected} />
+            </div>
           )}
 
           {ready && session && !shown?.shared && (

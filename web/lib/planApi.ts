@@ -5,7 +5,6 @@ import { passFile } from "./paths";
 import type { PlanReply, RecentPlan, SharedPlan } from "./planTypes";
 import type { PassDetail } from "./types";
 
-export const MAX_TRIP_CHARS = 400;
 export const PLAN_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
 export class PlanError extends Error {

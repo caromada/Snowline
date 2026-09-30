@@ -20,9 +20,32 @@
   color: var(--alpenglow);
   background: var(--moss);
 }
-/* The past-conditions banner holds the top center; the control sits under it. */
+/* The past-conditions banner holds the top center and wraps to two lines on
+   a narrow window; the control sits under its tallest form. */
 :global(main):has(:global(.past-banner)) .control {
-  top: calc(64px + env(safe-area-inset-top, 0px));
+  top: calc(76px + env(safe-area-inset-top, 0px));
+}
+@media (min-width: 961px) {
+  /* With a pass open, the top row holds the brand (to 254 px), then this
+     control, then the account control at the pass panel's left edge (its
+     left side is 546 px from the window's right). The control centers in
+     the gap between them. */
+  :global(main):has(:global(.pass-panel.open)) .control {
+    left: calc((100% - 292px) / 2);
+  }
+}
+@media (min-width: 641px) and (max-width: 680px) {
+  /* Here the banner runs to three lines and ends at 88 px. */
+  :global(main):has(:global(.past-banner)) .control {
+    top: calc(96px + env(safe-area-inset-top, 0px));
+  }
+}
+@media (min-width: 641px) and (max-width: 960px) {
+  /* No gap is left between the brand and the panel; the control waits for
+     the panel to close, as the account control does. */
+  :global(main):has(:global(.pass-panel.open)) .control {
+    display: none;
+  }
 }
 
 .panel {
@@ -41,8 +64,13 @@
 }
 /* The banner stays whole above the panel while the map shows a past date. */
 :global(main):has(:global(.past-banner)) .panel {
-  top: calc(64px + env(safe-area-inset-top, 0px));
+  top: calc(76px + env(safe-area-inset-top, 0px));
   border-top: 1px solid color-mix(in srgb, var(--granite) 25%, transparent);
+}
+@media (min-width: 641px) and (max-width: 680px) {
+  :global(main):has(:global(.past-banner)) .panel {
+    top: calc(96px + env(safe-area-inset-top, 0px));
+  }
 }
 @keyframes slide {
   from {
@@ -91,12 +119,8 @@
 }
 
 .signin {
-  margin-top: 16px;
-}
-.signinLink {
-  color: var(--alpenglow);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  margin-top: 8px;
+  max-width: 420px;
 }
 
 .form {
@@ -468,11 +492,14 @@
 }
 
 @media (max-width: 640px) {
-  /* The brand and the search hold the top left of a phone. */
+  /* On a phone the brand holds the top left and the account control the top
+     right, so the planner's control takes the search row, at its right end. */
   .control {
+    top: calc(62px + env(safe-area-inset-top, 0px));
     left: auto;
     right: 16px;
     transform: none;
+    padding: 7px 12px;
   }
   .panel {
     /* Fixed, so the page's hidden bottom sheet cannot scroll it off screen. */
@@ -481,11 +508,23 @@
     border-right: none;
     padding: 16px 16px 40px;
   }
+  /* A phone's banner starts under the search row, which stays free. */
   :global(main):has(:global(.past-banner)) .control {
-    top: calc(150px + env(safe-area-inset-top, 0px));
+    top: calc(62px + env(safe-area-inset-top, 0px));
   }
   :global(main):has(:global(.past-banner)) .panel {
     top: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  /* The narrowest phones give the search row to the account control. */
+  .control {
+    top: calc(104px + env(safe-area-inset-top, 0px));
+  }
+  /* There the banner runs from 104 px to 234 px. */
+  :global(main):has(:global(.past-banner)) .control {
+    top: calc(244px + env(safe-area-inset-top, 0px));
   }
 }
 

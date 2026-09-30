@@ -13,16 +13,21 @@ export type Why =
   | { kind: "route"; route: string }
   | { kind: "place"; matched: string; place: string; place_kind: "trailhead" | "campground"; distance_mi: number };
 
-export type Activity =
-  | "hiking"
-  | "backpacking"
-  | "trail running"
-  | "climbing"
-  | "skiing"
-  | "snowshoeing"
-  | "cycling"
-  | "driving"
-  | "other";
+// The app cannot import the backend's modules, so it repeats these.
+// supabase/tests/trip-parity.test.ts holds the two copies together.
+export const MAX_TRIP_CHARS = 400;
+export const ACTIVITIES = [
+  "hiking",
+  "backpacking",
+  "trail running",
+  "climbing",
+  "skiing",
+  "snowshoeing",
+  "cycling",
+  "driving",
+  "other",
+] as const;
+export type Activity = (typeof ACTIVITIES)[number];
 
 export interface TripStop {
   slug: string;
