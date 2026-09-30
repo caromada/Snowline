@@ -36,6 +36,15 @@ export const INDEX_TTL_MS = 10 * 60_000;
 export const LEDGER_WINDOW_DAYS = 30;
 export const LEDGER_MAX_LINES = 12;
 
+/** Road reports per pass given to the model: restrictions first, then nearest. */
+export const ROAD_MAX_LINES = 4;
+
+/**
+ * Bumped whenever the evidence lines change shape, so an answer cached
+ * against the old numbering is never served against the new one.
+ */
+export const EVIDENCE_VERSION = "2";
+
 export const REPORTS_PER_DAY = 5;
 export const MAX_REPORT_CHARS = 1000;
 export const MAX_WATER_SOURCE_CHARS = 60;

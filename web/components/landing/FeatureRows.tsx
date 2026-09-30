@@ -8,7 +8,7 @@ const ROWS = [
   {
     sign: "The verdict",
     title: "Read the verdict, and where it came from.",
-    body: "One status and a confidence grade per pass. Every sentence links to the sensor curve, the satellite pass or the exact quote from someone who was just there. When the streams disagree, it says so.",
+    body: "One status and a confidence grade per pass. Every sentence leads to the sensor and gauge readings behind it, each with its date and its curve. When the nearest sensor sits too far below a pass to see it, the verdict says so.",
     shot: "/landing/app-phone.webp",
     alt: "Glen Pass in the app: status, confidence and evidence",
     href: `${MAP_PATH}?pass=glen`,

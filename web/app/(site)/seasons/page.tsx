@@ -15,22 +15,22 @@ const DETAIL: Record<string, { lede: string; items: [string, string][] }> = {
     lede: "The melt season. The question is simple: is there still snow on the pass, and how much?",
     items: [
       ["Snowline by pass", "Sensor readings plus a melt-out estimate for passes high above the nearest sensor."],
-      ["Traction and crossings", "What recent parties used, and how deep the fords ran."],
+      ["Water in the snowpack", "Inches of water held in the snow at the nearest sensors, and how fast it is melting."],
       ["The melt pulse", "Afternoon swings in creek flow show how fast the snow is coming off."],
     ],
   },
   Summer: {
     lede: "Fire season on the West Coast. The question becomes whether the route is burning, smoked in, or about to storm.",
     items: [
-      ["Fire perimeters", "Active fires near each pass from national interagency data, with a link to the closure."],
-      ["Smoke from above", "Satellite-mapped smoke over your route, by density."],
+      ["Fire perimeters", "The nearest active fire to each pass: its name, its size, how much is contained, and how far away it is."],
+      ["Smoke from above", "Smoke mapped from satellite over each pass, by density. Seen from above, it can sit higher than the pass."],
       ["Storms at elevation", "Thunderstorm odds at pass height, seven days out."],
     ],
   },
   Fall: {
     lede: "Shoulder season. The first storm can close a pass that was bare the week before.",
     items: [
-      ["First snow", "New snow at the sensors, read against each pass's elevation."],
+      ["First snow", "New snow measured at the sensors nearest each pass."],
       ["Weekend snow level", "Where rain turns to snow in the forecast, compared with the pass."],
       ["Road closures", "Highway passes like Tioga and Sonora close for the season."],
     ],
@@ -40,7 +40,7 @@ const DETAIL: Record<string, { lede: string; items: [string, string][] }> = {
     items: [
       ["Fresh snow", "24 and 72 hour new-snow totals from the nearest stations."],
       ["Avalanche danger", "The official rating from your avalanche center, word for word, with a link. Never ours."],
-      ["Chain controls", "Chain requirements on the highway passes you drive to get there."],
+      ["Chain controls", "Chain requirements on the highways near a pass, in the highway agency's own words."],
     ],
   },
 };

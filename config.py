@@ -17,6 +17,21 @@ EXTRACTIONS_CACHE = EXTRACTIONS_DIR / "cache.jsonl"
 DB_PATH = DATA_DIR / "sierra.sqlite"
 WEB_DATA_DIR = ROOT / "web" / "public" / "data"
 
+# Demo streams. The project began as a demo with two stand-ins for streams it
+# could not yet read: a corpus of trip reports written for the demo, and a
+# snow cover figure modeled from the nearest snow sensor. Neither observed a
+# pass, and the modeled cover is the sensor counted a second time, so they
+# stay out of every verdict, confidence score and ledger by default. Setting
+# SNOWLINE_DEMO_STREAMS=1 brings both back, for local demos and for running
+# the report and cover code paths end to end. Nothing public sets it.
+DEMO_STREAMS_ENV = "SNOWLINE_DEMO_STREAMS"
+
+
+def demo_streams() -> bool:
+    """Whether sample reports and modeled cover may feed the export."""
+    return os.environ.get(DEMO_STREAMS_ENV) == "1"
+
+
 # LLM configuration. Default model for in-app calls is Haiku; a single failed
 # structured-output call (after one retry) escalates to Sonnet and is logged.
 EXTRACTION_MODEL = "claude-haiku-4-5"

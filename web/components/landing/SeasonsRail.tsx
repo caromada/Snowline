@@ -15,25 +15,25 @@ export const SEASONS: Season[] = [
     name: "Spring",
     photo: photos.spring,
     live: true,
-    lines: ["Snowline and melt-out by pass", "Traction and crossing reports", "Creek flow and melt pulse"],
+    lines: ["Snowline and melt-out by pass", "Snow water at the nearest sensors", "Creek flow and melt pulse"],
   },
   {
     name: "Summer",
     photo: photos.summer,
-    live: false,
-    lines: ["Wildfire perimeters near your route", "Smoke from satellite", "Thunderstorm risk at elevation"],
+    live: true,
+    lines: ["Nearest active fire to each pass", "Smoke mapped from satellite", "Thunderstorm chance at pass elevation"],
   },
   {
     name: "Fall",
     photo: photos.fall,
     live: false,
-    lines: ["First snow at pass elevation", "Weekend snow level forecast", "Highway pass closures"],
+    lines: ["First snow at the nearest sensors", "Snow level in the seven-day forecast", "Highway pass closures"],
   },
   {
     name: "Winter",
     photo: photos.winter,
-    live: false,
-    lines: ["Fresh snow totals", "Official avalanche danger by zone", "Chain controls on highway passes"],
+    live: true,
+    lines: ["New snow at the nearest sensors", "Official avalanche rating by zone", "Chain controls on highway passes"],
   },
 ];
 
@@ -44,8 +44,8 @@ export default function SeasonsRail() {
         <Reveal className={s.seasonsHead}>
           <h2 className={`${s.display} ${s.h2}`}>Built for every season.</h2>
           <p className={s.body}>
-            The question changes with the calendar. The answer comes from the same place: the
-            sensors, the satellites and the people who were just there.
+            The question changes with the calendar. The answer comes from the same place: what
+            the instruments measured this morning and what the official sources report.
           </p>
         </Reveal>
         <div className={s.seasonRail}>

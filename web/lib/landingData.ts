@@ -15,6 +15,11 @@ export interface LandingData {
     snow_stations: number;
     stream_gauges: number;
     seasons: number;
+    /** Absent from a landing.json written before these were counted. */
+    trailheads?: number;
+    campgrounds?: number;
+    /** Fires on today's map; 0 when the fire file is missing or stale. */
+    fires?: number;
   };
   /** [lon, lat, featured, one status digit per date, slug, name, state] */
   passes: [number, number, 0 | 1, string, string, string, string][];
@@ -27,6 +32,8 @@ export interface LandingData {
     confidence: "high" | "moderate" | "low";
   }[];
   model: {
+    // Settings exist for cover and report streams too, but neither feeds a
+    // verdict today, so the site shows the sensor settings only.
     priors: Record<"sensor" | "satellite" | "report", number>;
     half_life_days: Record<"sensor" | "satellite" | "report", number>;
     max_age_days: Record<"sensor" | "satellite" | "report", number>;

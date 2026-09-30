@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 const PRINCIPLES = [
   {
     title: "Show the work",
-    body: "Every sentence on a pass traces back to the sensor reading, the satellite pass or the exact words of the person who was there. If you cannot check it, we should not say it.",
+    body: "Every sentence on a pass traces back to a reading you can open: which sensor or gauge, what it measured, and when. If you cannot check it, we should not say it.",
   },
   {
     title: "Say when we don't know",
-    body: "Confidence is graded on every pass. Stale evidence counts for less, disagreement costs confidence, and when a sensor cannot see a pass we say that instead of guessing.",
+    body: "Confidence is graded on every pass. An older reading lowers it, a reading past its window is dropped, and when a sensor cannot see a pass we say that instead of guessing.",
   },
   {
     title: "Describe, never decide",
@@ -27,7 +27,7 @@ const PRINCIPLES = [
   },
   {
     title: "Official means official",
-    body: "Avalanche danger, fire closures and road restrictions come from the agencies that issue them, word for word with a link. We never write our own.",
+    body: "Avalanche ratings and road restrictions come from the centers and agencies that issue them, word for word with a link. We never write our own.",
   },
 ];
 
@@ -36,7 +36,7 @@ export default function About() {
     <>
       <PageHero
         title="Why this exists"
-        lede="Because the answer to “can I get over the pass this weekend?” was scattered across six sites and a forum thread."
+        lede="Because the answer to “can I get over the pass this weekend?” was scattered across half a dozen sites."
         photo={photos.summer}
         position="50% 40%"
       />
@@ -47,14 +47,14 @@ export default function About() {
             <p className={s.body}>
               {brand.name} started with one backpacker&apos;s question every spring in the
               Eastern Sierra: is there still snow on the pass, and do I need an ice axe? The
-              answer lived in a snow sensor in a meadow, a stream gauge in the canyon, a satellite
-              pass two days old, and a forum post from someone whose idea of &ldquo;fine&rdquo; you
-              had to guess.
+              answer lived in a snow sensor in a meadow, a stream gauge in the canyon, a forecast
+              written for a town an hour away, and a road report on a site of its own.
             </p>
             <p className={s.body}>
-              So we built one place that reads all of it every morning, weighs it honestly, and
-              shows its work. It now covers {brand.region.replaceAll(" · ", ", ")}, and it gets
-              better with every report people share.
+              So we built one place that reads the instruments every morning, sets the official
+              sources beside them, and shows its work. It now covers{" "}
+              {brand.region.replaceAll(" · ", ", ")}. Trip reports come next: people will be
+              able to file one from the pass in the app, and each will be shown with its date.
             </p>
           </Reveal>
           <Reveal delay={0.1}>

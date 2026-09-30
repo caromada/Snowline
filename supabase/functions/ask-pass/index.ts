@@ -4,7 +4,13 @@ import Anthropic from "npm:@anthropic-ai/sdk@0.129.0";
 import { zodOutputFormat } from "npm:@anthropic-ai/sdk@0.129.0/helpers/zod";
 import { createClient } from "npm:@supabase/supabase-js@2.117.2";
 import { z } from "npm:zod@4.6.5";
-import { ESCALATION_MODEL, MAX_ANSWER_TOKENS, MAX_QUESTION_CHARS, MODEL } from "../_shared/config.ts";
+import {
+  ESCALATION_MODEL,
+  EVIDENCE_VERSION,
+  MAX_ANSWER_TOKENS,
+  MAX_QUESTION_CHARS,
+  MODEL,
+} from "../_shared/config.ts";
 import { CORS_HEADERS, json } from "../_shared/cors.ts";
 import {
   buildEvidence,
@@ -119,7 +125,14 @@ Deno.serve(async (req: Request): Promise<Response> => {
   if (!detail.statuses[date]) return json({ error: "There is no verdict for that date." }, 400);
 
   const evidence = buildEvidence(detail, date);
-  const key = await cacheKey([MODEL, slug, date, detail.dates[detail.dates.length - 1], normalizeQuestion(question)]);
+  const key = await cacheKey([
+    MODEL,
+    EVIDENCE_VERSION,
+    slug,
+    date,
+    detail.dates[detail.dates.length - 1],
+    normalizeQuestion(question),
+  ]);
   const { data: cached } = await supabase.from("answers_cache").select("answer").eq("key", key).maybeSingle();
   if (cached) return json({ ...(cached.answer as Answer), lines: evidence.lines, cached: true });
 

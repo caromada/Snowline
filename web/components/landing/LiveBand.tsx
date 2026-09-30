@@ -38,7 +38,9 @@ export default function LiveBand() {
   const ang = Math.PI * (1 - t);
   const cx = 60 + 48 * Math.cos(ang);
   const cy = 58 - 44 * Math.sin(ang);
-  const eval_ = data?.model.eval;
+  // Counted from the access snapshot. A landing.json written before these
+  // were counted has neither, and the item is left out rather than guessed.
+  const trailheads = data ? (data.counts.trailheads ?? null) : 1611;
 
   return (
     <div className={s.live} aria-label="Live status">
@@ -64,12 +66,14 @@ export default function LiveBand() {
             <dt className={s.liveLabel}>seasons of history</dt>
             <dd className={s.liveNum}>{data?.counts.seasons ?? 4}</dd>
           </div>
-          <div className={s.liveItem}>
-            <dt className={s.liveLabel}>report-reading accuracy</dt>
-            <dd className={s.liveNum}>
-              {eval_ ? `${Math.round(eval_.overall * 1000) / 10}%` : "87.5%"}
-            </dd>
-          </div>
+          {trailheads !== null && (
+            <div className={s.liveItem}>
+              <dt className={s.liveLabel}>trailheads mapped</dt>
+              <dd className={s.liveNum}>
+                <CountUp value={trailheads} />
+              </dd>
+            </div>
+          )}
         </dl>
         <svg className={s.liveArc} viewBox="0 0 120 64" aria-hidden="true">
           <path d="M12 58 A48 48 0 0 1 108 58" fill="none" stroke="currentColor" strokeDasharray="2 5" strokeWidth="1" />

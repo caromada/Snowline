@@ -69,8 +69,9 @@ export default function SafetyNotice() {
         </h2>
         <p style={{ color: "var(--granite)" }}>
           Mountain conditions change by the hour, and snow, ice, moving water, fire and
-          avalanches can kill. {brand.name} shows what sensors, satellites and recent parties saw,
-          and how sure it is. It can be late or wrong.
+          avalanches can kill. {brand.name} shows what snow sensors and stream gauges measured
+          and what official sources report, and how sure it is of its own reading. It can be
+          late or wrong.
         </p>
         <p style={{ color: "var(--granite)" }}>
           Check official sources for your route, carry the right gear, and make your own call.

@@ -114,7 +114,7 @@ function Entry({
               />
               {d.modeled === true && (
                 <p className="mono" style={{ color: "var(--sage)", marginTop: 6 }}>
-                  modeled from sensor SWE, not a real scene; see README
+                  worked out from a snow sensor reading, not seen by a satellite
                 </p>
               )}
             </>

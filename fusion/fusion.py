@@ -1,18 +1,24 @@
-"""Evidence fusion: four streams into one honest status per pass.
+"""Evidence fusion: every stream that saw the pass into one honest status.
 
 Pure logic, no I/O. The pipeline adapts store rows into plain dicts and
 this module turns them into a status, a confidence grade, explicit
 conflicts, and per-sentence facts that each point back at their evidence.
 
-The four streams disagree in structurally different ways:
-- sensors are precise but sit in flats, not on passes
-- satellite is spatially complete but temporally gappy and sees cover,
-  not condition
-- humans report condition exactly where it matters, noisily, with bias
-  (calibrated upstream per reporter register)
+Two streams feed it today:
+- sensors are precise but sit in flats, not on passes; when they have
+  melted out far below a pass they speak through a snowline estimate
 - gauges answer the crossing question and proxy melt intensity
 
-Disagreement is surfaced, never averaged away.
+Two more are read when they exist, and the pipeline passes none until they
+are real (see config.demo_streams):
+- snow cover from imagery is spatially complete but temporally gappy and
+  sees cover, not condition
+- humans report condition exactly where it matters, noisily, with bias
+  (calibrated upstream per reporter register)
+
+The confidence score adds up what is present, so with sensors and gauges
+alone it tops out at moderate: one kind of instrument, however fresh, is
+not corroboration. Disagreement is surfaced, never averaged away.
 """
 
 from __future__ import annotations
@@ -523,6 +529,9 @@ def fuse(
     present = {k: c for k, c in components.items() if c is not None}
 
     if not present:
+        # The creek can still be read when the snow cannot, so its facts stay
+        # and the sentence claims no more than that snow evidence is missing.
+        creek = _facts(pass_info, None, None, None, crossing)
         return {
             "pass_slug": pass_info["slug"],
             "eval_date": eval_date,
@@ -539,12 +548,17 @@ def fuse(
                 if blind
                 else [
                     {
-                        "text": "No recent evidence for this pass in any stream.",
+                        "text": (
+                            "No recent snow evidence for this pass."
+                            if creek
+                            else "No recent evidence for this pass in any stream."
+                        ),
                         "stream": "none",
                         "refs": [],
                     }
                 ]
             )
+            + creek
             + [_fault_fact(f) for f in faulty],
         }
 
@@ -560,12 +574,14 @@ def fuse(
         status = "snow_caution"
 
     # Conflicts: streams that disagree by more than a full severity level.
+    # Each name carries whether it reads as plural, so the sentence agrees.
     conflicts: list[str] = []
+    modeled = bool(satellite and satellite["modeled"])
     names = {
-        "sensor": "Sensors",
-        "snowline": "The snowline estimate",
-        "satellite": "Satellite",
-        "reports": "Parties on the ground",
+        "sensor": ("Sensors", True),
+        "snowline": ("The snowline estimate", False),
+        "satellite": ("Modeled snow cover" if modeled else "Satellite", False),
+        "reports": ("Parties on the ground", True),
     }
     keys = list(present)
     for i, a in enumerate(keys):
@@ -573,8 +589,10 @@ def fuse(
             diff = abs(present[a]["severity"] - present[b]["severity"])
             if diff > CONFLICT_THRESHOLD:
                 lo, hi = (a, b) if present[a]["severity"] < present[b]["severity"] else (b, a)
+                (hi_name, hi_plural), (lo_name, lo_plural) = names[hi], names[lo]
                 conflicts.append(
-                    f"{names[hi]} suggest more snow than {names[lo].lower()} do "
+                    f"{hi_name} {'suggest' if hi_plural else 'suggests'} more snow than "
+                    f"{lo_name.lower()} {'do' if lo_plural else 'does'} "
                     f"(severity {present[hi]['severity']:.1f} vs {present[lo]['severity']:.1f})."
                 )
 
@@ -718,17 +736,16 @@ def _facts(
         )
     if satellite:
         pct = round(satellite["cover_frac"] * 100)
-        modeled = " (modeled)" if satellite["modeled"] else ""
-        facts.append(
-            {
-                "text": (
-                    f"Satellite{modeled} shows {pct}% snow cover in the pass bowl, "
-                    f"last clear look {satellite['age_days']}d ago."
-                ),
-                "stream": "satellite",
-                "refs": satellite["refs"],
-            }
+        # Modeled cover is arithmetic on a sensor reading. It must never read
+        # as something a satellite saw.
+        text = (
+            f"Modeled snow cover is {pct}% in the pass bowl, worked out from a snow "
+            f"sensor reading {satellite['age_days']}d ago; no satellite saw the pass."
+            if satellite["modeled"]
+            else f"Satellite shows {pct}% snow cover in the pass bowl, "
+            f"last clear look {satellite['age_days']}d ago."
         )
+        facts.append({"text": text, "stream": "satellite", "refs": satellite["refs"]})
     if human:
         n = human["n_reports"]
         parties = "party" if n == 1 else "parties"

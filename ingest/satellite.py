@@ -1,22 +1,21 @@
-"""Satellite fractional snow cover over pass polygons.
+"""Fractional snow cover over pass polygons.
 
 Two halves:
 
 1. The real sampling logic (`sample_snow_cover`): given per-pixel NDSI and
    cloud flags for points falling in a pass polygon, produce a fractional
-   snow cover observation, or nothing when cloud cover eats the scene. This
-   is the part that runs against VIIRS/MODIS or Sentinel-2 NDSI once an
-   Earthdata token is configured, and it is unit tested.
+   snow cover observation, or nothing when cloud cover eats the scene. It
+   is unit tested and waits on an imagery source; nothing feeds it yet.
 
-2. The modeled demo generator (`ingest_modeled`): NSIDC needs authenticated
-   downloads this public demo cannot assume, so demo satellite observations
-   are derived from the nearest snow sensor's SWE curve plus an elevation
-   adjustment, on a 3-day revisit cycle with deterministic cloud gaps.
-   Every such row carries provenance "satellite:modeled" and the UI labels
-   it modeled cover. Nothing pretends to be a real scene.
+2. The modeled demo generator (`ingest_modeled`): cover derived from the
+   nearest snow sensor's SWE curve plus an elevation adjustment, on a 3-day
+   cycle with invented cloud gaps. It is not satellite data. It is the
+   sensor counted a second time, so it runs only when the demo switch is
+   on (see config.demo_streams), and every row it writes carries
+   provenance "satellite:modeled" so the pipeline can tell it apart.
 
    A reading the fusion engine would not believe (fusion.plausibility)
-   models no scene: cover derived from a sensor stuck on 390 in of water
+   models no cover: cover derived from a sensor stuck on 390 in of water
    would carry the fault into a second stream and let it vote twice.
 """
 
