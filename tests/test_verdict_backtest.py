@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any
 
 import pytest
@@ -9,6 +10,7 @@ from eval.verdict_backtest import (
     confidence_finding,
     held_out,
     is_demonstration_post,
+    main,
     observed_step,
     rate_cell,
     report_date,
@@ -537,3 +539,18 @@ def test_confidence_with_too_few_reports_to_tell() -> None:
     ]
     finding = confidence_finding(summarize(rows)["by_confidence"])
     assert finding["verdict"] == "too_thin"
+
+
+def test_backtest_grades_nothing_without_real_reports(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    from store import Store
+
+    store_path = tmp_path / "empty.sqlite"
+    Store(store_path).close()
+    results = tmp_path / "results.json"
+    web = tmp_path / "accuracy.json"
+    monkeypatch.delenv("SNOWLINE_DEMO_STREAMS", raising=False)
+    main(["--store", str(store_path), "--results", str(results), "--web", str(web)])
+    assert "nothing to grade" in capsys.readouterr().out
+    assert not results.exists() and not web.exists()

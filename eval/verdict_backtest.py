@@ -661,15 +661,16 @@ def gather_rows(store_path: Path) -> tuple[list[dict[str, Any]], int]:
     The evidence gathered per pass must stay the same as in pipeline.export,
     or the backtest grades an engine nobody is running.
     """
-    from config import EXTRACTIONS_CACHE
+    from config import EXTRACTIONS_CACHE, demo_streams
     from gazetteer import load_passes
     from ingest import cdec, snotel, usgs
-    from pipeline import _reports_by_pass
+    from pipeline import _report_posts, _reports_by_pass
     from store import Store
 
     store = Store(store_path)
     store.load_extractions(EXTRACTIONS_CACHE)
-    reports_by_pass = _reports_by_pass(store)
+    # The same rule as the export: sample posts grade nothing unless asked.
+    reports_by_pass = _reports_by_pass(store, _report_posts(demo_streams()))
     links = {
         "cdec": cdec.pass_links(store),
         "snotel": snotel.pass_links(store),
@@ -716,6 +717,10 @@ def main(argv: list[str] | None = None) -> None:
         raise SystemExit(f"no store at {args.store}")
 
     rows, reports_total = gather_rows(args.store)
+    if reports_total == 0:
+        # Nothing to grade against; the last numbers stand until real reports exist.
+        print("Verdict backtest: no real trip reports on file yet; nothing to grade.")
+        return
     results = build_results(rows, reports_total, datetime.now(UTC).date().isoformat())
     args.results.write_text(json.dumps(results, indent=1) + "\n")
     args.web.parent.mkdir(parents=True, exist_ok=True)
