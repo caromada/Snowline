@@ -1,0 +1,276 @@
+{
+ "pass": {
+  "slug": "kearsarge",
+  "name": "Kearsarge Pass",
+  "elevation_ft": 11709,
+  "lat": 36.7728,
+  "lon": -118.3736,
+  "creek": "Independence Creek / Bubbs Creek",
+  "aspect_note": "north side holds snow late; east approach from Onion Valley",
+  "aliases": [
+   "kearsarge",
+   "kearsage",
+   "kersarge",
+   "kearsarge pass",
+   "onion valley pass"
+  ]
+ },
+ "dates": [
+  "2026-07-01",
+  "2026-07-15",
+  "2026-08-01",
+  "2026-09-29"
+ ],
+ "statuses": {
+  "2026-07-01": {
+   "pass_slug": "kearsarge",
+   "eval_date": "2026-07-01",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.12,
+   "confidence": "low",
+   "confidence_score": 2.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.6 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      483674,
+      483847
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.03,
+    "snowline_frac": 0.9745,
+    "creek_level": 0.0,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 11709
+   }
+  },
+  "2026-07-15": {
+   "pass_slug": "kearsarge",
+   "eval_date": "2026-07-15",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.14,
+   "confidence": "low",
+   "confidence_score": 2.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.7 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      483688,
+      483861
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.034999999999999996,
+    "snowline_frac": 0.9702500000000001,
+    "creek_level": 0.0,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 11709
+   }
+  },
+  "2026-08-01": {
+   "pass_slug": "kearsarge",
+   "eval_date": "2026-08-01",
+   "status": "not_recommended",
+   "status_label": "Deep snow or hazards",
+   "severity": 3.0,
+   "confidence": "low",
+   "confidence_score": 2.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 172.1 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      483584,
+      483702,
+      483878
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 1.0,
+    "snowline_frac": 0.15000000000000002,
+    "creek_level": 0.0,
+    "sky_fresh": false,
+    "status": "not_recommended",
+    "elevation_ft": 11709
+   }
+  },
+  "2026-09-29": {
+   "pass_slug": "kearsarge",
+   "eval_date": "2026-09-29",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.08,
+   "confidence": "low",
+   "confidence_score": 2.0,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.4 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      584634,
+      584645
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.02,
+    "snowline_frac": 0.983,
+    "creek_level": 0.0,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 11709
+   }
+  }
+ },
+ "ledger": [],
+ "curves": {},
+ "forecast": {
+  "days": [
+   {
+    "date": "2026-09-29",
+    "high_f": 48,
+    "low_f": 27,
+    "snow_level_ft": 9300.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 33
+   },
+   {
+    "date": "2026-09-30",
+    "high_f": 56,
+    "low_f": 32,
+    "snow_level_ft": 9300.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 14
+   },
+   {
+    "date": "2026-10-01",
+    "high_f": 58,
+    "low_f": 36,
+    "snow_level_ft": 11400.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 10
+   },
+   {
+    "date": "2026-10-02",
+    "high_f": 58,
+    "low_f": 37,
+    "snow_level_ft": 11800.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 10
+   },
+   {
+    "date": "2026-10-03",
+    "high_f": 56,
+    "low_f": 37,
+    "snow_level_ft": 11600.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 12
+   },
+   {
+    "date": "2026-10-04",
+    "high_f": 54,
+    "low_f": 36,
+    "snow_level_ft": 11800.0,
+    "precip_chance": 6,
+    "snowfall_in": 0.0,
+    "thunder_chance": 4,
+    "gust_mph": 14
+   },
+   {
+    "date": "2026-10-05",
+    "high_f": 52,
+    "low_f": 35,
+    "snow_level_ft": 12000.0,
+    "precip_chance": 6,
+    "snowfall_in": 0.0,
+    "thunder_chance": 5,
+    "gust_mph": 12
+   }
+  ],
+  "facts": [
+   "No snow or storms in the forecast this week; highs near 55\u00b0F at pass elevation."
+  ],
+  "source": "https://forecast.weather.gov/MapClick.php?lat=36.7728&lon=-118.3736",
+  "grid_elevation_ft": 11240,
+  "issued_for": "2026-09-29"
+ },
+ "fire": null,
+ "winter": {
+  "avalanche": null,
+  "fresh_snow": {
+   "as_of": "2026-09-29",
+   "stations_checked": 2,
+   "stations": [],
+   "forecast": null,
+   "facts": [
+    "No new snow measured at the 2 nearby stations in the 72 hours to Sep 29."
+   ]
+  },
+  "issued_for": "2026-09-29",
+  "fetched_at": "2026-09-29T20:40:13+00:00"
+ },
+ "access": {
+  "trailheads": [
+   {
+    "name": "Onion Valley Trailhead",
+    "lat": 36.7724976,
+    "lon": -118.3411219,
+    "elevation_ft": 9202,
+    "distance_mi": 1.8,
+    "gain_ft": 2507,
+    "parking": {}
+   },
+   {
+    "name": "Shepherd Pass Trailhead",
+    "lat": 36.7269932,
+    "lon": -118.2789661,
+    "elevation_ft": 6318,
+    "distance_mi": 6.1,
+    "gain_ft": 5391,
+    "parking": {}
+   }
+  ],
+  "campgrounds": [
+   {
+    "name": "Onion Valley Campground",
+    "lat": 36.7714827,
+    "lon": -118.3405073,
+    "website": "https://www.fs.usda.gov/recarea/inyo/recarea/?recid=20682",
+    "operator": "United States Forest Service",
+    "distance_mi": 1.8
+   },
+   {
+    "name": "Wheelbarrow Camp",
+    "lat": 36.7130362,
+    "lon": -118.3720025,
+    "backcountry": true,
+    "distance_mi": 4.1
+   }
+  ]
+ },
+ "stations": {}
+}

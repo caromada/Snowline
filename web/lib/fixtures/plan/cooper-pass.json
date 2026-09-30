@@ -1,0 +1,358 @@
+{
+ "pass": {
+  "slug": "cooper-pass",
+  "name": "Cooper Pass",
+  "elevation_ft": 3307,
+  "lat": 47.431488,
+  "lon": -121.206846,
+  "creek": "",
+  "aspect_note": "",
+  "aliases": [
+   "cooper pass",
+   "cooper"
+  ]
+ },
+ "dates": [
+  "2026-07-01",
+  "2026-07-15",
+  "2026-08-01",
+  "2026-09-29"
+ ],
+ "statuses": {
+  "2026-07-01": {
+   "pass_slug": "cooper-pass",
+   "eval_date": "2026-07-01",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 4.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      463761,
+      415156,
+      420582
+     ]
+    },
+    {
+     "text": "Satellite (modeled) shows 0% snow cover in the pass bowl, last clear look 1d ago.",
+     "stream": "satellite",
+     "refs": [
+      611382
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 84 cfs and rising.",
+     "stream": "gauge",
+     "refs": []
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.2095,
+    "sky_fresh": true,
+    "status": "open",
+    "elevation_ft": 3307
+   }
+  },
+  "2026-07-15": {
+   "pass_slug": "cooper-pass",
+   "eval_date": "2026-07-15",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 4.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      463775,
+      415170,
+      420596
+     ]
+    },
+    {
+     "text": "Satellite (modeled) shows 0% snow cover in the pass bowl, last clear look 0d ago.",
+     "stream": "satellite",
+     "refs": [
+      611387
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 45 cfs and rising.",
+     "stream": "gauge",
+     "refs": []
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.113,
+    "sky_fresh": true,
+    "status": "open",
+    "elevation_ft": 3307
+   }
+  },
+  "2026-08-01": {
+   "pass_slug": "cooper-pass",
+   "eval_date": "2026-08-01",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 3.8,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      463792,
+      415187,
+      420613
+     ]
+    },
+    {
+     "text": "Satellite (modeled) shows 0% snow cover in the pass bowl, last clear look 5d ago.",
+     "stream": "satellite",
+     "refs": [
+      611389
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 34 cfs and rising.",
+     "stream": "gauge",
+     "refs": []
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.08425,
+    "sky_fresh": false,
+    "status": "open",
+    "elevation_ft": 3307
+   }
+  },
+  "2026-09-29": {
+   "pass_slug": "cooper-pass",
+   "eval_date": "2026-09-29",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.01,
+   "confidence": "moderate",
+   "confidence_score": 4.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (1d old).",
+     "stream": "sensor",
+     "refs": [
+      583538,
+      580877,
+      581177
+     ]
+    },
+    {
+     "text": "Satellite (modeled) shows 0% snow cover in the pass bowl, last clear look 1d ago.",
+     "stream": "satellite",
+     "refs": [
+      611402
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 29 cfs and rising. Strong afternoon melt pulse, cross early.",
+     "stream": "gauge",
+     "refs": []
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.005,
+    "snowline_frac": 0.99575,
+    "creek_level": 0.07325,
+    "sky_fresh": true,
+    "status": "open",
+    "elevation_ft": 3307
+   }
+  }
+ },
+ "ledger": [],
+ "curves": {},
+ "forecast": {
+  "days": [
+   {
+    "date": "2026-09-29",
+    "high_f": 56,
+    "low_f": 43,
+    "snow_level_ft": 8800.0,
+    "precip_chance": 99,
+    "snowfall_in": 0.0,
+    "thunder_chance": 3,
+    "gust_mph": 17
+   },
+   {
+    "date": "2026-09-30",
+    "high_f": 60,
+    "low_f": 37,
+    "snow_level_ft": 5500.0,
+    "precip_chance": 24,
+    "snowfall_in": 0.0,
+    "thunder_chance": 3,
+    "gust_mph": 14
+   },
+   {
+    "date": "2026-10-01",
+    "high_f": 65,
+    "low_f": 40,
+    "snow_level_ft": 8400.0,
+    "precip_chance": 7,
+    "snowfall_in": 0.0,
+    "thunder_chance": 1,
+    "gust_mph": 6
+   },
+   {
+    "date": "2026-10-02",
+    "high_f": 68,
+    "low_f": 43,
+    "snow_level_ft": 8600.0,
+    "precip_chance": 7,
+    "snowfall_in": 0.0,
+    "thunder_chance": 1,
+    "gust_mph": 7
+   },
+   {
+    "date": "2026-10-03",
+    "high_f": 72,
+    "low_f": 42,
+    "snow_level_ft": 8500.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 7
+   },
+   {
+    "date": "2026-10-04",
+    "high_f": 75,
+    "low_f": 43,
+    "snow_level_ft": 9300.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 6
+   },
+   {
+    "date": "2026-10-05",
+    "high_f": 69,
+    "low_f": 47,
+    "snow_level_ft": 8700.0,
+    "precip_chance": 12,
+    "snowfall_in": 0.0,
+    "thunder_chance": 3,
+    "gust_mph": 8
+   }
+  ],
+  "facts": [
+   "No snow or storms in the forecast this week; highs near 66\u00b0F at pass elevation."
+  ],
+  "source": "https://forecast.weather.gov/MapClick.php?lat=47.4315&lon=-121.2068",
+  "grid_elevation_ft": 2854,
+  "issued_for": "2026-09-29"
+ },
+ "fire": {
+  "fire": {
+   "name": "Three Queens Fire",
+   "acres": 9575,
+   "percent_contained": 33,
+   "discovered": "2026-07-15",
+   "updated": "2026-09-28",
+   "distance_mi": 0.2,
+   "direction": "south",
+   "inside": false
+  },
+  "issued_for": "2026-09-29",
+  "smoke_date": "2026-09-29"
+ },
+ "winter": {
+  "avalanche": {
+   "zone": "East Slopes Central",
+   "center": "Northwest Avalanche Center",
+   "center_link": "https://www.nwac.us/",
+   "link": "https://nwac.us/forecasts/avalanche/east-slopes-central",
+   "level": null,
+   "rating": "No rating",
+   "travel_advice": "Watch for signs of unstable snow such as recent avalanches, cracking in the snow, and audible collapsing. Avoid traveling on or under similar slopes.",
+   "valid_from": "2026-09-15T14:35:00",
+   "valid_until": "2026-11-21T02:30:00",
+   "valid_until_utc": "2026-11-21T10:30:00+00:00",
+   "timezone": "America/Los_Angeles",
+   "off_season": true,
+   "warning": null
+  },
+  "fresh_snow": {
+   "as_of": "2026-09-28",
+   "stations_checked": 2,
+   "stations": [],
+   "forecast": null,
+   "facts": [
+    "No new snow measured at the 2 nearby stations in the 72 hours to Sep 28."
+   ]
+  },
+  "issued_for": "2026-09-29",
+  "fetched_at": "2026-09-29T20:40:13+00:00"
+ },
+ "access": {
+  "trailheads": [
+   {
+    "name": "Trailhead",
+    "lat": 47.4341573,
+    "lon": -121.186917,
+    "elevation_ft": 2819,
+    "distance_mi": 0.9,
+    "gain_ft": 488,
+    "parking": {}
+   },
+   {
+    "name": "Rachel Lake Trailhead",
+    "lat": 47.4008046,
+    "lon": -121.2836191,
+    "website": "https://www.fs.usda.gov/recarea/okawen/recarea/?recid=57749",
+    "operator": "US Forest Service",
+    "elevation_ft": 2777,
+    "distance_mi": 4.2,
+    "gain_ft": 530,
+    "parking": {}
+   }
+  ],
+  "campgrounds": [
+   {
+    "name": "Owhi Campground",
+    "lat": 47.4249275,
+    "lon": -121.1706541,
+    "fee": true,
+    "website": "https://www.fs.usda.gov/r06/okanogan-wenatchee/recreation/owhi-campground",
+    "operator": "U.S. Forest Service",
+    "reservation": "no",
+    "sites": 22,
+    "tents": true,
+    "distance_mi": 1.8
+   },
+   {
+    "name": "Pete Lake Backpacking Site",
+    "lat": 47.4775124,
+    "lon": -121.2348528,
+    "tents": true,
+    "backcountry": true,
+    "distance_mi": 3.4
+   }
+  ]
+ },
+ "stations": {}
+}

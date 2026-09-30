@@ -164,8 +164,80 @@ report's id, not the person's.
 
 Reports do not feed the verdict.
 
+## Trip planner
+
+Someone types a trip and gets one page: every pass on it with its verdict
+and evidence. The language model does one thing, which is to choose among
+passes that code found in the text and to resolve the dates. Code builds
+the page from the exported pass files, so the model writes none of it. The
+pieces, in the order to deploy them:
+
+1. The tables (`supabase/migrations/20261002000000_trip_plans.sql`):
+   `trip_plans`, which a person reads and removes their own rows from and
+   which keeps their newest 50; `trip_cache`, written by the backend alone;
+   a `plans` count on the usage ledger; and `record_plan`.
+
+   ```bash
+   supabase db push
+   ```
+
+2. The function. It needs no new secrets: it uses the same
+   `ANTHROPIC_API_KEY`, `SITE_URL` and `LLM_BUDGET_USD` as the question box,
+   and spends from the same daily budget.
+
+   ```bash
+   supabase functions deploy plan-trip
+   ```
+
+3. Push the site. It carries `web/public/data/places.json`, which the
+   function reads from `SITE_URL` beside `passes.json`, and `routes.json`
+   when that file exists. The function works without either; it then places
+   only trips that name their passes. The planner shows wherever the
+   question box shows: behind `?preview=ask` until
+   `NEXT_PUBLIC_BACKEND_LIVE=1` is set.
+
+The database comes first because the function writes to it; the function
+comes before the site because the site calls it.
+
+`places.json` lists named trailheads and campgrounds with the passes near
+each. It depends only on the gazetteer and the access snapshot, so it is
+rebuilt when either changes, not daily:
+
+```bash
+python -m scripts.build_trip_places
+```
+
+| Plan | Trip plans a day (UTC) |
+|---|---|
+| Free | 2 |
+| Plus | 30 |
+
+| Limit | Value | Held by |
+|---|---|---|
+| The typed text | 400 characters | the form, the function, a check constraint |
+| Passes the model is shown | 40 | the function |
+| Passes on one plan | 20 | the function |
+| Plans kept per person | 50, oldest dropped | a database trigger |
+| Model spend a day | `LLM_BUDGET_USD`, shared with questions | the function |
+
+An identical request on the same day against the same data is answered
+from the cache: it costs nothing and does not count against the day. A text
+that names no pass, route, trailhead or campground never reaches the model,
+and does not count either.
+
+A plan's link carries its id and nothing else. Anyone signed in who holds
+the link can open it and sees the passes and dates; the text that was typed
+goes back only to the person who typed it. This path goes through the
+function, not through the table's policies, which stay own rows only. To
+make links private to their owner, have the function answer 404 when
+`row.user_id` is not the caller's.
+
 ## Tests
 
 ```bash
 cd web && npm test
+```
+
+```bash
+python -m pytest tests/test_places.py
 ```

@@ -1,0 +1,468 @@
+{
+ "pass": {
+  "slug": "donner",
+  "name": "Donner Pass",
+  "elevation_ft": 7057,
+  "lat": 39.315978,
+  "lon": -120.321572,
+  "creek": "",
+  "aspect_note": "historic crossing near the PCT north of Lake Tahoe",
+  "aliases": [
+   "donner"
+  ]
+ },
+ "dates": [
+  "2026-07-01",
+  "2026-07-15",
+  "2026-08-01",
+  "2026-09-29"
+ ],
+ "statuses": {
+  "2026-07-01": {
+   "pass_slug": "donner",
+   "eval_date": "2026-07-01",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 4.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      486823,
+      487114,
+      429259,
+      429983
+     ]
+    },
+    {
+     "text": "Satellite (modeled) shows 0% snow cover in the pass bowl, last clear look 2d ago.",
+     "stream": "satellite",
+     "refs": [
+      594180
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 12 cfs and rising.",
+     "stream": "gauge",
+     "refs": []
+    },
+    {
+     "text": "Snow sensors nearby have melted out, but Truckee #2 (6,500 ft), Truckee 2 (6,400 ft) sit at least 557 ft below the pass: they cannot tell whether the pass still holds snow.",
+     "stream": "sensor",
+     "refs": [
+      429621,
+      486964
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.02875,
+    "sky_fresh": true,
+    "status": "open",
+    "elevation_ft": 7057
+   }
+  },
+  "2026-07-15": {
+   "pass_slug": "donner",
+   "eval_date": "2026-07-15",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.03,
+   "confidence": "moderate",
+   "confidence_score": 4.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      486837,
+      487128,
+      429273,
+      429997
+     ]
+    },
+    {
+     "text": "Satellite (modeled) shows 2% snow cover in the pass bowl, last clear look 1d ago.",
+     "stream": "satellite",
+     "refs": [
+      594184
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 8 cfs and rising.",
+     "stream": "gauge",
+     "refs": []
+    },
+    {
+     "text": "Snow sensors nearby have melted out, but Truckee #2 (6,500 ft), Truckee 2 (6,400 ft) sit at least 557 ft below the pass: they cannot tell whether the pass still holds snow.",
+     "stream": "sensor",
+     "refs": [
+      429635,
+      486978
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.023,
+    "snowline_frac": 0.98045,
+    "creek_level": 0.018925,
+    "sky_fresh": true,
+    "status": "open",
+    "elevation_ft": 7057
+   }
+  },
+  "2026-08-01": {
+   "pass_slug": "donner",
+   "eval_date": "2026-08-01",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 4.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      486854,
+      487135,
+      429290,
+      430014
+     ]
+    },
+    {
+     "text": "Satellite (modeled) shows 0% snow cover in the pass bowl, last clear look 0d ago.",
+     "stream": "satellite",
+     "refs": [
+      594190
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 8 cfs and rising.",
+     "stream": "gauge",
+     "refs": []
+    },
+    {
+     "text": "Snow sensors nearby have melted out, but Truckee #2 (6,500 ft), Truckee 2 (6,400 ft) sit at least 557 ft below the pass: they cannot tell whether the pass still holds snow.",
+     "stream": "sensor",
+     "refs": [
+      429652,
+      486994
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.019775,
+    "sky_fresh": true,
+    "status": "open",
+    "elevation_ft": 7057
+   }
+  },
+  "2026-09-29": {
+   "pass_slug": "donner",
+   "eval_date": "2026-09-29",
+   "status": "open",
+   "status_label": "Likely snow-free",
+   "severity": 0.0,
+   "confidence": "moderate",
+   "confidence_score": 4.5,
+   "conflicts": [],
+   "facts": [
+    {
+     "text": "Nearby snow sensors read 0.0 in of water in the snowpack (0d old).",
+     "stream": "sensor",
+     "refs": [
+      584794,
+      584813,
+      581646,
+      581686
+     ]
+    },
+    {
+     "text": "Satellite (modeled) shows 0% snow cover in the pass bowl, last clear look 2d ago.",
+     "stream": "satellite",
+     "refs": [
+      594204
+     ]
+    },
+    {
+     "text": "The nearest creek gauge reads 6 cfs and rising.",
+     "stream": "gauge",
+     "refs": []
+    },
+    {
+     "text": "Snow sensors nearby have melted out, but Truckee #2 (6,500 ft), Truckee 2 (6,400 ft) sit at least 557 ft below the pass: they cannot tell whether the pass still holds snow.",
+     "stream": "sensor",
+     "refs": [
+      581666,
+      584805
+     ]
+    }
+   ],
+   "vignette": {
+    "snow_cover": 0.0,
+    "snowline_frac": 1.0,
+    "creek_level": 0.014199999999999999,
+    "sky_fresh": true,
+    "status": "open",
+    "elevation_ft": 7057
+   }
+  }
+ },
+ "ledger": [],
+ "curves": {},
+ "forecast": {
+  "days": [
+   {
+    "date": "2026-09-29",
+    "high_f": 67,
+    "low_f": 41,
+    "snow_level_ft": 8900.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 22
+   },
+   {
+    "date": "2026-09-30",
+    "high_f": 75,
+    "low_f": 46,
+    "snow_level_ft": 11300.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 18
+   },
+   {
+    "date": "2026-10-01",
+    "high_f": 75,
+    "low_f": 48,
+    "snow_level_ft": 10700.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 17
+   },
+   {
+    "date": "2026-10-02",
+    "high_f": 73,
+    "low_f": 49,
+    "snow_level_ft": 11000.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 17
+   },
+   {
+    "date": "2026-10-03",
+    "high_f": 75,
+    "low_f": 51,
+    "snow_level_ft": 11100.0,
+    "precip_chance": 0,
+    "snowfall_in": 0.0,
+    "thunder_chance": 0,
+    "gust_mph": 16
+   },
+   {
+    "date": "2026-10-04",
+    "high_f": 72,
+    "low_f": 51,
+    "snow_level_ft": 11500.0,
+    "precip_chance": 4,
+    "snowfall_in": 0.0,
+    "thunder_chance": 4,
+    "gust_mph": 18
+   },
+   {
+    "date": "2026-10-05",
+    "high_f": 70,
+    "low_f": 50,
+    "snow_level_ft": 11500.0,
+    "precip_chance": 4,
+    "snowfall_in": 0.0,
+    "thunder_chance": 2,
+    "gust_mph": 20
+   }
+  ],
+  "facts": [
+   "No snow or storms in the forecast this week; highs near 72\u00b0F at pass elevation."
+  ],
+  "source": "https://forecast.weather.gov/MapClick.php?lat=39.3160&lon=-120.3216",
+  "grid_elevation_ft": 7064,
+  "issued_for": "2026-09-29"
+ },
+ "fire": {
+  "fire": {
+   "name": "Floriston Fire",
+   "acres": 622,
+   "percent_contained": 100,
+   "discovered": "2026-09-16",
+   "updated": "2026-09-29",
+   "distance_mi": 16.2,
+   "direction": "northeast",
+   "inside": false
+  },
+  "issued_for": "2026-09-29",
+  "smoke_date": "2026-09-29"
+ },
+ "winter": {
+  "avalanche": {
+   "zone": "Central Sierra Nevada",
+   "center": "Sierra Avalanche Center",
+   "center_link": "https://www.sierraavalanchecenter.org/",
+   "link": "https://www.sierraavalanchecenter.org/forecasts/avalanche/central-sierra-nevada#/central-sierra-nevada/",
+   "level": null,
+   "rating": "No rating",
+   "travel_advice": "Watch for signs of unstable snow such as recent avalanches, cracking in the snow, and audible collapsing. Avoid traveling on or under similar slopes.",
+   "valid_from": null,
+   "valid_until": null,
+   "valid_until_utc": null,
+   "timezone": "America/Los_Angeles",
+   "off_season": true,
+   "warning": null
+  },
+  "fresh_snow": {
+   "as_of": "2026-09-29",
+   "stations_checked": 6,
+   "stations": [],
+   "forecast": null,
+   "facts": [
+    "No new snow measured at the 6 nearby stations in the 72 hours to Sep 29."
+   ]
+  },
+  "roads": [
+   {
+    "agency": "Caltrans",
+    "agency_link": "https://roads.dot.ca.gov/",
+    "road": "I-40",
+    "location": "Pacific Crest Trail",
+    "lat": 39.31686,
+    "lon": -120.32567,
+    "active": false,
+    "updated": "2026-02-27T10:05:08",
+    "lines": [
+     {
+      "label": "East",
+      "code": "R-0",
+      "text": "No chain controls are in effect at this time."
+     }
+    ],
+    "distance_mi": 0.2,
+    "named": false
+   },
+   {
+    "agency": "Caltrans",
+    "agency_link": "https://roads.dot.ca.gov/",
+    "road": "I-40",
+    "location": "Donner Summit Canyon",
+    "lat": 39.32545,
+    "lon": -120.30264,
+    "active": false,
+    "updated": "2026-02-27T10:05:08",
+    "lines": [
+     {
+      "label": "West",
+      "code": "R-0",
+      "text": "No chain controls are in effect at this time."
+     }
+    ],
+    "distance_mi": 1.2,
+    "named": false
+   },
+   {
+    "agency": "Caltrans",
+    "agency_link": "https://roads.dot.ca.gov/",
+    "road": "I-80",
+    "location": "Castle Peak, (@ DRA Holding only)",
+    "lat": 39.34256,
+    "lon": -120.33873,
+    "active": false,
+    "updated": "2026-05-04T22:14:06",
+    "lines": [
+     {
+      "label": "East",
+      "code": "R-0",
+      "text": "No chain controls are in effect at this time."
+     }
+    ],
+    "distance_mi": 2.1,
+    "named": false
+   },
+   {
+    "agency": "Caltrans",
+    "agency_link": "https://roads.dot.ca.gov/",
+    "road": "I-80",
+    "location": "DLI (Donner Lake Interchange)",
+    "lat": 39.32886,
+    "lon": -120.27931,
+    "active": false,
+    "updated": "2026-05-04T22:38:32",
+    "lines": [
+     {
+      "label": "West",
+      "code": "R-0",
+      "text": "No chain controls are in effect at this time."
+     },
+     {
+      "label": "East",
+      "code": "R-0",
+      "text": "No chain controls are in effect at this time."
+     }
+    ],
+    "distance_mi": 2.4,
+    "named": false
+   }
+  ],
+  "issued_for": "2026-09-29",
+  "fetched_at": "2026-09-29T20:40:13+00:00"
+ },
+ "access": {
+  "trailheads": [
+   {
+    "name": "Donner Peak Trailhead",
+    "lat": 39.3146634,
+    "lon": -120.3272017,
+    "elevation_ft": 7073,
+    "distance_mi": 0.3,
+    "gain_ft": -16,
+    "parking": {}
+   },
+   {
+    "name": "Loch Leven Trailhead",
+    "lat": 39.3091977,
+    "lon": -120.5157843,
+    "elevation_ft": 5801,
+    "distance_mi": 10.4,
+    "gain_ft": 1256,
+    "parking": {}
+   }
+  ],
+  "campgrounds": [
+   {
+    "name": "Onion Creek Campground",
+    "lat": 39.2745571,
+    "lon": -120.3633866,
+    "tents": true,
+    "distance_mi": 3.6
+   },
+   {
+    "name": "Donner Memorial State Park Splitrock Campground",
+    "lat": 39.3192741,
+    "lon": -120.241392,
+    "operator": "California State Parks",
+    "distance_mi": 4.3
+   }
+  ]
+ },
+ "stations": {}
+}
